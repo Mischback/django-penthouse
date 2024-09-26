@@ -108,4 +108,15 @@ setenv =
 skip_install = true
 commands =
   django-admin {posargs:version} --settings=tests.util.settings_dev --pythonpath=./
+
+[testenv:util]
+basepython = python3
+deps =
+  -r {toxinidir}/requirements/util.txt
+envdir = {toxworkdir}/util
+setenv =
+  PYTHONDONTWRITEBYTECODE=1
+skip_install = true
+commands =
+  {posargs:pre-commit run}
 """

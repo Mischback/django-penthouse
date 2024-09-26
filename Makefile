@@ -105,6 +105,64 @@ django/shell :
 .PHONY : django/shell
 
 
+# ### utility targets
+
+## Run bandit on all files (*.py)
+## @category Code Quality
+util/bandit :
+	$(MAKE) util/pre-commit pre-commit_id="bandit" pre-commit_files="--all-files"
+.PHONY : util/bandit
+
+## Run black on all files (*.py)
+## @category Code Quality
+util/black :
+	$(MAKE) util/pre-commit pre-commit_id="black" pre-commit_files="--all-files"
+.PHONY : util/black
+
+## Run djlint on all files (*.html)
+## @category Code Quality
+util/djlint :
+	$(MAKE) util/pre-commit pre-commit_id="djlint-django" pre-commit_files="--all-files"
+.PHONY : util/djlint
+
+## Run doc8 on all files (*.rst)
+## @category Code Quality
+util/doc8 :
+	$(MAKE) util/pre-commit pre-commit_id="doc8" pre-commit_files="--all-files"
+.PHONY : util/doc8
+
+## Run flake8 on all files (*.py)
+## @category Code Quality
+util/flake8 :
+	$(MAKE) util/pre-commit pre-commit_id="flake8" pre-commit_files="--all-files"
+.PHONY : util/flake8
+
+## Run isort on all files (*.py)
+## @category Code Quality
+util/isort :
+	$(MAKE) util/pre-commit pre-commit_id="isort" pre-commit_files="--all-files"
+.PHONY : util/isort
+
+pre-commit_id ?= ""
+pre-commit_files ?= ""
+## Run all code quality tools as defined in .pre-commit-config.yaml
+## @category Code Quality
+util/pre-commit : $(TOX_VENV_INSTALLED)
+	$(TOX_CMD) -q -e util -- pre-commit run $(pre-commit_files) $(pre-commit_id)
+.PHONY : util/pre-commit
+
+## Install pre-commit hooks to be executed automatically
+## @category Code Quality
+util/pre-commit/install : $(TOX_VENV_INSTALLED)
+	$(TOX_CMD) -q -e util -- pre-commit install
+.PHONY : util/pre-commit/install
+
+## Update pre-commit hooks
+## @category Code Quality
+util/pre-commit/update : $(TOX_VENV_INSTALLED)
+	$(TOX_CMD) -q -e util -- pre-commit autoupdate
+.PHONY : util/pre-commit/update
+
 # (Re-) Generate the requirements files using pip-tools (``pip-compile``)
 #
 # ``pip-compile`` is run through a ``tox`` environment. The actual command is
@@ -125,4 +183,3 @@ $(TOX_VENV_CREATED) :
 $(TOX_VENV_INSTALLED) : $(TOX_VENV_CREATED)
 	$(TOX_VENV_DIR)/bin/pip install -r requirements/tox.txt
 	$(TOX_VENV_DIR)/bin/pip freeze > $@
-
