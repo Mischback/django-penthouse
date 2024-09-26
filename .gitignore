@@ -1,0 +1,11 @@
+
+# Track actions with artificial stamps
+.make-stamps/
+
+# Python virtual environments
+.tox-venv/
+
+# Python byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class

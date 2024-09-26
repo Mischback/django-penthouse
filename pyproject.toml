@@ -61,3 +61,40 @@ skip_glob = [
   "*/migrations/*",
   "settings_dev.py"
 ]
+
+# ### TOX configuration
+#
+# ``tox`` is run to manage different virtual environments for different tasks.
+# It is **not** used for its main purpose of running tests with different
+# environments.
+#
+# Please note that ``tox`` >= 4.1 will support ``pyproject.toml`` natively, so
+# this configuration will have to be adjusted, probably heavily.
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+minversion = 3.26.0
+
+[testenv:pre-commit]
+basepython = python3
+deps =
+  -r {toxinidir}/requirements/pre-commit.txt
+envdir = {toxworkdir}/pre-commit
+setenv =
+  PYTHONDONTWRITEBYTECODE=1
+passenv = SSH_AUTH_SOCK
+skip_install = true
+commands =
+  {posargs:pre-commit run}
+
+[testenv:pip-tools]
+basepython = python3
+deps =
+  -r {toxinidir}/requirements/pip-tools.txt
+envdir = {toxworkdir}/pip-tools
+setenv =
+  PYTHONDONTWRITEBYTECODE=1
+skip_install = true
+commands =
+  pip-compile --resolver=backtracking {posargs}
+"""
