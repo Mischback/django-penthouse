@@ -37,6 +37,74 @@ full-clean : clean
 .PHONY : full-clean
 
 
+# ### Django management commands
+
+django_command ?= "version"
+django : $(TOX_VENV_INSTALLED)
+	$(TOX_CMD) -q -e django -- $(django_command)
+.PHONY : django
+
+## "$ django-admin check"; runs the project's checks
+## @category Django
+django/check :
+	$(MAKE) django django_command="check"
+.PHONY : django/check
+
+## "$ django-admin clearsessions"; clears the session from the backend
+## @category Django
+django/clearsessions :
+	$(MAKE) django django_command="clearsessions"
+.PHONY : django/clearsessions
+
+## "$ django-admin compilemessages"; compiles the app's *.po files to *.mo
+## @category Django
+django/compilemessages :
+	$(MAKE) django django_command="compilemessages --ignore=.tox --ignore=tests --ignore=docs"
+.PHONY : django/compilemessages
+
+## create a superuser account with username: "admin" and password: "foobar"
+## @category Django
+django/createsuperuser : $(TOX_VENV_INSTALLED)
+	$(TOX_CMD) -q -e djangosuperuser
+.PHONY : django/createsuperuser
+
+## "$ django-admin makemessages"; collect the app's localizable strings into *.po
+## @category Django
+django/makemessages :
+	$(MAKE) django django_command="makemessages --locale=en --locale=de --ignore=.tox --ignore=tests --ignore=docs"
+.PHONY : django/makemessages
+
+# Create the migrations for the app to be developed!
+# TODO: The app name is hardcoded here!
+## "$ django-admin makemigrations"; create migrations
+## @category Django
+django/makemigrations :
+	$(MAKE) django django_command="makemigrations penthouse"
+.PHONY : django/makemigrations
+
+## "$ django-admin migrate"; apply the project's migrations
+## @category Django
+django/migrate :
+	$(MAKE) django django_command="migrate"
+.PHONY : django/migrate
+
+host_port ?= "0:8000"
+## "django-admin runserver"; runs Django's development server with host = "0"
+## and port = "8000".
+## Host and port might be specified by "make django/runserver host_port="0:4444"
+## to run the server on port "4444".
+## @category Django
+django/runserver : django/migrate django/clearsessions
+	$(MAKE) django django_command="runserver $(host_port)"
+.PHONY : django/runserver
+
+## "django-admin shell"; run a REPL with the project's settings
+## @category Django
+django/shell :
+	$(MAKE) django django_command="shell"
+.PHONY : django/shell
+
+
 # (Re-) Generate the requirements files using pip-tools (``pip-compile``)
 #
 # ``pip-compile`` is run through a ``tox`` environment. The actual command is

@@ -97,4 +97,15 @@ setenv =
 skip_install = true
 commands =
   pip-compile --resolver=backtracking {posargs}
+
+[testenv:django]
+basepython = python3
+deps =
+  -r {toxinidir}/requirements/development.txt
+envdir = {toxworkdir}/django
+setenv =
+  PYTHONDONTWRITEBYTECODE=1
+skip_install = true
+commands =
+  django-admin {posargs:version} --settings=tests.util.settings_dev --pythonpath=./
 """
