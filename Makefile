@@ -25,6 +25,11 @@ TOX_VENV_CREATED := $(TOX_VENV_DIR)/pyvenv.cfg
 TOX_VENV_INSTALLED := $(TOX_VENV_DIR)/packages.txt
 TOX_CMD := $(TOX_VENV_DIR)/bin/tox
 
+## Shortcut
+## @category Development
+run: django/runserver
+.PHONY : run
+
 
 # Remove build artifacts
 clean :
