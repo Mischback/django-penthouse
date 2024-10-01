@@ -5,6 +5,7 @@
 """The models needed to track runs, that is, a single battle within the game."""
 
 # Django imports
+from django import forms
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -40,7 +41,9 @@ class Run(models.Model):
     """End wave counter of the run."""
 
     duration = models.PositiveIntegerField(
-        help_text=_("Duration of the run (in seconds)"), verbose_name=_("Duration")
+        help_text=_("Duration of the run (in seconds)"),
+        verbose_name=_("Duration"),
+        default=1,
     )
     """Duration of the run, specified in seconds."""
 
@@ -119,6 +122,8 @@ class Run(models.Model):
                 "cells_hour",
                 "cells_wave",
             }.union(update_fields)
+
+        print("[save]...")
         super().save(**kwargs)
 
     def _calculate_coins_hour(self):  # noqa: D105
@@ -132,3 +137,37 @@ class Run(models.Model):
 
     def _calculate_cells_wave(self):  # noqa: D105
         return self.cells / self.waves
+
+
+class RunForm(forms.ModelForm):
+    """Used to validate input for creating and updating ``Run`` instances."""
+
+    duration_h = forms.IntegerField(min_value=0, step_size=1)
+    duration_m = forms.IntegerField(min_value=0, max_value=59, step_size=1)
+    duration_s = forms.IntegerField(min_value=0, max_value=59, step_size=1)
+
+    class Meta:  # noqa: D106
+        model = Run
+        fields = [
+            "date",
+            "tier",
+            "waves",
+            "duration",
+            "duration_h",
+            "duration_m",
+            "duration_s",
+            "coins",
+            "cells",
+            "notes",
+        ]
+        widgets = {"duration": forms.HiddenInput()}
+
+    def save(self, *args, **kwargs):
+        """Calculate the actual duration from dedicated input fields."""
+        dur_h = self.cleaned_data.get("duration_h")
+        dur_m = self.cleaned_data.get("duration_m")
+        dur_s = self.cleaned_data.get("duration_s")
+
+        self.instance.duration = dur_h * 3600 + dur_m * 60 + dur_s
+
+        return super().save(*args, **kwargs)
