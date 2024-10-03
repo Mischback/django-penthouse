@@ -6,6 +6,7 @@
 
 # Django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -13,6 +14,14 @@ from django.views import generic
 from penthouse.models.profile import Profile
 from penthouse.models.tracker import Run, RunForm
 from penthouse.views.mixins import ProfileIDMixin
+
+
+def tracker_overview(request):
+    """Provide an overview over all runs."""
+    profile = Profile.objects.get(owner=request.user)
+    runs = Run.objects.filter(profile=profile)
+
+    return render(request, "penthouse/tracker_overview.html", {"runs": runs})
 
 
 class RunCreateView(LoginRequiredMixin, ProfileIDMixin, generic.CreateView):

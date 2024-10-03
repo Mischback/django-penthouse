@@ -1,0 +1,35 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block page_title %}Tracker Overview{% endblock page_title %}
+
+{% block main %}
+<h2>Tracker Overview</h2>
+
+<table summary="All tracked runs">
+  <tr>
+    <th>Date</th>
+    <th>Tier</th>
+    <th>Waves</th>
+    <th>Duration</th>
+    <th>Coins</th>
+    <th>Coins/h</th>
+    <th>Cells</th>
+    <th>Cells/h</th>
+    <th>Notes</th>
+  </tr>
+  {% for run in runs %}
+  <tr>
+    <td>{{ run.date }}</td>
+    <td>{{ run.tier }}</td>
+    <td>{{ run.waves }}</td>
+    <td>{{ run.duration }}</td>
+    <td>{{ run.coins }}</td>
+    <td>{{ run.coins_hour }}</td>
+    <td>{{ run.cells }}</td>
+    <td>{{ run.cells_hour }}</td>
+    <td>{{ run.notes }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock main %}
