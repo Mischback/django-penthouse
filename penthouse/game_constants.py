@@ -29,3 +29,4 @@ class TowerTiers(TextChoices):
     T15 = "T15"
     T16 = "T16"
     T17 = "T17"
+    T18 = "T18"
