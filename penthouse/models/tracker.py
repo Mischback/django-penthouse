@@ -10,8 +10,24 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 # app imports
+from penthouse.exceptions import PenthouseModelException
 from penthouse.game_constants import TowerTiers
 from penthouse.models.profile import Profile
+
+
+class RunModelException(PenthouseModelException):
+    """Base class for all exceptions related to :class:`~penthouse.models.tracker.Run` model."""
+
+
+class RunManager(models.Manager):
+    """Custom manager for ``Run`` model."""
+
+    def get_runs_by_user(self, user=None):
+        """Filter the runs by the specified user."""
+        if user is None:
+            raise RunModelException("No user specified!")
+
+        return self.get_queryset().filter(profile__owner=user)
 
 
 class Run(models.Model):
@@ -96,6 +112,14 @@ class Run(models.Model):
 
     This field should be calculated automatically depending on ``cells`` and
     ``waves``.
+    """
+
+    objects = RunManager()
+    """Apply a custom manager.
+
+    This should not interfere with Django's default inner mechanics, the
+    custom manager does not replace any default functions, it just provides
+    additional methods.
     """
 
     class Meta:  # noqa: D106

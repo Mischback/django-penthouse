@@ -5,6 +5,7 @@
 """Views related to the run tracker functions."""
 
 # Django imports
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -16,10 +17,10 @@ from penthouse.models.tracker import Run, RunForm
 from penthouse.views.mixins import ProfileIDMixin
 
 
+@login_required
 def tracker_overview(request):
     """Provide an overview over all runs."""
-    profile = Profile.objects.get(owner=request.user)
-    runs = Run.objects.filter(profile=profile)
+    runs = Run.objects.get_runs_by_user(user=request.user)
 
     return render(request, "penthouse/tracker_overview.html", {"runs": runs})
 
