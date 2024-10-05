@@ -6,7 +6,7 @@
 
 
 # Django imports
-from django.db.models import TextChoices
+from django.db.models import IntegerChoices, TextChoices
 
 
 class TowerTiers(TextChoices):
@@ -30,3 +30,21 @@ class TowerTiers(TextChoices):
     T16 = "T16"
     T17 = "T17"
     T18 = "T18"
+
+
+class TowerUnitSuffix(IntegerChoices):
+    """The game's suffixes for number values.
+
+    Actually there are even more. These are pre-defined until ``O``, which
+    should be enough for all of this app's needs.
+    """
+
+    UNIT_K = 1000, "k"
+    UNIT_M = 1000000, "M"
+    UNIT_B = 1000000000, "B"
+    UNIT_T = 1000000000000, "T"
+    UNIT_Q_MIN = 1000000000000000, "q"
+    UNIT_Q = 1000000000000000000, "Q"
+    UNIT_S_MIN = 1000000000000000000000, "s"
+    UNIT_S = 1000000000000000000000000, "S"
+    UNIT_O = 1000000000000000000000000000, "O"

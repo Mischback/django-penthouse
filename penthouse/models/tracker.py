@@ -11,6 +11,7 @@ from django.utils.translation import gettext_lazy as _
 
 # app imports
 from penthouse.exceptions import PenthouseModelException
+from penthouse.forms.fields import GameNumberField
 from penthouse.game_constants import TowerTiers
 from penthouse.models.profile import Profile
 
@@ -169,6 +170,8 @@ class RunForm(forms.ModelForm):
     duration_h = forms.IntegerField(min_value=0, step_size=1)
     duration_m = forms.IntegerField(min_value=0, max_value=59, step_size=1)
     duration_s = forms.IntegerField(min_value=0, max_value=59, step_size=1)
+
+    coins = GameNumberField()
 
     class Meta:  # noqa: D106
         model = Run
