@@ -34,9 +34,31 @@ class RunCreateView(LoginRequiredMixin, ProfileIDMixin, generic.CreateView):
 
     template_name_suffix = "_create"
 
-    success_url = reverse_lazy("penthouse:tracker-run-add")
+    success_url = reverse_lazy("penthouse:tracker-overview")
 
     def form_valid(self, form):  # noqa: D102
         form.instance.profile = Profile.objects.get(owner=self.request.user)
 
         return super().form_valid(form)
+
+
+class RunUpdateView(LoginRequiredMixin, ProfileIDMixin, generic.UpdateView):
+    """Generic class-based view implementation to update ``Run`` instances."""
+
+    model = Run
+
+    form_class = RunForm
+
+    template_name_suffix = "_update"
+
+    pk_url_kwarg = "run_id"
+
+    success_url = reverse_lazy("penthouse:tracker-overview")
+
+    def get_queryset(self):
+        """Limit results to instances associated with the current user.
+
+        This method ensures, that users can only modify ``Run`` objects, that
+        were created by themselves.
+        """
+        return self.model.objects.get_runs_by_user(user=self.request.user)

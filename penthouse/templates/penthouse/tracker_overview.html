@@ -16,6 +16,7 @@
     <th>Cells</th>
     <th>Cells/h</th>
     <th>Notes</th>
+    <th />
   </tr>
   {% for run in runs %}
   <tr>
@@ -28,6 +29,9 @@
     <td>{{ run.cells }}</td>
     <td>{{ run.cells_hour }}</td>
     <td>{{ run.notes }}</td>
+    <td>
+      <a href="{% url "penthouse:tracker-run-update" run.id %}">update</a>
+    </td>
   </tr>
   {% endfor %}
 </table>
