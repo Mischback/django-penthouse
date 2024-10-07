@@ -31,6 +31,28 @@ class GameNumberWidget(MultiWidget):
         method.
         """
         if value:
-            print("[GameNumberWidget.decompress()] {}".format(value))
+            # print("[GameNumberWidget.decompress()] {}".format(value))
+
+            value = int(value)
+            if value / TowerUnitSuffix.UNIT_O > 1:
+                return [value / TowerUnitSuffix.UNIT_O, TowerUnitSuffix.UNIT_O]
+            elif value / TowerUnitSuffix.UNIT_S > 1:
+                return [value / TowerUnitSuffix.UNIT_S, TowerUnitSuffix.UNIT_S]
+            elif value / TowerUnitSuffix.UNIT_S_MIN > 1:
+                return [value / TowerUnitSuffix.UNIT_S_MIN, TowerUnitSuffix.UNIT_S_MIN]
+            elif value / TowerUnitSuffix.UNIT_Q > 1:
+                return [value / TowerUnitSuffix.UNIT_Q, TowerUnitSuffix.UNIT_Q]
+            elif value / TowerUnitSuffix.UNIT_Q_MIN > 1:
+                return [value / TowerUnitSuffix.UNIT_Q_MIN, TowerUnitSuffix.UNIT_Q_MIN]
+            elif value / TowerUnitSuffix.UNIT_T > 1:
+                return [value / TowerUnitSuffix.UNIT_T, TowerUnitSuffix.UNIT_T]
+            elif value / TowerUnitSuffix.UNIT_B > 1:
+                return [value / TowerUnitSuffix.UNIT_B, TowerUnitSuffix.UNIT_B]
+            elif value / TowerUnitSuffix.UNIT_M > 1:
+                return [value / TowerUnitSuffix.UNIT_M, TowerUnitSuffix.UNIT_M]
+            elif value / TowerUnitSuffix.UNIT_K > 1:
+                return [value / TowerUnitSuffix.UNIT_K, TowerUnitSuffix.UNIT_K]
+            else:
+                return [value, None]
 
         return [None, None]
