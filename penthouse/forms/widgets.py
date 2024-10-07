@@ -11,16 +11,50 @@ from django.forms.widgets import MultiWidget, NumberInput, Select
 from penthouse.game_constants import TowerUnitSuffix
 
 
+class GameDurationWidget(MultiWidget):
+    """Widget to render the app-specific ``GameDurationField``."""
+
+    def __init__(self, *args, **kwargs):
+        self.hour_widget = NumberInput()
+        self.minute_widget = NumberInput()
+        self.second_widget = NumberInput()
+
+        super().__init__(
+            *args,
+            widgets=(self.hour_widget, self.minute_widget, self.second_widget),
+            **kwargs
+        )
+
+    def decompress(self, value):
+        """Decompress the received value to render its components in dedicated widgets.
+
+        Notes
+        -----
+        See the corresponding method in :meth:`penthouse.forms.fields.GameDurationField.compress`
+        method.
+        """
+        if value:
+            # print("[GameDurationWidget.decompress()] {}".format(value))
+
+            # I fucking love Python!
+            # https://stackoverflow.com/a/775075
+            m, s = divmod(value, 60)
+            h, m = divmod(m, 60)
+            return [h, m, s]
+
+        return [None, None, None]
+
+
 class GameNumberWidget(MultiWidget):
     """Widget to render the app-specific ``GameNumberField``."""
 
     def __init__(self, *args, **kwargs):
-
         self.value_widget = NumberInput()
         self.suffix_widget = Select(choices=TowerUnitSuffix)
-        widgets = (self.value_widget, self.suffix_widget)
 
-        super().__init__(*args, widgets=widgets, **kwargs)
+        super().__init__(
+            *args, widgets=(self.value_widget, self.suffix_widget), **kwargs
+        )
 
     def decompress(self, value):
         """Decompress the received value to render its components in dedicated widgets.

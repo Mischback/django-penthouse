@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 
 # app imports
 from penthouse.exceptions import PenthouseModelException
-from penthouse.forms.fields import GameNumberField
+from penthouse.forms.fields import GameDurationField, GameNumberField
 from penthouse.game_constants import TowerTiers
 from penthouse.models.profile import Profile
 
@@ -167,12 +167,9 @@ class Run(models.Model):
 class RunForm(forms.ModelForm):
     """Used to validate input for creating and updating ``Run`` instances."""
 
-    duration_h = forms.IntegerField(min_value=0, step_size=1)
-    duration_m = forms.IntegerField(min_value=0, max_value=59, step_size=1)
-    duration_s = forms.IntegerField(min_value=0, max_value=59, step_size=1)
-
     coins = GameNumberField()
     cells = GameNumberField()
+    duration = GameDurationField()
 
     class Meta:  # noqa: D106
         model = Run
@@ -181,21 +178,7 @@ class RunForm(forms.ModelForm):
             "tier",
             "waves",
             "duration",
-            "duration_h",
-            "duration_m",
-            "duration_s",
             "coins",
             "cells",
             "notes",
         ]
-        widgets = {"duration": forms.HiddenInput()}
-
-    def save(self, *args, **kwargs):
-        """Calculate the actual duration from dedicated input fields."""
-        dur_h = self.cleaned_data.get("duration_h")
-        dur_m = self.cleaned_data.get("duration_m")
-        dur_s = self.cleaned_data.get("duration_s")
-
-        self.instance.duration = dur_h * 3600 + dur_m * 60 + dur_s
-
-        return super().save(*args, **kwargs)

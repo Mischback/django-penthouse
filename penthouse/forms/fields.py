@@ -6,11 +6,44 @@
 
 
 # Django imports
-from django.forms.fields import ChoiceField, FloatField, MultiValueField
+from django.forms.fields import ChoiceField, FloatField, IntegerField, MultiValueField
 
 # app imports
-from penthouse.forms.widgets import GameNumberWidget
+from penthouse.forms.widgets import GameDurationWidget, GameNumberWidget
 from penthouse.game_constants import TowerUnitSuffix
+
+
+class GameDurationField(MultiValueField):
+    """Provide the required input field for durations."""
+
+    widget = GameDurationWidget
+
+    def __init__(self, *args, **kwargs):
+        self.hour_field = IntegerField(min_value=0, step_size=1)
+        self.minute_field = IntegerField(min_value=0, max_value=59, step_size=1)
+        self.second_field = IntegerField(min_value=0, max_value=59, step_size=1)
+
+        super().__init__(
+            *args,
+            fields=(self.hour_field, self.minute_field, self.second_field),
+            **kwargs
+        )
+
+    def compress(self, data_list):
+        """Compress the values of multiple fields into one object for the ORM layer.
+
+        The ``GameDurationWidget`` renders three form fields (hours, minutes
+        and seconds). To get to the actual value, those have to be converted
+        into raw seconds.
+
+        Notes
+        -----
+        See the corresponding method in :meth:`penthouse.forms.widgets.GameDurationWidget.decompress`
+        method.
+        """
+        return int(
+            int(data_list[0]) * 3600 + int(data_list[1]) * 60 + int(data_list[2])
+        )
 
 
 class GameNumberField(MultiValueField):
@@ -26,9 +59,7 @@ class GameNumberField(MultiValueField):
         self.value_field = FloatField()
         self.suffix_field = ChoiceField(choices=TowerUnitSuffix)
 
-        fields = (self.value_field, self.suffix_field)
-
-        super().__init__(*args, fields=fields, **kwargs)
+        super().__init__(*args, fields=(self.value_field, self.suffix_field), **kwargs)
 
     def compress(self, data_list):
         """Compress the values of multiple fields into one object for the ORM layer.
