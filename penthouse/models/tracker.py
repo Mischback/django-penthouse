@@ -172,6 +172,7 @@ class RunForm(forms.ModelForm):
     duration_s = forms.IntegerField(min_value=0, max_value=59, step_size=1)
 
     coins = GameNumberField()
+    cells = GameNumberField()
 
     class Meta:  # noqa: D106
         model = Run
