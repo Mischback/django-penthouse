@@ -23,7 +23,7 @@ class RunModelException(PenthouseModelException):
 class RunManager(models.Manager):
     """Custom manager for ``Run`` model."""
 
-    def get_runs_by_user(self, user=None):
+    def filter_by_user(self, user=None):
         """Filter the runs by the specified user."""
         if user is None:
             raise RunModelException("No user specified!")

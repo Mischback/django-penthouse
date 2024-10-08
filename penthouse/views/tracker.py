@@ -14,13 +14,13 @@ from django.views import generic
 # app imports
 from penthouse.models.profile import Profile
 from penthouse.models.tracker import Run, RunForm
-from penthouse.views.mixins import ProfileIDMixin
+from penthouse.views.mixins import ProfileIDMixin, RestrictToUserMixin
 
 
 @login_required
 def tracker_overview(request):
     """Provide an overview over all runs."""
-    runs = Run.objects.get_runs_by_user(user=request.user)
+    runs = Run.objects.filter_by_user(user=request.user)
 
     return render(request, "penthouse/tracker_overview.html", {"runs": runs})
 
@@ -42,7 +42,9 @@ class RunCreateView(LoginRequiredMixin, ProfileIDMixin, generic.CreateView):
         return super().form_valid(form)
 
 
-class RunUpdateView(LoginRequiredMixin, ProfileIDMixin, generic.UpdateView):
+class RunUpdateView(
+    LoginRequiredMixin, RestrictToUserMixin, ProfileIDMixin, generic.UpdateView
+):
     """Generic class-based view implementation to update ``Run`` instances."""
 
     model = Run
@@ -54,11 +56,3 @@ class RunUpdateView(LoginRequiredMixin, ProfileIDMixin, generic.UpdateView):
     pk_url_kwarg = "run_id"
 
     success_url = reverse_lazy("penthouse:tracker-overview")
-
-    def get_queryset(self):
-        """Limit results to instances associated with the current user.
-
-        This method ensures, that users can only modify ``Run`` objects, that
-        were created by themselves.
-        """
-        return self.model.objects.get_runs_by_user(user=self.request.user)
