@@ -31,6 +31,7 @@
     <td>{{ run.notes }}</td>
     <td>
       <a href="{% url "penthouse:tracker-run-update" run.id %}">update</a>
+      <a href="{% url "penthouse:tracker-run-delete" run.id %}">delete</a>
     </td>
   </tr>
   {% endfor %}

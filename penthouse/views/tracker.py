@@ -42,6 +42,20 @@ class RunCreateView(LoginRequiredMixin, ProfileIDMixin, generic.CreateView):
         return super().form_valid(form)
 
 
+class RunDeleteView(
+    LoginRequiredMixin, RestrictToUserMixin, ProfileIDMixin, generic.DeleteView
+):
+    """Generic class-based view implementation to delete ``Run`` instances."""
+
+    model = Run
+
+    context_object_name = "run_item"
+
+    pk_url_kwarg = "run_id"
+
+    success_url = reverse_lazy("penthouse:tracker-overview")
+
+
 class RunUpdateView(
     LoginRequiredMixin, RestrictToUserMixin, ProfileIDMixin, generic.UpdateView
 ):
