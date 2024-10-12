@@ -79,42 +79,6 @@ class Run(models.Model):
     )
     """Can store possible additional information about the run."""
 
-    coins_hour = models.PositiveBigIntegerField(
-        help_text=_("Coins per hour"), verbose_name=_("Coins/h"), default=0
-    )
-    """Coins per hour of the run.
-
-    This field should be calculated automatically depending on ``coins`` and
-    ``duration``.
-    """
-
-    coins_wave = models.PositiveBigIntegerField(
-        help_text=_("Coins per wave"), verbose_name=_("Coins/Wave"), default=0
-    )
-    """Coins per wave of the run.
-
-    This field should be calculated automatically depending on ``coins`` and
-    ``waves``.
-    """
-
-    cells_hour = models.PositiveIntegerField(
-        help_text=_("Cells per hour"), verbose_name=_("Cells/h"), default=0
-    )
-    """Cells per hour of the run.
-
-    This field should be calculated automatically depending on ``cells`` and
-    ``duration``.
-    """
-
-    cells_wave = models.PositiveIntegerField(
-        help_text=_("Cells per wave"), verbose_name=_("Cells/Wave"), default=0
-    )
-    """Cells per wave of the run.
-
-    This field should be calculated automatically depending on ``cells`` and
-    ``waves``.
-    """
-
     objects = RunManager()
     """Apply a custom manager.
 
@@ -150,18 +114,6 @@ class Run(models.Model):
 
         print("[save]...")
         super().save(**kwargs)
-
-    def _calculate_coins_hour(self):  # noqa: D105
-        return self.coins / (self.duration / 3600)
-
-    def _calculate_coins_wave(self):  # noqa: D105
-        return self.coins / self.waves
-
-    def _calculate_cells_hour(self):  # noqa: D105
-        return self.cells / (self.duration / 3600)
-
-    def _calculate_cells_wave(self):  # noqa: D105
-        return self.cells / self.waves
 
 
 class RunForm(forms.ModelForm):

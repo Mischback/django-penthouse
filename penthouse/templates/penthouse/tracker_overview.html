@@ -12,9 +12,13 @@
     <th>Waves</th>
     <th>Duration</th>
     <th>Coins</th>
+    <th>PB?</th>
     <th>Coins/h</th>
+    <th>PB?</th>
     <th>Cells</th>
+    <th>PB?</th>
     <th>Cells/h</th>
+    <th>PB?</th>
     <th>Notes</th>
     <th />
   </tr>
@@ -25,9 +29,13 @@
     <td>{{ run.waves }}</td>
     <td>{{ run.duration }}</td>
     <td>{{ run.coins }}</td>
+    <td>{{ run.pb_coins }}</td>
     <td>{{ run.coins_hour }}</td>
+    <td>{{ run.pb_coins_hour }}</td>
     <td>{{ run.cells }}</td>
+    <td>{{ run.pb_cells }}</td>
     <td>{{ run.cells_hour }}</td>
+    <td>{{ run.pb_cells_hour }}</td>
     <td>{{ run.notes }}</td>
     <td>
       <a href="{% url "penthouse:tracker-run-update" run.id %}">update</a>
