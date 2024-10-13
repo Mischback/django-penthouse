@@ -5,6 +5,9 @@
 {% block main %}
 <h2>Tracker Overview</h2>
 
+<h3>Best Runs</h3>
+
+<h3>Run List</h3>
 <table summary="All tracked runs">
   <tr>
     <th>Date</th>
@@ -20,6 +23,10 @@
     <th>Cells/h</th>
     <th>PB?</th>
     <th>Notes</th>
+    <th>Coins (Avg5)</th>
+    <th>Coins/h (Avg5)</th>
+    <th>Cells (Avg5)</th>
+    <th>Cells/h (Avg5)</th>
     <th />
   </tr>
   {% for run in runs %}
@@ -37,6 +44,10 @@
     <td>{{ run.cells_hour }}</td>
     <td>{{ run.pb_cells_hour }}</td>
     <td>{{ run.notes }}</td>
+    <td>{{ run.coins_avg5 }}</td>
+    <td>{{ run.coins_hour_avg5 }}</td>
+    <td>{{ run.cells_avg5 }}</td>
+    <td>{{ run.cells_hour_avg5 }}</td>
     <td>
       <a href="{% url "penthouse:tracker-run-update" run.id %}">update</a>
       <a href="{% url "penthouse:tracker-run-delete" run.id %}">delete</a>

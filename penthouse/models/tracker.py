@@ -97,24 +97,6 @@ class Run(models.Model):
             self.profile, self.date, self.tier, self.waves, self.coins, self.cells
         )
 
-    def save(self, **kwargs):
-        """Implement ``save`` method to automatically calculate per hour/wave value."""
-        self.coins_hour = self._calculate_coins_hour()
-        self.coins_wave = self._calculate_coins_wave()
-        self.cells_hour = self._calculate_cells_hour()
-        self.cells_wave = self._calculate_cells_wave()
-
-        if (update_fields := kwargs.get("update_fields")) is not None:
-            kwargs["update_fields"] = {
-                "coins_hour",
-                "coins_wave",
-                "cells_hour",
-                "cells_wave",
-            }.union(update_fields)
-
-        print("[save]...")
-        super().save(**kwargs)
-
 
 class RunForm(forms.ModelForm):
     """Used to validate input for creating and updating ``Run`` instances."""

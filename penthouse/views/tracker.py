@@ -40,6 +40,11 @@ class RunData:
         self.pb_coins_hour = False
         self.pb_cells_hour = False
 
+        self.coins_avg5 = 0
+        self.coins_hour_avg5 = 0
+        self.cells_avg5 = 0
+        self.cells_hour_avg5 = 0
+
 
 @login_required
 def tracker_overview(request):
@@ -51,6 +56,7 @@ def tracker_overview(request):
     pb_cells = 0
     pb_coins_hour = 0
     pb_cells_hour = 0
+    run_i = 0
     for run in runs_raw.iterator():
         item = RunData(
             run.id,
@@ -79,7 +85,38 @@ def tracker_overview(request):
             pb_cells_hour = item.cells_hour
             item.pb_cells_hour = True
 
+        if run_i > 3:
+            item.coins_avg5 = (
+                runs[run_i - 4].coins
+                + runs[run_i - 3].coins
+                + runs[run_i - 2].coins
+                + runs[run_i - 1].coins
+                + item.coins
+            ) / 5
+            item.coins_hour_avg5 = (
+                runs[run_i - 4].coins_hour
+                + runs[run_i - 3].coins_hour
+                + runs[run_i - 2].coins_hour
+                + runs[run_i - 1].coins_hour
+                + item.coins_hour
+            ) / 5
+            item.cells_avg5 = (
+                runs[run_i - 4].cells
+                + runs[run_i - 3].cells
+                + runs[run_i - 2].cells
+                + runs[run_i - 1].cells
+                + item.cells
+            ) / 5
+            item.cells_hour_avg5 = (
+                runs[run_i - 4].cells_hour
+                + runs[run_i - 3].cells_hour
+                + runs[run_i - 2].cells_hour
+                + runs[run_i - 1].cells_hour
+                + item.cells_hour
+            ) / 5
+
         runs.append(item)
+        run_i = run_i + 1
 
     return render(request, "penthouse/tracker_overview.html", {"runs": runs})
 
