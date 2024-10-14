@@ -155,6 +155,10 @@ def tracker_overview(request):
             "pb_coins_hour": pb_coins_hour,
             "pb_cells": pb_cells,
             "pb_cells_hour": pb_cells_hour,
+            "threshold_top_coins": pb_coins.coins * 0.9,
+            "threshold_top_coins_hour": pb_coins_hour.coins_hour * 0.9,
+            "threshold_top_cells": pb_cells.cells * 0.9,
+            "threshold_top_cells_hour": pb_cells_hour.cells_hour * 0.9,
         },
     )
 
