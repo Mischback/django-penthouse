@@ -9,6 +9,7 @@ from django.forms.widgets import MultiWidget, NumberInput, Select
 
 # app imports
 from penthouse.game_constants import TowerUnitSuffix
+from penthouse.utility import seconds_to_hms
 
 
 class GameDurationWidget(MultiWidget):
@@ -36,10 +37,7 @@ class GameDurationWidget(MultiWidget):
         if value:
             # print("[GameDurationWidget.decompress()] {}".format(value))
 
-            # I fucking love Python!
-            # https://stackoverflow.com/a/775075
-            m, s = divmod(value, 60)
-            h, m = divmod(m, 60)
+            h, m, s = seconds_to_hms(value)
             return [h, m, s]
 
         return [None, None, None]

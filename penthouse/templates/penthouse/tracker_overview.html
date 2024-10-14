@@ -1,5 +1,7 @@
 {% extends "penthouse/app_base.html" %}
 
+{% load penthouse_tags %}
+
 {% block page_title %}Tracker Overview{% endblock page_title %}
 
 {% block main %}
@@ -20,10 +22,10 @@
   </tr>
   <tr>
     <td>Coins/Run</td>
-    <td>{{ pb_coins.date }}</td>
+    <td>{{ pb_coins.date|date:"SHORT_DATE_FORMAT" }}</td>
     <td>{{ pb_coins.tier }}</td>
     <td>{{ pb_coins.waves }}</td>
-    <td>{{ pb_coins.duration }}</td>
+    <td>{{ pb_coins.duration|hr_duration }}</td>
     <td>{{ pb_coins.coins }}</td>
     <td>{{ pb_coins.coins_hour }}</td>
     <td>{{ pb_coins.cells }}</td>
@@ -31,10 +33,10 @@
   </tr>
   <tr>
     <td>Coins/h</td>
-    <td>{{ pb_coins_hour.date }}</td>
+    <td>{{ pb_coins_hour.date|date:"SHORT_DATE_FORMAT" }}</td>
     <td>{{ pb_coins_hour.tier }}</td>
     <td>{{ pb_coins_hour.waves }}</td>
-    <td>{{ pb_coins_hour.duration }}</td>
+    <td>{{ pb_coins_hour.duration|hr_duration }}</td>
     <td>{{ pb_coins_hour.coins }}</td>
     <td>{{ pb_coins_hour.coins_hour }}</td>
     <td>{{ pb_coins_hour.cells }}</td>
@@ -42,10 +44,10 @@
   </tr>
   <tr>
     <td>Cells/Run</td>
-    <td>{{ pb_cells.date }}</td>
+    <td>{{ pb_cells.date|date:"SHORT_DATE_FORMAT" }}</td>
     <td>{{ pb_cells.tier }}</td>
     <td>{{ pb_cells.waves }}</td>
-    <td>{{ pb_cells.duration }}</td>
+    <td>{{ pb_cells.duration|hr_duration }}</td>
     <td>{{ pb_cells.coins }}</td>
     <td>{{ pb_cells.coins_hour }}</td>
     <td>{{ pb_cells.cells }}</td>
@@ -53,10 +55,10 @@
   </tr>
   <tr>
     <td>Cells/h</td>
-    <td>{{ pb_cells_hour.date }}</td>
+    <td>{{ pb_cells_hour.date|date:"SHORT_DATE_FORMAT" }}</td>
     <td>{{ pb_cells_hour.tier }}</td>
     <td>{{ pb_cells_hour.waves }}</td>
-    <td>{{ pb_cells_hour.duration }}</td>
+    <td>{{ pb_cells_hour.duration|hr_duration }}</td>
     <td>{{ pb_cells_hour.coins }}</td>
     <td>{{ pb_cells_hour.coins_hour }}</td>
     <td>{{ pb_cells_hour.cells }}</td>
@@ -89,10 +91,10 @@
   </tr>
   {% for run in runs %}
   <tr>
-    <td>{{ run.date }}</td>
+    <td>{{ run.date|date:"SHORT_DATE_FORMAT" }}</td>
     <td>{{ run.tier }}</td>
     <td>{{ run.waves }}</td>
-    <td>{{ run.duration }}</td>
+    <td>{{ run.duration|hr_duration }}</td>
     <td>{{ run.coins }}</td>
     <td>{{ run.pb_coins }}</td>
     <td>{{ run.coins_hour }}</td>
