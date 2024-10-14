@@ -49,13 +49,13 @@ class RunData:
 @login_required
 def tracker_overview(request):
     """Provide an overview over all runs."""
-    runs_raw = Run.objects.filter_by_user(user=request.user)
+    runs_raw = Run.objects.filter_by_user(user=request.user).order_by("date")
 
     runs = []
-    pb_coins = 0
-    pb_cells = 0
-    pb_coins_hour = 0
-    pb_cells_hour = 0
+    pb_coins = None
+    pb_cells = None
+    pb_coins_hour = None
+    pb_cells_hour = None
     run_i = 0
     for run in runs_raw.iterator():
         item = RunData(
@@ -69,56 +69,94 @@ def tracker_overview(request):
             run.notes,
         )
 
-        if item.coins > pb_coins:
-            pb_coins = item.coins
+        try:
+            if item.coins > pb_coins.coins:
+                pb_coins = item
+                item.pb_coins = True
+        except AttributeError:
+            pb_coins = item
             item.pb_coins = True
 
-        if item.cells > pb_cells:
-            pb_cells = item.cells
+        try:
+            if item.cells > pb_cells.cells:
+                pb_cells = item
+                item.pb_cells = True
+        except AttributeError:
+            pb_cells = item
             item.pb_cells = True
 
-        if item.coins_hour > pb_coins_hour:
-            pb_coins_hour = item.coins_hour
+        try:
+            if item.coins_hour > pb_coins_hour.coins_hour:
+                pb_coins_hour = item
+                item.pb_coins_hour = True
+        except AttributeError:
+            pb_coins_hour = item
             item.pb_coins_hour = True
 
-        if item.cells_hour > pb_cells_hour:
-            pb_cells_hour = item.cells_hour
+        try:
+            if item.cells_hour > pb_cells_hour.cells_hour:
+                pb_cells_hour = item
+                item.pb_cells_hour = True
+        except AttributeError:
+            pb_cells_hour = item
             item.pb_cells_hour = True
 
         if run_i > 3:
-            item.coins_avg5 = (
-                runs[run_i - 4].coins
-                + runs[run_i - 3].coins
-                + runs[run_i - 2].coins
-                + runs[run_i - 1].coins
-                + item.coins
-            ) / 5
-            item.coins_hour_avg5 = (
-                runs[run_i - 4].coins_hour
-                + runs[run_i - 3].coins_hour
-                + runs[run_i - 2].coins_hour
-                + runs[run_i - 1].coins_hour
-                + item.coins_hour
-            ) / 5
-            item.cells_avg5 = (
-                runs[run_i - 4].cells
-                + runs[run_i - 3].cells
-                + runs[run_i - 2].cells
-                + runs[run_i - 1].cells
-                + item.cells
-            ) / 5
-            item.cells_hour_avg5 = (
-                runs[run_i - 4].cells_hour
-                + runs[run_i - 3].cells_hour
-                + runs[run_i - 2].cells_hour
-                + runs[run_i - 1].cells_hour
-                + item.cells_hour
-            ) / 5
+            item.coins_avg5 = int(
+                (
+                    runs[run_i - 4].coins
+                    + runs[run_i - 3].coins
+                    + runs[run_i - 2].coins
+                    + runs[run_i - 1].coins
+                    + item.coins
+                )
+                / 5
+            )
+            item.coins_hour_avg5 = int(
+                (
+                    runs[run_i - 4].coins_hour
+                    + runs[run_i - 3].coins_hour
+                    + runs[run_i - 2].coins_hour
+                    + runs[run_i - 1].coins_hour
+                    + item.coins_hour
+                )
+                / 5
+            )
+            item.cells_avg5 = int(
+                (
+                    runs[run_i - 4].cells
+                    + runs[run_i - 3].cells
+                    + runs[run_i - 2].cells
+                    + runs[run_i - 1].cells
+                    + item.cells
+                )
+                / 5
+            )
+            item.cells_hour_avg5 = int(
+                (
+                    runs[run_i - 4].cells_hour
+                    + runs[run_i - 3].cells_hour
+                    + runs[run_i - 2].cells_hour
+                    + runs[run_i - 1].cells_hour
+                    + item.cells_hour
+                )
+                / 5
+            )
 
         runs.append(item)
         run_i = run_i + 1
 
-    return render(request, "penthouse/tracker_overview.html", {"runs": runs})
+    return render(
+        request,
+        "penthouse/tracker_overview.html",
+        {
+            "runs": runs,
+            "pb_coins": pb_coins,
+            "pb_coins_hour": pb_coins_hour,
+            "pb_cells": pb_cells,
+            "pb_cells_hour": pb_cells_hour,
+        },
+    )
 
 
 class RunCreateView(LoginRequiredMixin, ProfileIDMixin, generic.CreateView):

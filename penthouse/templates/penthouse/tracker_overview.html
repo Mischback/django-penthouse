@@ -6,8 +6,66 @@
 <h2>Tracker Overview</h2>
 
 <h3>Best Runs</h3>
+<table summary="All tracked runs">
+  <tr>
+    <th>Category</th>
+    <th>Date</th>
+    <th>Tier</th>
+    <th>Waves</th>
+    <th>Duration</th>
+    <th>Coins</th>
+    <th>Coins/h</th>
+    <th>Cells</th>
+    <th>Cells/h</th>
+  </tr>
+  <tr>
+    <td>Coins/Run</td>
+    <td>{{ pb_coins.date }}</td>
+    <td>{{ pb_coins.tier }}</td>
+    <td>{{ pb_coins.waves }}</td>
+    <td>{{ pb_coins.duration }}</td>
+    <td>{{ pb_coins.coins }}</td>
+    <td>{{ pb_coins.coins_hour }}</td>
+    <td>{{ pb_coins.cells }}</td>
+    <td>{{ pb_coins.cells_hour }}</td>
+  </tr>
+  <tr>
+    <td>Coins/h</td>
+    <td>{{ pb_coins_hour.date }}</td>
+    <td>{{ pb_coins_hour.tier }}</td>
+    <td>{{ pb_coins_hour.waves }}</td>
+    <td>{{ pb_coins_hour.duration }}</td>
+    <td>{{ pb_coins_hour.coins }}</td>
+    <td>{{ pb_coins_hour.coins_hour }}</td>
+    <td>{{ pb_coins_hour.cells }}</td>
+    <td>{{ pb_coins_hour.cells_hour }}</td>
+  </tr>
+  <tr>
+    <td>Cells/Run</td>
+    <td>{{ pb_cells.date }}</td>
+    <td>{{ pb_cells.tier }}</td>
+    <td>{{ pb_cells.waves }}</td>
+    <td>{{ pb_cells.duration }}</td>
+    <td>{{ pb_cells.coins }}</td>
+    <td>{{ pb_cells.coins_hour }}</td>
+    <td>{{ pb_cells.cells }}</td>
+    <td>{{ pb_cells.cells_hour }}</td>
+  </tr>
+  <tr>
+    <td>Cells/h</td>
+    <td>{{ pb_cells_hour.date }}</td>
+    <td>{{ pb_cells_hour.tier }}</td>
+    <td>{{ pb_cells_hour.waves }}</td>
+    <td>{{ pb_cells_hour.duration }}</td>
+    <td>{{ pb_cells_hour.coins }}</td>
+    <td>{{ pb_cells_hour.coins_hour }}</td>
+    <td>{{ pb_cells_hour.cells }}</td>
+    <td>{{ pb_cells_hour.cells_hour }}</td>
+  </tr>
+</table>
 
 <h3>Run List</h3>
+<a href="{% url "penthouse:tracker-run-add" %}">add Run</a>
 <table summary="All tracked runs">
   <tr>
     <th>Date</th>
