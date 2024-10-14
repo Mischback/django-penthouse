@@ -65,6 +65,7 @@ class GameNumberWidget(MultiWidget):
         if value:
             # print("[GameNumberWidget.decompress()] {}".format(value))
 
+            # FIXME: Re-use the function in ``utility``
             value = int(value)
             if value / TowerUnitSuffix.UNIT_O > 1:
                 return [value / TowerUnitSuffix.UNIT_O, TowerUnitSuffix.UNIT_O]

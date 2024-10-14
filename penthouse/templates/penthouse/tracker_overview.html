@@ -26,10 +26,10 @@
     <td>{{ pb_coins.tier }}</td>
     <td>{{ pb_coins.waves }}</td>
     <td>{{ pb_coins.duration|hr_duration }}</td>
-    <td>{{ pb_coins.coins }}</td>
-    <td>{{ pb_coins.coins_hour }}</td>
-    <td>{{ pb_coins.cells }}</td>
-    <td>{{ pb_coins.cells_hour }}</td>
+    <td>{{ pb_coins.coins|hr_big_number }}</td>
+    <td>{{ pb_coins.coins_hour|hr_big_number }}</td>
+    <td>{{ pb_coins.cells|hr_big_number }}</td>
+    <td>{{ pb_coins.cells_hour|hr_big_number }}</td>
   </tr>
   <tr>
     <td>Coins/h</td>
@@ -37,10 +37,10 @@
     <td>{{ pb_coins_hour.tier }}</td>
     <td>{{ pb_coins_hour.waves }}</td>
     <td>{{ pb_coins_hour.duration|hr_duration }}</td>
-    <td>{{ pb_coins_hour.coins }}</td>
-    <td>{{ pb_coins_hour.coins_hour }}</td>
-    <td>{{ pb_coins_hour.cells }}</td>
-    <td>{{ pb_coins_hour.cells_hour }}</td>
+    <td>{{ pb_coins_hour.coins|hr_big_number }}</td>
+    <td>{{ pb_coins_hour.coins_hour|hr_big_number }}</td>
+    <td>{{ pb_coins_hour.cells|hr_big_number }}</td>
+    <td>{{ pb_coins_hour.cells_hour|hr_big_number }}</td>
   </tr>
   <tr>
     <td>Cells/Run</td>
@@ -48,10 +48,10 @@
     <td>{{ pb_cells.tier }}</td>
     <td>{{ pb_cells.waves }}</td>
     <td>{{ pb_cells.duration|hr_duration }}</td>
-    <td>{{ pb_cells.coins }}</td>
-    <td>{{ pb_cells.coins_hour }}</td>
-    <td>{{ pb_cells.cells }}</td>
-    <td>{{ pb_cells.cells_hour }}</td>
+    <td>{{ pb_cells.coins|hr_big_number }}</td>
+    <td>{{ pb_cells.coins_hour|hr_big_number }}</td>
+    <td>{{ pb_cells.cells|hr_big_number }}</td>
+    <td>{{ pb_cells.cells_hour|hr_big_number }}</td>
   </tr>
   <tr>
     <td>Cells/h</td>
@@ -59,10 +59,10 @@
     <td>{{ pb_cells_hour.tier }}</td>
     <td>{{ pb_cells_hour.waves }}</td>
     <td>{{ pb_cells_hour.duration|hr_duration }}</td>
-    <td>{{ pb_cells_hour.coins }}</td>
-    <td>{{ pb_cells_hour.coins_hour }}</td>
-    <td>{{ pb_cells_hour.cells }}</td>
-    <td>{{ pb_cells_hour.cells_hour }}</td>
+    <td>{{ pb_cells_hour.coins|hr_big_number }}</td>
+    <td>{{ pb_cells_hour.coins_hour|hr_big_number }}</td>
+    <td>{{ pb_cells_hour.cells|hr_big_number }}</td>
+    <td>{{ pb_cells_hour.cells_hour|hr_big_number }}</td>
   </tr>
 </table>
 
@@ -95,19 +95,19 @@
     <td>{{ run.tier }}</td>
     <td>{{ run.waves }}</td>
     <td>{{ run.duration|hr_duration }}</td>
-    <td>{{ run.coins }}</td>
+    <td>{{ run.coins|hr_big_number }}</td>
     <td>{{ run.pb_coins }}</td>
-    <td>{{ run.coins_hour }}</td>
+    <td>{{ run.coins_hour|hr_big_number }}</td>
     <td>{{ run.pb_coins_hour }}</td>
-    <td>{{ run.cells }}</td>
+    <td>{{ run.cells|hr_big_number }}</td>
     <td>{{ run.pb_cells }}</td>
-    <td>{{ run.cells_hour }}</td>
+    <td>{{ run.cells_hour|hr_big_number }}</td>
     <td>{{ run.pb_cells_hour }}</td>
     <td>{{ run.notes }}</td>
-    <td>{{ run.coins_avg5 }}</td>
-    <td>{{ run.coins_hour_avg5 }}</td>
-    <td>{{ run.cells_avg5 }}</td>
-    <td>{{ run.cells_hour_avg5 }}</td>
+    <td>{{ run.coins_avg5|hr_big_number }}</td>
+    <td>{{ run.coins_hour_avg5|hr_big_number }}</td>
+    <td>{{ run.cells_avg5|hr_big_number }}</td>
+    <td>{{ run.cells_hour_avg5|hr_big_number }}</td>
     <td>
       <a href="{% url "penthouse:tracker-run-update" run.id %}">update</a>
       <a href="{% url "penthouse:tracker-run-delete" run.id %}">delete</a>

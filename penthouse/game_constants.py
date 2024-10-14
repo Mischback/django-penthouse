@@ -5,6 +5,9 @@
 """Provide game-related constants for the app."""
 
 
+# Python imports
+from enum import Enum
+
 # Django imports
 from django.db.models import IntegerChoices, TextChoices
 
@@ -48,3 +51,27 @@ class TowerUnitSuffix(IntegerChoices):
     UNIT_S_MIN = 1000000000000000000000, "s"
     UNIT_S = 1000000000000000000000000, "S"
     UNIT_O = 1000000000000000000000000000, "O"
+
+
+class TowerUnits(Enum):
+    """The game's units.
+
+    These are standard american names for large numbers. See
+    https://en.wikipedia.org/wiki/Names_of_large_numbers for reference.
+    """
+
+    nonillion = 30, "N"
+    octillion = 27, "O"
+    septillion = 24, "S"
+    sextillion = 21, "s"
+    quintillion = 18, "Q"
+    quadrillion = 15, "q"
+    trillion = 12, "T"
+    billion = 9, "B"
+    million = 6, "M"
+    kilo = 3, "k"
+
+    @classmethod
+    def get_multiplier_prefix(cls):
+        """Return a dict with the abbreviation as key and the exponents as value."""
+        return {i.value[1]: i.value[0] for i in cls}
