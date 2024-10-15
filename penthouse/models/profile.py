@@ -34,6 +34,50 @@ class Profile(models.Model):
     :djangodoc:`Reusable Apps and AUTH_USER_MODEL <topics/auth/customizing/#reusable-apps-and-auth-user-model>`).
     """
 
+    settings_tracker_threshold_top_coins = models.PositiveSmallIntegerField(
+        default=90,
+        help_text=_("Threshold for top coins/run, specified in percent"),
+        verbose_name=_("Top threshold for coins/run"),
+    )
+    """Threshold for top coins/run, specified in percent.
+
+    The field is actually only an Integer field, but it will be used like
+    a percent value (value/100).
+    """
+
+    settings_tracker_threshold_top_coins_hour = models.PositiveSmallIntegerField(
+        default=90,
+        help_text=_("Threshold for top coins/h, specified in percent"),
+        verbose_name=_("Top threshold for coins/h"),
+    )
+    """Threshold for top coins/h, specified in percent.
+
+    The field is actually only an Integer field, but it will be used like
+    a percent value (value/100).
+    """
+
+    settings_tracker_threshold_top_cells = models.PositiveSmallIntegerField(
+        default=90,
+        help_text=_("Threshold for top cells/run, specified in percent"),
+        verbose_name=_("Top threshold for cells/run"),
+    )
+    """Threshold for top cells/run, specified in percent.
+
+    The field is actually only an Integer field, but it will be used like
+    a percent value (value/100).
+    """
+
+    settings_tracker_threshold_top_cells_hour = models.PositiveSmallIntegerField(
+        default=90,
+        help_text=_("Threshold for top cells/h, specified in percent"),
+        verbose_name=_("Top threshold for cells/h"),
+    )
+    """Threshold for top cells/h, specified in percent.
+
+    The field is actually only an Integer field, but it will be used like
+    a percent value (value/100).
+    """
+
     class Meta:  # noqa: D106
         app_label = "penthouse"
         verbose_name = _("Profile")
