@@ -49,7 +49,11 @@ class RunData:
 @login_required
 def tracker_overview(request):
     """Provide an overview over all runs."""
-    runs_raw = Run.objects.filter_by_user(user=request.user).order_by("date")
+    runs_raw = (
+        Run.objects.filter_by_user(user=request.user)
+        .select_related("profile")
+        .order_by("date")
+    )
 
     runs = []
     pb_coins = None
@@ -150,15 +154,20 @@ def tracker_overview(request):
         request,
         "penthouse/tracker_overview.html",
         {
+            "profile": run.profile,
             "runs": runs,
             "pb_coins": pb_coins,
             "pb_coins_hour": pb_coins_hour,
             "pb_cells": pb_cells,
             "pb_cells_hour": pb_cells_hour,
-            "threshold_top_coins": pb_coins.coins * 0.9,
-            "threshold_top_coins_hour": pb_coins_hour.coins_hour * 0.9,
-            "threshold_top_cells": pb_cells.cells * 0.9,
-            "threshold_top_cells_hour": pb_cells_hour.cells_hour * 0.9,
+            "threshold_top_coins": pb_coins.coins
+            * (run.profile.settings_tracker_threshold_top_coins / 100),
+            "threshold_top_coins_hour": pb_coins_hour.coins_hour
+            * (run.profile.settings_tracker_threshold_top_coins_hour / 100),
+            "threshold_top_cells": pb_cells.cells
+            * (run.profile.settings_tracker_threshold_top_cells / 100),
+            "threshold_top_cells_hour": pb_cells_hour.cells_hour
+            * (run.profile.settings_tracker_threshold_top_cells_hour / 100),
         },
     )
 

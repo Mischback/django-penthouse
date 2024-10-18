@@ -19,6 +19,7 @@
     <th>Coins/h</th>
     <th>Cells</th>
     <th>Cells/h</th>
+    <th>Top Threshold</th>
   </tr>
   <tr>
     <td>Coins/Run</td>
@@ -30,6 +31,10 @@
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins.coins_hour max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=pb_coins.pb_coins_hour %}
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins.cells max_value=pb_cells.cells top_value=threshold_top_cells current_pb=pb_coins.pb_cells %}
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins.cells_hour max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=pb_coins.pb_cells_hour %}
+    <td>
+      {{ profile.settings_tracker_threshold_top_coins }}% ({{ threshold_top_coins|hr_big_number }})
+      <a href="{% url "penthouse:profile-update" %}">adjust</a>
+    </td>
   </tr>
   <tr>
     <td>Coins/h</td>
@@ -41,6 +46,10 @@
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins_hour.coins_hour max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=pb_coins_hour.pb_coins_hour %}
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins_hour.cells max_value=pb_cells.cells top_value=threshold_top_cells current_pb=pb_coins_hour.pb_cells %}
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins_hour.cells_hour max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=pb_coins_hour.pb_cells_hour %}
+    <td>
+      {{ profile.settings_tracker_threshold_top_coins_hour }}% ({{ threshold_top_coins_hour|hr_big_number }})
+      <a href="{% url "penthouse:profile-update" %}">adjust</a>
+    </td>
   </tr>
   <tr>
     <td>Cells/Run</td>
@@ -52,6 +61,10 @@
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells.coins_hour max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=pb_cells.pb_coins_hour %}
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells.cells max_value=pb_cells.cells top_value=threshold_top_cells current_pb=pb_cells.pb_cells %}
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells.cells_hour max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=pb_cells.pb_cells_hour %}
+    <td>
+      {{ profile.settings_tracker_threshold_top_cells }}% ({{ threshold_top_cells|hr_big_number }})
+      <a href="{% url "penthouse:profile-update" %}">adjust</a>
+    </td>
   </tr>
   <tr>
     <td>Cells/h</td>
@@ -63,6 +76,10 @@
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells_hour.coins_hour max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=pb_cells_hour.pb_coins_hour %}
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells_hour.cells max_value=pb_cells.cells top_value=threshold_top_cells current_pb=pb_cells_hour.pb_cells %}
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells_hour.cells_hour max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=pb_cells_hour.pb_cells_hour %}
+    <td>
+      {{ profile.settings_tracker_threshold_top_cells_hour }}% ({{ threshold_top_cells_hour|hr_big_number }})
+      <a href="{% url "penthouse:profile-update" %}">adjust</a>
+    </td>
   </tr>
 </table>
 
@@ -75,13 +92,9 @@
     <th>Waves</th>
     <th>Duration</th>
     <th>Coins</th>
-    <!--<th>PB?</th>-->
     <th>Coins/h</th>
-    <!--<th>PB?</th>-->
     <th>Cells</th>
-    <!--<th>PB?</th>-->
     <th>Cells/h</th>
-    <!--<th>PB?</th>-->
     <th>Notes</th>
     <th>Coins (Avg5)</th>
     <th>Coins/h (Avg5)</th>
