@@ -5,9 +5,28 @@
 """App-specific user profile."""
 
 # Django imports
+from django import forms
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+
+# app imports
+from penthouse.exceptions import PenthouseModelException
+
+
+class ProfileModelException(PenthouseModelException):
+    """Base class for all exceptions related to :class:`~penthouse.models.profile.Profile`."""
+
+
+class ProfileManager(models.Manager):
+    """Custom manager for ``Profile`` model."""
+
+    def filter_by_user(self, user=None):
+        """Filter the runs by the specified user."""
+        if user is None:
+            raise ProfileModelException("No user specified!")
+
+        return self.get_queryset().filter(owner=user)
 
 
 class Profile(models.Model):
@@ -78,6 +97,14 @@ class Profile(models.Model):
     a percent value (value/100).
     """
 
+    objects = ProfileManager()
+    """Apply a custom manager.
+
+    This should not interfere with Django's default inner mechanics, the
+    custom manager does not replace any default functions, it just provides
+    additional methods.
+    """
+
     class Meta:  # noqa: D106
         app_label = "penthouse"
         verbose_name = _("Profile")
@@ -85,3 +112,11 @@ class Profile(models.Model):
 
     def __str__(self):  # noqa: D105
         return "[Profile] {}".format(self.owner)
+
+
+class ProfileForm(forms.ModelForm):
+    """Used to validate input for creating and updating ``Profile`` instances."""
+
+    class Meta:  # noqa: D106
+        model = Profile
+        exclude = ["owner"]

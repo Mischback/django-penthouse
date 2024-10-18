@@ -1,0 +1,12 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block page_title %}Profile: ProfileDeleteView{% endblock page_title %}
+
+{% block main %}
+<form method="post" class="penthouse-form">{% csrf_token %}
+  <p>Are you sure you want to delete this profile?</p>
+  <p>{{ profile_item }}</p>
+  <p><strong>This will also delete all associated runs!</strong></p>
+  <button type="submit" class="danger">Yes, I want to delete this Profile!</button>
+</form>
+{% endblock main %}

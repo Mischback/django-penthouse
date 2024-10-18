@@ -6,6 +6,8 @@
 
 # Django imports
 from django.core.exceptions import ImproperlyConfigured
+from django.http import Http404
+from django.utils.translation import gettext_lazy as _
 
 # app imports
 from penthouse.models.profile import Profile
@@ -40,3 +42,30 @@ class RestrictToUserMixin:
             )
 
         return self.model.objects.filter_by_user(user=self.request.user)
+
+    def get_object(self, queryset=None):
+        """Return the object to work on.
+
+        Several of Django's generic views use the implementation of
+        ``django.views.generic.detail.SingleObjectMixin`` to fetch the actual
+        object. This method relies on URL parameters (pk or slug) to identify
+        the object.
+
+        For some of the app-specific models, this is not required, as there is
+        a 1:1-relation to the project's ``AUTH_USER_MODEL``.
+        """
+        if queryset is None:
+            queryset = self.get_queryset()
+
+        try:
+            return super().get_object(queryset=queryset)
+        except AttributeError:
+            try:
+                obj = queryset.get()
+            except queryset.model.DoesNotExist:
+                raise Http404(
+                    _("No %(verbose_name)s found matching the query")
+                    % {"verbose_name": queryset.model._meta.verbose_name}
+                )
+
+            return obj
