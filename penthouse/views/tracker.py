@@ -4,6 +4,11 @@
 
 """Views related to the run tracker functions."""
 
+# Python imports
+import re
+from collections import defaultdict, deque
+from statistics import mean
+
 # Django imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,6 +20,21 @@ from django.views import generic
 from penthouse.models.profile import Profile
 from penthouse.models.tracker import Run, RunForm
 from penthouse.views.mixins import ProfileIDMixin, RestrictToUserMixin
+
+
+def _get_deque5():
+    """Provide a default size ``collections.deque`` instance."""
+    return deque(maxlen=5)
+
+
+def natural_sort_key(s, _nsre=re.compile(r"(\d+)")):
+    """Provide natural sorting of strings.
+
+    E.g. ["T12", "T1"] will sort to ["T1", "T12"].
+
+    See https://stackoverflow.com/a/16090640
+    """
+    return [int(text) if text.isdigit() else text.lower for text in _nsre.split(s)]
 
 
 class RunData:
@@ -46,6 +66,55 @@ class RunData:
         self.cells_hour_avg5 = 0
 
 
+class TierData:
+    """A temporary data class to provide the last 5 runs by tier."""
+
+    def __init__(self):
+        self._entries = defaultdict(_get_deque5)
+
+    def add(self, entry):
+        """Add an entry to the class."""
+        if entry is None:
+            raise Exception("An entry is required")
+
+        self._entries[entry.tier].append(entry)
+
+    def get_results(self):
+        """Evaluate the results."""
+        results = {}
+        for k in self._entries:
+            results[k] = {}
+
+            tmp = [e.waves for e in self._entries[k]]
+            results[k]["waves_min"] = min(tmp)
+            results[k]["waves_avg"] = mean(tmp)
+            results[k]["waves_max"] = max(tmp)
+
+            tmp = [e.coins for e in self._entries[k]]
+            results[k]["coins_min"] = min(tmp)
+            results[k]["coins_avg"] = mean(tmp)
+            results[k]["coins_max"] = max(tmp)
+
+            tmp = [e.coins_hour for e in self._entries[k]]
+            results[k]["coins_hour_min"] = min(tmp)
+            results[k]["coins_hour_avg"] = mean(tmp)
+            results[k]["coins_hour_max"] = max(tmp)
+
+            tmp = [e.cells for e in self._entries[k]]
+            results[k]["cells_min"] = min(tmp)
+            results[k]["cells_avg"] = mean(tmp)
+            results[k]["cells_max"] = max(tmp)
+
+            tmp = [e.cells_hour for e in self._entries[k]]
+            results[k]["cells_hour_min"] = min(tmp)
+            results[k]["cells_hour_avg"] = mean(tmp)
+            results[k]["cells_hour_max"] = max(tmp)
+
+        return {
+            key: results[key] for key in sorted(results.keys(), key=natural_sort_key)
+        }
+
+
 @login_required
 def tracker_overview(request):
     """Provide an overview over all runs."""
@@ -56,6 +125,7 @@ def tracker_overview(request):
     )
 
     runs = []
+    runs_by_tier = TierData()
     pb_coins = None
     pb_cells = None
     pb_coins_hour = None
@@ -72,6 +142,7 @@ def tracker_overview(request):
             run.cells,
             run.notes,
         )
+        runs_by_tier.add(item)
 
         try:
             if item.coins > pb_coins.coins:
@@ -150,12 +221,15 @@ def tracker_overview(request):
         runs.append(item)
         run_i = run_i + 1
 
+    runs_by_tier.get_results()
+
     return render(
         request,
         "penthouse/tracker_overview.html",
         {
             "profile": run.profile,
             "runs": runs,
+            "runs_by_tier": runs_by_tier.get_results(),
             "pb_coins": pb_coins,
             "pb_coins_hour": pb_coins_hour,
             "pb_cells": pb_cells,

@@ -7,6 +7,59 @@
 {% block main %}
 <h2>Tracker Overview</h2>
 
+<h3>Last 5 runs by Tier</h3>
+<table summary="Last 5 runs by tier" class="list-view">
+  <tr>
+    <th></th>
+    <th colspan="3">Waves</th>
+    <th colspan="3">Coins</th>
+    <th colspan="3">Coins/h</th>
+    <th colspan="3">Cells</th>
+    <th colspan="3">Cells/h</th>
+  </tr>
+  <tr>
+    <td>Tier</td>
+    <td>Min.</td>
+    <td>Avg.</td>
+    <td>Max.</td>
+    <td>Min.</td>
+    <td>Avg.</td>
+    <td>Max.</td>
+    <td>Min.</td>
+    <td>Avg.</td>
+    <td>Max.</td>
+    <td>Min.</td>
+    <td>Avg.</td>
+    <td>Max.</td>
+    <td>Min.</td>
+    <td>Avg.</td>
+    <td>Max.</td>
+  </tr>
+  {% for tier, value in runs_by_tier.items %}
+  <tr>
+    <td>{{ tier }}</td>
+    <td>{{ value.waves_min }}</td>
+    <td>{{ value.waves_avg }}</td>
+    <td>{{ value.waves_max }}</td>
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.coins_min max_value=pb_coins.coins top_value=threshold_top_coins current_pb=run.pb_coins %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.coins_avg max_value=pb_coins.coins top_value=threshold_top_coins current_pb=run.pb_coins %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.coins_max max_value=pb_coins.coins top_value=threshold_top_coins current_pb=run.pb_coins %}
+
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.coins_hour_min max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=run.pb_coins_hour %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.coins_hour_avg max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=run.pb_coins_hour %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.coins_hour_max max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=run.pb_coins_hour %}
+
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.cells_min max_value=pb_cells.cells top_value=threshold_top_cells current_pb=run.pb_cells %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.cells_avg max_value=pb_cells.cells top_value=threshold_top_cells current_pb=run.pb_cells %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.cells_max max_value=pb_cells.cells top_value=threshold_top_cells current_pb=run.pb_cells %}
+
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.cells_hour_min max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=run.pb_cells_hour %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.cells_hour_avg max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=run.pb_cells_hour %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.cells_hour_max max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=run.pb_cells_hour %}
+  </tr>
+  {% endfor %}
+</table>
+
 <h3>Best Runs</h3>
 <table summary="All tracked runs" class="list-view">
   <tr>
@@ -110,16 +163,9 @@
     <td>{{ run.duration|hr_duration }}</td>
 
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.coins max_value=pb_coins.coins top_value=threshold_top_coins current_pb=run.pb_coins %}
-    <!--<td>{{ run.pb_coins }}</td>-->
-
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.coins_hour max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=run.pb_coins_hour %}
-    <!--<td>{{ run.pb_coins_hour }}</td>-->
-
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.cells max_value=pb_cells.cells top_value=threshold_top_cells current_pb=run.pb_cells %}
-    <!--<td>{{ run.pb_cells }}</td>-->
-
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.cells_hour max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=run.pb_cells_hour %}
-    <!--<td>{{ run.pb_cells_hour }}</td>-->
 
     <td>{{ run.notes }}</td>
 
