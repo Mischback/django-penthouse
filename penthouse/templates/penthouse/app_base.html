@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      {% block page_title %}penthouse development template{% endblock page_title %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+html {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+}
+
+.list-view {
+  border-collapse: collapse;
+  font-size: 0.8em;
+}
+.list-view td, .list-view th {
+  border: 1px solid #333;
+  padding: 0.2em 0.5em;
+}
+.list-view tr:nth-child(even) td {
+  background-color: #ccc;
+}
+.list-view td.max-value {
+  background-color: #3f3 !important;
+}
+.list-view td.top-value {
+  background-color: #cf3 !important;
+}
+.list-view td.pb-global:after {
+  content: "";
+  display: block;
+  width: 1em;
+  height: 1em;
+  background-color: #f00;
+  margin: 0 0 0 0.5em;
+  float: right;
+}
+.list-view td.pb-local:after {
+  content: "";
+  display: block;
+  width: 1em;
+  height: 1em;
+  background-color: #00c;
+  margin: 0 0 0 0.5em;
+  float: right;
+}
+    </style>
+  </head>
+  <body>
+{% block html_body %}
+    <div id="penthouse-main">
+  {% block main %}
+      foobar
+  {% endblock main %}
+    </div>
+{% endblock html_body %}
+  </body>
+</html>

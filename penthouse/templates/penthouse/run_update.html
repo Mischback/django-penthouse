@@ -1,0 +1,16 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block page_title %}Run: RunUpdateView{% endblock page_title %}
+
+{% block main %}
+<h2>Update Run</h2>
+
+<form method="post" novalidate class="penthouse-form">
+  {% csrf_token %}
+
+  {% include "penthouse/includes/form.html" with form=form %}
+
+  <button type="submit" class="submit">Update Run</button>
+  <button type="reset" class="cancel">Cancel</button>
+</form>
+{% endblock main %}

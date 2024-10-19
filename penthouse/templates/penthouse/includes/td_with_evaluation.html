@@ -1,0 +1,19 @@
+{% load penthouse_tags %}
+
+{% if current_value == max_value %}
+<td class="max-value pb-global">{{ current_value|hr_big_number }}</td>
+{% else %}
+  {% if current_value >= top_value %}
+    {% if current_pb %}
+    <td class="top-value pb-local">{{ current_value|hr_big_number }}</td>
+    {% else %}
+    <td class="top-value">{{ current_value|hr_big_number }}</td>
+    {% endif %}
+  {% else %}
+    {% if current_pb %}
+    <td class="pb-local">{{ current_value|hr_big_number }}</td>
+    {% else %}
+    <td>{{ current_value|hr_big_number }}</td>
+    {% endif %}
+  {% endif %}
+{% endif %}

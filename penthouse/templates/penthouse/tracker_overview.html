@@ -1,0 +1,184 @@
+{% extends "penthouse/app_base.html" %}
+
+{% load penthouse_tags %}
+
+{% block page_title %}Tracker Overview{% endblock page_title %}
+
+{% block main %}
+<h2>Tracker Overview</h2>
+
+<h3>Last 5 runs by Tier</h3>
+<table summary="Last 5 runs by tier" class="list-view">
+  <tr>
+    <th></th>
+    <th colspan="3">Waves</th>
+    <th colspan="3">Coins</th>
+    <th colspan="3">Coins/h</th>
+    <th colspan="3">Cells</th>
+    <th colspan="3">Cells/h</th>
+  </tr>
+  <tr>
+    <td>Tier</td>
+    <td>Min.</td>
+    <td>Avg.</td>
+    <td>Max.</td>
+    <td>Min.</td>
+    <td>Avg.</td>
+    <td>Max.</td>
+    <td>Min.</td>
+    <td>Avg.</td>
+    <td>Max.</td>
+    <td>Min.</td>
+    <td>Avg.</td>
+    <td>Max.</td>
+    <td>Min.</td>
+    <td>Avg.</td>
+    <td>Max.</td>
+  </tr>
+  {% for tier, value in runs_by_tier.items %}
+  <tr>
+    <td>{{ tier }}</td>
+    <td>{{ value.waves_min }}</td>
+    <td>{{ value.waves_avg }}</td>
+    <td>{{ value.waves_max }}</td>
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.coins_min max_value=pb_coins.coins top_value=threshold_top_coins current_pb=run.pb_coins %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.coins_avg max_value=pb_coins.coins top_value=threshold_top_coins current_pb=run.pb_coins %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.coins_max max_value=pb_coins.coins top_value=threshold_top_coins current_pb=run.pb_coins %}
+
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.coins_hour_min max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=run.pb_coins_hour %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.coins_hour_avg max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=run.pb_coins_hour %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.coins_hour_max max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=run.pb_coins_hour %}
+
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.cells_min max_value=pb_cells.cells top_value=threshold_top_cells current_pb=run.pb_cells %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.cells_avg max_value=pb_cells.cells top_value=threshold_top_cells current_pb=run.pb_cells %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.cells_max max_value=pb_cells.cells top_value=threshold_top_cells current_pb=run.pb_cells %}
+
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.cells_hour_min max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=run.pb_cells_hour %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.cells_hour_avg max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=run.pb_cells_hour %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=value.cells_hour_max max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=run.pb_cells_hour %}
+  </tr>
+  {% endfor %}
+</table>
+
+<h3>Best Runs</h3>
+<table summary="All tracked runs" class="list-view">
+  <tr>
+    <th>Category</th>
+    <th>Date</th>
+    <th>Tier</th>
+    <th>Waves</th>
+    <th>Duration</th>
+    <th>Coins</th>
+    <th>Coins/h</th>
+    <th>Cells</th>
+    <th>Cells/h</th>
+    <th>Top Threshold</th>
+  </tr>
+  <tr>
+    <td>Coins/Run</td>
+    <td>{{ pb_coins.date|date:"SHORT_DATE_FORMAT" }}</td>
+    <td>{{ pb_coins.tier }}</td>
+    <td>{{ pb_coins.waves }}</td>
+    <td>{{ pb_coins.duration|hr_duration }}</td>
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins.coins max_value=pb_coins.coins top_value=threshold_top_coins current_pb=pb_coins.pb_coins %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins.coins_hour max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=pb_coins.pb_coins_hour %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins.cells max_value=pb_cells.cells top_value=threshold_top_cells current_pb=pb_coins.pb_cells %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins.cells_hour max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=pb_coins.pb_cells_hour %}
+    <td>
+      {{ profile.settings_tracker_threshold_top_coins }}% ({{ threshold_top_coins|hr_big_number }})
+      <a href="{% url "penthouse:profile-update" %}">adjust</a>
+    </td>
+  </tr>
+  <tr>
+    <td>Coins/h</td>
+    <td>{{ pb_coins_hour.date|date:"SHORT_DATE_FORMAT" }}</td>
+    <td>{{ pb_coins_hour.tier }}</td>
+    <td>{{ pb_coins_hour.waves }}</td>
+    <td>{{ pb_coins_hour.duration|hr_duration }}</td>
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins_hour.coins max_value=pb_coins.coins top_value=threshold_top_coins current_pb=pb_coins_hour.pb_coins %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins_hour.coins_hour max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=pb_coins_hour.pb_coins_hour %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins_hour.cells max_value=pb_cells.cells top_value=threshold_top_cells current_pb=pb_coins_hour.pb_cells %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_coins_hour.cells_hour max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=pb_coins_hour.pb_cells_hour %}
+    <td>
+      {{ profile.settings_tracker_threshold_top_coins_hour }}% ({{ threshold_top_coins_hour|hr_big_number }})
+      <a href="{% url "penthouse:profile-update" %}">adjust</a>
+    </td>
+  </tr>
+  <tr>
+    <td>Cells/Run</td>
+    <td>{{ pb_cells.date|date:"SHORT_DATE_FORMAT" }}</td>
+    <td>{{ pb_cells.tier }}</td>
+    <td>{{ pb_cells.waves }}</td>
+    <td>{{ pb_cells.duration|hr_duration }}</td>
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells.coins max_value=pb_coins.coins top_value=threshold_top_coins current_pb=pb_cells.pb_coins %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells.coins_hour max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=pb_cells.pb_coins_hour %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells.cells max_value=pb_cells.cells top_value=threshold_top_cells current_pb=pb_cells.pb_cells %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells.cells_hour max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=pb_cells.pb_cells_hour %}
+    <td>
+      {{ profile.settings_tracker_threshold_top_cells }}% ({{ threshold_top_cells|hr_big_number }})
+      <a href="{% url "penthouse:profile-update" %}">adjust</a>
+    </td>
+  </tr>
+  <tr>
+    <td>Cells/h</td>
+    <td>{{ pb_cells_hour.date|date:"SHORT_DATE_FORMAT" }}</td>
+    <td>{{ pb_cells_hour.tier }}</td>
+    <td>{{ pb_cells_hour.waves }}</td>
+    <td>{{ pb_cells_hour.duration|hr_duration }}</td>
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells_hour.coins max_value=pb_coins.coins top_value=threshold_top_coins current_pb=pb_cells_hour.pb_coins %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells_hour.coins_hour max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=pb_cells_hour.pb_coins_hour %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells_hour.cells max_value=pb_cells.cells top_value=threshold_top_cells current_pb=pb_cells_hour.pb_cells %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=pb_cells_hour.cells_hour max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=pb_cells_hour.pb_cells_hour %}
+    <td>
+      {{ profile.settings_tracker_threshold_top_cells_hour }}% ({{ threshold_top_cells_hour|hr_big_number }})
+      <a href="{% url "penthouse:profile-update" %}">adjust</a>
+    </td>
+  </tr>
+</table>
+
+<h3>Run List</h3>
+<a href="{% url "penthouse:tracker-run-add" %}">add Run</a>
+<table summary="All tracked runs" class="list-view">
+  <tr>
+    <th>Date</th>
+    <th>Tier</th>
+    <th>Waves</th>
+    <th>Duration</th>
+    <th>Coins</th>
+    <th>Coins/h</th>
+    <th>Cells</th>
+    <th>Cells/h</th>
+    <th>Notes</th>
+    <th>Coins (Avg5)</th>
+    <th>Coins/h (Avg5)</th>
+    <th>Cells (Avg5)</th>
+    <th>Cells/h (Avg5)</th>
+    <th />
+  </tr>
+  {% for run in runs %}
+  <tr>
+    <td>{{ run.date|date:"SHORT_DATE_FORMAT" }}</td>
+    <td>{{ run.tier }}</td>
+    <td>{{ run.waves }}</td>
+    <td>{{ run.duration|hr_duration }}</td>
+
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.coins max_value=pb_coins.coins top_value=threshold_top_coins current_pb=run.pb_coins %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.coins_hour max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=run.pb_coins_hour %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.cells max_value=pb_cells.cells top_value=threshold_top_cells current_pb=run.pb_cells %}
+    {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.cells_hour max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=run.pb_cells_hour %}
+
+    <td>{{ run.notes }}</td>
+
+    <td>{{ run.coins_avg5|hr_big_number }}</td>
+    <td>{{ run.coins_hour_avg5|hr_big_number }}</td>
+    <td>{{ run.cells_avg5|hr_big_number }}</td>
+    <td>{{ run.cells_hour_avg5|hr_big_number }}</td>
+    <td>
+      <a href="{% url "penthouse:tracker-run-update" run.id %}">update</a>
+      <a href="{% url "penthouse:tracker-run-delete" run.id %}">delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock main %}
