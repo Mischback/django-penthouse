@@ -1,10 +1,10 @@
 default_language_version:
   python: python3
 
-exclude: '^.*/migrations/.*$'
+exclude: "^.*/migrations/.*$"
 fail_fast: true
 
-minimum_pre_commit_version: '1.14.0'
+minimum_pre_commit_version: "1.14.0"
 
 repos:
   # black (code formatting)
@@ -22,7 +22,8 @@ repos:
     rev: 7.1.1
     hooks:
       - id: flake8
-        additional_dependencies: [flake8-bugbear, flake8-docstrings, flake8-django, flake8-assertive]
+        additional_dependencies:
+          [flake8-bugbear, flake8-docstrings, flake8-django, flake8-assertive]
   # easy regex checks
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
@@ -41,6 +42,17 @@ repos:
     rev: v1.35.2
     hooks:
       - id: djlint-django
+  # SCSS/TypeScript specific hooks
+  #
+  # Those are provided through NodeJS, so they are applied here as local hooks
+  - repo: local
+    hooks:
+      - id: prettier
+        name: prettier (local)
+        entry: npx prettier --write --ignore-unknown
+        language: system
+        args: []
+  # lint documentation of Python files
   - repo: https://github.com/pycqa/doc8
     rev: v1.1.2
     hooks:

@@ -1,0 +1,7 @@
+# Rules intended for ``prettier`` run through ``pre-commit``
+
+# do not touch the app's templates
+penthouse/templates/**/*.html
+
+# do not touch generated files
+penthouse/static/**
