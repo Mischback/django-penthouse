@@ -66,6 +66,57 @@ class RunData:
         self.cells_hour_avg5 = 0
 
 
+class TrackerList:
+    """A temporary data class to generate the overall overview."""
+
+    def __init__(self):
+        self.pb_coins = None
+        self.pb_cells = None
+        self.pb_coins_hour = None
+        self.pb_cells_hour = None
+
+        self._entries = deque()
+
+    def add(self, entry):
+        """Add an entry to the class."""
+        if entry is None:
+            raise Exception("An entry is required")
+
+        item = self.process_pb(entry, "coins", "pb_coins")
+        item = self.process_pb(item, "cells", "pb_cells")
+        item = self.process_pb(item, "coins_hour", "pb_coins_hour")
+        item = self.process_pb(item, "cells_hour", "pb_cells_hour")
+
+        runs = len(self._entries)
+        if runs > 3:
+            item = self.process_avg5(item, "coins", "coins_avg5")
+            item = self.process_avg5(item, "cells", "cells_avg5")
+            item = self.process_avg5(item, "coins_hour", "coins_hour_avg5")
+            item = self.process_avg5(item, "cells_hour", "cells_hour_avg5")
+
+        self._entries.append(item)
+
+    def process_avg5(self, item, subject="foo", avg5_field="bar"):
+        """Calculate the average of the last 5 runs and add them to the item."""
+        tmp = [getattr(x, subject) for x in list(self._entries)[-4:]]
+        tmp.append(getattr(item, subject))
+        setattr(item, avg5_field, mean(tmp))
+
+        return item
+
+    def process_pb(self, item, subject="foo", pb_field="bar"):
+        """Check if the run has a personal best and stores it."""
+        try:
+            if getattr(item, subject) > getattr(getattr(self, pb_field), subject):
+                setattr(self, pb_field, item)
+                setattr(item, pb_field, True)
+        except AttributeError:
+            setattr(self, pb_field, item)
+            setattr(item, pb_field, True)
+
+        return item
+
+
 class TierData:
     """A temporary data class to provide the last 5 runs by tier."""
 
@@ -124,13 +175,8 @@ def tracker_overview(request):
         .order_by("date")
     )
 
-    runs = []
     runs_by_tier = TierData()
-    pb_coins = None
-    pb_cells = None
-    pb_coins_hour = None
-    pb_cells_hour = None
-    run_i = 0
+    tracker_list = TrackerList()
     for run in runs_raw.iterator():
         item = RunData(
             run.id,
@@ -143,83 +189,7 @@ def tracker_overview(request):
             run.notes,
         )
         runs_by_tier.add(item)
-
-        try:
-            if item.coins > pb_coins.coins:
-                pb_coins = item
-                item.pb_coins = True
-        except AttributeError:
-            pb_coins = item
-            item.pb_coins = True
-
-        try:
-            if item.cells > pb_cells.cells:
-                pb_cells = item
-                item.pb_cells = True
-        except AttributeError:
-            pb_cells = item
-            item.pb_cells = True
-
-        try:
-            if item.coins_hour > pb_coins_hour.coins_hour:
-                pb_coins_hour = item
-                item.pb_coins_hour = True
-        except AttributeError:
-            pb_coins_hour = item
-            item.pb_coins_hour = True
-
-        try:
-            if item.cells_hour > pb_cells_hour.cells_hour:
-                pb_cells_hour = item
-                item.pb_cells_hour = True
-        except AttributeError:
-            pb_cells_hour = item
-            item.pb_cells_hour = True
-
-        if run_i > 3:
-            item.coins_avg5 = int(
-                (
-                    runs[run_i - 4].coins
-                    + runs[run_i - 3].coins
-                    + runs[run_i - 2].coins
-                    + runs[run_i - 1].coins
-                    + item.coins
-                )
-                / 5
-            )
-            item.coins_hour_avg5 = int(
-                (
-                    runs[run_i - 4].coins_hour
-                    + runs[run_i - 3].coins_hour
-                    + runs[run_i - 2].coins_hour
-                    + runs[run_i - 1].coins_hour
-                    + item.coins_hour
-                )
-                / 5
-            )
-            item.cells_avg5 = int(
-                (
-                    runs[run_i - 4].cells
-                    + runs[run_i - 3].cells
-                    + runs[run_i - 2].cells
-                    + runs[run_i - 1].cells
-                    + item.cells
-                )
-                / 5
-            )
-            item.cells_hour_avg5 = int(
-                (
-                    runs[run_i - 4].cells_hour
-                    + runs[run_i - 3].cells_hour
-                    + runs[run_i - 2].cells_hour
-                    + runs[run_i - 1].cells_hour
-                    + item.cells_hour
-                )
-                / 5
-            )
-
-        runs.append(item)
-        run_i = run_i + 1
+        tracker_list.add(item)
 
     runs_by_tier.get_results()
 
@@ -228,19 +198,19 @@ def tracker_overview(request):
         "penthouse/tracker_overview.html",
         {
             "profile": run.profile,
-            "runs": runs,
+            "runs": tracker_list._entries,
             "runs_by_tier": runs_by_tier.get_results(),
-            "pb_coins": pb_coins,
-            "pb_coins_hour": pb_coins_hour,
-            "pb_cells": pb_cells,
-            "pb_cells_hour": pb_cells_hour,
-            "threshold_top_coins": pb_coins.coins
+            "pb_coins": tracker_list.pb_coins,
+            "pb_coins_hour": tracker_list.pb_coins_hour,
+            "pb_cells": tracker_list.pb_cells,
+            "pb_cells_hour": tracker_list.pb_cells_hour,
+            "threshold_top_coins": tracker_list.pb_coins.coins
             * (run.profile.settings_tracker_threshold_top_coins / 100),
-            "threshold_top_coins_hour": pb_coins_hour.coins_hour
+            "threshold_top_coins_hour": tracker_list.pb_coins_hour.coins_hour
             * (run.profile.settings_tracker_threshold_top_coins_hour / 100),
-            "threshold_top_cells": pb_cells.cells
+            "threshold_top_cells": tracker_list.pb_cells.cells
             * (run.profile.settings_tracker_threshold_top_cells / 100),
-            "threshold_top_cells_hour": pb_cells_hour.cells_hour
+            "threshold_top_cells_hour": tracker_list.pb_cells_hour.cells_hour
             * (run.profile.settings_tracker_threshold_top_cells_hour / 100),
         },
     )
