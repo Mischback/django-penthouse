@@ -9,6 +9,10 @@
 # database stored in tests/test.sqlite
 tests/test.sqlite
 
+# NodeJS modules
+node_modules/
+.npm/
+
 # Python byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
