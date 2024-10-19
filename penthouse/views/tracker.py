@@ -100,7 +100,7 @@ class TrackerList:
         """Calculate the average of the last 5 runs and add them to the item."""
         tmp = [getattr(x, subject) for x in list(self._entries)[-4:]]
         tmp.append(getattr(item, subject))
-        setattr(item, avg5_field, mean(tmp))
+        setattr(item, avg5_field, round(mean(tmp)))
 
         return item
 
@@ -138,27 +138,27 @@ class TierData:
 
             tmp = [e.waves for e in self._entries[k]]
             results[k]["waves_min"] = min(tmp)
-            results[k]["waves_avg"] = mean(tmp)
+            results[k]["waves_avg"] = round(mean(tmp))
             results[k]["waves_max"] = max(tmp)
 
             tmp = [e.coins for e in self._entries[k]]
             results[k]["coins_min"] = min(tmp)
-            results[k]["coins_avg"] = mean(tmp)
+            results[k]["coins_avg"] = round(mean(tmp))
             results[k]["coins_max"] = max(tmp)
 
             tmp = [e.coins_hour for e in self._entries[k]]
             results[k]["coins_hour_min"] = min(tmp)
-            results[k]["coins_hour_avg"] = mean(tmp)
+            results[k]["coins_hour_avg"] = round(mean(tmp))
             results[k]["coins_hour_max"] = max(tmp)
 
             tmp = [e.cells for e in self._entries[k]]
             results[k]["cells_min"] = min(tmp)
-            results[k]["cells_avg"] = mean(tmp)
+            results[k]["cells_avg"] = round(mean(tmp))
             results[k]["cells_max"] = max(tmp)
 
             tmp = [e.cells_hour for e in self._entries[k]]
             results[k]["cells_hour_min"] = min(tmp)
-            results[k]["cells_hour_avg"] = mean(tmp)
+            results[k]["cells_hour_avg"] = round(mean(tmp))
             results[k]["cells_hour_max"] = max(tmp)
 
         return {
