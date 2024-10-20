@@ -1,0 +1,40 @@
+/* Provide the basic typography-related settings for the overall layout. */
+
+@use "../abstracts/fonts";
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: fonts.$font-stack-sans;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-family: fonts.$font-stack-sans;
+}
+
+h1 {
+  font-size: 2.25em;
+}
+
+h2 {
+  font-size: 1.7em;
+}
+
+h3,
+h4 {
+  font-size: 1.2em;
+}
+
+h5,
+h6 {
+  font-size: 1em;
+}

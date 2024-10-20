@@ -6,3 +6,4 @@ extends:
 rules:
   color-function-notation: "modern"
   scss/no-global-function-names: null
+  "@stylistic/string-quotes": "double"

@@ -5,9 +5,9 @@
  * (https://matthewelsom.com/blog/simple-scss-playbook.html).
  */
 
+/* stylelint-disable */
 @charset "utf-8";
+@use "sass:meta";
+/* stylelint-enable */
 
-body {
-  font-family: inter, roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
-    arial, sans-serif;
-}
+@include meta.load-css("base/typography");
