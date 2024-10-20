@@ -1,0 +1,53 @@
+/* Layout-specific styles for ``tracker-overview`` */
+.penthouse-tracker {
+  /* ``.list-view`` is applied to all tables in that layout */
+  .list-view {
+    .pb-global::after {
+      content: "";
+      display: block;
+      width: 1em;
+      height: 1em;
+      margin: 0 0 0 0.5em;
+      float: right;
+      background-color: #f00; /* FIXME: select color! */
+    }
+
+    .pb-local::after {
+      content: "";
+      display: block;
+      width: 1em;
+      height: 1em;
+      margin: 0 0 0 0.5em;
+      float: right;
+      background-color: #00c; /* FIXME: select color! */
+    }
+
+    tr:nth-child(odd) {
+      /* stylelint-disable selector-no-qualifying-type */
+      .max-value {
+        background-color: #3f3 !important; /* FIXME: select color! */
+      }
+      /* stylelint-enable selector-no-qualifying-type */
+
+      /* stylelint-disable selector-no-qualifying-type */
+      .top-value {
+        background-color: #cf3 !important; /* FIXME: select color! */
+      }
+      /* stylelint-enable selector-no-qualifying-type */
+    }
+
+    tr:nth-child(even) {
+      /* stylelint-disable selector-no-qualifying-type */
+      .max-value {
+        background-color: #3f3 !important; /* FIXME: select color! */
+      }
+      /* stylelint-enable selector-no-qualifying-type */
+
+      /* stylelint-disable selector-no-qualifying-type */
+      .top-value {
+        background-color: #cf3 !important; /* FIXME: select color! */
+      }
+      /* stylelint-enable selector-no-qualifying-type */
+    }
+  }
+}

@@ -1,0 +1,18 @@
+/* Main stylesheet of django-penthouse's default styling.
+ *
+ * The stylesheet is generated from SCSS sources. The SCSS source code is
+ * organized according to Matthew Elson's Simple SCSS playbook
+ * (https://matthewelsom.com/blog/simple-scss-playbook.html).
+ */
+
+/* stylelint-disable */
+@charset "utf-8";
+@use "sass:meta";
+/* stylelint-enable */
+
+/* Base styles (apply to all elements) */
+@include meta.load-css("base/typography");
+@include meta.load-css("base/table");
+
+/* Specific layouts */
+@include meta.load-css("layouts/tracker");

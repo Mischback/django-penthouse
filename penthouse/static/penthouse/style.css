@@ -1,0 +1,159 @@
+/* Main stylesheet of django-penthouse's default styling.
+ *
+ * The stylesheet is generated from SCSS sources. The SCSS source code is
+ * organized according to Matthew Elson's Simple SCSS playbook
+ * (https://matthewelsom.com/blog/simple-scss-playbook.html).
+ */
+/* stylelint-disable */
+/* stylelint-enable */
+/* Base styles (apply to all elements) */
+/* Provide the basic typography-related settings for the overall layout. */
+/* The actual font stacks */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: inter, roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-family: inter, roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", arial, sans-serif;
+}
+
+h1 {
+  font-size: 2.25em;
+}
+
+h2 {
+  font-size: 1.7em;
+}
+
+h3,
+h4 {
+  font-size: 1.2em;
+}
+
+h5,
+h6 {
+  font-size: 1em;
+}
+
+/* General styling for tables.
+ *
+ * This provides a default class for ``table`` elements, too: The ``list-view``.
+ */
+table {
+  border-collapse: collapse;
+}
+
+.list-view {
+  font-size: 0.8em;
+}
+
+.list-view td,
+.list-view th {
+  padding: 0.2em 0.5em;
+  border: 1px solid #333; /* FIXME: select color! */
+}
+
+.list-view th {
+  background-color: #eee; /* FIXME: select color! */
+}
+
+.list-view tr:nth-child(odd) td {
+  background-color: #fff; /* FIXME: select color! */
+  /* stylelint-disable selector-no-qualifying-type */
+  /* stylelint-enable selector-no-qualifying-type */
+  /* stylelint-disable selector-no-qualifying-type */
+  /* stylelint-enable selector-no-qualifying-type */
+}
+
+.list-view tr:nth-child(odd) td.max-value {
+  background-color: #3f3 !important;
+}
+
+.list-view tr:nth-child(odd) td.top-value {
+  background-color: #cf3 !important;
+}
+
+.list-view tr:nth-child(even) td {
+  background-color: #ccc; /* FIXME: select color! */
+  /* stylelint-disable selector-no-qualifying-type */
+  /* stylelint-enable selector-no-qualifying-type */
+  /* stylelint-disable selector-no-qualifying-type */
+  /* stylelint-enable selector-no-qualifying-type */
+}
+
+.list-view tr:nth-child(even) td.max-value {
+  background-color: #3f3 !important;
+}
+
+.list-view tr:nth-child(even) td.top-value {
+  background-color: #cf3 !important;
+}
+
+/* Specific layouts */
+/* Layout-specific styles for ``tracker-overview`` */
+.penthouse-tracker {
+  /* ``.list-view`` is applied to all tables in that layout */
+}
+
+.penthouse-tracker .list-view .pb-global::after {
+  content: "";
+  display: block;
+  width: 1em;
+  height: 1em;
+  margin: 0 0 0 0.5em;
+  float: right;
+  background-color: #f00; /* FIXME: select color! */
+}
+
+.penthouse-tracker .list-view .pb-local::after {
+  content: "";
+  display: block;
+  width: 1em;
+  height: 1em;
+  margin: 0 0 0 0.5em;
+  float: right;
+  background-color: #00c; /* FIXME: select color! */
+}
+
+.penthouse-tracker .list-view tr:nth-child(odd) {
+  /* stylelint-disable selector-no-qualifying-type */
+  /* stylelint-enable selector-no-qualifying-type */
+  /* stylelint-disable selector-no-qualifying-type */
+  /* stylelint-enable selector-no-qualifying-type */
+}
+
+.penthouse-tracker .list-view tr:nth-child(odd) .max-value {
+  background-color: #3f3 !important; /* FIXME: select color! */
+}
+
+.penthouse-tracker .list-view tr:nth-child(odd) .top-value {
+  background-color: #cf3 !important; /* FIXME: select color! */
+}
+
+.penthouse-tracker .list-view tr:nth-child(even) {
+  /* stylelint-disable selector-no-qualifying-type */
+  /* stylelint-enable selector-no-qualifying-type */
+  /* stylelint-disable selector-no-qualifying-type */
+  /* stylelint-enable selector-no-qualifying-type */
+}
+
+.penthouse-tracker .list-view tr:nth-child(even) .max-value {
+  background-color: #3f3 !important; /* FIXME: select color! */
+}
+
+.penthouse-tracker .list-view tr:nth-child(even) .top-value {
+  background-color: #cf3 !important; /* FIXME: select color! */
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22../../../auxiliary/style/style.scss%22,%22../../../auxiliary/style/base/typography.scss%22,%22../../../auxiliary/style/abstracts/fonts.scss%22,%22../../../auxiliary/style/base/table.scss%22,%22../../../auxiliary/style/layouts/tracker.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAOA;AAGA;AAEA;ACZA;ACAA;ADIA;EACE;;;AAGF;EACE,aCRgB;;;ADWlB;AAAA;AAAA;AAAA;AAAA;AAAA;EAME;EACA;EACA,aCnBgB;;;ADsBlB;EACE;;;AAGF;EACE;;;AAGF;AAAA;EAEE;;;AAGF;AAAA;EAEE;;;AEtCF;AAAA;AAAA;AAAA;AAKA;EACE;;;AAGF;EACE;;;AAEA;AAAA;EAEE;EACA;;;AAGF;EACE;;;AAGF;EACE;AAEA;AAIA;AAEA;AAIA;;;AATA;EACE;;;AAKF;EACE;;;AAKJ;EACE;AAEA;AAIA;AAEA;AAIA;;;AATA;EACE;;;AAKF;EACE;;;AHjCN;AIhBA;AACA;AACE;;;AAEE;EACE;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGF;AACE;AAIA;AAEA;AAIA;;;AATA;EACE;;;AAKF;EACE;;;AAKJ;AACE;AAIA;AAEA;AAIA;;;AATA;EACE;;;AAKF;EACE%22,%22file%22:%22style.css%22,%22sourcesContent%22:%5B%22/*%20Main%20stylesheet%20of%20django-penthouse's%20default%20styling.%5Cn%20*%5Cn%20*%20The%20stylesheet%20is%20generated%20from%20SCSS%20sources.%20The%20SCSS%20source%20code%20is%5Cn%20*%20organized%20according%20to%20Matthew%20Elson's%20Simple%20SCSS%20playbook%5Cn%20*%20(https://matthewelsom.com/blog/simple-scss-playbook.html).%5Cn%20%2A/%5Cn%5Cn/*%20stylelint-disable%20%2A/%5Cn@charset%20%5C%22utf-8%5C%22;%5Cn@use%20%5C%22sass:meta%5C%22;%5Cn/*%20stylelint-enable%20%2A/%5Cn%5Cn/*%20Base%20styles%20(apply%20to%20all%20elements)%20%2A/%5Cn@include%20meta.load-css(%5C%22base/typography%5C%22);%5Cn@include%20meta.load-css(%5C%22base/table%5C%22);%5Cn%5Cn/*%20Specific%20layouts%20%2A/%5Cn@include%20meta.load-css(%5C%22layouts/tracker%5C%22);%5Cn%22,%22/*%20Provide%20the%20basic%20typography-related%20settings%20for%20the%20overall%20layout.%20%2A/%5Cn%5Cn@use%20%5C%22../abstracts/fonts%5C%22;%5Cn%5Cnhtml%20%7B%5Cn%20%20font-size:%2016px;%5Cn%7D%5Cn%5Cnbody%20%7B%5Cn%20%20font-family:%20fonts.$font-stack-sans;%5Cn%7D%5Cn%5Cnh1,%5Cnh2,%5Cnh3,%5Cnh4,%5Cnh5,%5Cnh6%20%7B%5Cn%20%20margin-top:%201.5rem;%5Cn%20%20margin-bottom:%200.75rem;%5Cn%20%20font-family:%20fonts.$font-stack-sans;%5Cn%7D%5Cn%5Cnh1%20%7B%5Cn%20%20font-size:%202.25em;%5Cn%7D%5Cn%5Cnh2%20%7B%5Cn%20%20font-size:%201.7em;%5Cn%7D%5Cn%5Cnh3,%5Cnh4%20%7B%5Cn%20%20font-size:%201.2em;%5Cn%7D%5Cn%5Cnh5,%5Cnh6%20%7B%5Cn%20%20font-size:%201em;%5Cn%7D%5Cn%22,%22/*%20The%20actual%20font%20stacks%20%2A/%5Cn$font-stack-sans:%20inter,%20roboto,%20%5C%22Helvetica%20Neue%5C%22,%20%5C%22Arial%20Nova%5C%22,%20%5C%22Nimbus%20Sans%5C%22,%5Cn%20%20arial,%20sans-serif;%5Cn%22,%22/*%20General%20styling%20for%20tables.%5Cn%20*%5Cn%20*%20This%20provides%20a%20default%20class%20for%20%60%60table%60%60%20elements,%20too:%20The%20%60%60list-view%60%60.%5Cn%20%2A/%5Cn%5Cntable%20%7B%5Cn%20%20border-collapse:%20collapse;%5Cn%7D%5Cn%5Cn.list-view%20%7B%5Cn%20%20font-size:%200.8em;%5Cn%5Cn%20%20td,%5Cn%20%20th%20%7B%5Cn%20%20%20%20padding:%200.2em%200.5em;%5Cn%20%20%20%20border:%201px%20solid%20%23333;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%7D%5Cn%5Cn%20%20th%20%7B%5Cn%20%20%20%20background-color:%20%23eee;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%7D%5Cn%5Cn%20%20tr:nth-child(odd)%20td%20%7B%5Cn%20%20%20%20background-color:%20%23fff;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%5Cn%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20&.max-value%20%7B%5Cn%20%20%20%20%20%20background-color:%20%233f3%20!important;%5Cn%20%20%20%20%7D%5Cn%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%5Cn%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20&.top-value%20%7B%5Cn%20%20%20%20%20%20background-color:%20%23cf3%20!important;%5Cn%20%20%20%20%7D%5Cn%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%7D%5Cn%5Cn%20%20tr:nth-child(even)%20td%20%7B%5Cn%20%20%20%20background-color:%20%23ccc;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%5Cn%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20&.max-value%20%7B%5Cn%20%20%20%20%20%20background-color:%20%233f3%20!important;%5Cn%20%20%20%20%7D%5Cn%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%5Cn%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20&.top-value%20%7B%5Cn%20%20%20%20%20%20background-color:%20%23cf3%20!important;%5Cn%20%20%20%20%7D%5Cn%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%7D%5Cn%7D%5Cn%22,%22/*%20Layout-specific%20styles%20for%20%60%60tracker-overview%60%60%20%2A/%5Cn.penthouse-tracker%20%7B%5Cn%20%20/*%20%60%60.list-view%60%60%20is%20applied%20to%20all%20tables%20in%20that%20layout%20%2A/%5Cn%20%20.list-view%20%7B%5Cn%20%20%20%20.pb-global::after%20%7B%5Cn%20%20%20%20%20%20content:%20%5C%22%5C%22;%5Cn%20%20%20%20%20%20display:%20block;%5Cn%20%20%20%20%20%20width:%201em;%5Cn%20%20%20%20%20%20height:%201em;%5Cn%20%20%20%20%20%20margin:%200%200%200%200.5em;%5Cn%20%20%20%20%20%20float:%20right;%5Cn%20%20%20%20%20%20background-color:%20%23f00;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%7D%5Cn%5Cn%20%20%20%20.pb-local::after%20%7B%5Cn%20%20%20%20%20%20content:%20%5C%22%5C%22;%5Cn%20%20%20%20%20%20display:%20block;%5Cn%20%20%20%20%20%20width:%201em;%5Cn%20%20%20%20%20%20height:%201em;%5Cn%20%20%20%20%20%20margin:%200%200%200%200.5em;%5Cn%20%20%20%20%20%20float:%20right;%5Cn%20%20%20%20%20%20background-color:%20%2300c;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%7D%5Cn%5Cn%20%20%20%20tr:nth-child(odd)%20%7B%5Cn%20%20%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%20%20.max-value%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20%233f3%20!important;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%5Cn%20%20%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%20%20.top-value%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20%23cf3%20!important;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%7D%5Cn%5Cn%20%20%20%20tr:nth-child(even)%20%7B%5Cn%20%20%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%20%20.max-value%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20%233f3%20!important;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%5Cn%20%20%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%20%20.top-value%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20%23cf3%20!important;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%7D%5Cn%20%20%7D%5Cn%7D%5Cn%22%5D%7D */

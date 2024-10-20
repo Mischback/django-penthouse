@@ -15,6 +15,20 @@
 # Ref: https://stackoverflow.com/a/73450593
 REPO_ROOT := $(patsubst %/, %, $(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
+# The name of the application, used throughout this Makefile
+APP_NAME := penthouse
+
+APP_DIR := $(REPO_ROOT)/$(APP_NAME)
+APP_STATIC_DIR := $(APP_DIR)/static/$(APP_NAME)
+APP_AUX_DIR := $(REPO_ROOT)/auxiliary
+
+# Intermediate build targets
+APP_STYLESHEET := $(APP_STATIC_DIR)/style.css
+
+# The source files for the actual intermediate build targets
+APP_STYLE_SRC_DIR := $(APP_AUX_DIR)/style
+APP_STYLE_SRC := $(shell find $(APP_STYLE_SRC_DIR) -type f)
+
 
 # Internal Python environments
 #
@@ -25,9 +39,17 @@ TOX_VENV_CREATED := $(TOX_VENV_DIR)/pyvenv.cfg
 TOX_VENV_INSTALLED := $(TOX_VENV_DIR)/packages.txt
 TOX_CMD := $(TOX_VENV_DIR)/bin/tox
 
+
+# Stamps
+#
+# Track certain step of the build process with artificial stamps.
+STAMP_DIR := $(REPO_ROOT)/.make-stamps
+STAMP_NODE_READY := $(STAMP_DIR)/node-ready
+
+
 ## Shortcut
 ## @category Development
-run: django/runserver
+run: $(APP_STYLESHEET) django/runserver
 .PHONY : run
 
 
@@ -148,6 +170,18 @@ util/isort :
 	$(MAKE) util/pre-commit pre-commit_id="isort" pre-commit_files="--all-files"
 .PHONY : util/isort
 
+## Run prettier on all files (*.scss/*.ts)
+## @category Code Quality
+util/prettier :
+	$(MAKE) util/pre-commit pre-commit_id="prettier" pre-commit_files="--all-files"
+.PHONY : util/prettier
+
+## Run stylelint on all files (*.scss)
+## @category Code Quality
+util/stylelint :
+	$(MAKE) util/pre-commit pre-commit_id="stylelint" pre-commit_files="--all-files"
+.PHONY : util/stylelint
+
 pre-commit_id ?= ""
 pre-commit_files ?= ""
 ## Run all code quality tools as defined in .pre-commit-config.yaml
@@ -177,6 +211,11 @@ util/pre-commit/update : $(TOX_VENV_INSTALLED)
 requirements/%.txt : requirements/%.in pyproject.toml | $(TOX_VENV_INSTALLED)
 	$(TOX_CMD) -q -e pip-tools -- $<
 
+# Compile SCSS sources to an actual stylesheet
+$(APP_STATIC_DIR)/%.css : $(APP_STYLE_SRC_DIR)/%.scss $(APP_STYLE_SRC) | $(STAMP_NODE_READY)
+	$(create_dir)
+	npx sass --embed-sources --embed-source-map --stop-on-error --verbose $< $@
+
 
 # ##### Internal utility stuff
 
@@ -188,3 +227,17 @@ $(TOX_VENV_CREATED) :
 $(TOX_VENV_INSTALLED) : $(TOX_VENV_CREATED)
 	$(TOX_VENV_DIR)/bin/pip install -r requirements/tox.txt
 	$(TOX_VENV_DIR)/bin/pip freeze > $@
+
+# Install the required NodeJS packages
+#
+# Uses npm's ``ci`` to create the required NodeJS environment. It (re-) uses
+# a local cache for npm in order to speed up builds during CI.
+#
+# https://stackoverflow.com/a/58187176
+$(STAMP_NODE_READY) : package.json package-lock.json
+	$(create_dir)
+	npm ci --cache .npm --prefer-offline
+	touch $@
+
+# Create a directory as required by other recipes
+create_dir = @mkdir -p $(@D)

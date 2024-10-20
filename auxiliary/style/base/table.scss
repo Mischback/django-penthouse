@@ -1,0 +1,54 @@
+/* General styling for tables.
+ *
+ * This provides a default class for ``table`` elements, too: The ``list-view``.
+ */
+
+table {
+  border-collapse: collapse;
+}
+
+.list-view {
+  font-size: 0.8em;
+
+  td,
+  th {
+    padding: 0.2em 0.5em;
+    border: 1px solid #333; /* FIXME: select color! */
+  }
+
+  th {
+    background-color: #eee; /* FIXME: select color! */
+  }
+
+  tr:nth-child(odd) td {
+    background-color: #fff; /* FIXME: select color! */
+
+    /* stylelint-disable selector-no-qualifying-type */
+    &.max-value {
+      background-color: #3f3 !important;
+    }
+    /* stylelint-enable selector-no-qualifying-type */
+
+    /* stylelint-disable selector-no-qualifying-type */
+    &.top-value {
+      background-color: #cf3 !important;
+    }
+    /* stylelint-enable selector-no-qualifying-type */
+  }
+
+  tr:nth-child(even) td {
+    background-color: #ccc; /* FIXME: select color! */
+
+    /* stylelint-disable selector-no-qualifying-type */
+    &.max-value {
+      background-color: #3f3 !important;
+    }
+    /* stylelint-enable selector-no-qualifying-type */
+
+    /* stylelint-disable selector-no-qualifying-type */
+    &.top-value {
+      background-color: #cf3 !important;
+    }
+    /* stylelint-enable selector-no-qualifying-type */
+  }
+}
