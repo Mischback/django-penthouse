@@ -52,6 +52,12 @@ repos:
         entry: npx prettier --write --ignore-unknown
         language: system
         args: []
+      - id: stylelint
+        name: stylelint (local)
+        entry: npx stylelint
+        language: system
+        args: [--fix]
+        files: ^auxiliary/style/
   # lint documentation of Python files
   - repo: https://github.com/pycqa/doc8
     rev: v1.1.2
