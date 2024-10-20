@@ -6,5 +6,6 @@ extends:
 rules:
   color-function-notation: "modern"
   max-nesting-depth: 3
+  selector-max-compound-selectors: 4
   scss/no-global-function-names: null
   "@stylistic/string-quotes": "double"

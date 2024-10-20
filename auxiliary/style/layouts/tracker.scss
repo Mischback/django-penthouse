@@ -1,0 +1,31 @@
+.penthouse-tracker {
+  .list-view {
+    tr:nth-child(odd) {
+      /* stylelint-disable selector-no-qualifying-type */
+      .max-value {
+        background-color: #3f3 !important;
+      }
+      /* stylelint-enable selector-no-qualifying-type */
+
+      /* stylelint-disable selector-no-qualifying-type */
+      .top-value {
+        background-color: #cf3 !important;
+      }
+      /* stylelint-enable selector-no-qualifying-type */
+    }
+
+    tr:nth-child(even) {
+      /* stylelint-disable selector-no-qualifying-type */
+      .max-value {
+        background-color: #3f3 !important;
+      }
+      /* stylelint-enable selector-no-qualifying-type */
+
+      /* stylelint-disable selector-no-qualifying-type */
+      .top-value {
+        background-color: #cf3 !important;
+      }
+      /* stylelint-enable selector-no-qualifying-type */
+    }
+  }
+}

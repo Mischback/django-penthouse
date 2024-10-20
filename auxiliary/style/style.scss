@@ -10,5 +10,9 @@
 @use "sass:meta";
 /* stylelint-enable */
 
+/* Base styles (apply to all elements) */
 @include meta.load-css("base/typography");
 @include meta.load-css("base/table");
+
+/* Specific layouts */
+@include meta.load-css("layouts/tracker");
