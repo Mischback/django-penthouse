@@ -1,4 +1,6 @@
 /* Layout-specific styles for ``tracker-overview`` */
+@use "../abstracts/colors";
+
 .penthouse-tracker {
   /* ``.list-view`` is applied to all tables in that layout */
   .list-view {
@@ -9,7 +11,8 @@
       height: 1em;
       margin: 0 0 0 0.5em;
       float: right;
-      background-color: #f00; /* FIXME: select color! */
+      border-radius: 1em;
+      background-color: rgb(247 215 0); /* FIXME: select color! */
     }
 
     .pb-local::after {
@@ -19,19 +22,20 @@
       height: 1em;
       margin: 0 0 0 0.5em;
       float: right;
-      background-color: #00c; /* FIXME: select color! */
+      border-radius: 1em;
+      background-color: rgb(247 215 0 / 35%); /* FIXME: select color! */
     }
 
     tr:nth-child(odd) {
       /* stylelint-disable selector-no-qualifying-type */
       .max-value {
-        background-color: #3f3 !important; /* FIXME: select color! */
+        background-color: colors.$dark-green-06 !important;
       }
       /* stylelint-enable selector-no-qualifying-type */
 
       /* stylelint-disable selector-no-qualifying-type */
       .top-value {
-        background-color: #cf3 !important; /* FIXME: select color! */
+        background-color: colors.$dark-green-06 !important;
       }
       /* stylelint-enable selector-no-qualifying-type */
     }
@@ -39,13 +43,13 @@
     tr:nth-child(even) {
       /* stylelint-disable selector-no-qualifying-type */
       .max-value {
-        background-color: #3f3 !important; /* FIXME: select color! */
+        background-color: colors.$dark-green-12 !important;
       }
       /* stylelint-enable selector-no-qualifying-type */
 
       /* stylelint-disable selector-no-qualifying-type */
       .top-value {
-        background-color: #cf3 !important; /* FIXME: select color! */
+        background-color: colors.$dark-green-12 !important;
       }
       /* stylelint-enable selector-no-qualifying-type */
     }
