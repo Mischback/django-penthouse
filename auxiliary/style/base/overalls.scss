@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: colors.$dark-grey-00;
-  color: colors.$light-grey-darker;
+  color: colors.$light-grey;
 
   > div {
     margin: 0 2em;
@@ -17,4 +17,10 @@ body {
     border: 1px solid colors.$black;
     background-color: colors.$dark-grey-01;
   }
+}
+
+a,
+a:link,
+a:visited {
+  color: colors.$lime-400-dark;
 }

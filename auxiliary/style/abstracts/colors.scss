@@ -14,6 +14,8 @@ $dark-grey-08: rgb(43 48 53);
 $dark-grey-12: rgb(47 52 57);
 $dark-grey-16: rgb(50 55 61);
 $dark-grey-24: rgb(53 58 64);
+
+/* Different shades of green, to indicate *good values*. */
 $dark-green-00: rgb(7 24 6);
 $dark-green-01: rgb(14 41 13);
 $dark-green-02: rgb(16 46 15);
@@ -24,4 +26,18 @@ $dark-green-08: rgb(23 62 22);
 $dark-green-12: rgb(25 68 24);
 $dark-green-16: rgb(27 72 26);
 $dark-green-24: rgb(28 76 28);
-$light-grey-darker: rgb(204 204 204);
+
+/* This is a slightly tinted light grey, matching the blue tinted dark-grey
+ * palette.
+ */
+$light-grey: rgb(176 190 197);
+
+/* Lime base color, may be used as foreground color.
+ *
+ * See https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+ * for additional shades.
+ */
+$lime-200: rgb(230 238 156);
+$lime-400: rgb(212 225 87);
+$lime-a200: rgb(178 255 89);
+$lime-400-dark: rgb(169 180 69);
