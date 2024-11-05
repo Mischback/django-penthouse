@@ -13,6 +13,7 @@
 /* Base styles (apply to all elements) */
 @include meta.load-css("base/typography");
 @include meta.load-css("base/table");
+@include meta.load-css("base/form");
 @include meta.load-css("base/overalls");
 
 /* Specific layouts */
