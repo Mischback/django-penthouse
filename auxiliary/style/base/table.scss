@@ -20,14 +20,14 @@ table {
   }
 
   th {
-    background-color: colors.$dark-grey-06;
+    background-color: colors.$table-odd-bg;
   }
 
   tr:nth-child(odd) td {
-    background-color: colors.$dark-grey-06;
+    background-color: colors.$table-odd-bg;
   }
 
   tr:nth-child(even) td {
-    background-color: colors.$dark-grey-12;
+    background-color: colors.$table-even-bg;
   }
 }

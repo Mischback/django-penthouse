@@ -8,14 +8,14 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: colors.$dark-grey-00;
-  color: colors.$light-grey;
+  background-color: colors.$overall-bg;
+  color: colors.$overall-fg;
 
   > div {
     margin: 0 2em;
     padding: 1em;
     border: 1px solid colors.$black;
-    background-color: colors.$dark-grey-01;
+    background-color: colors.$main-container-bg;
   }
 }
 

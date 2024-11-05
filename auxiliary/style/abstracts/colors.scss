@@ -1,36 +1,65 @@
 $black: rgb(0 0 0);
 
 /* These different shades of grey are based on Material's guidelines for dark
- * colorschemes (https://m2.material.io/design/color/dark-theme.html) and
- * slightly tinted with a light blue (rgb(0 173 255), Overlay @ 10%).
+ * colorschemes (https://m2.material.io/design/color/dark-theme.html). These
+ * are mostly for reference, as the design will use slightly tinted colors.
  */
-$dark-grey-00: rgb(17 19 20);
-$dark-grey-01: rgb(28 31 34);
-$dark-grey-02: rgb(32 35 39);
-$dark-grey-03: rgb(34 37 41);
-$dark-grey-04: rgb(37 41 45);
-$dark-grey-06: rgb(42 46 50);
-$dark-grey-08: rgb(43 48 53);
-$dark-grey-12: rgb(47 52 57);
-$dark-grey-16: rgb(50 55 61);
-$dark-grey-24: rgb(53 58 64);
+$dark-grey-00: oklch(18.22% 0 0deg); // rgb(18 18 18)
+$dark-grey-01: oklch(23.5% 0 0deg); // rgb(30 30 30)
+$dark-grey-02: oklch(25.2% 0 0deg); // rgb(34 34 34)
+$dark-grey-03: oklch(26.03% 0 0deg); // rgb(36 36 36)
+$dark-grey-04: oklch(27.27% 0 0deg); // rgb(39 39 39)
+$dark-grey-06: oklch(29.31% 0 0deg); // rgb(44 44 44)
+$dark-grey-08: oklch(30.12% 0 0deg); // rgb(46 46 46)
+$dark-grey-12: oklch(31.71% 0 0deg); // rgb(50 50 50)
+$dark-grey-16: oklch(32.9% 0 0deg); // rgb(53 53 53)
+$dark-grey-24: oklch(34.07% 0 0deg); // rgb(56 56 56)
+
+/* These are the shades of grey, slightly tinted with a shade of blue.
+ *
+ * ChatGPT can provide adjustments of Chroma and Hue within one request, so
+ * this is quickly done.
+ */
+$dark-blueish-grey-00: oklch(18.22% 0.02 245deg); // rgb(18 18 27)
+$dark-blueish-grey-01: oklch(23.5% 0.02 245deg); // rgb(30 30 43)
+$dark-blueish-grey-02: oklch(25.2% 0.02 245deg); // rgb(34 34 51)
+$dark-blueish-grey-03: oklch(26.03% 0.02 245deg); // rgb(36 36 58)
+$dark-blueish-grey-04: oklch(27.27% 0.02 245deg); // rgb(39 39 66)
+$dark-blueish-grey-06: oklch(29.31% 0.02 245deg); // rgb(44 44 79)
+$dark-blueish-grey-08: oklch(30.12% 0.02 245deg); // rgb(46 46 86)
+$dark-blueish-grey-12: oklch(31.71% 0.02 245deg); // rgb(50 50 97)
+$dark-blueish-grey-16: oklch(32.9% 0.02 245deg); // rgb(53 53 103)
+$dark-blueish-grey-24: oklch(34.07% 0.02 245deg); // rgb(56 56 113)
+
+/* And another collection, tinted with a more vibrant blue. */
+$dark-blue-grey-00: oklch(18.22% 0.04 245deg); // rgb(18 18 42)
+$dark-blue-grey-01: oklch(23.5% 0.04 245deg); // rgb(30 30 60)
+$dark-blue-grey-02: oklch(25.2% 0.04 245deg); // rgb(34 34 69)
+$dark-blue-grey-03: oklch(26.03% 0.04 245deg); // rgb(36 36 76)
+$dark-blue-grey-04: oklch(27.27% 0.04 245deg); // rgb(39 39 85)
+$dark-blue-grey-06: oklch(29.31% 0.04 245deg); // rgb(44 44 99)
+$dark-blue-grey-08: oklch(30.12% 0.04 245deg); // rgb(46 46 106)
+$dark-blue-grey-12: oklch(31.71% 0.04 245deg); // rgb(50 50 117)
+$dark-blue-grey-16: oklch(32.9% 0.04 245deg); // rgb(53 53 123)
+$dark-blue-grey-24: oklch(34.07% 0.04 245deg); // rgb(56 56 133)
 
 /* Different shades of green, to indicate *good values*. */
-$dark-green-00: rgb(7 24 6);
-$dark-green-01: rgb(14 41 13);
-$dark-green-02: rgb(16 46 15);
-$dark-green-03: rgb(17 49 16);
-$dark-green-04: rgb(19 53 18);
-$dark-green-06: rgb(22 60 21);
-$dark-green-08: rgb(23 62 22);
-$dark-green-12: rgb(25 68 24);
-$dark-green-16: rgb(27 72 26);
-$dark-green-24: rgb(28 76 28);
+$dark-green-00: oklch(18.22% 0.08 135deg); // rgb(18 52 18)
+$dark-green-01: oklch(23.5% 0.08 135deg); // rgb(30 75 30)
+$dark-green-02: oklch(25.2% 0.08 135deg); // rgb(34 91 34)
+$dark-green-03: oklch(26.03% 0.08 135deg); // rgb(36 99 36)
+$dark-green-04: oklch(27.27% 0.08 135deg); // rgb(39 111 39)
+$dark-green-06: oklch(29.31% 0.08 135deg); // rgb(44 128 44)
+$dark-green-08: oklch(30.12% 0.08 135deg); // rgb(46 139 46)
+$dark-green-12: oklch(31.71% 0.08 135deg); // rgb(50 153 50)
+$dark-green-16: oklch(32.9% 0.08 135deg); // rgb(53 161 53)
+$dark-green-24: oklch(34.07% 0.08 135deg); // rgb(56 175 56)
 
-/* This is a slightly tinted light grey, matching the blue tinted dark-grey
- * palette.
- */
-$light-grey: rgb(176 190 197);
+/* These are light grey tones, with tints matching the background colors. */
+$light-grey: oklch(79.21% 0 0deg); // rgb(187 187 187);
+$light-blueish-grey: oklch(79.21% 0.02 245deg);
+$light-blue-grey: oklch(79.21% 0.04 245deg);
+$light-green: oklch(79.21% 0.08 135deg);
 
 /* Lime base color, may be used as foreground color.
  *
@@ -41,3 +70,13 @@ $lime-200: rgb(230 238 156);
 $lime-400: rgb(212 225 87);
 $lime-a200: rgb(178 255 89);
 $lime-400-dark: rgb(169 180 69);
+$overall-bg: $dark-blueish-grey-00;
+$overall-fg: $light-blueish-grey;
+$main-container-bg: $dark-blueish-grey-01;
+$table-even-bg: $dark-blueish-grey-12;
+$table-even-max-bg: $dark-green-12;
+$table-even-top-bg: $dark-green-12;
+$table-odd-bg: $dark-blueish-grey-06;
+$table-odd-max-bg: $dark-green-06;
+$table-odd-top-bg: $dark-green-06;
+$form-input-bg: $dark-blue-grey-06;

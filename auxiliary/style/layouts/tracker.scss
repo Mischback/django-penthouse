@@ -29,13 +29,15 @@
     tr:nth-child(odd) {
       /* stylelint-disable selector-no-qualifying-type */
       .max-value {
-        background-color: colors.$dark-green-06 !important;
+        background-color: colors.$table-odd-max-bg !important;
+        color: colors.$light-green !important;
       }
       /* stylelint-enable selector-no-qualifying-type */
 
       /* stylelint-disable selector-no-qualifying-type */
       .top-value {
-        background-color: colors.$dark-green-06 !important;
+        background-color: colors.$table-odd-top-bg !important;
+        color: colors.$light-green !important;
       }
       /* stylelint-enable selector-no-qualifying-type */
     }
@@ -43,13 +45,15 @@
     tr:nth-child(even) {
       /* stylelint-disable selector-no-qualifying-type */
       .max-value {
-        background-color: colors.$dark-green-12 !important;
+        background-color: colors.$table-even-max-bg !important;
+        color: colors.$light-green !important;
       }
       /* stylelint-enable selector-no-qualifying-type */
 
       /* stylelint-disable selector-no-qualifying-type */
       .top-value {
-        background-color: colors.$dark-green-12 !important;
+        background-color: colors.$table-even-top-bg !important;
+        color: colors.$light-green !important;
       }
       /* stylelint-enable selector-no-qualifying-type */
     }
