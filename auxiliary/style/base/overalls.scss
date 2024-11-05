@@ -1,4 +1,6 @@
+@use "sass:map";
 @use "../abstracts/colors";
+@use "../abstracts/shadows";
 
 * {
   margin: 0;
@@ -14,8 +16,8 @@ body {
   > div {
     margin: 0 2em;
     padding: 1em;
-    border: 1px solid colors.$black;
     background-color: colors.$main-container-bg;
+    box-shadow: map.get(shadows.$box-shadows, 1) !important;
   }
 }
 
