@@ -70,6 +70,8 @@ $lime-200: rgb(230 238 156);
 $lime-400: rgb(212 225 87);
 $lime-a200: rgb(178 255 89);
 $lime-400-dark: rgb(169 180 69);
+$bright-red: oklch(70% 0.28 45deg);
+$bright-green: oklch(75% 0.28 125deg);
 
 /* Semantic colors
  *
@@ -88,4 +90,6 @@ $table-odd-bg: $dark-blueish-grey-06;
 $table-odd-max-bg: $dark-green-06;
 $table-odd-top-bg: $dark-green-06;
 $form-input-bg: $dark-blue-grey-06;
+$form-button-cancel-bg: $bright-red;
+$form-button-submit-bg: $bright-green;
 $shadow-color-base: $black;
