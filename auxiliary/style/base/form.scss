@@ -1,0 +1,80 @@
+@use "sass:color";
+@use "sass:map";
+@use "../abstracts/colors";
+@use "../abstracts/shadows";
+
+form {
+  .non-field-errors,
+  .field-errors {
+    margin-top: 0.5em;
+    padding: 0.25em 0.5em;
+    border: 1px solid colors.$black;
+    background: #f99;
+    color: #000;
+  }
+
+  .field-group {
+    margin: 0.5em 0 2em;
+
+    label,
+    small,
+    .field-errors {
+      display: block;
+      margin-left: 0.25rem;
+    }
+
+    input,
+    select,
+    textarea {
+      margin: 0.25em;
+      padding: 0.25em 0.5em;
+      border: 0 solid colors.$shadow-color-base;
+      border-radius: 0.25rem;
+      background-color: colors.$form-input-bg;
+      box-shadow: map.get(shadows.$box-shadows, 1) !important;
+      color: colors.$overall-fg;
+    }
+  }
+
+  button {
+    margin: 0.25em 0.25rem;
+    padding: 0.25em 0.5em;
+    border: 0 solid colors.$shadow-color-base;
+    border-radius: 0.25rem;
+    box-shadow: map.get(shadows.$box-shadows, 2) !important;
+    font-size: 1.25em;
+    font-weight: bold;
+
+    /* stylelint-disable selector-no-qualifying-type */
+    &.cancel {
+      $bg-lightest: color.scale(colors.$form-button-cancel-bg, $lightness: 50%);
+      $bg-lighter: color.scale(colors.$form-button-cancel-bg, $lightness: 5%);
+      $bg-darker: color.scale(colors.$form-button-cancel-bg, $lightness: -5%);
+      $bg-darkest: color.scale(colors.$form-button-cancel-bg, $lightness: -50%);
+
+      /* prettier-ignore */
+      background: linear-gradient(to bottom,
+      $bg-lightest 0% 4%,
+      $bg-lighter 5% 48%,
+      $bg-darker 52% 95%,
+      $bg-darkest 96% 100%);
+    }
+    /* stylelint-enable selector-no-qualifying-type */
+
+    /* stylelint-disable selector-no-qualifying-type */
+    &.submit {
+      $bg-lightest: color.scale(colors.$form-button-submit-bg, $lightness: 50%);
+      $bg-lighter: color.scale(colors.$form-button-submit-bg, $lightness: 5%);
+      $bg-darker: color.scale(colors.$form-button-submit-bg, $lightness: -5%);
+      $bg-darkest: color.scale(colors.$form-button-submit-bg, $lightness: -50%);
+
+      /* prettier-ignore */
+      background: linear-gradient(to bottom,
+      $bg-lightest 0% 4%,
+      $bg-lighter 5% 48%,
+      $bg-darker 52% 95%,
+      $bg-darkest 96% 100%);
+    }
+    /* stylelint-enable selector-no-qualifying-type */
+  }
+}

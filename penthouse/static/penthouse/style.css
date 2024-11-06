@@ -50,57 +50,227 @@ h6 {
  *
  * This provides a default class for ``table`` elements, too: The ``list-view``.
  */
+/* These different shades of grey are based on Material's guidelines for dark
+ * colorschemes (https://m2.material.io/design/color/dark-theme.html). These
+ * are mostly for reference, as the design will use slightly tinted colors.
+ */
+/* These are the shades of grey, slightly tinted with a shade of blue.
+ *
+ * ChatGPT can provide adjustments of Chroma and Hue within one request, so
+ * this is quickly done.
+ */
+/* And another collection, tinted with a more vibrant blue. */
+/* Different shades of green, to indicate *good values*. */
+/* These are light grey tones, with tints matching the background colors. */
+/* Lime base color, may be used as foreground color.
+ *
+ * See https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+ * for additional shades.
+ */
+/* Semantic colors
+ *
+ * These are the actual colors, associated with semantic meanings in the
+ * context of the layout.
+ *
+ * These are the colors, that should be used in other source files.
+ */
 table {
   border-collapse: collapse;
 }
 
 .list-view {
+  border: 1px solid rgb(0, 0, 0);
   font-size: 0.8em;
 }
 
 .list-view td,
 .list-view th {
   padding: 0.2em 0.5em;
-  border: 1px solid #333; /* FIXME: select color! */
+  border: 1px solid oklch(23.5% 0 0deg);
 }
 
 .list-view th {
-  background-color: #eee; /* FIXME: select color! */
+  background-color: oklch(29.31% 0.02 245deg);
 }
 
 .list-view tr:nth-child(odd) td {
-  background-color: #fff; /* FIXME: select color! */
-  /* stylelint-disable selector-no-qualifying-type */
-  /* stylelint-enable selector-no-qualifying-type */
-  /* stylelint-disable selector-no-qualifying-type */
-  /* stylelint-enable selector-no-qualifying-type */
-}
-
-.list-view tr:nth-child(odd) td.max-value {
-  background-color: #3f3 !important;
-}
-
-.list-view tr:nth-child(odd) td.top-value {
-  background-color: #cf3 !important;
+  background-color: oklch(29.31% 0.02 245deg);
 }
 
 .list-view tr:nth-child(even) td {
-  background-color: #ccc; /* FIXME: select color! */
+  background-color: oklch(31.71% 0.02 245deg);
+}
+
+/* These different shades of grey are based on Material's guidelines for dark
+ * colorschemes (https://m2.material.io/design/color/dark-theme.html). These
+ * are mostly for reference, as the design will use slightly tinted colors.
+ */
+/* These are the shades of grey, slightly tinted with a shade of blue.
+ *
+ * ChatGPT can provide adjustments of Chroma and Hue within one request, so
+ * this is quickly done.
+ */
+/* And another collection, tinted with a more vibrant blue. */
+/* Different shades of green, to indicate *good values*. */
+/* These are light grey tones, with tints matching the background colors. */
+/* Lime base color, may be used as foreground color.
+ *
+ * See https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+ * for additional shades.
+ */
+/* Semantic colors
+ *
+ * These are the actual colors, associated with semantic meanings in the
+ * context of the layout.
+ *
+ * These are the colors, that should be used in other source files.
+ */
+/*
+$shadow-color-1: rgba(0 0 0 0.14) !default;
+$shadow-color-2: rgba(0 0 0 0.12) !default;
+$shadow-color-3: rgba(0 0 0 0.2) !default;
+*/
+/* stylelint-disable */
+/* prettier-ignore */
+/* stylelint-enable */
+form .non-field-errors,
+form .field-errors {
+  margin-top: 0.5em;
+  padding: 0.25em 0.5em;
+  border: 1px solid rgb(0, 0, 0);
+  background: #f99;
+  color: #000;
+}
+
+form .field-group {
+  margin: 0.5em 0 2em;
+}
+
+form .field-group label,
+form .field-group small,
+form .field-group .field-errors {
+  display: block;
+  margin-left: 0.25rem;
+}
+
+form .field-group input,
+form .field-group select,
+form .field-group textarea {
+  margin: 0.25em;
+  padding: 0.25em 0.5em;
+  border: 0 solid rgb(0, 0, 0);
+  border-radius: 0.25rem;
+  background-color: oklch(29.31% 0.04 245deg);
+  box-shadow: 0 1px 1px 0 black, 0 1px 3px 0 black, 0 2px 1px -1px black !important;
+  color: oklch(79.21% 0.02 245deg);
+}
+
+form button {
+  margin: 0.25em 0.25rem;
+  padding: 0.25em 0.5em;
+  border: 0 solid rgb(0, 0, 0);
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 2px 0 black, 0 1px 5px 0 black, 0 3px 1px -2px black !important;
+  font-size: 1.25em;
+  font-weight: bold;
   /* stylelint-disable selector-no-qualifying-type */
   /* stylelint-enable selector-no-qualifying-type */
   /* stylelint-disable selector-no-qualifying-type */
   /* stylelint-enable selector-no-qualifying-type */
 }
 
-.list-view tr:nth-child(even) td.max-value {
-  background-color: #3f3 !important;
+form button.cancel {
+  /* prettier-ignore */
+  background: linear-gradient(to bottom, oklch(85% 0.28 45deg) 0% 4%, oklch(71.5% 0.28 45deg) 5% 48%, oklch(66.5% 0.28 45deg) 52% 95%, oklch(35% 0.28 45deg) 96% 100%);
 }
 
-.list-view tr:nth-child(even) td.top-value {
-  background-color: #cf3 !important;
+form button.submit {
+  /* prettier-ignore */
+  background: linear-gradient(to bottom, oklch(87.5% 0.28 125deg) 0% 4%, oklch(76.25% 0.28 125deg) 5% 48%, oklch(71.25% 0.28 125deg) 52% 95%, oklch(37.5% 0.28 125deg) 96% 100%);
+}
+
+/* These different shades of grey are based on Material's guidelines for dark
+ * colorschemes (https://m2.material.io/design/color/dark-theme.html). These
+ * are mostly for reference, as the design will use slightly tinted colors.
+ */
+/* These are the shades of grey, slightly tinted with a shade of blue.
+ *
+ * ChatGPT can provide adjustments of Chroma and Hue within one request, so
+ * this is quickly done.
+ */
+/* And another collection, tinted with a more vibrant blue. */
+/* Different shades of green, to indicate *good values*. */
+/* These are light grey tones, with tints matching the background colors. */
+/* Lime base color, may be used as foreground color.
+ *
+ * See https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+ * for additional shades.
+ */
+/* Semantic colors
+ *
+ * These are the actual colors, associated with semantic meanings in the
+ * context of the layout.
+ *
+ * These are the colors, that should be used in other source files.
+ */
+/*
+$shadow-color-1: rgba(0 0 0 0.14) !default;
+$shadow-color-2: rgba(0 0 0 0.12) !default;
+$shadow-color-3: rgba(0 0 0 0.2) !default;
+*/
+/* stylelint-disable */
+/* prettier-ignore */
+/* stylelint-enable */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: oklch(18.22% 0.02 245deg);
+  color: oklch(79.21% 0.02 245deg);
+}
+
+body > div {
+  margin: 0 2em;
+  padding: 1em;
+  background-color: oklch(23.5% 0.02 245deg);
+  box-shadow: 0 1px 1px 0 black, 0 1px 3px 0 black, 0 2px 1px -1px black !important;
+}
+
+a,
+a:link,
+a:visited {
+  color: rgb(169, 180, 69);
 }
 
 /* Specific layouts */
+/* These different shades of grey are based on Material's guidelines for dark
+ * colorschemes (https://m2.material.io/design/color/dark-theme.html). These
+ * are mostly for reference, as the design will use slightly tinted colors.
+ */
+/* These are the shades of grey, slightly tinted with a shade of blue.
+ *
+ * ChatGPT can provide adjustments of Chroma and Hue within one request, so
+ * this is quickly done.
+ */
+/* And another collection, tinted with a more vibrant blue. */
+/* Different shades of green, to indicate *good values*. */
+/* These are light grey tones, with tints matching the background colors. */
+/* Lime base color, may be used as foreground color.
+ *
+ * See https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+ * for additional shades.
+ */
+/* Semantic colors
+ *
+ * These are the actual colors, associated with semantic meanings in the
+ * context of the layout.
+ *
+ * These are the colors, that should be used in other source files.
+ */
 /* Layout-specific styles for ``tracker-overview`` */
 .penthouse-tracker {
   /* ``.list-view`` is applied to all tables in that layout */
@@ -113,7 +283,8 @@ table {
   height: 1em;
   margin: 0 0 0 0.5em;
   float: right;
-  background-color: #f00; /* FIXME: select color! */
+  border-radius: 1em;
+  background-color: rgb(247, 215, 0); /* FIXME: select color! */
 }
 
 .penthouse-tracker .list-view .pb-local::after {
@@ -123,7 +294,8 @@ table {
   height: 1em;
   margin: 0 0 0 0.5em;
   float: right;
-  background-color: #00c; /* FIXME: select color! */
+  border-radius: 1em;
+  background-color: rgba(247, 215, 0, 0.35); /* FIXME: select color! */
 }
 
 .penthouse-tracker .list-view tr:nth-child(odd) {
@@ -134,11 +306,13 @@ table {
 }
 
 .penthouse-tracker .list-view tr:nth-child(odd) .max-value {
-  background-color: #3f3 !important; /* FIXME: select color! */
+  background-color: oklch(29.31% 0.08 135deg) !important;
+  color: oklch(79.21% 0.08 135deg) !important;
 }
 
 .penthouse-tracker .list-view tr:nth-child(odd) .top-value {
-  background-color: #cf3 !important; /* FIXME: select color! */
+  background-color: oklch(29.31% 0.08 135deg) !important;
+  color: oklch(79.21% 0.08 135deg) !important;
 }
 
 .penthouse-tracker .list-view tr:nth-child(even) {
@@ -149,11 +323,13 @@ table {
 }
 
 .penthouse-tracker .list-view tr:nth-child(even) .max-value {
-  background-color: #3f3 !important; /* FIXME: select color! */
+  background-color: oklch(31.71% 0.08 135deg) !important;
+  color: oklch(79.21% 0.08 135deg) !important;
 }
 
 .penthouse-tracker .list-view tr:nth-child(even) .top-value {
-  background-color: #cf3 !important; /* FIXME: select color! */
+  background-color: oklch(31.71% 0.08 135deg) !important;
+  color: oklch(79.21% 0.08 135deg) !important;
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22../../../auxiliary/style/style.scss%22,%22../../../auxiliary/style/base/typography.scss%22,%22../../../auxiliary/style/abstracts/fonts.scss%22,%22../../../auxiliary/style/base/table.scss%22,%22../../../auxiliary/style/layouts/tracker.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAOA;AAGA;AAEA;ACZA;ACAA;ADIA;EACE;;;AAGF;EACE,aCRgB;;;ADWlB;AAAA;AAAA;AAAA;AAAA;AAAA;EAME;EACA;EACA,aCnBgB;;;ADsBlB;EACE;;;AAGF;EACE;;;AAGF;AAAA;EAEE;;;AAGF;AAAA;EAEE;;;AEtCF;AAAA;AAAA;AAAA;AAKA;EACE;;;AAGF;EACE;;;AAEA;AAAA;EAEE;EACA;;;AAGF;EACE;;;AAGF;EACE;AAEA;AAIA;AAEA;AAIA;;;AATA;EACE;;;AAKF;EACE;;;AAKJ;EACE;AAEA;AAIA;AAEA;AAIA;;;AATA;EACE;;;AAKF;EACE;;;AHjCN;AIhBA;AACA;AACE;;;AAEE;EACE;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGF;AACE;AAIA;AAEA;AAIA;;;AATA;EACE;;;AAKF;EACE;;;AAKJ;AACE;AAIA;AAEA;AAIA;;;AATA;EACE;;;AAKF;EACE%22,%22file%22:%22style.css%22,%22sourcesContent%22:%5B%22/*%20Main%20stylesheet%20of%20django-penthouse's%20default%20styling.%5Cn%20*%5Cn%20*%20The%20stylesheet%20is%20generated%20from%20SCSS%20sources.%20The%20SCSS%20source%20code%20is%5Cn%20*%20organized%20according%20to%20Matthew%20Elson's%20Simple%20SCSS%20playbook%5Cn%20*%20(https://matthewelsom.com/blog/simple-scss-playbook.html).%5Cn%20%2A/%5Cn%5Cn/*%20stylelint-disable%20%2A/%5Cn@charset%20%5C%22utf-8%5C%22;%5Cn@use%20%5C%22sass:meta%5C%22;%5Cn/*%20stylelint-enable%20%2A/%5Cn%5Cn/*%20Base%20styles%20(apply%20to%20all%20elements)%20%2A/%5Cn@include%20meta.load-css(%5C%22base/typography%5C%22);%5Cn@include%20meta.load-css(%5C%22base/table%5C%22);%5Cn%5Cn/*%20Specific%20layouts%20%2A/%5Cn@include%20meta.load-css(%5C%22layouts/tracker%5C%22);%5Cn%22,%22/*%20Provide%20the%20basic%20typography-related%20settings%20for%20the%20overall%20layout.%20%2A/%5Cn%5Cn@use%20%5C%22../abstracts/fonts%5C%22;%5Cn%5Cnhtml%20%7B%5Cn%20%20font-size:%2016px;%5Cn%7D%5Cn%5Cnbody%20%7B%5Cn%20%20font-family:%20fonts.$font-stack-sans;%5Cn%7D%5Cn%5Cnh1,%5Cnh2,%5Cnh3,%5Cnh4,%5Cnh5,%5Cnh6%20%7B%5Cn%20%20margin-top:%201.5rem;%5Cn%20%20margin-bottom:%200.75rem;%5Cn%20%20font-family:%20fonts.$font-stack-sans;%5Cn%7D%5Cn%5Cnh1%20%7B%5Cn%20%20font-size:%202.25em;%5Cn%7D%5Cn%5Cnh2%20%7B%5Cn%20%20font-size:%201.7em;%5Cn%7D%5Cn%5Cnh3,%5Cnh4%20%7B%5Cn%20%20font-size:%201.2em;%5Cn%7D%5Cn%5Cnh5,%5Cnh6%20%7B%5Cn%20%20font-size:%201em;%5Cn%7D%5Cn%22,%22/*%20The%20actual%20font%20stacks%20%2A/%5Cn$font-stack-sans:%20inter,%20roboto,%20%5C%22Helvetica%20Neue%5C%22,%20%5C%22Arial%20Nova%5C%22,%20%5C%22Nimbus%20Sans%5C%22,%5Cn%20%20arial,%20sans-serif;%5Cn%22,%22/*%20General%20styling%20for%20tables.%5Cn%20*%5Cn%20*%20This%20provides%20a%20default%20class%20for%20%60%60table%60%60%20elements,%20too:%20The%20%60%60list-view%60%60.%5Cn%20%2A/%5Cn%5Cntable%20%7B%5Cn%20%20border-collapse:%20collapse;%5Cn%7D%5Cn%5Cn.list-view%20%7B%5Cn%20%20font-size:%200.8em;%5Cn%5Cn%20%20td,%5Cn%20%20th%20%7B%5Cn%20%20%20%20padding:%200.2em%200.5em;%5Cn%20%20%20%20border:%201px%20solid%20%23333;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%7D%5Cn%5Cn%20%20th%20%7B%5Cn%20%20%20%20background-color:%20%23eee;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%7D%5Cn%5Cn%20%20tr:nth-child(odd)%20td%20%7B%5Cn%20%20%20%20background-color:%20%23fff;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%5Cn%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20&.max-value%20%7B%5Cn%20%20%20%20%20%20background-color:%20%233f3%20!important;%5Cn%20%20%20%20%7D%5Cn%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%5Cn%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20&.top-value%20%7B%5Cn%20%20%20%20%20%20background-color:%20%23cf3%20!important;%5Cn%20%20%20%20%7D%5Cn%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%7D%5Cn%5Cn%20%20tr:nth-child(even)%20td%20%7B%5Cn%20%20%20%20background-color:%20%23ccc;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%5Cn%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20&.max-value%20%7B%5Cn%20%20%20%20%20%20background-color:%20%233f3%20!important;%5Cn%20%20%20%20%7D%5Cn%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%5Cn%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20&.top-value%20%7B%5Cn%20%20%20%20%20%20background-color:%20%23cf3%20!important;%5Cn%20%20%20%20%7D%5Cn%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%7D%5Cn%7D%5Cn%22,%22/*%20Layout-specific%20styles%20for%20%60%60tracker-overview%60%60%20%2A/%5Cn.penthouse-tracker%20%7B%5Cn%20%20/*%20%60%60.list-view%60%60%20is%20applied%20to%20all%20tables%20in%20that%20layout%20%2A/%5Cn%20%20.list-view%20%7B%5Cn%20%20%20%20.pb-global::after%20%7B%5Cn%20%20%20%20%20%20content:%20%5C%22%5C%22;%5Cn%20%20%20%20%20%20display:%20block;%5Cn%20%20%20%20%20%20width:%201em;%5Cn%20%20%20%20%20%20height:%201em;%5Cn%20%20%20%20%20%20margin:%200%200%200%200.5em;%5Cn%20%20%20%20%20%20float:%20right;%5Cn%20%20%20%20%20%20background-color:%20%23f00;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%7D%5Cn%5Cn%20%20%20%20.pb-local::after%20%7B%5Cn%20%20%20%20%20%20content:%20%5C%22%5C%22;%5Cn%20%20%20%20%20%20display:%20block;%5Cn%20%20%20%20%20%20width:%201em;%5Cn%20%20%20%20%20%20height:%201em;%5Cn%20%20%20%20%20%20margin:%200%200%200%200.5em;%5Cn%20%20%20%20%20%20float:%20right;%5Cn%20%20%20%20%20%20background-color:%20%2300c;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%7D%5Cn%5Cn%20%20%20%20tr:nth-child(odd)%20%7B%5Cn%20%20%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%20%20.max-value%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20%233f3%20!important;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%5Cn%20%20%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%20%20.top-value%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20%23cf3%20!important;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%7D%5Cn%5Cn%20%20%20%20tr:nth-child(even)%20%7B%5Cn%20%20%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%20%20.max-value%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20%233f3%20!important;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%5Cn%20%20%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%20%20.top-value%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20%23cf3%20!important;%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%7D%5Cn%20%20%7D%5Cn%7D%5Cn%22%5D%7D */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22../../../auxiliary/style/style.scss%22,%22../../../auxiliary/style/base/typography.scss%22,%22../../../auxiliary/style/abstracts/fonts.scss%22,%22../../../auxiliary/style/base/table.scss%22,%22../../../auxiliary/style/abstracts/colors.scss%22,%22../../../auxiliary/style/abstracts/shadows.scss%22,%22../../../auxiliary/style/base/form.scss%22,%22../../../auxiliary/style/base/overalls.scss%22,%22../../../auxiliary/style/layouts/tracker.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAOA;AAGA;AAEA;ACZA;ACAA;ADIA;EACE;;;AAGF;EACE,aCRgB;;;ADWlB;AAAA;AAAA;AAAA;AAAA;AAAA;EAME;EACA;EACA,aCnBgB;;;ADsBlB;EACE;;;AAGF;EACE;;;AAGF;AAAA;EAEE;;;AAGF;AAAA;EAEE;;;AEtCF;AAAA;AAAA;AAAA;ACEA;AAAA;AAAA;AAAA;AAeA;AAAA;AAAA;AAAA;AAAA;AAgBA;AAYA;AAYA;AAMA;AAAA;AAAA;AAAA;AAAA;AAYA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;ADpEA;EACE;;;AAGF;EACE;EACA;;;AAEA;AAAA;EAEE;EACA;;;AAGF;EACE,kBCKmB;;;ADFrB;EACE,kBCCmB;;;ADErB;EACE,kBCDmB;;;AA3BvB;AAAA;AAAA;AAAA;AAeA;AAAA;AAAA;AAAA;AAAA;AAgBA;AAYA;AAYA;AAMA;AAAA;AAAA;AAAA;AAAA;AAYA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;ACvEA;AAAA;AAAA;AAAA;AAAA;AASA;AACA;AAWA;ACnBE;AAAA;EAEE;EACA;EACA;EACA;EACA;;;AAGF;EACE;;;AAEA;AAAA;AAAA;EAGE;EACA;;;AAGF;AAAA;AAAA;EAGE;EACA;EACA;EACA;EACA,kBFOc;EENd;EACA,OFyBe;;;AErBnB;EACE;EACA;EACA;EACA;EACA;EACA;EACA;AAEA;AAcA;AAEA;AAcA;;;AA7BA;AAME;EACA;;;AASF;AAME;EACA;;;AFrEN;AAAA;AAAA;AAAA;AAeA;AAAA;AAAA;AAAA;AAAA;AAgBA;AAYA;AAYA;AAMA;AAAA;AAAA;AAAA;AAAA;AAYA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;ACvEA;AAAA;AAAA;AAAA;AAAA;AASA;AACA;AAWA;AErBA;EACE;EACA;;;AAGF;EACE;EACA;EACA,kBHUqB;EGTrB,OH8CmB;;;AG5CnB;EACE;EACA;EACA,kBHKmB;EGJnB;;;AAIJ;AAAA;AAAA;EAGE,OH6Cc;;;AJrDhB;AIhBA;AAAA;AAAA;AAAA;AAeA;AAAA;AAAA;AAAA;AAAA;AAgBA;AAYA;AAYA;AAMA;AAAA;AAAA;AAAA;AAAA;AAYA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AI3EA;AAGA;AACE;;;AAEE;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGF;AACE;AAKA;AAEA;AAKA;;;AAXA;EACE;EACA;;;AAKF;EACE;EACA;;;AAKJ;AACE;AAKA;AAEA;AAKA;;;AAXA;EACE;EACA;;;AAKF;EACE;EACA%22,%22file%22:%22style.css%22,%22sourcesContent%22:%5B%22/*%20Main%20stylesheet%20of%20django-penthouse's%20default%20styling.%5Cn%20*%5Cn%20*%20The%20stylesheet%20is%20generated%20from%20SCSS%20sources.%20The%20SCSS%20source%20code%20is%5Cn%20*%20organized%20according%20to%20Matthew%20Elson's%20Simple%20SCSS%20playbook%5Cn%20*%20(https://matthewelsom.com/blog/simple-scss-playbook.html).%5Cn%20%2A/%5Cn%5Cn/*%20stylelint-disable%20%2A/%5Cn@charset%20%5C%22utf-8%5C%22;%5Cn@use%20%5C%22sass:meta%5C%22;%5Cn/*%20stylelint-enable%20%2A/%5Cn%5Cn/*%20Base%20styles%20(apply%20to%20all%20elements)%20%2A/%5Cn@include%20meta.load-css(%5C%22base/typography%5C%22);%5Cn@include%20meta.load-css(%5C%22base/table%5C%22);%5Cn@include%20meta.load-css(%5C%22base/form%5C%22);%5Cn@include%20meta.load-css(%5C%22base/overalls%5C%22);%5Cn%5Cn/*%20Specific%20layouts%20%2A/%5Cn@include%20meta.load-css(%5C%22layouts/tracker%5C%22);%5Cn%22,%22/*%20Provide%20the%20basic%20typography-related%20settings%20for%20the%20overall%20layout.%20%2A/%5Cn%5Cn@use%20%5C%22../abstracts/fonts%5C%22;%5Cn%5Cnhtml%20%7B%5Cn%20%20font-size:%2016px;%5Cn%7D%5Cn%5Cnbody%20%7B%5Cn%20%20font-family:%20fonts.$font-stack-sans;%5Cn%7D%5Cn%5Cnh1,%5Cnh2,%5Cnh3,%5Cnh4,%5Cnh5,%5Cnh6%20%7B%5Cn%20%20margin-top:%201.5rem;%5Cn%20%20margin-bottom:%200.75rem;%5Cn%20%20font-family:%20fonts.$font-stack-sans;%5Cn%7D%5Cn%5Cnh1%20%7B%5Cn%20%20font-size:%202.25em;%5Cn%7D%5Cn%5Cnh2%20%7B%5Cn%20%20font-size:%201.7em;%5Cn%7D%5Cn%5Cnh3,%5Cnh4%20%7B%5Cn%20%20font-size:%201.2em;%5Cn%7D%5Cn%5Cnh5,%5Cnh6%20%7B%5Cn%20%20font-size:%201em;%5Cn%7D%5Cn%22,%22/*%20The%20actual%20font%20stacks%20%2A/%5Cn$font-stack-sans:%20inter,%20roboto,%20%5C%22Helvetica%20Neue%5C%22,%20%5C%22Arial%20Nova%5C%22,%20%5C%22Nimbus%20Sans%5C%22,%5Cn%20%20arial,%20sans-serif;%5Cn%22,%22/*%20General%20styling%20for%20tables.%5Cn%20*%5Cn%20*%20This%20provides%20a%20default%20class%20for%20%60%60table%60%60%20elements,%20too:%20The%20%60%60list-view%60%60.%5Cn%20%2A/%5Cn%5Cn@use%20%5C%22../abstracts/colors%5C%22;%5Cn%5Cntable%20%7B%5Cn%20%20border-collapse:%20collapse;%5Cn%7D%5Cn%5Cn.list-view%20%7B%5Cn%20%20border:%201px%20solid%20colors.$black;%5Cn%20%20font-size:%200.8em;%5Cn%5Cn%20%20td,%5Cn%20%20th%20%7B%5Cn%20%20%20%20padding:%200.2em%200.5em;%5Cn%20%20%20%20border:%201px%20solid%20colors.$dark-grey-01;%5Cn%20%20%7D%5Cn%5Cn%20%20th%20%7B%5Cn%20%20%20%20background-color:%20colors.$table-odd-bg;%5Cn%20%20%7D%5Cn%5Cn%20%20tr:nth-child(odd)%20td%20%7B%5Cn%20%20%20%20background-color:%20colors.$table-odd-bg;%5Cn%20%20%7D%5Cn%5Cn%20%20tr:nth-child(even)%20td%20%7B%5Cn%20%20%20%20background-color:%20colors.$table-even-bg;%5Cn%20%20%7D%5Cn%7D%5Cn%22,%22$black:%20rgb(0%200%200);%5Cn%5Cn/*%20These%20different%20shades%20of%20grey%20are%20based%20on%20Material's%20guidelines%20for%20dark%5Cn%20*%20colorschemes%20(https://m2.material.io/design/color/dark-theme.html).%20These%5Cn%20*%20are%20mostly%20for%20reference,%20as%20the%20design%20will%20use%20slightly%20tinted%20colors.%5Cn%20%2A/%5Cn$dark-grey-00:%20oklch(18.22%25%200%200deg);%20//%20rgb(18%2018%2018)%5Cn$dark-grey-01:%20oklch(23.5%25%200%200deg);%20//%20rgb(30%2030%2030)%5Cn$dark-grey-02:%20oklch(25.2%25%200%200deg);%20//%20rgb(34%2034%2034)%5Cn$dark-grey-03:%20oklch(26.03%25%200%200deg);%20//%20rgb(36%2036%2036)%5Cn$dark-grey-04:%20oklch(27.27%25%200%200deg);%20//%20rgb(39%2039%2039)%5Cn$dark-grey-06:%20oklch(29.31%25%200%200deg);%20//%20rgb(44%2044%2044)%5Cn$dark-grey-08:%20oklch(30.12%25%200%200deg);%20//%20rgb(46%2046%2046)%5Cn$dark-grey-12:%20oklch(31.71%25%200%200deg);%20//%20rgb(50%2050%2050)%5Cn$dark-grey-16:%20oklch(32.9%25%200%200deg);%20//%20rgb(53%2053%2053)%5Cn$dark-grey-24:%20oklch(34.07%25%200%200deg);%20//%20rgb(56%2056%2056)%5Cn%5Cn/*%20These%20are%20the%20shades%20of%20grey,%20slightly%20tinted%20with%20a%20shade%20of%20blue.%5Cn%20*%5Cn%20*%20ChatGPT%20can%20provide%20adjustments%20of%20Chroma%20and%20Hue%20within%20one%20request,%20so%5Cn%20*%20this%20is%20quickly%20done.%5Cn%20%2A/%5Cn$dark-blueish-grey-00:%20oklch(18.22%25%200.02%20245deg);%20//%20rgb(18%2018%2027)%5Cn$dark-blueish-grey-01:%20oklch(23.5%25%200.02%20245deg);%20//%20rgb(30%2030%2043)%5Cn$dark-blueish-grey-02:%20oklch(25.2%25%200.02%20245deg);%20//%20rgb(34%2034%2051)%5Cn$dark-blueish-grey-03:%20oklch(26.03%25%200.02%20245deg);%20//%20rgb(36%2036%2058)%5Cn$dark-blueish-grey-04:%20oklch(27.27%25%200.02%20245deg);%20//%20rgb(39%2039%2066)%5Cn$dark-blueish-grey-06:%20oklch(29.31%25%200.02%20245deg);%20//%20rgb(44%2044%2079)%5Cn$dark-blueish-grey-08:%20oklch(30.12%25%200.02%20245deg);%20//%20rgb(46%2046%2086)%5Cn$dark-blueish-grey-12:%20oklch(31.71%25%200.02%20245deg);%20//%20rgb(50%2050%2097)%5Cn$dark-blueish-grey-16:%20oklch(32.9%25%200.02%20245deg);%20//%20rgb(53%2053%20103)%5Cn$dark-blueish-grey-24:%20oklch(34.07%25%200.02%20245deg);%20//%20rgb(56%2056%20113)%5Cn%5Cn/*%20And%20another%20collection,%20tinted%20with%20a%20more%20vibrant%20blue.%20%2A/%5Cn$dark-blue-grey-00:%20oklch(18.22%25%200.04%20245deg);%20//%20rgb(18%2018%2042)%5Cn$dark-blue-grey-01:%20oklch(23.5%25%200.04%20245deg);%20//%20rgb(30%2030%2060)%5Cn$dark-blue-grey-02:%20oklch(25.2%25%200.04%20245deg);%20//%20rgb(34%2034%2069)%5Cn$dark-blue-grey-03:%20oklch(26.03%25%200.04%20245deg);%20//%20rgb(36%2036%2076)%5Cn$dark-blue-grey-04:%20oklch(27.27%25%200.04%20245deg);%20//%20rgb(39%2039%2085)%5Cn$dark-blue-grey-06:%20oklch(29.31%25%200.04%20245deg);%20//%20rgb(44%2044%2099)%5Cn$dark-blue-grey-08:%20oklch(30.12%25%200.04%20245deg);%20//%20rgb(46%2046%20106)%5Cn$dark-blue-grey-12:%20oklch(31.71%25%200.04%20245deg);%20//%20rgb(50%2050%20117)%5Cn$dark-blue-grey-16:%20oklch(32.9%25%200.04%20245deg);%20//%20rgb(53%2053%20123)%5Cn$dark-blue-grey-24:%20oklch(34.07%25%200.04%20245deg);%20//%20rgb(56%2056%20133)%5Cn%5Cn/*%20Different%20shades%20of%20green,%20to%20indicate%20*good%20values*.%20%2A/%5Cn$dark-green-00:%20oklch(18.22%25%200.08%20135deg);%20//%20rgb(18%2052%2018)%5Cn$dark-green-01:%20oklch(23.5%25%200.08%20135deg);%20//%20rgb(30%2075%2030)%5Cn$dark-green-02:%20oklch(25.2%25%200.08%20135deg);%20//%20rgb(34%2091%2034)%5Cn$dark-green-03:%20oklch(26.03%25%200.08%20135deg);%20//%20rgb(36%2099%2036)%5Cn$dark-green-04:%20oklch(27.27%25%200.08%20135deg);%20//%20rgb(39%20111%2039)%5Cn$dark-green-06:%20oklch(29.31%25%200.08%20135deg);%20//%20rgb(44%20128%2044)%5Cn$dark-green-08:%20oklch(30.12%25%200.08%20135deg);%20//%20rgb(46%20139%2046)%5Cn$dark-green-12:%20oklch(31.71%25%200.08%20135deg);%20//%20rgb(50%20153%2050)%5Cn$dark-green-16:%20oklch(32.9%25%200.08%20135deg);%20//%20rgb(53%20161%2053)%5Cn$dark-green-24:%20oklch(34.07%25%200.08%20135deg);%20//%20rgb(56%20175%2056)%5Cn%5Cn/*%20These%20are%20light%20grey%20tones,%20with%20tints%20matching%20the%20background%20colors.%20%2A/%5Cn$light-grey:%20oklch(79.21%25%200%200deg);%20//%20rgb(187%20187%20187);%5Cn$light-blueish-grey:%20oklch(79.21%25%200.02%20245deg);%5Cn$light-blue-grey:%20oklch(79.21%25%200.04%20245deg);%5Cn$light-green:%20oklch(79.21%25%200.08%20135deg);%5Cn%5Cn/*%20Lime%20base%20color,%20may%20be%20used%20as%20foreground%20color.%5Cn%20*%5Cn%20*%20See%20https://m2.material.io/design/color/the-color-system.html%23tools-for-picking-colors%5Cn%20*%20for%20additional%20shades.%5Cn%20%2A/%5Cn$lime-200:%20rgb(230%20238%20156);%5Cn$lime-400:%20rgb(212%20225%2087);%5Cn$lime-a200:%20rgb(178%20255%2089);%5Cn$lime-400-dark:%20rgb(169%20180%2069);%5Cn$bright-red:%20oklch(70%25%200.28%2045deg);%5Cn$bright-green:%20oklch(75%25%200.28%20125deg);%5Cn%5Cn/*%20Semantic%20colors%5Cn%20*%5Cn%20*%20These%20are%20the%20actual%20colors,%20associated%20with%20semantic%20meanings%20in%20the%5Cn%20*%20context%20of%20the%20layout.%5Cn%20*%5Cn%20*%20These%20are%20the%20colors,%20that%20should%20be%20used%20in%20other%20source%20files.%5Cn%20%2A/%5Cn$overall-bg:%20$dark-blueish-grey-00;%5Cn$overall-fg:%20$light-blueish-grey;%5Cn$main-container-bg:%20$dark-blueish-grey-01;%5Cn$table-even-bg:%20$dark-blueish-grey-12;%5Cn$table-even-max-bg:%20$dark-green-12;%5Cn$table-even-top-bg:%20$dark-green-12;%5Cn$table-odd-bg:%20$dark-blueish-grey-06;%5Cn$table-odd-max-bg:%20$dark-green-06;%5Cn$table-odd-top-bg:%20$dark-green-06;%5Cn$form-input-bg:%20$dark-blue-grey-06;%5Cn$form-button-cancel-bg:%20$bright-red;%5Cn$form-button-submit-bg:%20$bright-green;%5Cn$shadow-color-base:%20$black;%5Cn%22,%22@use%20%5C%22sass:color%5C%22;%5Cn@use%20%5C%22sass:string%5C%22;%5Cn@use%20%5C%22../abstracts/colors%5C%22;%5Cn%5Cn/*%5Cn$shadow-color-1:%20rgba(0%200%200%200.14)%20!default;%5Cn$shadow-color-2:%20rgba(0%200%200%200.12)%20!default;%5Cn$shadow-color-3:%20rgba(0%200%200%200.2)%20!default;%5Cn%2A/%5Cn$shadow-color-1:%20color.adjust(colors.$shadow-color-base,%20$alpha:%200.14)%20!default;%5Cn$shadow-color-2:%20color.adjust(colors.$shadow-color-base,%20$alpha:%200.12)%20!default;%5Cn$shadow-color-3:%20color.adjust(colors.$shadow-color-base,%20$alpha:%200.2)%20!default;%5Cn%5Cn/*%20stylelint-disable%20%2A/%5Cn/*%20prettier-ignore%20%2A/%5Cn$box-shadows:%20(%5Cn%20%2024:%20string.unquote(%5C%220%2024px%2038px%203px%20%23%7B$shadow-color-1%7D,%200%209px%2046px%208px%20%23%7B$shadow-color-2%7D,%200%2011px%2015px%20-7px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%2016:%20string.unquote(%5C%220%2016px%2024px%202px%20%23%7B$shadow-color-1%7D,%200%206px%2030px%205px%20%23%7B$shadow-color-2%7D,%200%208px%2010px%20-5px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%2012:%20string.unquote(%5C%220%2012px%2017px%202px%20%23%7B$shadow-color-1%7D,%200%205px%2022px%204px%20%23%7B$shadow-color-2%7D,%200%207px%208px%20-4px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%208:%20string.unquote(%5C%220%208px%2010px%201px%20%23%7B$shadow-color-1%7D,%200%203px%2014px%202px%20%23%7B$shadow-color-2%7D,%200%205px%205px%20-3px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%206:%20string.unquote(%5C%220%206px%2010px%200%20%23%7B$shadow-color-1%7D,%200%201px%2018px%200%20%23%7B$shadow-color-2%7D,%200%203px%205px%20-1px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%204:%20string.unquote(%5C%220%204px%205px%200%20%23%7B$shadow-color-1%7D,%200%201px%2010px%200%20%23%7B$shadow-color-2%7D,%200%202px%204px%20-1px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%202:%20string.unquote(%5C%220%202px%202px%200%20%23%7B$shadow-color-1%7D,%200%201px%205px%200%20%23%7B$shadow-color-2%7D,%200%203px%201px%20-2px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%201:%20string.unquote(%5C%220%201px%201px%200%20%23%7B$shadow-color-1%7D,%200%201px%203px%200%20%23%7B$shadow-color-2%7D,%200%202px%201px%20-1px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn)%20!default;%5Cn/*%20stylelint-enable%20%2A/%5Cn%22,%22@use%20%5C%22sass:color%5C%22;%5Cn@use%20%5C%22sass:map%5C%22;%5Cn@use%20%5C%22../abstracts/colors%5C%22;%5Cn@use%20%5C%22../abstracts/shadows%5C%22;%5Cn%5Cnform%20%7B%5Cn%20%20.non-field-errors,%5Cn%20%20.field-errors%20%7B%5Cn%20%20%20%20margin-top:%200.5em;%5Cn%20%20%20%20padding:%200.25em%200.5em;%5Cn%20%20%20%20border:%201px%20solid%20colors.$black;%5Cn%20%20%20%20background:%20%23f99;%5Cn%20%20%20%20color:%20%23000;%5Cn%20%20%7D%5Cn%5Cn%20%20.field-group%20%7B%5Cn%20%20%20%20margin:%200.5em%200%202em;%5Cn%5Cn%20%20%20%20label,%5Cn%20%20%20%20small,%5Cn%20%20%20%20.field-errors%20%7B%5Cn%20%20%20%20%20%20display:%20block;%5Cn%20%20%20%20%20%20margin-left:%200.25rem;%5Cn%20%20%20%20%7D%5Cn%5Cn%20%20%20%20input,%5Cn%20%20%20%20select,%5Cn%20%20%20%20textarea%20%7B%5Cn%20%20%20%20%20%20margin:%200.25em;%5Cn%20%20%20%20%20%20padding:%200.25em%200.5em;%5Cn%20%20%20%20%20%20border:%200%20solid%20colors.$shadow-color-base;%5Cn%20%20%20%20%20%20border-radius:%200.25rem;%5Cn%20%20%20%20%20%20background-color:%20colors.$form-input-bg;%5Cn%20%20%20%20%20%20box-shadow:%20map.get(shadows.$box-shadows,%201)%20!important;%5Cn%20%20%20%20%20%20color:%20colors.$overall-fg;%5Cn%20%20%20%20%7D%5Cn%20%20%7D%5Cn%5Cn%20%20button%20%7B%5Cn%20%20%20%20margin:%200.25em%200.25rem;%5Cn%20%20%20%20padding:%200.25em%200.5em;%5Cn%20%20%20%20border:%200%20solid%20colors.$shadow-color-base;%5Cn%20%20%20%20border-radius:%200.25rem;%5Cn%20%20%20%20box-shadow:%20map.get(shadows.$box-shadows,%202)%20!important;%5Cn%20%20%20%20font-size:%201.25em;%5Cn%20%20%20%20font-weight:%20bold;%5Cn%5Cn%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20&.cancel%20%7B%5Cn%20%20%20%20%20%20$bg-lightest:%20color.scale(colors.$form-button-cancel-bg,%20$lightness:%2050%25);%5Cn%20%20%20%20%20%20$bg-lighter:%20color.scale(colors.$form-button-cancel-bg,%20$lightness:%205%25);%5Cn%20%20%20%20%20%20$bg-darker:%20color.scale(colors.$form-button-cancel-bg,%20$lightness:%20-5%25);%5Cn%20%20%20%20%20%20$bg-darkest:%20color.scale(colors.$form-button-cancel-bg,%20$lightness:%20-50%25);%5Cn%5Cn%20%20%20%20%20%20/*%20prettier-ignore%20%2A/%5Cn%20%20%20%20%20%20background:%20linear-gradient(to%20bottom,%5Cn%20%20%20%20%20%20$bg-lightest%200%25%204%25,%5Cn%20%20%20%20%20%20$bg-lighter%205%25%2048%25,%5Cn%20%20%20%20%20%20$bg-darker%2052%25%2095%25,%5Cn%20%20%20%20%20%20$bg-darkest%2096%25%20100%25);%5Cn%20%20%20%20%7D%5Cn%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%5Cn%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20&.submit%20%7B%5Cn%20%20%20%20%20%20$bg-lightest:%20color.scale(colors.$form-button-submit-bg,%20$lightness:%2050%25);%5Cn%20%20%20%20%20%20$bg-lighter:%20color.scale(colors.$form-button-submit-bg,%20$lightness:%205%25);%5Cn%20%20%20%20%20%20$bg-darker:%20color.scale(colors.$form-button-submit-bg,%20$lightness:%20-5%25);%5Cn%20%20%20%20%20%20$bg-darkest:%20color.scale(colors.$form-button-submit-bg,%20$lightness:%20-50%25);%5Cn%5Cn%20%20%20%20%20%20/*%20prettier-ignore%20%2A/%5Cn%20%20%20%20%20%20background:%20linear-gradient(to%20bottom,%5Cn%20%20%20%20%20%20$bg-lightest%200%25%204%25,%5Cn%20%20%20%20%20%20$bg-lighter%205%25%2048%25,%5Cn%20%20%20%20%20%20$bg-darker%2052%25%2095%25,%5Cn%20%20%20%20%20%20$bg-darkest%2096%25%20100%25);%5Cn%20%20%20%20%7D%5Cn%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%7D%5Cn%7D%5Cn%22,%22@use%20%5C%22sass:map%5C%22;%5Cn@use%20%5C%22../abstracts/colors%5C%22;%5Cn@use%20%5C%22../abstracts/shadows%5C%22;%5Cn%5Cn*%20%7B%5Cn%20%20margin:%200;%5Cn%20%20padding:%200;%5Cn%7D%5Cn%5Cnbody%20%7B%5Cn%20%20margin:%200;%5Cn%20%20padding:%200;%5Cn%20%20background-color:%20colors.$overall-bg;%5Cn%20%20color:%20colors.$overall-fg;%5Cn%5Cn%20%20%3E%20div%20%7B%5Cn%20%20%20%20margin:%200%202em;%5Cn%20%20%20%20padding:%201em;%5Cn%20%20%20%20background-color:%20colors.$main-container-bg;%5Cn%20%20%20%20box-shadow:%20map.get(shadows.$box-shadows,%201)%20!important;%5Cn%20%20%7D%5Cn%7D%5Cn%5Cna,%5Cna:link,%5Cna:visited%20%7B%5Cn%20%20color:%20colors.$lime-400-dark;%5Cn%7D%5Cn%22,%22/*%20Layout-specific%20styles%20for%20%60%60tracker-overview%60%60%20%2A/%5Cn@use%20%5C%22../abstracts/colors%5C%22;%5Cn%5Cn.penthouse-tracker%20%7B%5Cn%20%20/*%20%60%60.list-view%60%60%20is%20applied%20to%20all%20tables%20in%20that%20layout%20%2A/%5Cn%20%20.list-view%20%7B%5Cn%20%20%20%20.pb-global::after%20%7B%5Cn%20%20%20%20%20%20content:%20%5C%22%5C%22;%5Cn%20%20%20%20%20%20display:%20block;%5Cn%20%20%20%20%20%20width:%201em;%5Cn%20%20%20%20%20%20height:%201em;%5Cn%20%20%20%20%20%20margin:%200%200%200%200.5em;%5Cn%20%20%20%20%20%20float:%20right;%5Cn%20%20%20%20%20%20border-radius:%201em;%5Cn%20%20%20%20%20%20background-color:%20rgb(247%20215%200);%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%7D%5Cn%5Cn%20%20%20%20.pb-local::after%20%7B%5Cn%20%20%20%20%20%20content:%20%5C%22%5C%22;%5Cn%20%20%20%20%20%20display:%20block;%5Cn%20%20%20%20%20%20width:%201em;%5Cn%20%20%20%20%20%20height:%201em;%5Cn%20%20%20%20%20%20margin:%200%200%200%200.5em;%5Cn%20%20%20%20%20%20float:%20right;%5Cn%20%20%20%20%20%20border-radius:%201em;%5Cn%20%20%20%20%20%20background-color:%20rgb(247%20215%200%20/%2035%25);%20/*%20FIXME:%20select%20color!%20%2A/%5Cn%20%20%20%20%7D%5Cn%5Cn%20%20%20%20tr:nth-child(odd)%20%7B%5Cn%20%20%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%20%20.max-value%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20colors.$table-odd-max-bg%20!important;%5Cn%20%20%20%20%20%20%20%20color:%20colors.$light-green%20!important;%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%5Cn%20%20%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%20%20.top-value%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20colors.$table-odd-top-bg%20!important;%5Cn%20%20%20%20%20%20%20%20color:%20colors.$light-green%20!important;%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%7D%5Cn%5Cn%20%20%20%20tr:nth-child(even)%20%7B%5Cn%20%20%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%20%20.max-value%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20colors.$table-even-max-bg%20!important;%5Cn%20%20%20%20%20%20%20%20color:%20colors.$light-green%20!important;%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%5Cn%20%20%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%20%20.top-value%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20colors.$table-even-top-bg%20!important;%5Cn%20%20%20%20%20%20%20%20color:%20colors.$light-green%20!important;%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20%7D%5Cn%20%20%7D%5Cn%7D%5Cn%22%5D%7D */

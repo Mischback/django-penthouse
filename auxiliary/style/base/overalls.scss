@@ -1,0 +1,28 @@
+@use "sass:map";
+@use "../abstracts/colors";
+@use "../abstracts/shadows";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: colors.$overall-bg;
+  color: colors.$overall-fg;
+
+  > div {
+    margin: 0 2em;
+    padding: 1em;
+    background-color: colors.$main-container-bg;
+    box-shadow: map.get(shadows.$box-shadows, 1) !important;
+  }
+}
+
+a,
+a:link,
+a:visited {
+  color: colors.$lime-400-dark;
+}
