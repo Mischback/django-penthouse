@@ -12,7 +12,7 @@ from statistics import mean
 # Django imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -177,6 +177,7 @@ def tracker_overview(request):
 
     runs_by_tier = TierData()
     tracker_list = TrackerList()
+    run = None
     for run in runs_raw.iterator():
         item = RunData(
             run.id,
@@ -192,6 +193,9 @@ def tracker_overview(request):
         tracker_list.add(item)
 
     runs_by_tier.get_results()
+
+    if run is None:
+        return redirect(reverse_lazy("penthouse:tracker-run-add"))
 
     return render(
         request,
