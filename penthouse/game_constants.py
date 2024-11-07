@@ -10,6 +10,7 @@ from enum import Enum
 
 # Django imports
 from django.db.models import IntegerChoices, TextChoices
+from django.utils.translation import gettext_lazy as _
 
 
 class TowerTiers(TextChoices):
@@ -33,6 +34,121 @@ class TowerTiers(TextChoices):
     T16 = "T16"
     T17 = "T17"
     T18 = "T18"
+
+
+class TowerRarities(Enum):
+    """The game applies different *rarities* to different item.
+
+    All of them should be covered with this enum. Other code in this app will
+    rely on this ``Enum`` for reference.
+    """
+
+    COMMON = ("COMMON", _("Common"))
+    RARE = ("RARE", _("Rare"))
+    RARE_1 = ("RARE_1", _("Rare+"))
+    EPIC = ("EPIC", _("Epic"))
+    EPIC_1 = ("EPIC_1", _("Epic+"))
+    LEGEND = ("LEGEND", _("Legendary"))
+    LEGE_1 = ("LEGE_1", _("Legendary+"))
+    MYTHIC = ("MYTHIC", _("Mythic"))
+    MYTH_1 = ("MYTH_1", _("Mythic+"))
+    ANCEST = ("ANCEST", _("Ancestral"))
+    ANCE_1 = ("ANCE_1", _("Ancestral 1 star"))
+    ANCE_2 = ("ANCE_2", _("Ancestral 2 star"))
+    ANCE_3 = ("ANCE_3", _("Ancestral 3 star"))
+    ANCE_4 = ("ANCE_4", _("Ancestral 4 star"))
+    ANCE_5 = ("ANCE_5", _("Ancestral 5 star"))
+
+
+class TowerWorkshopItems(Enum):
+    """The game's so-called *workshop* consists of three tabs with different items.
+
+    All of the should be covered with this enum. Other code in this app will
+    rely on this ``Enum`` for reference.
+    """
+
+    # Damage tab
+    DAMAGE = ("DAMAGE", _("Damage"))
+    ATKSPD = ("ATKSPD", _("Attack Speed"))
+    CRITCH = ("CRITCH", _("Critical Chance"))
+    CRITFA = ("CRITFA", _("Critical Factor"))
+    RANGE = ("RANGE", _("Range"))
+    DMGPME = ("DMGPME", _("Damage/Meter"))
+    MULTCH = ("MULTCH", _("Multishot Chance"))
+    MULTTA = ("MULTTA", _("Multishot Targets"))
+    RFCHAN = ("RFCHAN", _("Rapid Fire Chance"))
+    RFDURA = ("RFDURA", _("Rapid Fire Duration"))
+    BSCHAN = ("BSCHAN", _("Bounce Shot Chance"))
+    BSTARG = ("BSTARG", _("Bounce Shot Targets"))
+    BSRANG = ("BSRANG", _("Bounce Shot Range"))
+    SCRITC = ("SCRITC", _("Super Crit Chance"))
+    SCRITM = ("SCRITM", _("Super Crit Mult"))
+    RENDCH = ("RENDCH", _("Rend Armor Chance"))
+    RENDMU = ("RENDMU", _("Rend Armor Mult"))
+
+    # Defense tab
+    HEALTH = ("HEALTH", _("Health"))
+    HREGEN = ("HREGEN", _("Health Regen"))
+    DEFPER = ("DEFPER", _("Defense Percent"))
+    DEFABS = ("DEFABS", _("Defense Absolute"))
+    THORNS = ("THORNS", _("Thorns"))
+    LIFEST = ("LIFEST", _("Lifesteal"))
+    KBCHAN = ("KBCHAN", _("Knockback Chance"))
+    KBFORC = ("KBFORC", _("Knockback Force"))
+    ORBSPD = ("ORBSPD", _("Orb Speed"))
+    ORBCNT = ("ORBCNT", _("Orbs"))
+    SWSIZE = ("SWSIZE", _("Shockwave Size"))
+    SWFREQ = ("SWFREQ", _("Shockwave Frequency"))
+    WLMDMG = ("WLMDMG", _("Land Mine Damage"))
+    WLMCHA = ("WLMCHA", _("Land Mine Chance"))
+    WLMRAD = ("WLMRAD", _("Land Mine Radius"))
+    DEATHD = ("DEATHD", _("Death Defy"))
+    WALLHE = ("WALLHE", _("Wall Health"))
+    WALLRE = ("WALLRE", _("Wall Rebuild"))
+
+    # Utility tab
+    CASHBO = ("CASHBO", _("Cash Bonus"))
+    CASHWA = ("CASHWA", _("Cash/Wave"))
+    COINSB = ("COINSB", _("Coins/Kill Bonus"))
+    COINSW = ("COINSW", _("Coins/Wave"))
+    FATKUP = ("FATKUP", _("Free Attack Upgrade"))
+    FDEFUP = ("FDEFUP", _("Free Defense Upgrade"))
+    FUTIUP = ("FUTIUP", _("Free Utility Upgrade"))
+    INTERE = ("INTERE", _("Interest/Wave"))
+    RECOAM = ("RECOAM", _("Recovery Amount"))
+    RECOMA = ("RECOMA", _("Max Recovery"))
+    RECOCH = ("RECOCH", _("Package Chance"))
+    EALSKP = ("EALSKP", _("Enemy Attack Level Skip"))
+    EHLSKP = ("EHLSKP", _("Enemy Health Level Skip"))
+
+
+class RelicBonusType(TextChoices):
+    """The game's relics modify/increase certain stats of the tower."""
+
+    DAMAGE = TowerWorkshopItems.DAMAGE.value
+    CRITFA = TowerWorkshopItems.CRITFA.value
+    COINSB = TowerWorkshopItems.COINSB.value
+    LABSPD = "LABSPD", _("Lab Speed")
+    DEFABS = TowerWorkshopItems.DEFABS.value
+    DMGPME = TowerWorkshopItems.DMGPME.value
+    HEALTH = TowerWorkshopItems.HEALTH.value
+
+
+class RelicRarity(TextChoices):
+    """The game's relics have given rarities."""
+
+    RARE = TowerRarities.RARE.value
+    EPIC = TowerRarities.EPIC.value
+    LEGENDARY = TowerRarities.LEGEND.value
+
+
+class RelicSource(TextChoices):
+    """Relics can be obtained from different sources."""
+
+    MILESTONE = ("M", _("Milestone"))
+    TOURNAMENT = ("T", _("Tournament"))
+    EVENT = ("E", _("Event"))
+    OTHER = ("O", _("Other"))
 
 
 class TowerUnitSuffix(IntegerChoices):
