@@ -12,6 +12,7 @@ from django.utils.translation import gettext_lazy as _
 
 # app imports
 from penthouse.exceptions import PenthouseModelException
+from penthouse.models.relics import Relic
 
 
 class ProfileModelException(PenthouseModelException):
@@ -51,6 +52,15 @@ class Profile(models.Model):
     project may substitute the :class:`~django.contrib.auth.models.User` model
     provided by Django without breaking any functionality in `calingen` (see
     :djangodoc:`Reusable Apps and AUTH_USER_MODEL <topics/auth/customizing/#reusable-apps-and-auth-user-model>`).
+    """
+
+    relics = models.ManyToManyField(Relic)
+    """The actual relic tracker.
+
+    This is a Django ``ManyToManyField`` without any fuss. This should make it
+    really simple to get all active relics for a given profile.
+
+    The actual magic is going to happen in the associated forms/views.
     """
 
     settings_tracker_threshold_top_coins = models.PositiveSmallIntegerField(
@@ -114,9 +124,9 @@ class Profile(models.Model):
         return "[Profile] {}".format(self.owner)
 
 
-class ProfileForm(forms.ModelForm):
+class ProfileSettingsForm(forms.ModelForm):
     """Used to validate input for creating and updating ``Profile`` instances."""
 
     class Meta:  # noqa: D106
         model = Profile
-        exclude = ["owner"]
+        exclude = ["owner", "relics"]
