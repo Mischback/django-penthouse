@@ -63,7 +63,12 @@ class Relic(models.Model):
         verbose_name_plural = _("Relics")
 
     def __str__(self):  # noqa: D105
-        return "[Relic] {} ({})".format(self.name, self.rarity)
+        return "[{}] {} ({} {})".format(
+            self.get_rarity_display(),
+            self.name,
+            self.bonus_value,
+            self.get_bonus_type_display(),
+        )
 
 
 class RelicForm(forms.ModelForm):

@@ -12,7 +12,7 @@ from django.utils.translation import gettext_lazy as _
 # app imports
 from penthouse.exceptions import PenthouseModelException
 from penthouse.forms.fields import GameDurationField, GameNumberField
-from penthouse.game_constants import TowerTiers
+from penthouse.game_constants import RunTiers
 from penthouse.models.profile import Profile
 
 
@@ -47,7 +47,7 @@ class Run(models.Model):
     tier = models.CharField(
         help_text=_("Tier of the run"),
         verbose_name=_("Tier"),
-        choices=TowerTiers,
+        choices=RunTiers,
         max_length=3,
     )
     """The tier of the run."""

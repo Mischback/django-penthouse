@@ -13,27 +13,31 @@ from django.db.models import IntegerChoices, TextChoices
 from django.utils.translation import gettext_lazy as _
 
 
-class TowerTiers(TextChoices):
-    """The game's different tiers as a central constant."""
+class TowerTiers(Enum):
+    """The game's different difficulty levels.
 
-    T1 = "T1"
-    T2 = "T2"
-    T3 = "T3"
-    T4 = "T4"
-    T5 = "T5"
-    T6 = "T6"
-    T7 = "T7"
-    T8 = "T8"
-    T9 = "T9"
-    T10 = "T10"
-    T11 = "T11"
-    T12 = "T12"
-    T13 = "T13"
-    T14 = "T14"
-    T15 = "T15"
-    T16 = "T16"
-    T17 = "T17"
-    T18 = "T18"
+    All of them should be covered with this enum. Other code in this app will
+    rely on this ``Enum`` for reference.
+    """
+
+    T1 = ("T1", _("Tier 1"))
+    T2 = ("T2", _("Tier 2"))
+    T3 = ("T3", _("Tier 3"))
+    T4 = ("T4", _("Tier 4"))
+    T5 = ("T5", _("Tier 5"))
+    T6 = ("T6", _("Tier 6"))
+    T7 = ("T7", _("Tier 7"))
+    T8 = ("T8", _("Tier 8"))
+    T9 = ("T9", _("Tier 9"))
+    T10 = ("T10", _("Tier 10"))
+    T11 = ("T11", _("Tier 11"))
+    T12 = ("T12", _("Tier 12"))
+    T13 = ("T13", _("Tier 13"))
+    T14 = ("T14", _("Tier 14"))
+    T15 = ("T15", _("Tier 15"))
+    T16 = ("T16", _("Tier 16"))
+    T17 = ("T17", _("Tier 17"))
+    T18 = ("T18", _("Tier 18"))
 
 
 class TowerRarities(Enum):
@@ -120,6 +124,32 @@ class TowerWorkshopItems(Enum):
     RECOCH = ("RECOCH", _("Package Chance"))
     EALSKP = ("EALSKP", _("Enemy Attack Level Skip"))
     EHLSKP = ("EHLSKP", _("Enemy Health Level Skip"))
+
+
+class RunTiers(TextChoices):
+    """The actual TextChoices to be used in Django code.
+
+    The actual reference is :class:`penthouse.game_constants.TowerTiers`.
+    """
+
+    T1 = TowerTiers.T1.value
+    T2 = TowerTiers.T2.value
+    T3 = TowerTiers.T3.value
+    T4 = TowerTiers.T4.value
+    T5 = TowerTiers.T5.value
+    T6 = TowerTiers.T6.value
+    T7 = TowerTiers.T7.value
+    T8 = TowerTiers.T8.value
+    T9 = TowerTiers.T9.value
+    T10 = TowerTiers.T10.value
+    T11 = TowerTiers.T11.value
+    T12 = TowerTiers.T12.value
+    T13 = TowerTiers.T13.value
+    T14 = TowerTiers.T14.value
+    T15 = TowerTiers.T15.value
+    T16 = TowerTiers.T16.value
+    T17 = TowerTiers.T17.value
+    T18 = TowerTiers.T18.value
 
 
 class RelicBonusType(TextChoices):
