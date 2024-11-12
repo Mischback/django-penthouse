@@ -12,6 +12,7 @@ from django.utils.translation import gettext_lazy as _
 # app imports
 from penthouse.exceptions import PenthouseModelException
 from penthouse.game_constants import RelicBonusType, RelicRarity, RelicSource
+from penthouse.models.profile import Profile
 
 
 class RelicModelException(PenthouseModelException):
@@ -20,6 +21,21 @@ class RelicModelException(PenthouseModelException):
 
 class Relic(models.Model):
     """A single in-game relic."""
+
+    claimed_by = models.ManyToManyField(Profile, blank=True)
+    """This field provides a mapping to ``Profile`` instances.
+
+    This is the actual tracking of relics for a given account.
+
+    Notes
+    -----
+    It seems to be less intuitive to maintain a list of users here instead of
+    a list of relics at the ``Profile`` objects. This is actually an
+    implementation detail, as Django's ``ManyToManyField`` instances can be
+    queried from both sides of the relation. However, when creating the
+    corresponding overview view ``RelicListView``, it was easier to annotate
+    the overall list of relics with profile-related informations.
+    """
 
     name = models.CharField(
         max_length=200, help_text=_("Name of the Relic"), verbose_name=_("Name")

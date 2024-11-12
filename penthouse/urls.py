@@ -8,7 +8,7 @@
 from django.urls import path
 
 # app imports
-from penthouse.views import profile, tracker
+from penthouse.views import profile, relics, tracker
 
 app_name = "penthouse"
 
@@ -19,7 +19,7 @@ urlpatterns = [
         profile.ProfileSettingsUpdateView.as_view(),
         name="profile-settings-update",
     ),
-    path("relics/", profile.ProfileRelicListView.as_view(), name="profile-relics"),
+    path("relics/", relics.RelicListView.as_view(), name="relics-list"),
     path("tracker/", tracker.tracker_overview, name="tracker-overview"),
     path("tracker/run/add/", tracker.RunCreateView.as_view(), name="tracker-run-add"),
     path(

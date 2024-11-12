@@ -9,6 +9,16 @@
   {% for relic in object_list %}
   <tr>
     <td>{{ relic.name }}</td>
+    <td>{{ relic.get_bonus_type_display }}</td>
+    <td>{{ relic.bonus_value }}</td>
+    <td>{{ relic.get_rarity_display }}</td>
+    <td>{{ relic.get_source_display }}</td>
+    <td>{{ relic.condition }}</td>
+    {% if relic.is_claimed %}
+    <td>reset</td>
+    {% else %}
+    <td>claim</td>
+    {% endif %}
   </tr>
   {% endfor %}
 </table>
