@@ -15,10 +15,11 @@ app_name = "penthouse"
 urlpatterns = [
     path("profile/delete/", profile.ProfileDeleteView.as_view(), name="profile-delete"),
     path(
-        "profile/update/",
+        "profile/settings/update/",
         profile.ProfileSettingsUpdateView.as_view(),
         name="profile-settings-update",
     ),
+    path("relics/", profile.ProfileRelicListView.as_view(), name="profile-relics"),
     path("tracker/", tracker.tracker_overview, name="tracker-overview"),
     path("tracker/run/add/", tracker.RunCreateView.as_view(), name="tracker-run-add"),
     path(

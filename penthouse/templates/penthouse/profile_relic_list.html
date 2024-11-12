@@ -1,0 +1,16 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block page_title %}Relics{% endblock page_title %}
+
+{% block main %}
+<main class="penthouse-profile-relics">
+<h2>Relics</h2>
+<table summary="All relics" class="list-view">
+  {% for relic in object_list %}
+  <tr>
+    <td>{{ relic.name }}</td>
+  </tr>
+  {% endfor %}
+</table>
+</main>
+{% endblock main %}
