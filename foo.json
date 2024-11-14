@@ -1,0 +1,1250 @@
+[
+  {
+    "model": "penthouse.relic",
+    "pk": 1,
+    "fields": {
+      "name": "T:I Flux",
+      "rarity": "RARE",
+      "bonus_type": "COINSB",
+      "bonus_value": 2.0,
+      "source": "M",
+      "condition": "Tier 1, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 2,
+    "fields": {
+      "name": "T:II Lumin",
+      "rarity": "RARE",
+      "bonus_type": "LABSPD",
+      "bonus_value": 1.5,
+      "source": "M",
+      "condition": "Tier 2, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 3,
+    "fields": {
+      "name": "T:III Pulse",
+      "rarity": "RARE",
+      "bonus_type": "CRITFA",
+      "bonus_value": 2.0,
+      "source": "M",
+      "condition": "Tier 3, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 4,
+    "fields": {
+      "name": "T:IV Harmonic",
+      "rarity": "RARE",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 2.0,
+      "source": "M",
+      "condition": "Tier 4, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 5,
+    "fields": {
+      "name": "T:V Ether",
+      "rarity": "RARE",
+      "bonus_type": "HEALTH",
+      "bonus_value": 2.0,
+      "source": "M",
+      "condition": "Tier 5, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 6,
+    "fields": {
+      "name": "T:VI Nova",
+      "rarity": "EPIC",
+      "bonus_type": "DEFABS",
+      "bonus_value": 5.0,
+      "source": "M",
+      "condition": "Tier 6, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 7,
+    "fields": {
+      "name": "T:VII Aether",
+      "rarity": "EPIC",
+      "bonus_type": "COINSB",
+      "bonus_value": 5.0,
+      "source": "M",
+      "condition": "Tier 7, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 8,
+    "fields": {
+      "name": "T:VIII Graviton",
+      "rarity": "EPIC",
+      "bonus_type": "DMGPME",
+      "bonus_value": 5.0,
+      "source": "M",
+      "condition": "Tier 8, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 9,
+    "fields": {
+      "name": "T:IX Fusion",
+      "rarity": "EPIC",
+      "bonus_type": "HEALTH",
+      "bonus_value": 5.0,
+      "source": "M",
+      "condition": "Tier 9, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 10,
+    "fields": {
+      "name": "T:X Plasma",
+      "rarity": "EPIC",
+      "bonus_type": "DMGPME",
+      "bonus_value": 5.0,
+      "source": "M",
+      "condition": "Tier 10, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 11,
+    "fields": {
+      "name": "T:XI Resonance",
+      "rarity": "LEGEND",
+      "bonus_type": "DEFABS",
+      "bonus_value": 10.0,
+      "source": "M",
+      "condition": "Tier 11, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 12,
+    "fields": {
+      "name": "T:XII Chrono",
+      "rarity": "LEGEND",
+      "bonus_type": "LABSPD",
+      "bonus_value": 10.0,
+      "source": "M",
+      "condition": "Tier 12, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 13,
+    "fields": {
+      "name": "T:XIII Hyper",
+      "rarity": "LEGEND",
+      "bonus_type": "COINSB",
+      "bonus_value": 10.0,
+      "source": "M",
+      "condition": "Tier 13, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 14,
+    "fields": {
+      "name": "T:XIV Arcane",
+      "rarity": "LEGEND",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 10.0,
+      "source": "M",
+      "condition": "Tier 14, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 15,
+    "fields": {
+      "name": "T:XV Celestial",
+      "rarity": "LEGEND",
+      "bonus_type": "CRITFA",
+      "bonus_value": 10.0,
+      "source": "M",
+      "condition": "Tier 15, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 16,
+    "fields": {
+      "name": "T:XVI Quantum",
+      "rarity": "LEGEND",
+      "bonus_type": "HEALTH",
+      "bonus_value": 10.0,
+      "source": "M",
+      "condition": "Tier 16, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 17,
+    "fields": {
+      "name": "T:XVII Nebula",
+      "rarity": "LEGEND",
+      "bonus_type": "DMGPME",
+      "bonus_value": 10.0,
+      "source": "M",
+      "condition": "Tier 17, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 18,
+    "fields": {
+      "name": "T:XVIII Singularity",
+      "rarity": "LEGEND",
+      "bonus_type": "LABSPD",
+      "bonus_value": 10.0,
+      "source": "M",
+      "condition": "Tier 18, Wave 4.500",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 19,
+    "fields": {
+      "name": "Copper Badge",
+      "rarity": "RARE",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 3.0,
+      "source": "T",
+      "condition": "Finish in Top 8 in Copper Tournament",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 20,
+    "fields": {
+      "name": "Silver Badge",
+      "rarity": "RARE",
+      "bonus_type": "COINSB",
+      "bonus_value": 5.0,
+      "source": "T",
+      "condition": "Finish in Top 7 in Silver Tournament",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 21,
+    "fields": {
+      "name": "Gold Badge",
+      "rarity": "EPIC",
+      "bonus_type": "CRITFA",
+      "bonus_value": 5.0,
+      "source": "T",
+      "condition": "Finish in Top 6 in Gold Tournament",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 22,
+    "fields": {
+      "name": "Platinum Badge",
+      "rarity": "EPIC",
+      "bonus_type": "LABSPD",
+      "bonus_value": 4.0,
+      "source": "T",
+      "condition": "Finish in Top 6 in Platinum Tournament",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 23,
+    "fields": {
+      "name": "Champion Badge",
+      "rarity": "LEGEND",
+      "bonus_type": "DMGPME",
+      "bonus_value": 10.0,
+      "source": "T",
+      "condition": "Finish in Top 4 in Champion Tournament",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 24,
+    "fields": {
+      "name": "Tower Master",
+      "rarity": "LEGEND",
+      "bonus_type": "HEALTH",
+      "bonus_value": 10.0,
+      "source": "T",
+      "condition": "Finish in Top 4 in Legends Tournament",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 25,
+    "fields": {
+      "name": "Legend Badge",
+      "rarity": "LEGEND",
+      "bonus_type": "CRITFA",
+      "bonus_value": 10.0,
+      "source": "T",
+      "condition": "Win the Legend Tournament",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 26,
+    "fields": {
+      "name": "1st Tower Birthday",
+      "rarity": "RARE",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 2.0,
+      "source": "O",
+      "condition": "Play for 1 year",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 27,
+    "fields": {
+      "name": "2nd Tower Birthday",
+      "rarity": "RARE",
+      "bonus_type": "CRITFA",
+      "bonus_value": 2.0,
+      "source": "O",
+      "condition": "Play for 2 years",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 28,
+    "fields": {
+      "name": "3rd Tower Birthday",
+      "rarity": "RARE",
+      "bonus_type": "DMGPME",
+      "bonus_value": 2.0,
+      "source": "O",
+      "condition": "Play for 3 years",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 29,
+    "fields": {
+      "name": "No Spoon",
+      "rarity": "RARE",
+      "bonus_type": "DEFABS",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Matrix evens; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 30,
+    "fields": {
+      "name": "Dreamcatcher",
+      "rarity": "RARE",
+      "bonus_type": "COINSB",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Full Moon event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 31,
+    "fields": {
+      "name": "Bacteriophage",
+      "rarity": "RARE",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Viral Outbreak event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 32,
+    "fields": {
+      "name": "Ionized Plasma",
+      "rarity": "RARE",
+      "bonus_type": "DEFABS",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Plasma Returns event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 33,
+    "fields": {
+      "name": "Ancient Tome",
+      "rarity": "RARE",
+      "bonus_type": "LABSPD",
+      "bonus_value": 1.5,
+      "source": "E",
+      "condition": "Sands of Time event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 34,
+    "fields": {
+      "name": "Tower Latte",
+      "rarity": "RARE",
+      "bonus_type": "DMGPME",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Autumn event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 35,
+    "fields": {
+      "name": "Spooky Bat",
+      "rarity": "RARE",
+      "bonus_type": "CRITFA",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Halloween event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 36,
+    "fields": {
+      "name": "Cherry",
+      "rarity": "RARE",
+      "bonus_type": "DEFABS",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Cherry Blossom event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 37,
+    "fields": {
+      "name": "Holy Joystick",
+      "rarity": "RARE",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Retro Arcade event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 38,
+    "fields": {
+      "name": "Honey Drop",
+      "rarity": "RARE",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Honey event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 39,
+    "fields": {
+      "name": "Firework",
+      "rarity": "RARE",
+      "bonus_type": "HEALTH",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "New Year event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 40,
+    "fields": {
+      "name": "Aurora Vortex",
+      "rarity": "RARE",
+      "bonus_type": "HEALTH",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Aurora event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 41,
+    "fields": {
+      "name": "Dark Sight",
+      "rarity": "RARE",
+      "bonus_type": "DMGPME",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Dark Strands event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 42,
+    "fields": {
+      "name": "Palm Tree",
+      "rarity": "RARE",
+      "bonus_type": "LABSPD",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Retrowave event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 43,
+    "fields": {
+      "name": "Submarine",
+      "rarity": "RARE",
+      "bonus_type": "CRITFA",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Deep Blue Sea event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 44,
+    "fields": {
+      "name": "Alien Head",
+      "rarity": "RARE",
+      "bonus_type": "COINSB",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Aliens event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 45,
+    "fields": {
+      "name": "Warp Gate",
+      "rarity": "RARE",
+      "bonus_type": "COINSB",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Faster Than Light event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 46,
+    "fields": {
+      "name": "Barnacle",
+      "rarity": "RARE",
+      "bonus_type": "HEALTH",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Ocean Night event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 47,
+    "fields": {
+      "name": "Pizza",
+      "rarity": "RARE",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Invaders event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 48,
+    "fields": {
+      "name": "Refraction Array",
+      "rarity": "RARE",
+      "bonus_type": "COINSB",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Prismatic Lines event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 49,
+    "fields": {
+      "name": "Hook",
+      "rarity": "RARE",
+      "bonus_type": "DMGPME",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Sunset Fishing event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 50,
+    "fields": {
+      "name": "Cobweb",
+      "rarity": "RARE",
+      "bonus_type": "HEALTH",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Cobweb event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 51,
+    "fields": {
+      "name": "Gale Winds",
+      "rarity": "RARE",
+      "bonus_type": "COINSB",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Eye of the Storm event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 52,
+    "fields": {
+      "name": "Clip Ons",
+      "rarity": "RARE",
+      "bonus_type": "CRITFA",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Into the Matrix event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 53,
+    "fields": {
+      "name": "Rain Jacket",
+      "rarity": "RARE",
+      "bonus_type": "HEALTH",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Rainfall event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 54,
+    "fields": {
+      "name": "Rabies",
+      "rarity": "RARE",
+      "bonus_type": "LABSPD",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Viral Outbreak (II) event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 55,
+    "fields": {
+      "name": "Comet",
+      "rarity": "RARE",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Interstellar event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 56,
+    "fields": {
+      "name": "Remote Control",
+      "rarity": "RARE",
+      "bonus_type": "DMGPME",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Tower's Channel event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 57,
+    "fields": {
+      "name": "Anubis",
+      "rarity": "RARE",
+      "bonus_type": "COINSB",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Sands of Time (II) event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 58,
+    "fields": {
+      "name": "Lava Flow",
+      "rarity": "RARE",
+      "bonus_type": "HEALTH",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Volcano event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 59,
+    "fields": {
+      "name": "Abduction Room",
+      "rarity": "RARE",
+      "bonus_type": "HEALTH",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Abduction event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 60,
+    "fields": {
+      "name": "Acorn",
+      "rarity": "RARE",
+      "bonus_type": "DMGPME",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Autumn (II) event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 61,
+    "fields": {
+      "name": "Cauldron",
+      "rarity": "RARE",
+      "bonus_type": "LABSPD",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Halloween (II) event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 62,
+    "fields": {
+      "name": "Icicle",
+      "rarity": "RARE",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 2.0,
+      "source": "E",
+      "condition": "Snowstorm event; 350 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 63,
+    "fields": {
+      "name": "Red Pill",
+      "rarity": "EPIC",
+      "bonus_type": "HEALTH",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Matrix event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 64,
+    "fields": {
+      "name": "Spirit Wolf",
+      "rarity": "EPIC",
+      "bonus_type": "CRITFA",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Full Moon event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 65,
+    "fields": {
+      "name": "Neuron",
+      "rarity": "EPIC",
+      "bonus_type": "HEALTH",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Viral Outbreak event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 66,
+    "fields": {
+      "name": "Plasma Arc",
+      "rarity": "EPIC",
+      "bonus_type": "LABSPD",
+      "bonus_value": 4.0,
+      "source": "E",
+      "condition": "Plasma Returns event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 67,
+    "fields": {
+      "name": "Space Sundial",
+      "rarity": "EPIC",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Sands of Time event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 68,
+    "fields": {
+      "name": "Pumpkin",
+      "rarity": "EPIC",
+      "bonus_type": "LABSPD",
+      "bonus_value": 4.0,
+      "source": "E",
+      "condition": "Autumn event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 69,
+    "fields": {
+      "name": "Man Skull",
+      "rarity": "EPIC",
+      "bonus_type": "HEALTH",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Halloween event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 70,
+    "fields": {
+      "name": "Sakura Latern",
+      "rarity": "EPIC",
+      "bonus_type": "COINSB",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Cherry Blossom event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 71,
+    "fields": {
+      "name": "Controller",
+      "rarity": "EPIC",
+      "bonus_type": "CRITFA",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Retro Arcade event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 72,
+    "fields": {
+      "name": "Stinger",
+      "rarity": "EPIC",
+      "bonus_type": "CRITFA",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Honey event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 73,
+    "fields": {
+      "name": "Cheers",
+      "rarity": "EPIC",
+      "bonus_type": "DEFABS",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "New Year event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 74,
+    "fields": {
+      "name": "Contained Ions",
+      "rarity": "EPIC",
+      "bonus_type": "DEFABS",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Aurora event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 75,
+    "fields": {
+      "name": "Creepy Smile",
+      "rarity": "EPIC",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Dark Strands event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 76,
+    "fields": {
+      "name": "Pixel Cube Heart",
+      "rarity": "EPIC",
+      "bonus_type": "HEALTH",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Retrowave event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 77,
+    "fields": {
+      "name": "The Kraken",
+      "rarity": "EPIC",
+      "bonus_type": "DEFABS",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Deep Blue Sea event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 78,
+    "fields": {
+      "name": "Alien Warp Drive",
+      "rarity": "EPIC",
+      "bonus_type": "DMGPME",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Aliens event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 79,
+    "fields": {
+      "name": "Star Shipe",
+      "rarity": "EPIC",
+      "bonus_type": "LABSPD",
+      "bonus_value": 4.0,
+      "source": "E",
+      "condition": "Faster Than Light event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 80,
+    "fields": {
+      "name": "Wave",
+      "rarity": "EPIC",
+      "bonus_type": "CRITFA",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Ocean Night event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 81,
+    "fields": {
+      "name": "Illuminati",
+      "rarity": "EPIC",
+      "bonus_type": "DEFABS",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Invaders event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 82,
+    "fields": {
+      "name": "Prismatic Shard",
+      "rarity": "EPIC",
+      "bonus_type": "DMGPME",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Prismatic Lines event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 83,
+    "fields": {
+      "name": "Fish",
+      "rarity": "EPIC",
+      "bonus_type": "DEFABS",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Sunset Fishing event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 84,
+    "fields": {
+      "name": "The Fly",
+      "rarity": "EPIC",
+      "bonus_type": "DEFABS",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Cobweb event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 85,
+    "fields": {
+      "name": "Flying House",
+      "rarity": "EPIC",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Eye of the Storm event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 86,
+    "fields": {
+      "name": "Code Stream",
+      "rarity": "EPIC",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Into the Matrix event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 87,
+    "fields": {
+      "name": "Storm Clouds",
+      "rarity": "EPIC",
+      "bonus_type": "CRITFA",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Rainfall event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 88,
+    "fields": {
+      "name": "Ebola",
+      "rarity": "EPIC",
+      "bonus_type": "DEFABS",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Viral Outbreak (II) event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 89,
+    "fields": {
+      "name": "Planetary Rings",
+      "rarity": "EPIC",
+      "bonus_type": "CRITFA",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Interstellar event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 90,
+    "fields": {
+      "name": "Cathode Ray Tube",
+      "rarity": "EPIC",
+      "bonus_type": "COINSB",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Tower's Channel event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 91,
+    "fields": {
+      "name": "Sphinx",
+      "rarity": "EPIC",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Sands of Time (II) event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 92,
+    "fields": {
+      "name": "Ash Cloud",
+      "rarity": "EPIC",
+      "bonus_type": "DEFABS",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Volcano event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 93,
+    "fields": {
+      "name": "Crop Circle",
+      "rarity": "EPIC",
+      "bonus_type": "CRITFA",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Abduction event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 94,
+    "fields": {
+      "name": "Scarf",
+      "rarity": "EPIC",
+      "bonus_type": "DEFABS",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Autumn (II) event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 95,
+    "fields": {
+      "name": "Witch Hat",
+      "rarity": "EPIC",
+      "bonus_type": "DAMAGE",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Halloween (II) event; 700 medals",
+      "claimed_by": []
+    }
+  },
+  {
+    "model": "penthouse.relic",
+    "pk": 96,
+    "fields": {
+      "name": "Sleigh Bell",
+      "rarity": "EPIC",
+      "bonus_type": "HEALTH",
+      "bonus_value": 5.0,
+      "source": "E",
+      "condition": "Snowstorm event; 700 medals",
+      "claimed_by": []
+    }
+  }
+]
