@@ -20,6 +20,8 @@ urlpatterns = [
         name="profile-settings-update",
     ),
     path("relics/", relics.RelicListView.as_view(), name="relics-list"),
+    path("relics/claim/<int:relic_id>/", relics.relic_claim, name="relics-claim"),
+    path("relics/unclaim/<int:relic_id>/", relics.relic_unclaim, name="relics-unclaim"),
     path("tracker/", tracker.tracker_overview, name="tracker-overview"),
     path("tracker/run/add/", tracker.RunCreateView.as_view(), name="tracker-run-add"),
     path(

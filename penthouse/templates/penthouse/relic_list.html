@@ -15,9 +15,14 @@
     <td>{{ relic.get_source_display }}</td>
     <td>{{ relic.condition }}</td>
     {% if relic.is_claimed %}
-    <td>reset</td>
+    <td>
+      <span>claimed</span>
+      <a href="{% url "penthouse:relics-unclaim" relic.id %}">unclaim</a>
+    </td>
     {% else %}
-    <td>claim</td>
+    <td>
+      <a href="{% url "penthouse:relics-claim" relic.id %}">claim</a>
+    </td>
     {% endif %}
   </tr>
   {% endfor %}
