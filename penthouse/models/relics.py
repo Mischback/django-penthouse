@@ -38,7 +38,10 @@ class Relic(models.Model):
     """
 
     name = models.CharField(
-        max_length=200, help_text=_("Name of the Relic"), verbose_name=_("Name")
+        max_length=200,
+        help_text=_("Name of the Relic"),
+        verbose_name=_("Name"),
+        unique=True,
     )
     """The actual name of the relic."""
 
