@@ -1,0 +1,47 @@
+/* Layout-specific styles for ``relics-list`` */
+@use "sass:color";
+@use "sass:map";
+@use "../abstracts/colors";
+@use "../abstracts/shadows";
+
+.penthouse-relics {
+  /* ``.list-view`` is applied to all tables in that layout */
+  .list-view {
+    font-size: 0.9em;
+
+    tr:nth-child(odd of .relic-claimed) td {
+      background-color: colors.$table-odd-top-bg !important;
+      color: colors.$light-green !important;
+    }
+
+    tr:nth-child(even of .relic-claimed) td {
+      background-color: colors.$table-even-top-bg !important;
+      color: colors.$light-green !important;
+    }
+
+    .artificial-button {
+      display: inline-block;
+      margin: 0.25em 0.25rem;
+      padding: 0.25em 0.5em;
+      border: 0 solid colors.$shadow-color-base;
+      border-radius: 0.25rem;
+
+      /* prettier-ignore */
+      background: linear-gradient(to bottom,
+      $bg-lightest 0% 4%,
+      $bg-lighter 5% 48%,
+      $bg-darker 52% 95%,
+      $bg-darkest 96% 100%);
+      box-shadow: map.get(shadows.$box-shadows, 2) !important;
+      color: colors.$black;
+      font-size: 1em;
+      font-weight: bold;
+      text-decoration: none;
+
+      $bg-lightest: color.scale(colors.$form-button-submit-bg, $lightness: 50%);
+      $bg-lighter: color.scale(colors.$form-button-submit-bg, $lightness: 5%);
+      $bg-darker: color.scale(colors.$form-button-submit-bg, $lightness: -5%);
+      $bg-darkest: color.scale(colors.$form-button-submit-bg, $lightness: -50%);
+    }
+  }
+}
