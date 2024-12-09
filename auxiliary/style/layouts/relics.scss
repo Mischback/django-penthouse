@@ -20,6 +20,11 @@
     }
 
     .artificial-button {
+      $bg-lightest: color.scale(colors.$form-button-submit-bg, $lightness: 50%);
+      $bg-lighter: color.scale(colors.$form-button-submit-bg, $lightness: 5%);
+      $bg-darker: color.scale(colors.$form-button-submit-bg, $lightness: -5%);
+      $bg-darkest: color.scale(colors.$form-button-submit-bg, $lightness: -50%);
+
       display: inline-block;
       margin: 0.25em 0.25rem;
       padding: 0.25em 0.5em;
@@ -37,11 +42,6 @@
       font-size: 1em;
       font-weight: bold;
       text-decoration: none;
-
-      $bg-lightest: color.scale(colors.$form-button-submit-bg, $lightness: 50%);
-      $bg-lighter: color.scale(colors.$form-button-submit-bg, $lightness: 5%);
-      $bg-darker: color.scale(colors.$form-button-submit-bg, $lightness: -5%);
-      $bg-darkest: color.scale(colors.$form-button-submit-bg, $lightness: -50%);
     }
   }
 }
