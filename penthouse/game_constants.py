@@ -162,6 +162,8 @@ class RelicBonusType(TextChoices):
     DEFABS = TowerWorkshopItems.DEFABS.value
     DMGPME = TowerWorkshopItems.DMGPME.value
     HEALTH = TowerWorkshopItems.HEALTH.value
+    ATKSPD = TowerWorkshopItems.ATKSPD.value
+    CRITCH = TowerWorkshopItems.CRITCH.value
 
 
 class RelicRarity(TextChoices):
