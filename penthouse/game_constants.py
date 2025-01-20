@@ -164,6 +164,8 @@ class RelicBonusType(TextChoices):
     HEALTH = TowerWorkshopItems.HEALTH.value
     ATKSPD = TowerWorkshopItems.ATKSPD.value
     CRITCH = TowerWorkshopItems.CRITCH.value
+    ULTDMG = "ULTDMG", _("Ultimate Damage")
+    FATKUP = TowerWorkshopItems.FATKUP.value
 
 
 class RelicRarity(TextChoices):
