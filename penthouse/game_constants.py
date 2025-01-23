@@ -166,6 +166,8 @@ class RelicBonusType(TextChoices):
     CRITCH = TowerWorkshopItems.CRITCH.value
     ULTDMG = "ULTDMG", _("Ultimate Damage")
     FATKUP = TowerWorkshopItems.FATKUP.value
+    FDEFUP = TowerWorkshopItems.FDEFUP.value
+    SCRITC = TowerWorkshopItems.SCRITC.value
 
 
 class RelicRarity(TextChoices):
