@@ -7,12 +7,14 @@
 # Django imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Case, Value, When
+from django.db.models import Case, OuterRef, Subquery, Sum, Value, When
+from django.db.models.functions import Coalesce
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
 # app imports
+from penthouse.game_constants import RelicBonusType
 from penthouse.models.profile import Profile
 from penthouse.models.relics import Relic
 from penthouse.views.mixins import ProfileIDMixin, RestrictToUserMixin
@@ -36,6 +38,47 @@ class RelicListView(
                 )
             )
         )
+
+    def get_context_data(self, **kwargs):
+        """Add a user-specific summary of relics.
+
+        This contains the sum of claimed relics (per bonus type) and the total
+        available bonus per type.
+
+        This was mostly created with ChatGPT.
+        """
+        context = super(RelicListView, self).get_context_data(**kwargs)
+
+        # Subquery for calculating profile-specific bonus value
+        profile_bonus_subquery = (
+            Relic.objects.filter(
+                claimed_by__id=self.request.user.id, bonus_type=OuterRef("bonus_type")
+            )
+            .values("bonus_type")
+            .annotate(profile_bonus=Sum("bonus_value"))
+            .values("profile_bonus")
+        )
+
+        profile_bonus_with_default = Coalesce(
+            Subquery(profile_bonus_subquery), Value(0.0)
+        )
+
+        # Main query for relics with both total and profile-specific bonus values
+        relics_with_totals = (
+            Relic.objects.values("bonus_type")
+            .annotate(total_bonus=Sum("bonus_value"))
+            .annotate(profile_bonus=profile_bonus_with_default)
+        )
+
+        # Provide the human-readable names
+        bonus_type_display = dict(RelicBonusType.choices)
+        for relic in relics_with_totals:
+            relic["bonus_type_display"] = bonus_type_display.get(
+                relic["bonus_type"], relic["bonus_type"]
+            )
+
+        context["relic_summary"] = relics_with_totals
+        return context
 
 
 @login_required

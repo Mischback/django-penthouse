@@ -5,6 +5,16 @@
 {% block main %}
 <main class="penthouse-relics">
 <h2>Relics</h2>
+<table summary="Summary of relics">
+  {% for relic_type in relic_summary %}
+  <tr>
+    <td>{{ relic_type.bonus_type_display }}</td>
+    <td>{{ relic_type.profile_bonus }}%</td>
+    <td>{{ relic_type.total_bonus }}%</td>
+  </tr>
+  {% endfor %}
+</table>
+
 <table summary="All relics" class="list-view">
   {% for relic in object_list %}
     {# djlint:off H025 #}
@@ -16,7 +26,7 @@
     {# djlint:on #}
     <td>{{ relic.name }}</td>
     <td>{{ relic.get_bonus_type_display }}</td>
-    <td>{{ relic.bonus_value }}</td>
+    <td>{{ relic.bonus_value }}%</td>
     <td>{{ relic.get_rarity_display }}</td>
     <td>{{ relic.get_source_display }}</td>
     <td>{{ relic.condition }}</td>
