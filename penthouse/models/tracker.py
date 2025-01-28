@@ -116,3 +116,68 @@ class RunForm(forms.ModelForm):
             "cells",
             "notes",
         ]
+
+
+class MetaDataModelException(PenthouseModelException):
+    """Base class for all exceptions related to ``MetaData`` model."""
+
+
+class MetaDataManager(models.Manager):
+    """Custom manager for ``MetaData`` model."""
+
+    def filter_by_user(self, user=None):
+        """Filter the meta datapoints by the specified user."""
+        if user is None:
+            raise MetaDataModelException("No user specified!")
+
+        return self.get_queryset().filter(profile__ower=user)
+
+
+class MetaData(models.Model):
+    """A single datapoint for tracking meta progression."""
+
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, verbose_name=_("Profile")
+    )
+    """Reference to the associated profile."""
+
+    date = models.DateField(
+        help_text=_("Date of the datapoint"), verbose_name=_("Date")
+    )
+    """Date of the datapoint."""
+
+    ltc = models.PositiveBigIntegerField(
+        help_text=_("Current Life Time Coins (LTC)"), verbose_name=_("LTC")
+    )
+
+    lts = models.PositiveIntegerField(
+        help_text=_("Current Life Time Stones (LTS)"), verbose_name=_("LTS")
+    )
+
+    notes = models.TextField(help_text=_("Additional notes"), verbose_name=_("Notes"))
+
+    objects = MetaDataManager()
+    """Apply a custom manager.
+
+    This should not interfere with Django's default innter mechanics, the
+    custom manager does not replace any default functions, it just provides
+    additional methods.
+    """
+
+    class Meta:  # noqa: D106
+        app_label = "penthouse"
+        verbose_name = _("Meta Datapoint")
+        verbose_name_plural = _("Meta Datapoints")
+
+    def __str__(self):  # noqa: D105
+        return "[Meta] ({}): {} LTC, {} LTS".format(self.date, self.ltc, self.lts)
+
+
+class MetaDataForm(forms.ModelForm):
+    """Used to valudate input for creating and updating ``MetaData`` instances."""
+
+    ltc = GameNumberField()
+
+    class Meta:  # noqa: D106
+        model = MetaData
+        fields = ["date", "ltc", "lts", "notes"]
