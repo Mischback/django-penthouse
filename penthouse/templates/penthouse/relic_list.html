@@ -5,7 +5,14 @@
 {% block main %}
 <main class="penthouse-relics">
 <h2>Relics</h2>
-<table summary="Summary of relics">
+
+<h3>Summary</h3>
+<table summary="Summary of relics" class="list-view">
+  <tr>
+    <th>Type</th>
+    <th>claimed</th>
+    <th>total</th>
+  </tr>
   {% for relic_type in relic_summary %}
   <tr>
     <td>{{ relic_type.bonus_type_display }}</td>
@@ -15,7 +22,15 @@
   {% endfor %}
 </table>
 
+<h3>All Relics</h3>
 <table summary="All relics" class="list-view">
+  <tr>
+    <th>Name</th>
+    <th colspan="2">Bonus</th>
+    <th>Rarity</th>
+    <th colspan="2">obtained by</th>
+    <th>&nbsp;</th>
+  </tr>
   {% for relic in object_list %}
     {# djlint:off H025 #}
     {% if relic.is_claimed %}
