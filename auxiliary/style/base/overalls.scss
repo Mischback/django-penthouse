@@ -13,7 +13,8 @@ body {
   background-color: colors.$overall-bg;
   color: colors.$overall-fg;
 
-  > div {
+  > div,
+  > nav {
     margin: 0 2em;
     padding: 1em;
     background-color: colors.$main-container-bg;

@@ -10,6 +10,13 @@
   </head>
   <body>
 {% block html_body %}
+    <nav id="penthouse-nav">
+      <ul>
+        <li><a href="{% url "penthouse:profile-settings-update" %}">Profile</a></li>
+        <li><a href="{% url "penthouse:tracker-overview" %}">Run Tracker</a></li>
+        <li><a href="{% url "penthouse:relics-list" %}">Relic Tracker</a></li>
+      </ul>
+    </nav>
     <div id="penthouse-main">
   {% block main %}
       foobar
