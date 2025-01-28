@@ -1,0 +1,28 @@
+@use "sass:map";
+@use "../abstracts/colors";
+@use "../abstracts/shadows";
+
+/* stylelint-disable selector-max-id */
+#penthouse-nav {
+  background-color: colors.$nav-container-bg;
+
+  ul li {
+    display: inline-block;
+    margin: 0 1em 0 0;
+
+    a,
+    a:link,
+    a:visited {
+      padding: 0.5em 1em 0.25em;
+      background-color: colors.$nav-button-bg;
+      box-shadow: map.get(shadows.$box-shadows, 1) !important;
+      font-weight: bold;
+      text-decoration: none;
+
+      &:hover {
+        background-color: colors.$nav-button-bg-hover;
+      }
+    }
+  }
+}
+/* stylelint-enable selector-max-id */

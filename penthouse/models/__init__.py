@@ -6,4 +6,5 @@
 
 # app imports
 from penthouse.models.profile import Profile  # noqa: F401
+from penthouse.models.relics import Relic  # noqa: F401
 from penthouse.models.tracker import Run  # noqa: F401

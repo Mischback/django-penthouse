@@ -15,6 +15,8 @@
 @include meta.load-css("base/table");
 @include meta.load-css("base/form");
 @include meta.load-css("base/overalls");
+@include meta.load-css("base/navigation");
 
 /* Specific layouts */
 @include meta.load-css("layouts/tracker");
+@include meta.load-css("layouts/relics");

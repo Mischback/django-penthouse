@@ -9,6 +9,7 @@ from django.contrib import admin
 
 # app imports
 from penthouse.models.profile import Profile
+from penthouse.models.relics import Relic
 from penthouse.models.tracker import Run
 
 
@@ -19,4 +20,9 @@ class ProfileAdmin(admin.ModelAdmin):  # noqa: D101
 
 @admin.register(Run)
 class RunAdmin(admin.ModelAdmin):  # noqa: D101
+    pass
+
+
+@admin.register(Relic)
+class RelicAdmin(admin.ModelAdmin):  # noqa: D101
     pass

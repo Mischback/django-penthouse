@@ -1,0 +1,61 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block page_title %}Relics{% endblock page_title %}
+
+{% block main %}
+<main class="penthouse-relics">
+<h2>Relics</h2>
+
+<h3>Summary</h3>
+<table summary="Summary of relics" class="list-view">
+  <tr>
+    <th>Type</th>
+    <th>claimed</th>
+    <th>total</th>
+  </tr>
+  {% for relic_type in relic_summary %}
+  <tr>
+    <td>{{ relic_type.bonus_type_display }}</td>
+    <td>{{ relic_type.profile_bonus }}%</td>
+    <td>{{ relic_type.total_bonus }}%</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h3>All Relics</h3>
+<table summary="All relics" class="list-view">
+  <tr>
+    <th>Name</th>
+    <th colspan="2">Bonus</th>
+    <th>Rarity</th>
+    <th colspan="2">obtained by</th>
+    <th>&nbsp;</th>
+  </tr>
+  {% for relic in object_list %}
+    {# djlint:off H025 #}
+    {% if relic.is_claimed %}
+  <tr class="relic-claimed">
+    {% else %}
+  <tr>
+    {% endif %}
+    {# djlint:on #}
+    <td>{{ relic.name }}</td>
+    <td>{{ relic.get_bonus_type_display }}</td>
+    <td>{{ relic.bonus_value }}%</td>
+    <td>{{ relic.get_rarity_display }}</td>
+    <td>{{ relic.get_source_display }}</td>
+    <td>{{ relic.condition }}</td>
+    {% if relic.is_claimed %}
+    <td>
+      <a href="{% url "penthouse:relics-unclaim" relic.id %}">unclaim</a>
+    </td>
+    {% else %}
+    <td>
+      <a href="{% url "penthouse:relics-claim" relic.id %}" class="artificial-button">claim</a>
+    </td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+</main>
+{% endblock main %}

@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 # app imports
-from penthouse.models.profile import Profile, ProfileForm
+from penthouse.models.profile import Profile, ProfileSettingsForm
 from penthouse.views.mixins import ProfileIDMixin, RestrictToUserMixin
 
 
@@ -23,18 +23,18 @@ class ProfileDeleteView(
 
     context_object_name = "profile_item"
 
-    success_url = reverse_lazy("penthouse:profile-update")
+    success_url = reverse_lazy("penthouse:profile-settings-update")
 
 
-class ProfileUpdateView(
+class ProfileSettingsUpdateView(
     LoginRequiredMixin, RestrictToUserMixin, ProfileIDMixin, generic.UpdateView
 ):
     """Generic class-based view implementation to update ``Profile`` instances."""
 
     model = Profile
 
-    form_class = ProfileForm
+    form_class = ProfileSettingsForm
 
-    template_name_suffix = "_update"
+    template_name_suffix = "_settings_update"
 
-    success_url = reverse_lazy("penthouse:profile-update")
+    success_url = reverse_lazy("penthouse:profile-settings-update")

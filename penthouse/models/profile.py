@@ -114,9 +114,9 @@ class Profile(models.Model):
         return "[Profile] {}".format(self.owner)
 
 
-class ProfileForm(forms.ModelForm):
+class ProfileSettingsForm(forms.ModelForm):
     """Used to validate input for creating and updating ``Profile`` instances."""
 
     class Meta:  # noqa: D106
         model = Profile
-        exclude = ["owner"]
+        exclude = ["owner", "relics"]
