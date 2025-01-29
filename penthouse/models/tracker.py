@@ -168,6 +168,7 @@ class MetaData(models.Model):
         app_label = "penthouse"
         verbose_name = _("Meta Datapoint")
         verbose_name_plural = _("Meta Datapoints")
+        ordering = ["date"]
 
     def __str__(self):  # noqa: D105
         return "[Meta] ({}): {} LTC, {} LTS".format(self.date, self.ltc, self.lts)

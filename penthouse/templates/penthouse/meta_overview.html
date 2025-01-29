@@ -1,0 +1,34 @@
+{% extends "penthouse/app_base.html" %}
+
+{% load penthouse_tags %}
+
+{% block page_title %}Meta Progression{% endblock page_title %}
+
+{% block main %}
+<main class="penthouse-meta">
+<h2>Meta Progression</h2>
+
+<a href="{% url "penthouse:meta-data-add" %}">add data point</a>
+<table summary="All datapoints of meta progression" class="list-view">
+  <tr>
+    <th>Date</th>
+    <th>LTC</th>
+    <th>LTS</th>
+    <th>Notes</th>
+    <th />
+  </tr>
+  {% for point in object_list %}
+  <tr>
+    <td>{{ point.date|date:"SHORT_DATE_FORMAT" }}</td>
+    <td>{{ point.ltc|hr_big_number }}</td>
+    <td>{{ point.lts|hr_big_number }}</td>
+    <td>{{ point.notes }}</td>
+    <td>
+      <a href="{% url "penthouse:meta-data-update" point.id %}">update</a>
+      <a href="{% url "penthouse:meta-data-delete" point.id %}">delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+</main>
+{% endblock main %}
