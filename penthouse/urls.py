@@ -13,6 +13,18 @@ from penthouse.views import profile, relics, tracker
 app_name = "penthouse"
 
 urlpatterns = [
+    path("meta/", tracker.MetaDataListView.as_view(), name="meta-data-overview"),
+    path("meta/add/", tracker.MetaDataCreateView.as_view(), name="meta-data-add"),
+    path(
+        "meta/<int:meta_id>/delete/",
+        tracker.MetaDataDeleteView.as_view(),
+        name="meta-data-delete",
+    ),
+    path(
+        "meta/<int:meta_id>/update/",
+        tracker.MetaDataUpdateView.as_view(),
+        name="meta-data-update",
+    ),
     path("profile/delete/", profile.ProfileDeleteView.as_view(), name="profile-delete"),
     path(
         "profile/settings/update/",

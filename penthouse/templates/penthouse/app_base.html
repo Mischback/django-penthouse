@@ -12,6 +12,7 @@
 {% block html_body %}
     <nav id="penthouse-nav">
       <ul>
+        <li><a href="{% url "penthouse:meta-data-overview" %}">Meta Progression</a></li>
         <li><a href="{% url "penthouse:tracker-overview" %}">Run Tracker</a></li>
         <li><a href="{% url "penthouse:relics-list" %}">Relic Tracker</a></li>
         <li><a href="{% url "penthouse:profile-settings-update" %}">Settings</a></li>

@@ -130,7 +130,7 @@ class MetaDataManager(models.Manager):
         if user is None:
             raise MetaDataModelException("No user specified!")
 
-        return self.get_queryset().filter(profile__ower=user)
+        return self.get_queryset().filter(profile__owner=user)
 
 
 class MetaData(models.Model):
