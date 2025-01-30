@@ -68,6 +68,7 @@ repos:
     hooks:
       # check JSON files
       - id: check-json
+        exclude: tsconfig.json
       # check TOML files
       - id: check-toml
       # check YAML files
