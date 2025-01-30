@@ -185,6 +185,12 @@ util/stylelint :
 	$(MAKE) util/pre-commit pre-commit_id="stylelint" pre-commit_files="--all-files"
 .PHONY : util/stylelint
 
+## Run eslint on all files (*.ts)
+## @category Code Quality
+util/eslint :
+	$(MAKE) util/pre-commit pre-commit_id="eslint" pre-commit_files="--all-files"
+.PHONY : util/eslint
+
 pre-commit_id ?= ""
 pre-commit_files ?= ""
 ## Run all code quality tools as defined in .pre-commit-config.yaml

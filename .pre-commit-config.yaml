@@ -58,6 +58,12 @@ repos:
         language: system
         args: [--fix]
         files: ^auxiliary/style/
+      - id: eslint
+        name: eslint (local)
+        entry: npx eslint
+        language: system
+        args: [--fix]
+        files: ^auxiliary/script/
   # lint documentation of Python files
   - repo: https://github.com/pycqa/doc8
     rev: v1.1.2
