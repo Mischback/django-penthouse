@@ -18,7 +18,7 @@ from django.views import generic
 
 # app imports
 from penthouse.models.profile import Profile
-from penthouse.models.tracker import Run, RunForm
+from penthouse.models.tracker import MetaData, MetaDataForm, Run, RunForm
 from penthouse.views.mixins import ProfileIDMixin, RestrictToUserMixin
 
 
@@ -265,3 +265,60 @@ class RunUpdateView(
     pk_url_kwarg = "run_id"
 
     success_url = reverse_lazy("penthouse:tracker-overview")
+
+
+class MetaDataListView(
+    LoginRequiredMixin, RestrictToUserMixin, ProfileIDMixin, generic.ListView
+):
+    """Generic class-based view implementation to see all ``MetaData`` instances of a given ``Profile``."""
+
+    model = MetaData
+
+    template_name = "penthouse/meta_overview.html"
+
+
+class MetaDataCreateView(LoginRequiredMixin, ProfileIDMixin, generic.CreateView):
+    """Generic class-based view implementation to add ``MetaData`` instances."""
+
+    model = MetaData
+
+    form_class = MetaDataForm
+
+    template_name_suffix = "_create"
+
+    success_url = reverse_lazy("penthouse:meta-data-overview")
+
+    def form_valid(self, form):  # noqa: D102
+        form.instance.profile = Profile.objects.get(owner=self.request.user)
+
+        return super().form_valid(form)
+
+
+class MetaDataDeleteView(
+    LoginRequiredMixin, RestrictToUserMixin, ProfileIDMixin, generic.DeleteView
+):
+    """Generic class-based view implementation to delete ``MetaData`` instances."""
+
+    model = MetaData
+
+    context_object_name = "meta_item"
+
+    pk_url_kwarg = "meta_id"
+
+    success_url = reverse_lazy("penthouse:meta-data-overview")
+
+
+class MetaDataUpdateView(
+    LoginRequiredMixin, RestrictToUserMixin, ProfileIDMixin, generic.UpdateView
+):
+    """Generic class-based view implementation to update ``MetaData`` instances."""
+
+    model = MetaData
+
+    form_class = MetaDataForm
+
+    template_name_suffix = "_update"
+
+    pk_url_kwarg = "meta_id"
+
+    success_url = reverse_lazy("penthouse:meta-data-overview")
