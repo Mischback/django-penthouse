@@ -1,1 +1,1 @@
-document.addEventListener("DOMContentLoaded",(()=>{alert("foo")}));
+function e(e,n){null===e&&(e=document);const t=e.querySelector(n);if(null===t)throw new Error(`Missing required DOM element with query '${n}'`);return t}document.addEventListener("DOMContentLoaded",(()=>{document.getElementById("penthouse-meta")&&function(n,t,a,r){const l=e(null,n);e(null,r);for(var o=1;o<l.rows.length;o++){var u=l.rows[o],d={};d.label=e(u,t).innerHTML,d.value=e(u,a).innerHTML,console.log(d)}}("#meta-data-table",".meta-date-raw",".meta-ltc-raw","#meta-data-canvas")}));

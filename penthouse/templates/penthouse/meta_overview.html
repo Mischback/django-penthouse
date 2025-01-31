@@ -5,14 +5,18 @@
 {% block page_title %}Meta Progression{% endblock page_title %}
 
 {% block main %}
-<main class="penthouse-meta">
+<main id="penthouse-meta" class="penthouse-meta">
 <h2>Meta Progression</h2>
 
+<div>
+  <canvas id="meta-data-canvas"></canvas>
+</div>
+
 <a href="{% url "penthouse:meta-data-add" %}">add data point</a>
-<table summary="All datapoints of meta progression" class="list-view">
+<table summary="All datapoints of meta progression" id="meta-data-table" class="list-view">
   <tr>
-    <th>Date</th>
-    <th>LTC</th>
+    <th colspan="2">Date</th>
+    <th colspan="2">LTC</th>
     <th>LTS</th>
     <th>Notes</th>
     <th />
@@ -20,7 +24,9 @@
   {% for point in object_list %}
   <tr>
     <td>{{ point.date|date:"SHORT_DATE_FORMAT" }}</td>
+    <td class="hidden meta-date-raw">{{ point.date }}</td>
     <td>{{ point.ltc|hr_big_number }}</td>
+    <td class="hidden meta-ltc-raw">{{ point.ltc }}</td>
     <td>{{ point.lts|hr_big_number }}</td>
     <td>{{ point.notes }}</td>
     <td>
