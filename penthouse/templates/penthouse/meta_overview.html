@@ -17,7 +17,7 @@
   <tr>
     <th colspan="2">Date</th>
     <th colspan="2">LTC</th>
-    <th>LTS</th>
+    <th colspan="2">LTS</th>
     <th>Notes</th>
     <th />
   </tr>
@@ -28,6 +28,7 @@
     <td>{{ point.ltc|hr_big_number }}</td>
     <td class="hidden meta-ltc-raw">{{ point.ltc }}</td>
     <td>{{ point.lts|hr_big_number }}</td>
+    <td class="hidden meta-lts-raw">{{ point.lts }}</td>
     <td>{{ point.notes }}</td>
     <td>
       <a href="{% url "penthouse:meta-data-update" point.id %}">update</a>
