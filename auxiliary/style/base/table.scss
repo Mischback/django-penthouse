@@ -17,6 +17,12 @@ table {
   th {
     padding: 0.2em 0.5em;
     border: 1px solid colors.$dark-grey-01;
+
+    /* stylelint-disable selector-no-qualifying-type */
+    &.hidden {
+      display: none;
+    }
+    /* stylelint-enable selector-no-qualifying-type */
   }
 
   th {
