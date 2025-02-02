@@ -9,7 +9,7 @@
 <h2>Meta Progression</h2>
 
 <div>
-  <canvas id="meta-data-canvas"></canvas>
+  <canvas id="meta-data-canvas" height="500px"></canvas>
 </div>
 
 <a href="{% url "penthouse:meta-data-add" %}">add data point</a>
@@ -24,7 +24,7 @@
   {% for point in object_list %}
   <tr>
     <td>{{ point.date|date:"SHORT_DATE_FORMAT" }}</td>
-    <td class="hidden meta-date-raw">{{ point.date }}</td>
+    <td class="hidden meta-date-raw">{{ point.date|date:"U" }}</td>
     <td>{{ point.ltc|hr_big_number }}</td>
     <td class="hidden meta-ltc-raw">{{ point.ltc }}</td>
     <td>{{ point.lts|hr_big_number }}</td>
