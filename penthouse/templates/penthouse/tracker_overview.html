@@ -5,7 +5,7 @@
 {% block page_title %}Tracker Overview{% endblock page_title %}
 
 {% block main %}
-<main class="penthouse-tracker">
+<main class="penthouse-tracker" id="penthouse-tracker">
 <h2>Tracker Overview</h2>
 
 <h3>Last 5 runs by Tier</h3>
@@ -137,9 +137,13 @@
   </tr>
 </table>
 
+<div>
+  <canvas id="tracker-canvas" height="300px"></canvas>
+</div>
+
 <h3>Run List</h3>
 <a href="{% url "penthouse:tracker-run-add" %}">add Run</a>
-<table summary="All tracked runs" class="list-view">
+<table summary="All tracked runs" id="tracker-data-table" class="list-view">
   <tr>
     <th>Date</th>
     <th>Tier</th>
@@ -159,19 +163,24 @@
   {% for run in runs %}
   <tr>
     <td>{{ run.date|date:"SHORT_DATE_FORMAT" }}</td>
+    <td class="hidden tracker-date-raw">{{ run.date|date:"U" }}</td>
     <td>{{ run.tier }}</td>
     <td>{{ run.waves }}</td>
     <td>{{ run.duration|hr_duration }}</td>
 
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.coins max_value=pb_coins.coins top_value=threshold_top_coins current_pb=run.pb_coins %}
+    <td class="hidden tracker-coins-run-raw">{{ run.coins }}</td>
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.coins_hour max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=run.pb_coins_hour %}
+    <td class="hidden tracker-coins-hour-raw">{{ run.coins_hour }}</td>
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.cells max_value=pb_cells.cells top_value=threshold_top_cells current_pb=run.pb_cells %}
     {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.cells_hour max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=run.pb_cells_hour %}
 
     <td>{{ run.notes }}</td>
 
     <td>{{ run.coins_avg5|hr_big_number }}</td>
+    <td class="hidden tracker-coins-run-five-raw">{{ run.coins_avg5 }}</td>
     <td>{{ run.coins_hour_avg5|hr_big_number }}</td>
+    <td class="hidden tracker-coins-hour-five-raw">{{ run.coins_hour_avg5 }}</td>
     <td>{{ run.cells_avg5|hr_big_number }}</td>
     <td>{{ run.cells_hour_avg5|hr_big_number }}</td>
     <td>

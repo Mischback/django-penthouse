@@ -6,6 +6,126 @@ import { getDomElement } from "../utility";
 // import { createLineChart } from "../utility/charts";
 
 /**
+ * Create the visual representation of the run data.
+ *
+ * This function is closely tied to the app's view and template.
+ */
+export function createRunTrackerChart(): void {
+  const table = <HTMLTableElement>getDomElement(null, "#tracker-data-table");
+  const canvas = <HTMLCanvasElement>getDomElement(null, "#tracker-canvas");
+
+  // grab raw data from the table
+  let tableRow;
+  const labels = [];
+  const coinsRun = [];
+  const coinsHour = [];
+  const coinsRun5 = [];
+  const coinsHour5 = [];
+
+  for (let i = 1; i < table.rows.length; i++) {
+    tableRow = table.rows[i];
+
+    // the label is determined by the datapoints ``date``
+    // @ts-expect-error TS2345: Will work or catched by ``getDomElement()``
+    const thisLabel = getDomElement(tableRow, ".tracker-date-raw").innerHTML;
+    const timestamp = parseInt(thisLabel, 10) * 1000;
+
+    // we want coins/run
+    // @ts-expect-error TS2345: Will work or catched by ``getDomElement()``
+    const thisCoins = getDomElement(
+      tableRow,
+      ".tracker-coins-run-raw",
+    ).innerHTML;
+
+    // we want coins/h
+    // @ts-expect-error TS2345: Will work or catched by ``getDomElement()``
+    const thisCoinsH = getDomElement(
+      tableRow,
+      ".tracker-coins-hour-raw",
+    ).innerHTML;
+
+    // we want coins/run (Avg5)
+    // @ts-expect-error TS2345: Will work or catched by ``getDomElement()``
+    const thisCoins5 = getDomElement(
+      tableRow,
+      ".tracker-coins-run-five-raw",
+    ).innerHTML;
+
+    // we want coins/h (Avg5)
+    // @ts-expect-error TS2345: Will work or catched by ``getDomElement()``
+    const thisCoinsH5 = getDomElement(
+      tableRow,
+      ".tracker-coins-hour-five-raw",
+    ).innerHTML;
+
+    labels.push(timestamp);
+    coinsRun.push(thisCoins);
+    coinsHour.push(thisCoinsH);
+    coinsRun5.push(thisCoins5);
+    coinsHour5.push(thisCoinsH5);
+  }
+
+  // console.log(labels);
+  // console.log(coinsRun);
+  // console.log(coinsHour);
+  // console.log(coinsRun5);
+  // console.log(coinsHour5);
+
+  new Chart(canvas, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Coins/run",
+          data: coinsRun,
+          yAxisID: "y",
+        },
+        {
+          label: "Coins/h",
+          data: coinsHour,
+          yAxisID: "y1",
+        },
+        {
+          label: "Coins/run (Avg 5)",
+          data: coinsRun5,
+          yAxisID: "y",
+          type: "line",
+        },
+        {
+          label: "Coins/h (Avg 5)",
+          data: coinsHour5,
+          yAxisID: "y1",
+          type: "line",
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: "time",
+          time: {
+            unit: "day",
+          },
+        },
+        y: {
+          type: "linear",
+          display: true,
+          position: "left",
+        },
+        y1: {
+          type: "linear",
+          display: true,
+          position: "right",
+        },
+      },
+    },
+  });
+}
+
+/**
  * Create the visual representation of the meta datapoints.
  *
  * This function is closely tied to the app's view and template.
