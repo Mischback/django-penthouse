@@ -2,7 +2,7 @@
 import Chart from "chart.js/auto";
 import "chartjs-adapter-date-fns";
 
-import { getDomElement } from "../utility";
+import { getDomElement, findNonZeroMin } from "../utility";
 // import { createLineChart } from "../utility/charts";
 
 /**
@@ -26,37 +26,49 @@ export function createRunTrackerChart(): void {
     tableRow = table.rows[i];
 
     // the label is determined by the datapoints ``date``
-    // @ts-expect-error TS2345: Will work or catched by ``getDomElement()``
+    // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
     const thisLabel = getDomElement(tableRow, ".tracker-date-raw").innerHTML;
     const timestamp = parseInt(thisLabel, 10) * 1000;
 
     // we want coins/run
-    // @ts-expect-error TS2345: Will work or catched by ``getDomElement()``
-    const thisCoins = getDomElement(
-      tableRow,
-      ".tracker-coins-run-raw",
-    ).innerHTML;
+    const thisCoins = parseInt(
+      getDomElement(
+        // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
+        tableRow,
+        ".tracker-coins-run-raw",
+      ).innerHTML,
+      10,
+    );
 
     // we want coins/h
-    // @ts-expect-error TS2345: Will work or catched by ``getDomElement()``
-    const thisCoinsH = getDomElement(
-      tableRow,
-      ".tracker-coins-hour-raw",
-    ).innerHTML;
+    const thisCoinsH = parseInt(
+      getDomElement(
+        // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
+        tableRow,
+        ".tracker-coins-hour-raw",
+      ).innerHTML,
+      10,
+    );
 
     // we want coins/run (Avg5)
-    // @ts-expect-error TS2345: Will work or catched by ``getDomElement()``
-    const thisCoins5 = getDomElement(
-      tableRow,
-      ".tracker-coins-run-five-raw",
-    ).innerHTML;
+    const thisCoins5 = parseInt(
+      getDomElement(
+        // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
+        tableRow,
+        ".tracker-coins-run-five-raw",
+      ).innerHTML,
+      10,
+    );
 
     // we want coins/h (Avg5)
-    // @ts-expect-error TS2345: Will work or catched by ``getDomElement()``
-    const thisCoinsH5 = getDomElement(
-      tableRow,
-      ".tracker-coins-hour-five-raw",
-    ).innerHTML;
+    const thisCoinsH5 = parseInt(
+      getDomElement(
+        // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
+        tableRow,
+        ".tracker-coins-hour-five-raw",
+      ).innerHTML,
+      10,
+    );
 
     labels.push(timestamp);
     coinsRun.push(thisCoins);
@@ -71,6 +83,16 @@ export function createRunTrackerChart(): void {
   // console.log(coinsRun5);
   // console.log(coinsHour5);
 
+  // const minCoinsRun = Math.min(...coinsRun) * 0.9;
+  // const maxCoinsRun = Math.max(...coinsRun) * 1.1;
+  const minCoinsHour = findNonZeroMin(coinsHour);
+  const maxCoinsHour = Math.max(...coinsHour);
+
+  // console.log(minCoinsRun);
+  // console.log(maxCoinsRun);
+  // console.log(minCoinsHour);
+  // console.log(maxCoinsHour);
+
   new Chart(canvas, {
     type: "bar",
     data: {
@@ -81,11 +103,11 @@ export function createRunTrackerChart(): void {
           data: coinsRun,
           yAxisID: "y",
         },
-        {
+        /* {
           label: "Coins/h",
           data: coinsHour,
           yAxisID: "y1",
-        },
+        }, */
         {
           label: "Coins/run (Avg 5)",
           data: coinsRun5,
@@ -104,21 +126,19 @@ export function createRunTrackerChart(): void {
       responsive: true,
       maintainAspectRatio: false,
       scales: {
-        x: {
-          type: "time",
-          time: {
-            unit: "day",
-          },
-        },
         y: {
           type: "linear",
           display: true,
           position: "left",
+          // min: minCoinsRun,
+          // max: maxCoinsRun,
         },
         y1: {
           type: "linear",
           display: true,
           position: "right",
+          min: minCoinsHour,
+          max: maxCoinsHour,
         },
       },
     },
@@ -143,14 +163,14 @@ export function createMetaDataChart(): void {
     tableRow = table.rows[i];
 
     // the label is determined by the datapoints ``date``
-    // @ts-expect-error TS2345: Will work or catched by ``getDomElement()``
+    // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
     const thisLabel = getDomElement(tableRow, ".meta-date-raw").innerHTML;
     const timestamp = parseInt(thisLabel, 10) * 1000;
 
     // we want LTC/LTS as datapoints
-    // @ts-expect-error TS2345: Will work or catched by ``getDomElement()``
+    // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
     const thisLtc = getDomElement(tableRow, ".meta-ltc-raw").innerHTML;
-    // @ts-expect-error TS2345: Will work or catched by ``getDomElement()``
+    // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
     const thisLts = getDomElement(tableRow, ".meta-lts-raw").innerHTML;
 
     labels.push(timestamp);
