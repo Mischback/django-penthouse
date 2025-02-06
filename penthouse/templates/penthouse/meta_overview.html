@@ -23,7 +23,7 @@
   </tr>
   {% for point in object_list %}
   <tr>
-    <td>{{ point.date|date:"SHORT_DATE_FORMAT" }}</td>
+    <td>{{ point.date|date:"Y-m-d" }}</td>
     <td class="hidden meta-date-raw">{{ point.date|date:"U" }}</td>
     <td>{{ point.ltc|hr_big_number }}</td>
     <td class="hidden meta-ltc-raw">{{ point.ltc }}</td>
