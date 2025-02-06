@@ -2,7 +2,7 @@
 import Chart from "chart.js/auto";
 import "chartjs-adapter-date-fns";
 
-import { getDomElement, findNonZeroMin } from "../utility";
+import { getDomElement, findNonZeroMin, formatLargeNumber } from "../utility";
 // import { createLineChart } from "../utility/charts";
 
 /**
@@ -126,12 +126,21 @@ export function createRunTrackerChart(): void {
       responsive: true,
       maintainAspectRatio: false,
       scales: {
+        x: {
+          display: false,
+        },
         y: {
           type: "linear",
           display: true,
           position: "left",
           // min: minCoinsRun,
           // max: maxCoinsRun,
+          ticks: {
+            callback: function (v) {
+              // @ts-expect-error TS2345: parseFloat() works with numbers!
+              return formatLargeNumber(parseFloat(v), 0);
+            },
+          },
         },
         y1: {
           type: "linear",
@@ -139,6 +148,12 @@ export function createRunTrackerChart(): void {
           position: "right",
           min: minCoinsHour,
           max: maxCoinsHour,
+          ticks: {
+            callback: function (v) {
+              // @ts-expect-error TS2345: parseFloat() works with numbers!
+              return formatLargeNumber(parseFloat(v), 0);
+            },
+          },
         },
       },
     },
@@ -216,11 +231,23 @@ export function createMetaDataChart(): void {
           type: "logarithmic",
           display: true,
           position: "left",
+          ticks: {
+            callback: function (v) {
+              // @ts-expect-error TS2345: parseFloat() works with numbers!
+              return formatLargeNumber(parseFloat(v), 0);
+            },
+          },
         },
         y1: {
           type: "linear",
           display: true,
           position: "right",
+          ticks: {
+            callback: function (v) {
+              // @ts-expect-error TS2345: parseFloat() works with numbers!
+              return formatLargeNumber(parseFloat(v), 0);
+            },
+          },
         },
       },
     },
