@@ -1,9 +1,37 @@
-// FIXME: Convert to direct imports for treeshaking
-import Chart from "chart.js/auto";
+import { Chart } from "chart.js";
+import {
+  BarElement,
+  BarController,
+  LineElement,
+  LineController,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  LogarithmicScale,
+  TimeScale,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import "chartjs-adapter-date-fns";
 
 import { getDomElement, findNonZeroMin, formatLargeNumber } from "../utility";
-// import { createLineChart } from "../utility/charts";
+
+// To enable treeshaking for ChartJS, all elements in used must be registered
+Chart.register(
+  BarElement,
+  BarController,
+  LineElement,
+  LineController,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  LogarithmicScale,
+  TimeScale,
+  Title,
+  Tooltip,
+  Legend,
+);
 
 /**
  * Create the visual representation of the run data.
@@ -90,21 +118,10 @@ export function createRunTrackerChart(): void {
     coinsHour5.push(thisCoinsH5);
   }
 
-  // console.log(labels);
-  // console.log(coinsRun);
-  // console.log(coinsHour);
-  // console.log(coinsRun5);
-  // console.log(coinsHour5);
-
   // const minCoinsRun = Math.min(...coinsRun) * 0.9;
   // const maxCoinsRun = Math.max(...coinsRun) * 1.1;
   const minCoinsHour = findNonZeroMin(coinsHour);
   const maxCoinsHour = Math.max(...coinsHour);
-
-  // console.log(minCoinsRun);
-  // console.log(maxCoinsRun);
-  // console.log(minCoinsHour);
-  // console.log(maxCoinsHour);
 
   new Chart(canvas, {
     type: "bar",
@@ -225,10 +242,6 @@ export function createMetaDataChart(): void {
     ltcData.push(thisLtc);
     ltsData.push(thisLts);
   }
-
-  // console.log(labels);
-  // console.log(ltcData);
-  // console.log(ltsData);
 
   // TODO: This still needs lots of work. Actually I would love to provide the
   //       overall and common configuration of all charts in a central place
