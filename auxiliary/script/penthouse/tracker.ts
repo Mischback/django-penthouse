@@ -14,6 +14,19 @@ export function createRunTrackerChart(): void {
   const table = <HTMLTableElement>getDomElement(null, "#tracker-data-table");
   const canvas = <HTMLCanvasElement>getDomElement(null, "#tracker-canvas");
 
+  const colorDataset01 = getComputedStyle(canvas)
+    .getPropertyValue("--dataset01-main")
+    .trim();
+  const colorDataset02 = getComputedStyle(canvas)
+    .getPropertyValue("--dataset02-main")
+    .trim();
+  const colorDataset03 = getComputedStyle(canvas)
+    .getPropertyValue("--dataset01-secondary")
+    .trim();
+  const colorCanvasGrid = getComputedStyle(canvas)
+    .getPropertyValue("--canvas-grid-color")
+    .trim();
+
   // grab raw data from the table
   let tableRow;
   const labels = [];
@@ -101,7 +114,9 @@ export function createRunTrackerChart(): void {
         {
           label: "Coins/run",
           data: coinsRun,
+          backgroundColor: colorDataset03,
           yAxisID: "y",
+          order: 3,
         },
         /* {
           label: "Coins/h",
@@ -111,14 +126,18 @@ export function createRunTrackerChart(): void {
         {
           label: "Coins/run (Avg 5)",
           data: coinsRun5,
+          borderColor: colorDataset01,
           yAxisID: "y",
           type: "line",
+          order: 2,
         },
         {
           label: "Coins/h (Avg 5)",
           data: coinsHour5,
+          borderColor: colorDataset02,
           yAxisID: "y1",
           type: "line",
+          order: 1,
         },
       ],
     },
@@ -135,6 +154,10 @@ export function createRunTrackerChart(): void {
           position: "left",
           // min: minCoinsRun,
           // max: maxCoinsRun,
+          grid: {
+            color: colorCanvasGrid,
+            lineWidth: 1,
+          },
           ticks: {
             callback: function (v) {
               // @ts-expect-error TS2345: parseFloat() works with numbers!
@@ -168,6 +191,16 @@ export function createRunTrackerChart(): void {
 export function createMetaDataChart(): void {
   const table = <HTMLTableElement>getDomElement(null, "#meta-data-table");
   const canvas = <HTMLCanvasElement>getDomElement(null, "#meta-data-canvas");
+
+  const colorDataset01 = getComputedStyle(canvas)
+    .getPropertyValue("--dataset01-main")
+    .trim();
+  const colorDataset02 = getComputedStyle(canvas)
+    .getPropertyValue("--dataset02-main")
+    .trim();
+  const colorCanvasGrid = getComputedStyle(canvas)
+    .getPropertyValue("--canvas-grid-color")
+    .trim();
 
   // grab raw data from the table
   let tableRow;
@@ -208,11 +241,13 @@ export function createMetaDataChart(): void {
         {
           label: "LTC",
           data: ltcData,
+          borderColor: colorDataset01,
           yAxisID: "y",
         },
         {
           label: "LTS",
           data: ltsData,
+          borderColor: colorDataset02,
           yAxisID: "y1",
         },
       ],
@@ -242,6 +277,10 @@ export function createMetaDataChart(): void {
           type: "linear",
           display: true,
           position: "right",
+          grid: {
+            color: colorCanvasGrid,
+            lineWidth: 1,
+          },
           ticks: {
             callback: function (v) {
               // @ts-expect-error TS2345: parseFloat() works with numbers!

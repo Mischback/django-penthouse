@@ -16,6 +16,7 @@
 @include meta.load-css("base/form");
 @include meta.load-css("base/overalls");
 @include meta.load-css("base/navigation");
+@include meta.load-css("base/canvas");
 
 /* Specific layouts */
 @include meta.load-css("layouts/tracker");

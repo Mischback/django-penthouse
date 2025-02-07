@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $black: rgb(0 0 0);
 
 /* These different shades of grey are based on Material's guidelines for dark
@@ -73,6 +75,9 @@ $lime-400-dark: rgb(169 180 69);
 $bright-red: oklch(70% 0.28 45deg);
 $bright-green: oklch(75% 0.28 125deg);
 
+// TODO: convert to notation rgb()
+$deep-orange-a200: #ff6e40;
+
 /* Semantic colors
  *
  * These are the actual colors, associated with semantic meanings in the
@@ -96,3 +101,9 @@ $form-input-bg: $dark-blue-grey-06;
 $form-button-cancel-bg: $bright-red;
 $form-button-submit-bg: $bright-green;
 $shadow-color-base: $black;
+$canvas-bg: $dark-blueish-grey-02;
+$canvas-bg-grid: $dark-blueish-grey-06;
+$canvas-dataset01-main: $lime-400;
+$canvas-dataset01-secondary: rgba($canvas-dataset01-main, 0.3);
+$canvas-dataset02-main: $deep-orange-a200;
+$canvas-dataset02-secondary: rgba($canvas-dataset02-main, 0.3);
