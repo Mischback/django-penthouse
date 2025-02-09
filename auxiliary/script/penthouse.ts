@@ -15,5 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Meta Tracker */
   if (document.getElementById("penthouse-meta")) {
     createMetaDataChart();
+    initializeCollapsibles();
   }
 });
