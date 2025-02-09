@@ -16,9 +16,39 @@ body {
   > div,
   > nav {
     margin: 0 2em;
-    padding: 1em;
+    padding: 1em 2em;
     background-color: colors.$main-container-bg;
     box-shadow: map.get(shadows.$box-shadows, 1) !important;
+  }
+}
+
+.collapsible-container {
+  margin-bottom: 2em;
+  background-color: colors.$collapsible-container-bg;
+  box-shadow: map.get(shadows.$box-shadows, 2) !important;
+
+  > header,
+  > section {
+    padding-right: 0.5em;
+    padding-bottom: 1em;
+    padding-left: 0.5em;
+  }
+
+  .collapsible-header {
+    margin: 0;
+    padding-top: 0.5em;
+    padding-bottom: 0.25em;
+    background-color: colors.$collapsible-header-bg;
+    cursor: pointer;
+
+    h3 {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .collapsible-content {
+    border-top: 1px solid colors.$overall-bg;
   }
 }
 
