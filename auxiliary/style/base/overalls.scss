@@ -50,6 +50,12 @@ body {
   .collapsible-content {
     border-top: 1px solid colors.$overall-bg;
   }
+
+  &.collapsed {
+    .collapsible-content {
+      display: none;
+    }
+  }
 }
 
 a,
