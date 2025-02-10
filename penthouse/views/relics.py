@@ -65,7 +65,7 @@ class RelicListView(
 
         # Main query for relics with both total and profile-specific bonus values
         relics_with_totals = (
-            Relic.objects.values("bonus_type")
+            Relic.objects.values("bonus_type", "bonus_unit")
             .annotate(total_bonus=Sum("bonus_value"))
             .annotate(profile_bonus=profile_bonus_with_default)
         )

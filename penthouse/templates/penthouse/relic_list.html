@@ -22,8 +22,8 @@
       {% for relic_type in relic_summary %}
       <tr>
         <td>{{ relic_type.bonus_type_display }}</td>
-        <td>{{ relic_type.profile_bonus }}%</td>
-        <td>{{ relic_type.total_bonus }}%</td>
+        <td>{{ relic_type.profile_bonus }}{{ relic_type.bonus_unit }}</td>
+        <td>{{ relic_type.total_bonus }}{{ relic_type.bonus_unit }}</td>
       </tr>
       {% endfor %}
     </table>
@@ -53,7 +53,7 @@
         {# djlint:on #}
         <td>{{ relic.name }}</td>
         <td>{{ relic.get_bonus_type_display }}</td>
-        <td>{{ relic.bonus_value }}%</td>
+        <td>{{ relic.bonus_value }}{{ relic.bonus_unit }}</td>
         <td>{{ relic.get_rarity_display }}</td>
         <td>{{ relic.get_source_display }}</td>
         <td>{{ relic.condition }}</td>

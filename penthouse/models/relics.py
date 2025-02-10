@@ -63,6 +63,13 @@ class Relic(models.Model):
         help_text=_("Bonus value, specified in percent"), verbose_name=_("Bonus Value")
     )
 
+    bonus_unit = models.CharField(
+        max_length=3,
+        help_text=_("Unit of the bonus value"),
+        verbose_name=_("Bonus Unit"),
+        default="%",
+    )
+
     source = models.CharField(
         max_length=1,
         help_text=_("Source of the relic"),
