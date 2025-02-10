@@ -17,4 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
     createMetaDataChart();
     initializeCollapsibles();
   }
+
+  /* Relic Tracker */
+  if (document.getElementById("penthouse-relics")) {
+    initializeCollapsibles();
+  }
 });

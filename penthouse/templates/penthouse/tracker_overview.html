@@ -6,11 +6,14 @@
 
 {% block main %}
 <main class="penthouse-tracker" id="penthouse-tracker">
-<h2>Tracker Overview</h2>
+<header>
+    <h2>Tracker Overview</h2>
+    <a href="{% url "penthouse:tracker-run-add" %}" class="action-button">add Run</a>
+  </header>
 
 <section id="run-tracker-1" class="collapsible-container">
   <header class="collapsible-header">
-    <h3>Executive Summary</h3>
+    <h3>Summary</h3>
   </header>
   <section class="collapsible-content">
     <h4>Last 5 runs by Tier</h4>
@@ -160,7 +163,7 @@
     <h3>Run List</h3>
   </header>
   <section class="collapsible-content">
-    <a href="{% url "penthouse:tracker-run-add" %}">add Run</a>
+    <a href="{% url "penthouse:tracker-run-add" %}" class="action-button">add Run</a>
     <table summary="All tracked runs" id="tracker-data-table" class="list-view">
       <tr>
         <th>Date</th>

@@ -6,7 +6,10 @@
 
 {% block main %}
 <main id="penthouse-meta" class="penthouse-meta">
-<h2>Meta Progression</h2>
+  <header>
+    <h2>Meta Progression</h2>
+    <a href="{% url "penthouse:meta-data-add" %}" class="action-button">add Datapoint</a>
+  </header>
 
 <section id="meta-tracker-1" class="collapsible-container">
   <header class="collapsible-header">
@@ -24,7 +27,7 @@
     <h3>Datapoints</h3>
   </header>
   <section class="collapsible-content">
-    <a href="{% url "penthouse:meta-data-add" %}">add data point</a>
+    <a href="{% url "penthouse:meta-data-add" %}" class="action-button">add Datapoint</a>
     <table summary="All datapoints of meta progression" id="meta-data-table" class="list-view">
       <tr>
         <th>Date</th>
