@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $black: rgb(0 0 0);
 
 /* These different shades of grey are based on Material's guidelines for dark
@@ -72,6 +74,20 @@ $lime-a200: rgb(178 255 89);
 $lime-400-dark: rgb(169 180 69);
 $bright-red: oklch(70% 0.28 45deg);
 $bright-green: oklch(75% 0.28 125deg);
+$deep-orange-50: rgb(251 233 231);
+$deep-orange-100: rgb(255 204 188);
+$deep-orange-200: rgb(255 171 145);
+$deep-orange-300: rgb(255 138 101);
+$deep-orange-400: rgb(255 112 67);
+$deep-orange-500: rgb(255 87 34);
+$deep-orange-600: rgb(244 81 30);
+$deep-orange-700: rgb(230 74 25);
+$deep-orange-800: rgb(216 67 21);
+$deep-orange-900: rgb(191 54 12);
+$deep-orange-a100: rgb(255 158 128);
+$deep-orange-a200: rgb(255 110 64);
+$deep-orange-a400: rgb(255 61 0);
+$deep-orange-a700: rgb(221 44 0);
 
 /* Semantic colors
  *
@@ -96,3 +112,12 @@ $form-input-bg: $dark-blue-grey-06;
 $form-button-cancel-bg: $bright-red;
 $form-button-submit-bg: $bright-green;
 $shadow-color-base: $black;
+$canvas-bg: $dark-blueish-grey-02;
+$canvas-bg-grid: $dark-blueish-grey-06;
+$canvas-dataset01-main: $lime-400;
+$canvas-dataset01-secondary: rgba($canvas-dataset01-main, 0.3);
+$canvas-dataset02-main: $deep-orange-a200;
+$canvas-dataset02-secondary: rgba($canvas-dataset02-main, 0.3);
+$collapsible-container-bg: $dark-blueish-grey-02;
+$collapsible-header-bg: $dark-blueish-grey-04;
+$action-button-bg: $deep-orange-500;

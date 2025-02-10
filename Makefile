@@ -24,10 +24,13 @@ APP_AUX_DIR := $(REPO_ROOT)/auxiliary
 
 # Intermediate build targets
 APP_STYLESHEET := $(APP_STATIC_DIR)/style.css
+APP_SCRIPT := $(APP_STATIC_DIR)/penthouse.js
 
 # The source files for the actual intermediate build targets
 APP_STYLE_SRC_DIR := $(APP_AUX_DIR)/style
 APP_STYLE_SRC := $(shell find $(APP_STYLE_SRC_DIR) -type f)
+APP_SCRIPT_SRC_DIR := $(APP_AUX_DIR)/script
+APP_SCRIPT_SRC := $(shell find $(APP_SCRIPT_SRC_DIR) -type f)
 
 
 # Internal Python environments
@@ -49,7 +52,7 @@ STAMP_NODE_READY := $(STAMP_DIR)/node-ready
 
 ## Shortcut
 ## @category Development
-run: $(APP_STYLESHEET) django/runserver
+run: $(APP_STYLESHEET) $(APP_SCRIPT) django/runserver
 .PHONY : run
 
 
@@ -182,6 +185,12 @@ util/stylelint :
 	$(MAKE) util/pre-commit pre-commit_id="stylelint" pre-commit_files="--all-files"
 .PHONY : util/stylelint
 
+## Run eslint on all files (*.ts)
+## @category Code Quality
+util/eslint :
+	$(MAKE) util/pre-commit pre-commit_id="eslint" pre-commit_files="--all-files"
+.PHONY : util/eslint
+
 pre-commit_id ?= ""
 pre-commit_files ?= ""
 ## Run all code quality tools as defined in .pre-commit-config.yaml
@@ -215,6 +224,11 @@ requirements/%.txt : requirements/%.in pyproject.toml | $(TOX_VENV_INSTALLED)
 $(APP_STATIC_DIR)/%.css : $(APP_STYLE_SRC_DIR)/%.scss $(APP_STYLE_SRC) | $(STAMP_NODE_READY)
 	$(create_dir)
 	npx sass --embed-sources --embed-source-map --stop-on-error --verbose $< $@
+
+# Compile TS sources to an actual script
+$(APP_STATIC_DIR)/%.js : $(APP_SCRIPT_SRC_DIR)/%.ts $(APP_SCRIPT_SRC) | $(STAMP_NODE_READY)
+	$(create_dir)
+	npx rollup -c rollup.config.js --bundleConfigAsCjs -i $< -o $@
 
 
 # ##### Internal utility stuff

@@ -1,0 +1,16 @@
+@use "../abstracts/colors";
+
+.canvas-box {
+  margin: 0;
+  padding: 0.5em 1em;
+  background-color: colors.$canvas-bg;
+
+  canvas {
+    --canvas-grid-color: #{colors.$canvas-bg-grid};
+    --dataset01-main: #{colors.$canvas-dataset01-main};
+    --dataset01-secondary: #{colors.$canvas-dataset01-secondary};
+    --dataset02-main: #{colors.$canvas-dataset02-main};
+
+    background-color: colors.$canvas-bg;
+  }
+}

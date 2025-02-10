@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "sass:map";
 @use "../abstracts/colors";
 @use "../abstracts/shadows";
@@ -16,9 +17,53 @@ body {
   > div,
   > nav {
     margin: 0 2em;
-    padding: 1em;
+    padding: 1em 2em;
     background-color: colors.$main-container-bg;
     box-shadow: map.get(shadows.$box-shadows, 1) !important;
+  }
+}
+
+main {
+  > header {
+    > * {
+      display: inline-block;
+    }
+  }
+}
+
+.collapsible-container {
+  margin-bottom: 2em;
+  background-color: colors.$collapsible-container-bg;
+  box-shadow: map.get(shadows.$box-shadows, 2) !important;
+
+  > header,
+  > section {
+    padding-right: 0.5em;
+    padding-bottom: 1em;
+    padding-left: 0.5em;
+  }
+
+  .collapsible-header {
+    margin: 0;
+    padding-top: 0.5em;
+    padding-bottom: 0.25em;
+    background-color: colors.$collapsible-header-bg;
+    cursor: pointer;
+
+    h3 {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .collapsible-content {
+    border-top: 1px solid colors.$overall-bg;
+  }
+
+  &.collapsed {
+    .collapsible-content {
+      display: none;
+    }
   }
 }
 
@@ -26,4 +71,28 @@ a,
 a:link,
 a:visited {
   color: colors.$lime-400-dark;
+}
+
+.action-button {
+  $bg-lightest: color.scale(colors.$action-button-bg, $lightness: 50%);
+  $bg-lighter: color.scale(colors.$action-button-bg, $lightness: 5%);
+  $bg-darker: color.scale(colors.$action-button-bg, $lightness: -5%);
+  $bg-darkest: color.scale(colors.$action-button-bg, $lightness: -50%);
+
+  margin: 0.25em;
+  padding: 0.25em 0.5em;
+  border: 0 solid colors.$shadow-color-base;
+  border-radius: 0.25em;
+
+  /* prettier-ignore */
+  background: linear-gradient(to bottom,
+  $bg-lightest 0% 4%,
+  $bg-lighter 5% 48%,
+  $bg-darker 52% 95%,
+  $bg-darkest 96% 100%);
+  box-shadow: map.get(shadows.$box-shadows, 2) !important;
+  color: colors.$black !important;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: none;
 }

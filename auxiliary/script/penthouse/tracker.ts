@@ -1,0 +1,307 @@
+import { Chart } from "chart.js";
+import {
+  BarElement,
+  BarController,
+  LineElement,
+  LineController,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  LogarithmicScale,
+  TimeScale,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import "chartjs-adapter-date-fns";
+
+import { getDomElement, findNonZeroMin, formatLargeNumber } from "../utility";
+
+// To enable treeshaking for ChartJS, all elements in used must be registered
+Chart.register(
+  BarElement,
+  BarController,
+  LineElement,
+  LineController,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  LogarithmicScale,
+  TimeScale,
+  Title,
+  Tooltip,
+  Legend,
+);
+
+/**
+ * Create the visual representation of the run data.
+ *
+ * This function is closely tied to the app's view and template.
+ */
+export function createRunTrackerChart(): void {
+  const table = <HTMLTableElement>getDomElement(null, "#tracker-data-table");
+  const canvas = <HTMLCanvasElement>getDomElement(null, "#tracker-canvas");
+
+  const colorDataset01 = getComputedStyle(canvas)
+    .getPropertyValue("--dataset01-main")
+    .trim();
+  const colorDataset02 = getComputedStyle(canvas)
+    .getPropertyValue("--dataset02-main")
+    .trim();
+  const colorDataset03 = getComputedStyle(canvas)
+    .getPropertyValue("--dataset01-secondary")
+    .trim();
+  const colorCanvasGrid = getComputedStyle(canvas)
+    .getPropertyValue("--canvas-grid-color")
+    .trim();
+
+  // grab raw data from the table
+  let tableRow;
+  const labels = [];
+  const coinsRun = [];
+  const coinsHour = [];
+  const coinsRun5 = [];
+  const coinsHour5 = [];
+
+  for (let i = 1; i < table.rows.length; i++) {
+    tableRow = table.rows[i];
+
+    // the label is determined by the datapoints ``date``
+    // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
+    const thisLabel = getDomElement(tableRow, ".tracker-date-raw").innerHTML;
+    const timestamp = parseInt(thisLabel, 10) * 1000;
+
+    // we want coins/run
+    const thisCoins = parseInt(
+      getDomElement(
+        // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
+        tableRow,
+        ".tracker-coins-run-raw",
+      ).innerHTML,
+      10,
+    );
+
+    // we want coins/h
+    const thisCoinsH = parseInt(
+      getDomElement(
+        // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
+        tableRow,
+        ".tracker-coins-hour-raw",
+      ).innerHTML,
+      10,
+    );
+
+    // we want coins/run (Avg5)
+    const thisCoins5 = parseInt(
+      getDomElement(
+        // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
+        tableRow,
+        ".tracker-coins-run-five-raw",
+      ).innerHTML,
+      10,
+    );
+
+    // we want coins/h (Avg5)
+    const thisCoinsH5 = parseInt(
+      getDomElement(
+        // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
+        tableRow,
+        ".tracker-coins-hour-five-raw",
+      ).innerHTML,
+      10,
+    );
+
+    labels.push(timestamp);
+    coinsRun.push(thisCoins);
+    coinsHour.push(thisCoinsH);
+    coinsRun5.push(thisCoins5);
+    coinsHour5.push(thisCoinsH5);
+  }
+
+  // const minCoinsRun = Math.min(...coinsRun) * 0.9;
+  // const maxCoinsRun = Math.max(...coinsRun) * 1.1;
+  const minCoinsHour = findNonZeroMin(coinsHour);
+  const maxCoinsHour = Math.max(...coinsHour);
+
+  new Chart(canvas, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Coins/run",
+          data: coinsRun,
+          backgroundColor: colorDataset03,
+          yAxisID: "y",
+          order: 3,
+        },
+        /* {
+          label: "Coins/h",
+          data: coinsHour,
+          yAxisID: "y1",
+        }, */
+        {
+          label: "Coins/run (Avg 5)",
+          data: coinsRun5,
+          borderColor: colorDataset01,
+          yAxisID: "y",
+          type: "line",
+          order: 2,
+        },
+        {
+          label: "Coins/h (Avg 5)",
+          data: coinsHour5,
+          borderColor: colorDataset02,
+          yAxisID: "y1",
+          type: "line",
+          order: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          display: false,
+        },
+        y: {
+          type: "linear",
+          display: true,
+          position: "left",
+          // min: minCoinsRun,
+          // max: maxCoinsRun,
+          grid: {
+            color: colorCanvasGrid,
+            lineWidth: 1,
+          },
+          ticks: {
+            callback: function (v) {
+              // @ts-expect-error TS2345: parseFloat() works with numbers!
+              return formatLargeNumber(parseFloat(v), 0);
+            },
+          },
+        },
+        y1: {
+          type: "linear",
+          display: true,
+          position: "right",
+          min: minCoinsHour,
+          max: maxCoinsHour,
+          ticks: {
+            callback: function (v) {
+              // @ts-expect-error TS2345: parseFloat() works with numbers!
+              return formatLargeNumber(parseFloat(v), 0);
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
+/**
+ * Create the visual representation of the meta datapoints.
+ *
+ * This function is closely tied to the app's view and template.
+ */
+export function createMetaDataChart(): void {
+  const table = <HTMLTableElement>getDomElement(null, "#meta-data-table");
+  const canvas = <HTMLCanvasElement>getDomElement(null, "#meta-data-canvas");
+
+  const colorDataset01 = getComputedStyle(canvas)
+    .getPropertyValue("--dataset01-main")
+    .trim();
+  const colorDataset02 = getComputedStyle(canvas)
+    .getPropertyValue("--dataset02-main")
+    .trim();
+  const colorCanvasGrid = getComputedStyle(canvas)
+    .getPropertyValue("--canvas-grid-color")
+    .trim();
+
+  // grab raw data from the table
+  let tableRow;
+  const labels = [];
+  const ltcData = [];
+  const ltsData = [];
+  for (let i = 1; i < table.rows.length; i++) {
+    tableRow = table.rows[i];
+
+    // the label is determined by the datapoints ``date``
+    // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
+    const thisLabel = getDomElement(tableRow, ".meta-date-raw").innerHTML;
+    const timestamp = parseInt(thisLabel, 10) * 1000;
+
+    // we want LTC/LTS as datapoints
+    // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
+    const thisLtc = getDomElement(tableRow, ".meta-ltc-raw").innerHTML;
+    // @ts-expect-error TS2345: Will work or caught by ``getDomElement()``
+    const thisLts = getDomElement(tableRow, ".meta-lts-raw").innerHTML;
+
+    labels.push(timestamp);
+    ltcData.push(thisLtc);
+    ltsData.push(thisLts);
+  }
+
+  // TODO: This still needs lots of work. Actually I would love to provide the
+  //       overall and common configuration of all charts in a central place
+  //       and only have the very specific bits here.
+  new Chart(canvas, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "LTC",
+          data: ltcData,
+          borderColor: colorDataset01,
+          yAxisID: "y",
+        },
+        {
+          label: "LTS",
+          data: ltsData,
+          borderColor: colorDataset02,
+          yAxisID: "y1",
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: "time",
+          time: {
+            unit: "day",
+          },
+        },
+        y: {
+          type: "logarithmic",
+          display: true,
+          position: "left",
+          ticks: {
+            callback: function (v) {
+              // @ts-expect-error TS2345: parseFloat() works with numbers!
+              return formatLargeNumber(parseFloat(v), 0);
+            },
+          },
+        },
+        y1: {
+          type: "linear",
+          display: true,
+          position: "right",
+          grid: {
+            color: colorCanvasGrid,
+            lineWidth: 1,
+          },
+          ticks: {
+            callback: function (v) {
+              // @ts-expect-error TS2345: parseFloat() works with numbers!
+              return formatLargeNumber(parseFloat(v), 0);
+            },
+          },
+        },
+      },
+    },
+  });
+}
