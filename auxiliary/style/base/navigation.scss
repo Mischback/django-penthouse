@@ -4,6 +4,8 @@
 
 /* stylelint-disable selector-max-id */
 #penthouse-nav {
+  position: sticky;
+  top: 0;
   background-color: colors.$nav-container-bg;
 
   ul li {
