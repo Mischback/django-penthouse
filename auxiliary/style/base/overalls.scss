@@ -79,7 +79,8 @@ a:visited {
   $bg-darker: color.scale(colors.$action-button-bg, $lightness: -5%);
   $bg-darkest: color.scale(colors.$action-button-bg, $lightness: -50%);
 
-  margin: 0.25em;
+  display: inline-block;
+  margin: 1em;
   padding: 0.25em 0.5em;
   border: 0 solid colors.$shadow-color-base;
   border-radius: 0.25em;
