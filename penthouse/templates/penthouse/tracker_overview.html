@@ -165,51 +165,55 @@
   <section class="collapsible-content">
     <a href="{% url "penthouse:tracker-run-add" %}" class="action-button">add Run</a>
     <table summary="All tracked runs" id="tracker-data-table" class="list-view">
-      <tr>
-        <th>Date</th>
-        <th>Tier</th>
-        <th>Waves</th>
-        <th>Duration</th>
-        <th>Coins</th>
-        <th>Coins/h</th>
-        <th>Cells</th>
-        <th>Cells/h</th>
-        <th>Notes</th>
-        <th>Coins (Avg5)</th>
-        <th>Coins/h (Avg5)</th>
-        <th>Cells (Avg5)</th>
-        <th>Cells/h (Avg5)</th>
-        <th />
-      </tr>
-      {% for run in runs %}
-      <tr>
-        <td>{{ run.date|date:"Y-m-d" }}</td>
-        <td class="hidden tracker-date-raw">{{ run.date|date:"U" }}</td>
-        <td>{{ run.tier }}</td>
-        <td>{{ run.waves }}</td>
-        <td>{{ run.duration|hr_duration }}</td>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Tier</th>
+          <th>Waves</th>
+          <th>Duration</th>
+          <th>Coins</th>
+          <th>Coins/h</th>
+          <th>Cells</th>
+          <th>Cells/h</th>
+          <th>Notes</th>
+          <th>Coins (Avg5)</th>
+          <th>Coins/h (Avg5)</th>
+          <th>Cells (Avg5)</th>
+          <th>Cells/h (Avg5)</th>
+          <th />
+        </tr>
+      </thead>
+      <tbody>
+        {% for run in runs %}
+        <tr>
+          <td>{{ run.date|date:"Y-m-d" }}</td>
+          <td class="hidden tracker-date-raw">{{ run.date|date:"U" }}</td>
+          <td>{{ run.tier }}</td>
+          <td>{{ run.waves }}</td>
+          <td>{{ run.duration|hr_duration }}</td>
 
-        {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.coins max_value=pb_coins.coins top_value=threshold_top_coins current_pb=run.pb_coins %}
-        <td class="hidden tracker-coins-run-raw">{{ run.coins }}</td>
-        {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.coins_hour max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=run.pb_coins_hour %}
-        <td class="hidden tracker-coins-hour-raw">{{ run.coins_hour }}</td>
-        {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.cells max_value=pb_cells.cells top_value=threshold_top_cells current_pb=run.pb_cells %}
-        {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.cells_hour max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=run.pb_cells_hour %}
+          {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.coins max_value=pb_coins.coins top_value=threshold_top_coins current_pb=run.pb_coins %}
+          <td class="hidden tracker-coins-run-raw">{{ run.coins }}</td>
+          {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.coins_hour max_value=pb_coins_hour.coins_hour top_value=threshold_top_coins_hour current_pb=run.pb_coins_hour %}
+          <td class="hidden tracker-coins-hour-raw">{{ run.coins_hour }}</td>
+          {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.cells max_value=pb_cells.cells top_value=threshold_top_cells current_pb=run.pb_cells %}
+          {% include "penthouse/includes/td_with_evaluation.html" with current_value=run.cells_hour max_value=pb_cells_hour.cells_hour top_value=threshold_top_cells_hour current_pb=run.pb_cells_hour %}
 
-        <td>{{ run.notes }}</td>
+          <td>{{ run.notes }}</td>
 
-        <td>{{ run.coins_avg5|hr_big_number }}</td>
-        <td class="hidden tracker-coins-run-five-raw">{{ run.coins_avg5 }}</td>
-        <td>{{ run.coins_hour_avg5|hr_big_number }}</td>
-        <td class="hidden tracker-coins-hour-five-raw">{{ run.coins_hour_avg5 }}</td>
-        <td>{{ run.cells_avg5|hr_big_number }}</td>
-        <td>{{ run.cells_hour_avg5|hr_big_number }}</td>
-        <td>
-          <a href="{% url "penthouse:tracker-run-update" run.id %}">update</a>
-          <a href="{% url "penthouse:tracker-run-delete" run.id %}">delete</a>
-        </td>
-      </tr>
-      {% endfor %}
+          <td>{{ run.coins_avg5|hr_big_number }}</td>
+          <td class="hidden tracker-coins-run-five-raw">{{ run.coins_avg5 }}</td>
+          <td>{{ run.coins_hour_avg5|hr_big_number }}</td>
+          <td class="hidden tracker-coins-hour-five-raw">{{ run.coins_hour_avg5 }}</td>
+          <td>{{ run.cells_avg5|hr_big_number }}</td>
+          <td>{{ run.cells_hour_avg5|hr_big_number }}</td>
+          <td>
+            <a href="{% url "penthouse:tracker-run-update" run.id %}">update</a>
+            <a href="{% url "penthouse:tracker-run-delete" run.id %}">delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
   </section>
 </section>
