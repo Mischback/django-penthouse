@@ -36,38 +36,42 @@
   </header>
   <section class="collapsible-content">
     <table summary="All relics" class="list-view">
-      <tr>
-        <th>Name</th>
-        <th colspan="2">Bonus</th>
-        <th>Rarity</th>
-        <th colspan="2">obtained by</th>
-        <th>&nbsp;</th>
-      </tr>
-      {% for relic in object_list %}
-        {# djlint:off H025 #}
-        {% if relic.is_claimed %}
-      <tr class="relic-claimed">
-        {% else %}
-      <tr>
-        {% endif %}
-        {# djlint:on #}
-        <td>{{ relic.name }}</td>
-        <td>{{ relic.get_bonus_type_display }}</td>
-        <td>{{ relic.bonus_value }}{{ relic.bonus_unit }}</td>
-        <td>{{ relic.get_rarity_display }}</td>
-        <td>{{ relic.get_source_display }}</td>
-        <td>{{ relic.condition }}</td>
-        {% if relic.is_claimed %}
-        <td>
-          <a href="{% url "penthouse:relics-unclaim" relic.id %}">unclaim</a>
-        </td>
-        {% else %}
-        <td>
-          <a href="{% url "penthouse:relics-claim" relic.id %}" class="artificial-button">claim</a>
-        </td>
-        {% endif %}
-      </tr>
-      {% endfor %}
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th colspan="2" class="sortable-column" id="relic-data-bonus" data-raw="1">Bonus</th>
+          <th class="sortable-column" id="relic-data-rarity" data-raw="3">Rarity</th>
+          <th colspan="2" class="sortable-column" id="relic-data-obtained" data-raw="4">obtained by</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for relic in object_list %}
+          {# djlint:off H025 #}
+          {% if relic.is_claimed %}
+        <tr class="relic-claimed">
+          {% else %}
+        <tr>
+          {% endif %}
+          {# djlint:on #}
+          <td>{{ relic.name }}</td>
+          <td>{{ relic.get_bonus_type_display }}</td>
+          <td>{{ relic.bonus_value }}{{ relic.bonus_unit }}</td>
+          <td>{{ relic.get_rarity_display }}</td>
+          <td>{{ relic.get_source_display }}</td>
+          <td>{{ relic.condition }}</td>
+          {% if relic.is_claimed %}
+          <td>
+            <a href="{% url "penthouse:relics-unclaim" relic.id %}">unclaim</a>
+          </td>
+          {% else %}
+          <td>
+            <a href="{% url "penthouse:relics-claim" relic.id %}" class="artificial-button">claim</a>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
   </section>
 </section>

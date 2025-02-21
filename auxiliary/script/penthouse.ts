@@ -52,5 +52,23 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Relic Tracker */
   if (document.getElementById("penthouse-relics")) {
     initializeCollapsibles();
+
+    document
+      .getElementById("relic-data-bonus")
+      .addEventListener("click", (e) => {
+        thClickHandler(e.currentTarget as HTMLTableCellElement);
+      });
+
+    document
+      .getElementById("relic-data-rarity")
+      .addEventListener("click", (e) => {
+        thClickHandler(e.currentTarget as HTMLTableCellElement);
+      });
+
+    document
+      .getElementById("relic-data-obtained")
+      .addEventListener("click", (e) => {
+        thClickHandler(e.currentTarget as HTMLTableCellElement);
+      });
   }
 });
