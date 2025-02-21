@@ -3,7 +3,7 @@ import {
   createRunTrackerChart,
 } from "./penthouse/tracker";
 import { initializeCollapsibles } from "./utility/collapsible";
-import { sortTableByColumn } from "./utility/sortable";
+import { sortTableByColumn, thClickHandler } from "./utility/sortable";
 
 /* Add a global event listener to apply the app-specific scripts. */
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,12 +12,28 @@ document.addEventListener("DOMContentLoaded", () => {
     createRunTrackerChart();
     initializeCollapsibles();
 
+    // Apply the click handlers to sort the table by columns
+    const defaultSortingColumn = document.getElementById(
+      "tracker-data-date",
+    ) as HTMLTableCellElement;
+    defaultSortingColumn.addEventListener("click", (e) => {
+      thClickHandler(e.currentTarget as HTMLTableCellElement);
+    });
+
+    document
+      .getElementById("tracker-data-coins")
+      .addEventListener("click", (e) => {
+        thClickHandler(e.currentTarget as HTMLTableCellElement);
+      });
+
+    document
+      .getElementById("tracker-data-coins-h")
+      .addEventListener("click", (e) => {
+        thClickHandler(e.currentTarget as HTMLTableCellElement);
+      });
+
     // apply a default sorting to the overall table
-    sortTableByColumn(
-      document.getElementById("tracker-data-table") as HTMLTableElement,
-      1,
-      true,
-    );
+    thClickHandler(defaultSortingColumn);
   }
 
   /* Meta Tracker */

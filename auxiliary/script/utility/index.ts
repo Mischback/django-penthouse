@@ -50,3 +50,19 @@ export function formatLargeNumber(num: number, precision: number = 2): string {
   const scaledNumber = (num / Math.pow(1000, magnitude)).toFixed(precision);
   return sign + scaledNumber + suffixes[magnitude];
 }
+
+/**
+ * Find a specific parent element.
+ */
+export function findNextParent(
+  start: HTMLElement,
+  parentTagName: string,
+): HTMLElement {
+  if (
+    (start.parentNode as HTMLElement).tagName.toLowerCase() === parentTagName
+  ) {
+    return start.parentNode as HTMLElement;
+  } else {
+    return findNextParent(start.parentNode as HTMLElement, parentTagName);
+  }
+}
