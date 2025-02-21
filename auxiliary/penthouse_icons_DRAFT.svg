@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="64"
+   height="64"
+   viewBox="0 0 64 64"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="penthouse_icons_DRAFT.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="true"
+     units="px"
+     width="64px"
+     viewbox-height="256"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:zoom="5.5731762"
+     inkscape:cx="28.350082"
+     inkscape:cy="59.929919"
+     inkscape:window-width="1842"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g3684">
+    <sodipodi:guide
+       position="0,256"
+       orientation="0,64"
+       id="guide824" />
+    <sodipodi:guide
+       position="64,256"
+       orientation="256,0"
+       id="guide826" />
+    <sodipodi:guide
+       position="64,0"
+       orientation="0,-64"
+       id="guide828" />
+    <sodipodi:guide
+       position="0,0"
+       orientation="-256,0"
+       id="guide830" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid832"
+       spacingy="4"
+       spacingx="4" />
+    <sodipodi:guide
+       position="64,192"
+       orientation="0,-1"
+       id="guide834" />
+    <sodipodi:guide
+       position="0,128"
+       orientation="0,-1"
+       id="guide836" />
+    <sodipodi:guide
+       position="0,64"
+       orientation="0,-1"
+       id="guide838" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="table sort descending"
+     inkscape:groupmode="layer"
+     id="layer1"
+     sodipodi:insensitive="true"
+     style="display:none">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 16,24 v 32 l 8,-8 M 16,56 8,48 M 8,8 H 56 M 32,24 h 24 m 0,16 H 40 m 16,16 h -8"
+       id="path875"
+       sodipodi:nodetypes="ccccccccccccc" />
+  </g>
+  <g
+     inkscape:label="table sort available"
+     inkscape:groupmode="layer"
+     id="g3684"
+     style="display:inline">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 44,40 V 8 l -8,8 m 8,-8 8,8 m -32,4 v 36 l 8,-8 m -8,8 -8,-8"
+       id="path3682"
+       sodipodi:nodetypes="cccccccccc" />
+  </g>
+  <g
+     inkscape:label="table sort ascending"
+     inkscape:groupmode="layer"
+     id="g3703"
+     sodipodi:insensitive="true"
+     style="display:none">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 48,40 V 8 l -8,8 m 8,-8 8,8 m 0,40 H 8 M 32,40 H 8 M 8,24 H 24 M 8,8 h 8"
+       id="path3701"
+       sodipodi:nodetypes="ccccccccccccc" />
+  </g>
+</svg>

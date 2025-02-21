@@ -1,0 +1,112 @@
+@use "sass:string";
+
+/* Custom string replacement
+ *
+ * This function is part of a gist (https://gist.github.com/JacobDB/0ffffaf8e772c12acf7102edb8a302be)
+ * and slightly updated.
+ */
+@function str-replace($string, $search, $replace: "") {
+  $index: string.index($string, $search);
+
+  @if $index {
+    /* stylelint-disable scss/operator-no-newline-after */
+    @return string.slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        string.slice($string, $index + string.length($search)),
+        $search,
+        $replace
+      );
+    /* stylelint-enable scss/operator-no-newline-after */
+  }
+
+  @return $string;
+}
+
+/* Provide URL encoding of a SVG into a data URI.
+ *
+ * This function is part of a gist (https://gist.github.com/JacobDB/0ffffaf8e772c12acf7102edb8a302be)
+ * and slightly updated.
+ */
+@function url-encode($string) {
+  $map: (
+    "%": "%25",
+    "<": "%3C",
+    ">": "%3E",
+    " ": "%20",
+    "!": "%21",
+    "*": "%2A",
+    "'": "%27",
+    '"': "%22",
+    "(": "%28",
+    ")": "%29",
+    ";": "%3B",
+    ":": "%3A",
+    "@": "%40",
+    "&": "%26",
+    "=": "%3D",
+    "+": "%2B",
+    "$": "%24",
+    ",": "%2C",
+    "/": "%2F",
+    "?": "%3F",
+    "#": "%23",
+    "[": "%5B",
+    "]": "%5D",
+  );
+  $new: $string;
+
+  @each $search, $replace in $map {
+    $new: str-replace($new, $search, $replace);
+  }
+
+  @return $new;
+}
+
+/* The actual generation of the data URI
+ *
+ * This function is part of a gist (https://gist.github.com/JacobDB/0ffffaf8e772c12acf7102edb8a302be)
+ * and slightly updated.
+ */
+@function inline-svg($string) {
+  @return url("data:image/svg+xml,#{url-encode($string)}");
+}
+
+/* These are the actual icon definitions.
+ *
+ * The <svg> markup is taken from the SVG source file.
+ */
+@function icon-ascending($stroke-color) {
+  /* stylelint-disable scss/operator-no-newline-after */
+  // prettier-ignore
+  @return inline-svg(
+    '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><g>' +
+    '<path style="fill:none;stroke:' + $stroke-color +
+    ';stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="M 48,40 V 8 l -8,8 m 8,-8 8,8 m 0,40 H 8 M 32,40 H 8 M 8,24 H 24 M 8,8 h 8" />' +
+    "</g></svg>"
+  );
+  /* stylelint-enable scss/operator-no-newline-after */
+}
+
+@function icon-descending($stroke-color) {
+  /* stylelint-disable scss/operator-no-newline-after */
+  // prettier-ignore
+  @return inline-svg(
+    '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><g>' +
+    '<path style="fill:none;stroke:' + $stroke-color +
+    ';stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="m 16,24 v 32 l 8,-8 M 16,56 8,48 M 8,8 H 56 M 32,24 h 24 m 0,16 H 40 m 16,16 h -8" />' +
+    "</g></svg>"
+  );
+  /* stylelint-enable scss/operator-no-newline-after */
+}
+
+@function icon-sort-available($stroke-color) {
+  /* stylelint-disable scss/operator-no-newline-after */
+  // prettier-ignore
+  @return inline-svg(
+    '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><g>' +
+    '<path style="fill:none;stroke:' + $stroke-color +
+    ';stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="M 44,40 V 8 l -8,8 m 8,-8 8,8 m -32,4 v 36 l 8,-8 m -8,8 -8,-8" />' +
+    "</g></svg>"
+  );
+  /* stylelint-enable scss/operator-no-newline-after */
+}
