@@ -169,6 +169,8 @@ class RelicBonusType(TextChoices):
     FDEFUP = TowerWorkshopItems.FDEFUP.value
     SCRITC = TowerWorkshopItems.SCRITC.value
     BOTRNG = "BOTRNG", _("Bot Range")
+    HREGEN = TowerWorkshopItems.HREGEN.value
+    THORNS = TowerWorkshopItems.THORNS.value
 
 
 class RelicRarity(TextChoices):
