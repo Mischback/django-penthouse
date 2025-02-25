@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Mischback
+# SPDX-License-Identifier: MIT
+# SPDX-FileType: SOURCE
+
 """Implementation of the app-specific templatetags."""
 
 # Django imports
