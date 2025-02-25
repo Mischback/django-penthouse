@@ -91,3 +91,7 @@ repos:
         args: [--fix, lf]
       # remove utf-8 byte order marker
       - id: fix-byte-order-marker
+  - repo: https://github.com/fsfe/reuse-tool
+    rev: v5.0.2
+    hooks:
+      - id: reuse

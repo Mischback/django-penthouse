@@ -1,9 +1,14 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
 /* General styling for tables.
  *
  * This provides a default class for ``table`` elements, too: The ``list-view``.
  */
 
 @use "../abstracts/colors";
+@use "../abstracts/icons";
 
 table {
   border-collapse: collapse;
@@ -36,4 +41,25 @@ table {
   tr:nth-child(even) td {
     background-color: colors.$table-even-bg;
   }
+}
+
+th {
+  /* stylelint-disable selector-no-qualifying-type */
+  &.sortable-column {
+    background-image: none;
+    background-image: icons.icon-sort-available(colors.$overall-fg);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 0.9em;
+    cursor: pointer;
+  }
+
+  &.sortable-ascending {
+    background-image: icons.icon-ascending(colors.$overall-fg) !important;
+  }
+
+  &.sortable-descending {
+    background-image: icons.icon-descending(colors.$overall-fg) !important;
+  }
+  /* stylelint-enable selector-no-qualifying-type */
 }

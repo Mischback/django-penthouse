@@ -1,9 +1,15 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
 @use "sass:map";
 @use "../abstracts/colors";
 @use "../abstracts/shadows";
 
 /* stylelint-disable selector-max-id */
 #penthouse-nav {
+  position: sticky;
+  top: 0;
   background-color: colors.$nav-container-bg;
 
   ul li {

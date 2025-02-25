@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
 interface CollapsibleContainer extends HTMLElement {
   classList: DOMTokenList;
   id: string;

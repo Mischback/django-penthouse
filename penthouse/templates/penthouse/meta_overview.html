@@ -29,28 +29,32 @@
   <section class="collapsible-content">
     <a href="{% url "penthouse:meta-data-add" %}" class="action-button">add Datapoint</a>
     <table summary="All datapoints of meta progression" id="meta-data-table" class="list-view">
-      <tr>
-        <th>Date</th>
-        <th>LTC</th>
-        <th>LTS</th>
-        <th>Notes</th>
-        <th />
-      </tr>
-      {% for point in object_list %}
-      <tr>
-        <td>{{ point.date|date:"Y-m-d" }}</td>
-        <td class="hidden meta-date-raw">{{ point.date|date:"U" }}</td>
-        <td>{{ point.ltc|hr_big_number }}</td>
-        <td class="hidden meta-ltc-raw">{{ point.ltc }}</td>
-        <td>{{ point.lts|hr_big_number }}</td>
-        <td class="hidden meta-lts-raw">{{ point.lts }}</td>
-        <td>{{ point.notes }}</td>
-        <td>
-          <a href="{% url "penthouse:meta-data-update" point.id %}">update</a>
-          <a href="{% url "penthouse:meta-data-delete" point.id %}">delete</a>
-        </td>
-      </tr>
-      {% endfor %}
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>LTC</th>
+          <th>LTS</th>
+          <th>Notes</th>
+          <th />
+        </tr>
+      </thead>
+      <tbody>
+        {% for point in object_list %}
+        <tr>
+          <td>{{ point.date|date:"Y-m-d" }}</td>
+          <td class="hidden meta-date-raw">{{ point.date|date:"U" }}</td>
+          <td>{{ point.ltc|hr_big_number }}</td>
+          <td class="hidden meta-ltc-raw">{{ point.ltc }}</td>
+          <td>{{ point.lts|hr_big_number }}</td>
+          <td class="hidden meta-lts-raw">{{ point.lts }}</td>
+          <td>{{ point.notes }}</td>
+          <td>
+            <a href="{% url "penthouse:meta-data-update" point.id %}">update</a>
+            <a href="{% url "penthouse:meta-data-delete" point.id %}">delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
   </section>
 </section>

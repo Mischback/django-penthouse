@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
 /**
  * Get a DOM element by a given query.
  *
@@ -49,4 +53,20 @@ export function formatLargeNumber(num: number, precision: number = 2): string {
   // Scale down the number by the appropriate power of 1000 and add the suffix
   const scaledNumber = (num / Math.pow(1000, magnitude)).toFixed(precision);
   return sign + scaledNumber + suffixes[magnitude];
+}
+
+/**
+ * Find a specific parent element.
+ */
+export function findNextParent(
+  start: HTMLElement,
+  parentTagName: string,
+): HTMLElement {
+  if (
+    (start.parentNode as HTMLElement).tagName.toLowerCase() === parentTagName
+  ) {
+    return start.parentNode as HTMLElement;
+  } else {
+    return findNextParent(start.parentNode as HTMLElement, parentTagName);
+  }
 }
