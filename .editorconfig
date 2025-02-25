@@ -3,7 +3,8 @@
 # This is supported by many of the respectable IDEs, see
 # http://editorconfig.org for more details.
 #
-# This file contains the settings from the Django project.
+# This file contains the settings from the Django project and is augmented
+# with some additional settings based on personal preferences.
 
 # ##### django/.editorconfig
 root = true

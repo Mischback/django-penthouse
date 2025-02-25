@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2024 Mischback
 # SPDX-License-Identifier: MIT
-# SPDX-FileType: SOURCE
+# SPDX-FileType: OTHER
 
 
 # ### INTERNAL SETTINGS
@@ -190,6 +190,12 @@ util/stylelint :
 util/eslint :
 	$(MAKE) util/pre-commit pre-commit_id="eslint" pre-commit_files="--all-files"
 .PHONY : util/eslint
+
+## Check for SPDX tags
+## @category Code Quality
+util/spdx :
+	$(MAKE) util/pre-commit pre-commit_id="reuse" pre-commit_files="--all-files"
+.PHONY : util/spdx
 
 pre-commit_id ?= ""
 pre-commit_files ?= ""
