@@ -13,6 +13,19 @@ from django.db.models import IntegerChoices, TextChoices
 from django.utils.translation import gettext_lazy as _
 
 
+class TowerResources(Enum):
+    """The game's different resources."""
+
+    COINS = ("COINS", _("Coins"))
+    CASH = ("CASH", _("Cash"))
+    STONES = ("STONE", _("Stones"))
+    GEMS = ("GEMS", _("Gems"))
+    SHARDS = ("SHARD", _("Shards"))
+    DICE = ("DICE", _("Reroll Shards"))
+    KEYS = ("KEYS", _("Keys"))
+    MEDALS = ("MEDAL", _("Medals"))
+
+
 class TowerTiers(Enum):
     """The game's different difficulty levels.
 
@@ -188,6 +201,19 @@ class RelicSource(TextChoices):
     TOURNAMENT = ("T", _("Tournament"))
     EVENT = ("E", _("Event"))
     OTHER = ("O", _("Other"))
+
+
+class MilestoneResource(TextChoices):
+    """``MilestoneSection`` can have a associated resource."""
+
+    COINS = TowerResources.COINS.value
+    CASH = TowerResources.CASH.value
+    STONES = TowerResources.STONES.value
+    GEMS = TowerResources.GEMS.value
+    SHARDS = TowerResources.SHARDS.value
+    DICE = TowerResources.DICE.value
+    KEYS = TowerResources.KEYS.value
+    MEDALS = TowerResources.MEDALS.value
 
 
 class TowerUnitSuffix(IntegerChoices):
