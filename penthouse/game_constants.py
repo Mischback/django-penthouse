@@ -184,6 +184,8 @@ class RelicBonusType(TextChoices):
     BOTRNG = "BOTRNG", _("Bot Range")
     HREGEN = TowerWorkshopItems.HREGEN.value
     THORNS = TowerWorkshopItems.THORNS.value
+    CASHBO = TowerWorkshopItems.CASHBO.value
+    ORBSPD = TowerWorkshopItems.ORBSPD.value
 
 
 class RelicRarity(TextChoices):
