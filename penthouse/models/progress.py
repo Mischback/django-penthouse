@@ -5,6 +5,7 @@
 """Models needed for progress planning."""
 
 # Django imports
+from django import forms
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -49,6 +50,8 @@ class Milestone(models.Model):
     date_completed = models.DateField(
         help_text=_("Date this milestone was completed"),
         verbose_name=_("Date of completion"),
+        null=True,
+        blank=True,
     )
 
     objects = MilestoneManager()
@@ -66,6 +69,14 @@ class Milestone(models.Model):
 
     def __str__(self):  # noqa: D105
         return "[Milestone] {}".format(self.title)
+
+
+class MilestoneForm(forms.ModelForm):
+    """Used to validate input for creating and updating ``Milestone`` instances."""
+
+    class Meta:  # noqa: D106
+        model = Milestone
+        fields = ["title", "date_added"]
 
 
 class MilestoneSection(models.Model):

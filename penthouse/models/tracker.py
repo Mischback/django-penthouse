@@ -175,7 +175,7 @@ class MetaData(models.Model):
 
 
 class MetaDataForm(forms.ModelForm):
-    """Used to valudate input for creating and updating ``MetaData`` instances."""
+    """Used to validate input for creating and updating ``MetaData`` instances."""
 
     ltc = GameNumberField()
 

@@ -36,6 +36,7 @@ path = [
   "penthouse/migrations/0019_alter_relic_bonus_type.py",
   "penthouse/migrations/0021_milestone_milestonesection_milestonestep.py",
   "penthouse/migrations/0022_alter_relic_bonus_type.py",
+  "penthouse/migrations/0025_alter_milestone_date_completed.py",
 ]
 SPDX-FileCopyrightText = "NONE"
 SPDX-License-Identifier = "CC0-1.0"

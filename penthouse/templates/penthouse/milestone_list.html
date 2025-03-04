@@ -6,16 +6,19 @@
 <main class="penthouse-progress" id="penthouse-progress">
   <header>
     <h2>Progress Planning</h2>
+    <a href="{% url "penthouse:progress-milestone-add" %}" class="action-button">add Milestone</a>
   </header>
 
-<section id="progress-planning-1" class="collapsible-container">
+{% for milestone in object_list %}
+<section id="progress-planning-{{ milestone.id }}" class="collapsible-container">
   <header class="collapsible-header">
-    <h3>Summary</h3>
+    <h3>{{ milestone.title }}</h3>
   </header>
   <section class="collapsible-content">
-    foo
+    <p>This milestone was created on {{ milestone.date_added }}.</p>
   </section>
 </section>
+{% endfor %}
 
 </main>
 {% endblock main %}
