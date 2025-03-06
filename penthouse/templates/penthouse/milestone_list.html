@@ -15,7 +15,34 @@
     <h3>{{ milestone.title }}</h3>
   </header>
   <section class="collapsible-content">
-    <p>This milestone was created on {{ milestone.date_added }}.</p>
+    <div class="ms-summary">
+      <div class="ms-abstract">
+        <span class="info-item">created: {{ milestone.date_added|date:"Y-m-d" }}</span>
+        <span class="info-item">[X]/{{ milestone.milestonesection_set.count }} sections</span>
+        <span class="info-item">[Y]/[Z] steps</span>
+      </div>
+      <div class="ms-progress">
+      </div>
+    </div>
+    <ul class="ms-section-list">
+      {% for section in milestone.milestonesection_set.all %}
+      <li>
+        <strong>{{ section.caption }}</strong>
+        - {{ section.get_resource_display }}
+        - <a href="#">update</a>
+        | <a href="#">delete</a>
+        <ul class="ms-step-list">
+          {% for step in section.milestonestep_set.all %}
+          <li>
+            <strong>foo</strong>
+          </li>
+          {% endfor %}
+          <li><a href="#" class="ms-add-step">add Milestone Step</a></li>
+        </ul>
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="{% url "penthouse:progress-section-add" milestone.id %}">add Milestone Section</a>
   </section>
 </section>
 {% endfor %}

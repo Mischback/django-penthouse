@@ -6,12 +6,19 @@
 
 # Django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ValidationError
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
 # app imports
 from penthouse.models.profile import Profile
-from penthouse.models.progress import Milestone, MilestoneForm
+from penthouse.models.progress import (
+    Milestone,
+    MilestoneForm,
+    MilestoneSection,
+    MilestoneSectionForm,
+)
 from penthouse.views.mixins import ProfileIDMixin, RestrictToUserMixin
 
 
@@ -38,5 +45,37 @@ class MilestoneCreateView(LoginRequiredMixin, ProfileIDMixin, generic.CreateView
 
     def form_valid(self, form):  # noqa: D102
         form.instance.profile = Profile.objects.get(owner=self.request.user)
+
+        return super().form_valid(form)
+
+
+class MilestoneSectionCreateView(
+    LoginRequiredMixin, ProfileIDMixin, generic.CreateView
+):
+    """Generic class-based view implementation to add ``MilestoneSection`` instances."""
+
+    model = MilestoneSection
+
+    form_class = MilestoneSectionForm
+
+    template_name_suffix = "_create"
+
+    success_url = reverse_lazy("penthouse:progress-milestones")
+
+    def form_valid(self, form):  # noqa: D102
+        # form.instance.profile = Profile.objects.get(owner=self.request.user)
+        try:
+            # This checks two things in one step:
+            # 1) The requesting user is actually manipulating one of his Milestones
+            # 2) The Milestone actually exists
+            parent_milestone = Milestone.objects.filter(
+                profile__owner=self.request.user
+            ).get(id=self.kwargs["milestone_id"])
+        except Milestone.DoesNotExist:
+            raise ValidationError(
+                _("Could not find parent milestone object"), code="invalid"
+            )
+
+        form.instance.milestone = parent_milestone
 
         return super().form_valid(form)

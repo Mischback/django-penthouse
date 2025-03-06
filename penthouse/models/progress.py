@@ -109,6 +109,14 @@ class MilestoneSection(models.Model):
         return "[Section] {}".format(self.caption)
 
 
+class MilestoneSectionForm(forms.ModelForm):
+    """Used to validate input for creating and updating ``MilestoneSection`` instances."""
+
+    class Meta:  # noqa: D106
+        model = MilestoneSection
+        fields = ["caption", "resource"]
+
+
 class MilestoneStep(models.Model):
     """A single step of a ``MilestoneSection``."""
 

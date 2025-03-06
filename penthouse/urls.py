@@ -37,6 +37,11 @@ urlpatterns = [
         progress.MilestoneCreateView.as_view(),
         name="progress-milestone-add",
     ),
+    path(
+        "progress/section/add/<int:milestone_id>/",
+        progress.MilestoneSectionCreateView.as_view(),
+        name="progress-section-add",
+    ),
     path("relics/", relics.RelicListView.as_view(), name="relics-list"),
     path("relics/claim/<int:relic_id>/", relics.relic_claim, name="relics-claim"),
     path("relics/unclaim/<int:relic_id>/", relics.relic_unclaim, name="relics-unclaim"),
