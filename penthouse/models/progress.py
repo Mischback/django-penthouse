@@ -7,6 +7,7 @@
 # Django imports
 from django import forms
 from django.db import models
+from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
 
 # app imports
@@ -21,6 +22,17 @@ class ProgressModelException(PenthouseModelException):
 
 class MilestoneManager(models.Manager):
     """Custom manager for ``ProgressMilestone`` model."""
+
+    def get_queryset(self):
+        """Annotate the object with the count of related objects."""
+        return (
+            super()
+            .get_queryset()
+            .annotate(
+                total_sections=Count("milestone_sections"),
+                total_steps=Count("milestone_sections__milestone_steps"),
+            )
+        )
 
     def filter_by_user(self, user=None):
         """Filter the milestones by the specified user."""
@@ -83,7 +95,10 @@ class MilestoneSection(models.Model):
     """One dedicated section of a ``Milestone``."""
 
     milestone = models.ForeignKey(
-        Milestone, on_delete=models.CASCADE, verbose_name=_("Milestone Section")
+        Milestone,
+        on_delete=models.CASCADE,
+        related_name="milestone_sections",
+        verbose_name=_("Milestone Section"),
     )
     """Reference to the parent ``Milestone`` instance."""
 
@@ -121,9 +136,25 @@ class MilestoneStep(models.Model):
     """A single step of a ``MilestoneSection``."""
 
     section = models.ForeignKey(
-        MilestoneSection, on_delete=models.CASCADE, verbose_name=_("Milestone Step")
+        MilestoneSection,
+        on_delete=models.CASCADE,
+        related_name="milestone_steps",
+        verbose_name=_("Milestone Step"),
     )
     """Reference to the parent ``MilestoneSection`` instance. """
+
+    step_value = models.CharField(
+        help_text=_("Value of this step"),
+        verbose_name=_("Value"),
+        max_length=50,
+        default="0",
+    )
+
+    completed = models.BooleanField(
+        help_text=_("Determine if this step is already completed"),
+        verbose_name=_("step completion status"),
+        default=False,
+    )
 
     class Meta:  # noqa: D106
         app_label = "penthouse"
