@@ -163,3 +163,11 @@ class MilestoneStep(models.Model):
 
     def __str__(self):  # noqa: D105
         return "[Step] {}".format(self.caption)
+
+
+class MilestoneStepForm(forms.ModelForm):
+    """Used to validate input for creating and updating ``MilestoneSection`` instances."""
+
+    class Meta:  # noqa: D106
+        model = MilestoneStep
+        fields = ["step_value"]

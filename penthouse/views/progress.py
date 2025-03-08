@@ -18,6 +18,8 @@ from penthouse.models.progress import (
     MilestoneForm,
     MilestoneSection,
     MilestoneSectionForm,
+    MilestoneStep,
+    MilestoneStepForm,
 )
 from penthouse.views.mixins import ProfileIDMixin, RestrictToUserMixin
 
@@ -77,5 +79,31 @@ class MilestoneSectionCreateView(
             )
 
         form.instance.milestone = parent_milestone
+
+        return super().form_valid(form)
+
+
+class MilestoneStepCreateView(LoginRequiredMixin, ProfileIDMixin, generic.CreateView):
+    """Generic class-based view implementation to add ``MilestoneStep`` instances."""
+
+    model = MilestoneStep
+
+    form_class = MilestoneStepForm
+
+    template_name_suffix = "_create"
+
+    success_url = reverse_lazy("penthouse:progress-milestones")
+
+    def form_valid(self, form):  # noqa: D102
+        try:
+            parent_section = MilestoneSection.objects.filter(
+                milestone__profile__owner=self.request.user
+            ).get(id=self.kwargs["milestonesection_id"])
+        except MilestoneStep.DoesNotExist:
+            raise ValidationError(
+                _("Could not find parent milestone section"), code="invalid"
+            )
+
+        form.instance.section = parent_section
 
         return super().form_valid(form)

@@ -34,10 +34,12 @@
         <ul class="ms-step-list">
           {% for step in section.milestone_steps.all %}
           <li>
-            <strong>foo</strong>
+            <strong>{{ step.step_value }}</strong>
+            - <a href="#">update</a>
+            | <a href="#">delete</a>
           </li>
           {% endfor %}
-          <li><a href="#" class="ms-add-step">add Milestone Step</a></li>
+          <li><a href="{% url "penthouse:progress-step-add" section.id %}" class="ms-add-step">add Milestone Step</a></li>
         </ul>
       </li>
       {% endfor %}
