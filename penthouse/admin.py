@@ -9,12 +9,28 @@ from django.contrib import admin
 
 # app imports
 from penthouse.models.profile import Profile
+from penthouse.models.progress import Milestone, MilestoneSection, MilestoneStep
 from penthouse.models.relics import Relic
 from penthouse.models.tracker import MetaData, Run
 
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):  # noqa: D101
+    pass
+
+
+@admin.register(Milestone)
+class MilestoneAdmin(admin.ModelAdmin):  # noqa: D101
+    pass
+
+
+@admin.register(MilestoneSection)
+class MilestoneSectionAdmin(admin.ModelAdmin):  # noqa: D101
+    pass
+
+
+@admin.register(MilestoneStep)
+class MilestoneStepAdmin(admin.ModelAdmin):  # noqa: D101
     pass
 
 

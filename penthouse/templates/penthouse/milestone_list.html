@@ -19,8 +19,8 @@
       <div class="ms-abstract">
         <ul>
           <li class="info-item">created: {{ milestone.date_added|date:"Y-m-d" }}</li>
-          <li class="info-item">[X]/{{ milestone.total_sections }} sections</li>
-          <li class="info-item">[Y]/{{ milestone.total_steps }} steps</li>
+          <li class="info-item">{{ milestone.total_sections }} sections</li>
+          <li class="info-item">{{ milestone.completed_steps }}/{{ milestone.total_steps }} steps</li>
         </ul>
       </div>
       <div class="ms-progress">

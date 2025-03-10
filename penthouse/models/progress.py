@@ -7,7 +7,7 @@
 # Django imports
 from django import forms
 from django.db import models
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.utils.translation import gettext_lazy as _
 
 # app imports
@@ -25,13 +25,17 @@ class MilestoneManager(models.Manager):
 
     def get_queryset(self):
         """Annotate the object with the count of related objects."""
-        # FIXME: Something is not working! Counts seem *way* to high!
         return (
             super()
             .get_queryset()
             .annotate(
-                total_sections=Count("milestone_sections"),
-                total_steps=Count("milestone_sections__milestone_steps"),
+                total_sections=Count("milestone_sections", distinct=True),
+                total_steps=Count("milestone_sections__milestone_steps", distinct=True),
+                completed_steps=Count(
+                    "milestone_sections__milestone_steps",
+                    filter=Q(milestone_sections__milestone_steps__completed=True),
+                    distinct=True,
+                ),
             )
         )
 
