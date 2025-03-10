@@ -5,8 +5,10 @@
 """Views related to *progress planning*."""
 
 # Django imports
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
@@ -107,3 +109,28 @@ class MilestoneStepCreateView(LoginRequiredMixin, ProfileIDMixin, generic.Create
         form.instance.section = parent_section
 
         return super().form_valid(form)
+
+
+@login_required
+def milestonestep_toggle(request, step_id):
+    """Toggle the completion status of a ``MilestoneStep`` instance.
+
+    Permission checking should be working, so a user can only toggle *his*
+    own steps.
+    """
+    try:
+        step = MilestoneStep.objects.get(pk=step_id)
+    except MilestoneStep.DoesNotExist:
+        return redirect(reverse_lazy("penthouse:progress-milestones"))
+
+    if step.section.milestone.profile.owner.id != request.user.id:
+        return redirect(reverse_lazy("penthouse:progress-milestones"))
+
+    # this is the actual toggle
+    if step.completed is True:
+        step.completed = False
+    else:
+        step.completed = True
+    step.save()
+
+    return redirect(reverse_lazy("penthouse:progress-milestones"))
