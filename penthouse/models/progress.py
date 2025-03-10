@@ -25,6 +25,7 @@ class MilestoneManager(models.Manager):
 
     def get_queryset(self):
         """Annotate the object with the count of related objects."""
+        # FIXME: Something is not working! Counts seem *way* to high!
         return (
             super()
             .get_queryset()

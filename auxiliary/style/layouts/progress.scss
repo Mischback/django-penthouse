@@ -1,0 +1,86 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
+@use "sass:map";
+@use "../abstracts/colors";
+@use "../abstracts/shadows";
+
+.penthouse-progress {
+  .ms-summary {
+    display: flex;
+    margin: 1em 0;
+
+    > div {
+      flex: 1;
+      padding: 0 1em;
+    }
+  }
+
+  .ms-section-list {
+    margin: 1em 0 0.5em;
+    padding: 0;
+
+    > li {
+      margin: 0 0.5em 1em 0.25em;
+      padding: 0.5em;
+      list-style-type: none;
+      background-color: colors.$ms-section-bg;
+      box-shadow: map.get(shadows.$box-shadows, 1) !important;
+    }
+  }
+
+  .ms-step-list {
+    margin: 0.5em 0 0 1em;
+
+    li {
+      margin: 0;
+    }
+  }
+
+  .ms-section-list.collapsed {
+    .step-update-button,
+    .step-delete-button {
+      display: none;
+    }
+
+    .ms-step-list li {
+      display: inline-block;
+      margin: 0;
+
+      /* stylelint-disable selector-max-compound-selectors */
+      .step-complete-button {
+        display: block;
+        padding: 0.5em 0.5em 0.25em;
+        border: 1px solid colors.$shadow-color-base;
+        background-color: colors.$ms-step-bg;
+        color: colors.$ms-step-fg;
+        text-decoration: none;
+      }
+      /* stylelint-enable selector-max-compound-selectors */
+
+      /* stylelint-disable selector-max-compound-selectors */
+      .step-add-button {
+        font-weight: bold;
+        text-decoration: none;
+
+        /* stylelint-disable max-nesting-depth */
+        .caption {
+          display: none;
+        }
+        /* stylelint-enable max-nesting-depth */
+      }
+      /* stylelint-enable selector-max-compound-selectors */
+
+      /* stylelint-disable selector-no-qualifying-type */
+      &.ms-step-completed {
+        /* stylelint-disable max-nesting-depth,selector-max-compound-selectors */
+        .step-complete-button {
+          background-color: colors.$ms-step-bg-completed;
+        }
+        /* stylelint-enable max-nesting-depth,selector-max-compound-selectors */
+      }
+      /* stylelint-enable selector-no-qualifying-type */
+    }
+  }
+}

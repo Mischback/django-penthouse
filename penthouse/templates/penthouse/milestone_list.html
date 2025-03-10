@@ -17,34 +17,48 @@
   <section class="collapsible-content">
     <div class="ms-summary">
       <div class="ms-abstract">
-        <span class="info-item">created: {{ milestone.date_added|date:"Y-m-d" }}</span>
-        <span class="info-item">[X]/{{ milestone.total_sections }} sections</span>
-        <span class="info-item">[Y]/{{ milestone.total_steps }} steps</span>
+        <ul>
+          <li class="info-item">created: {{ milestone.date_added|date:"Y-m-d" }}</li>
+          <li class="info-item">[X]/{{ milestone.total_sections }} sections</li>
+          <li class="info-item">[Y]/{{ milestone.total_steps }} steps</li>
+        </ul>
       </div>
       <div class="ms-progress">
+        <a href="{% url "penthouse:progress-section-add" milestone.id %}">
+          <span class="token">+</span>
+          <span class="caption">add section</span>
+        </a>
       </div>
     </div>
-    <ul class="ms-section-list">
+    <ul class="ms-section-list collapsed">
       {% for section in milestone.milestone_sections.all %}
-      <li>
+      {# djlint:off H025 #}<li>{# djlint:on #}
         <strong>{{ section.caption }}</strong>
         - {{ section.get_resource_display }}
         - <a href="#">update</a>
         | <a href="#">delete</a>
         <ul class="ms-step-list">
           {% for step in section.milestone_steps.all %}
+            {% if step.completed %}
+          <li class="ms-step-completed">
+            {% else %}
           <li>
-            <strong>{{ step.step_value }}</strong>
-            - <a href="#">update</a>
-            | <a href="#">delete</a>
+            {% endif %}
+            <a href="{% url "penthouse:progress-step-toggle" step.id %}" class="step-complete-button">{{ step.step_value }}</a>
+            <a href="#" class="step-update-button">update</a>
+            <a href="#" class="step-delete-button">delete</a>
           </li>
           {% endfor %}
-          <li><a href="{% url "penthouse:progress-step-add" section.id %}" class="ms-add-step">add Milestone Step</a></li>
+          <li>
+            <a href="{% url "penthouse:progress-step-add" section.id %}" class="step-add-button">
+              <span class="token">+</span>
+              <span class="caption">add step</span>
+            </a>
+          </li>
         </ul>
       </li>
       {% endfor %}
     </ul>
-    <a href="{% url "penthouse:progress-section-add" milestone.id %}">add Milestone Section</a>
   </section>
 </section>
 {% endfor %}
