@@ -167,7 +167,7 @@ class MilestoneStep(models.Model):
         verbose_name_plural = _("Progress Planning Step")
 
     def __str__(self):  # noqa: D105
-        return "[Step] {}".format(self.caption)
+        return "[Step] {} ({})".format(self.step_value, self.completed)
 
 
 class MilestoneStepForm(forms.ModelForm):

@@ -24,6 +24,7 @@ class TowerResources(Enum):
     DICE = ("DICE", _("Reroll Shards"))
     KEYS = ("KEYS", _("Keys"))
     MEDALS = ("MEDAL", _("Medals"))
+    LABS = ("LABS", _("Labs"))
 
 
 class TowerTiers(Enum):
@@ -203,6 +204,7 @@ class RelicSource(TextChoices):
     TOURNAMENT = ("T", _("Tournament"))
     EVENT = ("E", _("Event"))
     OTHER = ("O", _("Other"))
+    GUILD = ("G", _("Guild Event"))
 
 
 class MilestoneResource(TextChoices):
@@ -216,6 +218,7 @@ class MilestoneResource(TextChoices):
     DICE = TowerResources.DICE.value
     KEYS = TowerResources.KEYS.value
     MEDALS = TowerResources.MEDALS.value
+    LABS = TowerResources.LABS.value
 
 
 class TowerUnitSuffix(IntegerChoices):

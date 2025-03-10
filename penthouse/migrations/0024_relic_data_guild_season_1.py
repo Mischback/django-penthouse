@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             rarity="RARE",
             bonus_type="HEALTH",
             bonus_value=2.0,
-            source="E",
+            source="G",
             condition="Guild Season 1; 75 tokens"
         )
         Relic.objects.create(
@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
             rarity="EPIC",
             bonus_type="CRITFA",
             bonus_value=5.0,
-            source="E",
+            source="G",
             condition="Guild Season 1; 150 tokens"
         )
 
