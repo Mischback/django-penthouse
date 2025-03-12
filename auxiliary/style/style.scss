@@ -21,6 +21,7 @@
 @include meta.load-css("base/overalls");
 @include meta.load-css("base/navigation");
 @include meta.load-css("base/canvas");
+@include meta.load-css("base/progress");
 
 /* Specific layouts */
 @include meta.load-css("layouts/tracker");

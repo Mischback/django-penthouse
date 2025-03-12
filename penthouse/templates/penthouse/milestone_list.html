@@ -19,15 +19,17 @@
       <div class="ms-abstract">
         <ul>
           <li class="info-item">created: {{ milestone.date_added|date:"Y-m-d" }}</li>
-          <li class="info-item">{{ milestone.total_sections }} sections</li>
-          <li class="info-item">{{ milestone.completed_steps }}/{{ milestone.total_steps }} steps</li>
+          <li class="info-item">
+            {{ milestone.total_sections }} section{{ milestone.total_sections|pluralize:"s" }}
+            <a href="{% url "penthouse:progress-section-add" milestone.id %}">add section</a>
+          </li>
         </ul>
       </div>
       <div class="ms-progress">
-        <a href="{% url "penthouse:progress-section-add" milestone.id %}">
-          <span class="token">+</span>
-          <span class="caption">add section</span>
-        </a>
+        <ul>
+          <li><progress max="{{ milestone.total_steps }}" value="{{ milestone.completed_steps }}">{{ milestone.completed_steps }}</progress></li>
+          <li><p>{{ milestone.completed_steps }}/{{ milestone.total_steps }} step{{ milestone.total_steps|pluralize:"s" }}</p></li>
+        </ul>
       </div>
     </div>
     <ul class="ms-section-list collapsed">

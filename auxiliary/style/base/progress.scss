@@ -1,0 +1,30 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
+@use "sass:map";
+@use "../abstracts/colors";
+@use "../abstracts/shadows";
+
+progress {
+  appearance: none;
+
+  // TODO: Some of these may be moved to specific layout files
+  // background-color: colors.$progress-bar-bg;
+  // border: 1px solid colors.$shadow-color-base;
+  // box-shadow: map.get(shadows.$box-shadows, 1) !important;
+
+  &,
+  &::-webkit-progress-bar {
+    border: 1px solid colors.$shadow-color-base;
+    border-radius: 2px;
+    background-color: colors.$progress-bar-bg;
+    box-shadow: map.get(shadows.$box-shadows, 1) !important;
+  }
+
+  &::-moz-progress-bar,
+  &::-webkit-progress-value {
+    border-radius: 2px;
+    background-color: colors.$progress-bar-fg;
+  }
+}
