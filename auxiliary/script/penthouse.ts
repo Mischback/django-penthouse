@@ -75,4 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
         thClickHandler(e.currentTarget as HTMLTableCellElement);
       });
   }
+
+  /* Progress Planning */
+  if (document.getElementById("penthouse-progress")) {
+    initializeCollapsibles();
+  }
 });
