@@ -1,0 +1,48 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
+@use "sass:map";
+@use "../abstracts/colors";
+@use "../abstracts/shadows";
+
+.toggle-button {
+  display: inline-block;
+  position: relative;
+  width: 2em;
+  height: 1em;
+
+  span {
+    position: absolute;
+    inset: 0;
+    border: 1px solid colors.$shadow-color-base;
+    border-radius: 2px;
+    background-color: colors.$toggle-slider-bg;
+    box-shadow: map.get(shadows.$box-shadows, 1) !important;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      bottom: 2px;
+      left: 1px;
+      width: 1em;
+      border: 1px solid colors.$shadow-color-base;
+      border-radius: 2px;
+      background-color: colors.$toggle-slider-off;
+    }
+  }
+
+  input {
+    display: none;
+
+    &:checked + span {
+      &::before {
+        right: 1px;
+        left: auto;
+        background-color: colors.$toggle-slider-on;
+      }
+    }
+  }
+}
