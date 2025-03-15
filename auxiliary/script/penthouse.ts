@@ -6,6 +6,7 @@ import {
   createMetaDataChart,
   createRunTrackerChart,
 } from "./penthouse/tracker";
+import { initializeEditModeToggles } from "./penthouse/progress";
 import { initializeCollapsibles } from "./utility/collapsible";
 import { sortTableByColumn, thClickHandler } from "./utility/sortable";
 
@@ -79,5 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Progress Planning */
   if (document.getElementById("penthouse-progress")) {
     initializeCollapsibles();
+    initializeEditModeToggles();
   }
 });

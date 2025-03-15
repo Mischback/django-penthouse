@@ -10,7 +10,7 @@
   </header>
 
 {% for milestone in object_list %}
-<section id="progress-planning-{{ milestone.id }}" class="collapsible-container">
+<section id="progress-planning-{{ milestone.id }}" class="collapsible-container progress-planning-milestone">
   <header class="collapsible-header">
     <h3>{{ milestone.title }}</h3>
   </header>
@@ -35,7 +35,7 @@
         </ul>
       </div>
     </div>
-    <ul class="ms-section-list collapsed">
+    <ul class="ms-section-list">
       {% for section in milestone.milestone_sections.all %}
       {# djlint:off H025 #}<li>{# djlint:on #}
         <strong>{{ section.caption }}</strong>
