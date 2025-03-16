@@ -6,23 +6,24 @@
 @use "../abstracts/colors";
 @use "../abstracts/shadows";
 
-.penthouse-progress {
+.progress-planning-milestone {
   .collapsible-content {
+    // this is only required to make use absolute positioning on ``.ms-control``
     position: relative;
+  }
 
-    .ms-control {
-      display: flex;
-      position: absolute;
-      top: 0;
-      right: 0;
-      align-items: center;
-      padding: 0.5em 1em;
-      font-size: 0.8em;
+  .ms-control {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    align-items: center;
+    padding: 0.5em 1em;
+    font-size: 0.8em;
 
-      .toggle-button {
-        margin-left: 0.5em;
-        font-size: 1.25em;
-      }
+    .toggle-button {
+      margin-left: 0.5em;
+      font-size: 1.25em;
     }
   }
 
@@ -67,6 +68,16 @@
       list-style-type: none;
       background-color: colors.$ms-section-bg;
       box-shadow: map.get(shadows.$box-shadows, 1) !important;
+
+      /* stylelint-disable selector-max-compound-selectors */
+      .step-complete-button {
+        display: inline-block;
+        padding: 0.5em 0.5em 0.25em;
+        border: 1px solid colors.$shadow-color-base;
+        background-color: colors.$ms-step-bg;
+        color: colors.$ms-step-fg;
+        text-decoration: none;
+      }
     }
     /* stylelint-enable no-descending-specificity */
   }
@@ -74,16 +85,19 @@
   .ms-step-list {
     margin: 0.5em 0 0 1em;
 
-    /* stylelint-disable no-descending-specificity */
+    /* stylelint-disable no-descending-specificity, selector-no-qualifying-type */
     li {
-      margin: 0;
+      margin: 0 0 0.5em;
+
+      &.ms-step-completed .step-complete-button {
+        background-color: colors.$ms-step-bg-completed;
+      }
     }
-    /* stylelint-enable no-descending-specificity */
+    /* stylelint-enable no-descending-specificity, selector-no-qualifying-type */
   }
 
-  .ms-section-list.view-mode {
-    .step-update-button,
-    .step-delete-button {
+  &.view-mode {
+    .edit-mode-button {
       display: none;
     }
 
@@ -91,39 +105,9 @@
       display: inline-block;
       margin: 0;
 
-      /* stylelint-disable selector-max-compound-selectors */
       .step-complete-button {
         display: block;
-        padding: 0.5em 0.5em 0.25em;
-        border: 1px solid colors.$shadow-color-base;
-        background-color: colors.$ms-step-bg;
-        color: colors.$ms-step-fg;
-        text-decoration: none;
       }
-      /* stylelint-enable selector-max-compound-selectors */
-
-      /* stylelint-disable selector-max-compound-selectors */
-      .step-add-button {
-        font-weight: bold;
-        text-decoration: none;
-
-        /* stylelint-disable max-nesting-depth */
-        .caption {
-          display: none;
-        }
-        /* stylelint-enable max-nesting-depth */
-      }
-      /* stylelint-enable selector-max-compound-selectors */
-
-      /* stylelint-disable selector-no-qualifying-type */
-      &.ms-step-completed {
-        /* stylelint-disable max-nesting-depth,selector-max-compound-selectors */
-        .step-complete-button {
-          background-color: colors.$ms-step-bg-completed;
-        }
-        /* stylelint-enable max-nesting-depth,selector-max-compound-selectors */
-      }
-      /* stylelint-enable selector-no-qualifying-type */
     }
   }
 }
