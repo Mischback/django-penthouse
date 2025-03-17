@@ -85,6 +85,22 @@ class MilestoneSectionCreateView(
         return super().form_valid(form)
 
 
+class MilestoneSectionUpdateView(
+    LoginRequiredMixin, ProfileIDMixin, generic.UpdateView
+):
+    """Generic class-based view implementation to update ``MilestoneSection`` instances."""
+
+    model = MilestoneSection
+
+    form_class = MilestoneSectionForm
+
+    template_name_suffix = "_update"
+
+    pk_url_kwarg = "section_id"
+
+    success_url = reverse_lazy("penthouse:progress-milestones")
+
+
 class MilestoneStepCreateView(LoginRequiredMixin, ProfileIDMixin, generic.CreateView):
     """Generic class-based view implementation to add ``MilestoneStep`` instances."""
 

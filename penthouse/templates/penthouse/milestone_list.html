@@ -42,7 +42,7 @@
         <strong>{{ section.caption }}</strong>
         - {{ section.get_resource_display }}
         <span class="edit-mode-button"> - </span>
-        <a href="#" class="edit-mode-button">update</a>
+        <a href="{% url "penthouse:progress-section-update" section.id %}" class="edit-mode-button">update</a>
         <span class="edit-mode-button"> | </span>
         <a href="#" class="edit-mode-button">delete</a>
         <span class="edit-mode-button"> | </span>
