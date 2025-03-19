@@ -127,6 +127,20 @@ class MilestoneStepCreateView(LoginRequiredMixin, ProfileIDMixin, generic.Create
         return super().form_valid(form)
 
 
+class MilestoneStepUpdateView(LoginRequiredMixin, ProfileIDMixin, generic.UpdateView):
+    """Generic class-based view implementation to update ``MilestoneStep`` instances."""
+
+    model = MilestoneStep
+
+    form_class = MilestoneStepForm
+
+    template_name_suffix = "_update"
+
+    pk_url_kwarg = "step_id"
+
+    success_url = reverse_lazy("penthouse:progress-milestones")
+
+
 @login_required
 def milestonestep_toggle(request, step_id):
     """Toggle the completion status of a ``MilestoneStep`` instance.

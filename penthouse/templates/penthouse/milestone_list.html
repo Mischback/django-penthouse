@@ -56,7 +56,7 @@
             {% endif %}
             <a href="{% url "penthouse:progress-step-toggle" step.id %}" class="step-complete-button">{{ step.step_value }}</a>
             <span class="edit-mode-button"> - </span>
-            <a href="#" class="step-update-button edit-mode-button">update</a>
+            <a href="{% url "penthouse:progress-step-update" step.id %}" class="step-update-button edit-mode-button">update</a>
             <span class="edit-mode-button"> | </span>
             <a href="#" class="step-delete-button edit-mode-button">delete</a>
           </li>

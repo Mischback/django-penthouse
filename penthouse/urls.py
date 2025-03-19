@@ -53,6 +53,11 @@ urlpatterns = [
         name="progress-step-add",
     ),
     path(
+        "progress/step/<int:step_id>/update",
+        progress.MilestoneStepUpdateView.as_view(),
+        name="progress-step-update",
+    ),
+    path(
         "progress/step/toggle/<int:step_id>/",
         progress.milestonestep_toggle,
         name="progress-step-toggle",
