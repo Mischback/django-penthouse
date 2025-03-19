@@ -187,6 +187,8 @@ class RelicBonusType(TextChoices):
     THORNS = TowerWorkshopItems.THORNS.value
     CASHBO = TowerWorkshopItems.CASHBO.value
     ORBSPD = TowerWorkshopItems.ORBSPD.value
+    WALLRE = TowerWorkshopItems.WALLRE.value
+    SCRITM = TowerWorkshopItems.SCRITM.value
 
 
 class RelicRarity(TextChoices):
