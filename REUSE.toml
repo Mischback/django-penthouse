@@ -23,7 +23,7 @@ SPDX-FileType = "SOURCE"
 # some initial data.
 [[annotations]]
 path = [
-  "foo"
+  "penthouse/migrations/0001_initial.py",
 ]
 SPDX-FileCopyrightText = "NONE"
 SPDX-License-Identifier = "CC0-1.0"
