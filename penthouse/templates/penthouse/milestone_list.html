@@ -44,7 +44,7 @@
         <span class="edit-mode-button"> - </span>
         <a href="{% url "penthouse:progress-section-update" section.id %}" class="edit-mode-button">update</a>
         <span class="edit-mode-button"> | </span>
-        <a href="#" class="edit-mode-button">delete</a>
+        <a href="{% url "penthouse:progress-section-delete" section.id %}" class="edit-mode-button">delete</a>
         <span class="edit-mode-button"> | </span>
         <a href="{% url "penthouse:progress-step-add" section.id %}" class="step-add-button edit-mode-button">add step</a>
         <ul class="ms-step-list">

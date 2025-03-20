@@ -48,6 +48,11 @@ urlpatterns = [
         name="progress-section-update",
     ),
     path(
+        "progress/section/<int:section_id>/delete/",
+        progress.MilestoneSectionDeleteView.as_view(),
+        name="progress-section-delete",
+    ),
+    path(
         "progress/step/add/<int:milestonesection_id>/",
         progress.MilestoneStepCreateView.as_view(),
         name="progress-step-add",

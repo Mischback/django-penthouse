@@ -101,6 +101,20 @@ class MilestoneSectionUpdateView(
     success_url = reverse_lazy("penthouse:progress-milestones")
 
 
+class MilestoneSectionDeleteView(
+    LoginRequiredMixin, ProfileIDMixin, generic.DeleteView
+):
+    """Generic class-based view implementation to delete ``MilestoneSection`` instances."""
+
+    model = MilestoneSection
+
+    context_object_name = "section_item"
+
+    pk_url_kwarg = "section_id"
+
+    success_url = reverse_lazy("penthouse:progress-milestones")
+
+
 class MilestoneStepCreateView(LoginRequiredMixin, ProfileIDMixin, generic.CreateView):
     """Generic class-based view implementation to add ``MilestoneStep`` instances."""
 

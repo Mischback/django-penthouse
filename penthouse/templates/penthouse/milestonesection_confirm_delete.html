@@ -1,0 +1,14 @@
+{% extends "penthouse/app_base.html" %}
+
+{% load penthouse_tags %}
+
+{% block page_title %}Progress: MilestoneSectionDeleteView{% endblock page_title %}
+
+{% block main %}
+<form method="post" class="penthouse-form">{% csrf_token %}
+  <p>Are you sure you want to delete this section?</p>
+  <p><strong>{{ section_item.caption }}</strong> - {{ section_item.milestone_steps.count }} steps</p>
+  <p>The associated steps will be deleted, too.</p>
+  <button type="submit" class="danger">Yes, I want to delete this datapoint!</button>
+</form>
+{% endblock main %}
