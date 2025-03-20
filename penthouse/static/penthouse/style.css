@@ -1,0 +1,14 @@
+/* Main stylesheet of django-penthouse's default styling.
+ *
+ * The stylesheet is generated from SCSS sources. The SCSS source code is
+ * organized according to Matthew Elson's Simple SCSS playbook
+ * (https://matthewelsom.com/blog/simple-scss-playbook.html).
+ */
+/* stylelint-disable */
+/* stylelint-enable */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22../../../auxiliary/style/style.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAIA;AAAA;AAAA;AAAA;AAAA;AAAA;AAOA;AAGA;AAGA;EACE;EACA%22,%22file%22:%22style.css%22,%22sourcesContent%22:%5B%22//%20SPDX-FileCopyrightText:%202025%20Mischback%5Cn//%20SPDX-License-Identifier:%20MIT%5Cn//%20SPDX-FileType:%20SOURCE%5Cn%5Cn/*%20Main%20stylesheet%20of%20django-penthouse's%20default%20styling.%5Cn%20*%5Cn%20*%20The%20stylesheet%20is%20generated%20from%20SCSS%20sources.%20The%20SCSS%20source%20code%20is%5Cn%20*%20organized%20according%20to%20Matthew%20Elson's%20Simple%20SCSS%20playbook%5Cn%20*%20(https://matthewelsom.com/blog/simple-scss-playbook.html).%5Cn%20%2A/%5Cn%5Cn/*%20stylelint-disable%20%2A/%5Cn@charset%20%5C%22utf-8%5C%22;%5Cn@use%20%5C%22sass:meta%5C%22;%5Cn/*%20stylelint-enable%20%2A/%5Cn%5Cn//%20FIXME:%20Just%20for%20initial%20testing%5Cn*%20%7B%5Cn%20%20margin:%200;%5Cn%20%20padding:%200;%5Cn%7D%5Cn%22%5D%7D */

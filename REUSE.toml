@@ -1,0 +1,61 @@
+version = 1
+
+# Source code without in-file statements
+#
+# There might be various reasons for this, but most likely those additional
+# comments are not includable or it is not desired to include them (i.e. to
+# optimize bandwith).
+[[annotations]]
+path = [
+  "auxiliary/penthouse_icons_DRAFT.svg",
+  "penthouse/templates/penthouse/**/*.html",
+]
+SPDX-FileCopyrightText = "2025 Mischback"
+SPDX-License-Identifier = "MIT"
+SPDX-FileType = "SOURCE"
+
+# Source code files that are automatically generated
+#
+# In the context of this project, this includes the automatically generated
+# migrations of Django's ORM.
+#
+# Please note: This project contains *some* manually created migrations to add
+# some initial data.
+[[annotations]]
+path = [
+]
+SPDX-FileCopyrightText = "NONE"
+SPDX-License-Identifier = "CC0-1.0"
+SPDX-FileType = "SOURCE"
+
+# Config files with actual contribution
+[[annotations]]
+path = [
+  ".editorconfig",
+  ".flake8",
+  ".pre-commit-config.yaml",
+  ".stylelintrc.yaml",
+  "eslint.config.mjs",
+  "pyproject.toml",
+  "tsconfig.json",
+  "requirements/*.in"
+]
+SPDX-FileCopyrightText = "2025 Mischback"
+SPDX-License-Identifier = "CC0-1.0"
+SPDX-FileType = "OTHER"
+
+# Config files/artifacts without actual contribution (mostly automatically
+# generated files or not meeting a minimal threshold of originality)
+[[annotations]]
+path = [
+  ".gitignore",
+  ".prettierignore",
+  "package.json",
+  "package-lock.json",
+  "requirements/*.txt",
+  # "penthouse/static/penthouse/penthouse.js",
+  # "penthouse/static/penthouse/style.css"
+]
+SPDX-FileCopyrightText = "NONE"
+SPDX-License-Identifier = "CC0-1.0"
+SPDX-FileType = "OTHER"
