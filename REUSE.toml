@@ -23,6 +23,7 @@ SPDX-FileType = "SOURCE"
 # some initial data.
 [[annotations]]
 path = [
+  "foo"
 ]
 SPDX-FileCopyrightText = "NONE"
 SPDX-License-Identifier = "CC0-1.0"
@@ -53,8 +54,8 @@ path = [
   "package.json",
   "package-lock.json",
   "requirements/*.txt",
-  # "penthouse/static/penthouse/penthouse.js",
-  # "penthouse/static/penthouse/style.css"
+  "penthouse/static/penthouse/penthouse.js",
+  "penthouse/static/penthouse/style.css"
 ]
 SPDX-FileCopyrightText = "NONE"
 SPDX-License-Identifier = "CC0-1.0"
