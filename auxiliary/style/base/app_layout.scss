@@ -1,0 +1,40 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
+@use "sass:map";
+@use "../abstracts/colors";
+@use "../abstracts/fonts";
+@use "../abstracts/shadows";
+
+/* Provide the general visual structure for the app-specific templates. */
+
+#ph-app-root {
+  display: grid;
+  grid-template:
+    ". navigation ."
+    ". content ."
+    / 1fr calc(min(1280px, 100%)) 1fr;
+  margin: 0;
+  padding: 0;
+  background-color: colors.$overall-document-bg;
+
+  #ph-nav {
+    grid-area: navigation;
+    background-color: colors.$overall-nav-bg;
+    box-shadow: map.get(shadows.$box-shadows, 1) !important;
+  }
+
+  #ph-content {
+    grid-area: content;
+    margin: 0;
+    padding: 0 2em;
+    background-color: colors.$overall-content-bg;
+    box-shadow: map.get(shadows.$box-shadows, 1) !important;
+  }
+
+  * {
+    color: colors.$overall-document-fg;
+    font-family: fonts.$font-stack-sans;
+  }
+}

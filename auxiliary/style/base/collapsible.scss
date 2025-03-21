@@ -1,0 +1,40 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
+@use "sass:map";
+@use "../abstracts/colors";
+@use "../abstracts/shadows";
+
+/* Provide the base styles for collapsible containers.
+ *
+ * Those containers are meant to be placed on layer 2, so basically directly
+ * on the app's base canvas (#ph-content).
+ */
+
+.collapsible-container {
+  margin-bottom: 2em;
+  background-color: colors.$collapsible-container-bg;
+  box-shadow: map.get(shadows.$box-shadows, 2) !important;
+
+  > header,
+  > section {
+    padding: 0.5em 0.5em 1em;
+  }
+
+  .collapsible-header {
+    margin: 0;
+    padding-bottom: 0.25em;
+    background-color: colors.$collapsible-header-bg;
+    cursor: pointer;
+
+    h3 {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .collapsible-content {
+    border-top: 1px solid colors.$shadow-color-base;
+  }
+}
