@@ -24,7 +24,7 @@ class AccountCreateView(LoginRequiredMixin, generic.CreateView):
 
     form_class = AccountCreationForm
 
-    template_name = "account_create.html"
+    template_name = "penthouse/account_create.html"
 
     def form_valid(self, form):
         """Inject the request's user while validating.

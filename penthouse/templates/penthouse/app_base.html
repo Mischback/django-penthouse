@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      {% block document_title %}penthouse development template{% endblock document_title %}
+      - Penthouse
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static "penthouse/style.css" %}" rel="stylesheet" type="text/css">
+    <script src="{% static "penthouse/penthouse.js" %}" defer></script>
+  </head>
+  <body>
+{% block html_body %}
+<div id="ph-app-root">
+  <nav id="ph-nav">
+  </nav>
+  <div id="ph-content">
+{% block penthouse_main %}
+foobar
+{% endblock penthouse_main %}
+  </div>
+</div>
+{% endblock html_body %}
+  </body>
+</html>
