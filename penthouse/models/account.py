@@ -9,6 +9,7 @@ user of the Django project can have multiple accounts.
 """
 
 # Django imports
+from django import forms
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -38,7 +39,11 @@ class AccountManager(models.Manager):
 
 
 class Account(models.Model):
-    """An ``Account`` represents one game account of The Tower."""
+    """An ``Account`` represents one game account of The Tower.
+
+    Each ``Account`` instance **must have** a unique name for a given user of
+    the app.
+    """
 
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_("Account")
@@ -77,6 +82,15 @@ class Account(models.Model):
         app_label = "penthouse"
         verbose_name = _("Account")
         verbose_name_plural = _("Account")
+        unique_together = ("owner", "name")
 
     def __str__(self):  # noqa: D105
         return "{} ({})".format(self.name, self.owner)
+
+
+class AccountCreationForm(forms.ModelForm):
+    """Used to validate input while creating :class:`~penthouse.models.account.Account` instances."""
+
+    class Meta:  # noqa: D106
+        model = Account
+        fields = ["name"]
