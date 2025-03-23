@@ -9,6 +9,7 @@ version = 1
 path = [
   "auxiliary/penthouse_icons_DRAFT.svg",
   "penthouse/templates/penthouse/**/*.html",
+  "tests/util/templates/**/*.html"
 ]
 SPDX-FileCopyrightText = "2025 Mischback"
 SPDX-License-Identifier = "MIT"

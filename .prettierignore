@@ -2,6 +2,7 @@
 
 # do not touch the app's templates
 penthouse/templates/**/*.html
+tests/util/templates/**/*.html
 
 # do not touch generated files
 penthouse/static/**
