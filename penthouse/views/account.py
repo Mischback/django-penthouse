@@ -6,6 +6,8 @@
 
 # Django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import IntegrityError
+from django.shortcuts import render
 from django.views import generic
 
 # app imports
@@ -35,4 +37,7 @@ class AccountCreateView(LoginRequiredMixin, generic.CreateView):
         """
         form.instance.owner = self.request.user
 
-        return super().form_valid(form)
+        try:
+            return super().form_valid(form)
+        except IntegrityError:
+            return render(self.request, "penthouse/error.html")
