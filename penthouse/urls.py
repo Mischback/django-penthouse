@@ -8,14 +8,15 @@
 from django.urls import path
 
 # app imports
-from penthouse.views.account import AccountCreateView
+from penthouse.views.account import AccountCreateView, AccountOverview
 
 app_name = "penthouse"
 
 urlpatterns = [
+    # Account-related views
     path("account/add/", AccountCreateView.as_view(), name="account-create"),
     # path("account/<int:account_id>/update/", name="account-update"),
     # path("account/<int:account_id>/delete/", name="account-delete"),
     # path("account/list/", name="account-list"),
-    # path("<int:account_id>/", name="account-overview"),
+    path("<int:account_id>/", AccountOverview.as_view(), name="account-overview"),
 ]

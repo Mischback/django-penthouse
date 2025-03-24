@@ -41,3 +41,20 @@ class AccountCreateView(LoginRequiredMixin, generic.CreateView):
             return super().form_valid(form)
         except IntegrityError:
             return render(self.request, "penthouse/error.html")
+
+
+class AccountOverview(LoginRequiredMixin, generic.detail.DetailView):
+    """CBV to display a single instance of :class:`~penthouse.models.account.Account`.
+
+    FIXME: The current implementation is just a stub. This view should fetch
+    information from other components of the app and provide them in an
+    "executive dashboard"-like manner.
+    """
+
+    model = Account
+
+    pk_url_kwarg = "account_id"
+
+    context_object_name = "account"
+
+    template_name = "penthouse/account_overview.html"
