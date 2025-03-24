@@ -28,7 +28,7 @@
   #ph-content {
     grid-area: content;
     margin: 0;
-    padding: 0 2em;
+    padding: 1em 2em;
     background-color: colors.$overall-content-bg;
     box-shadow: map.get(shadows.$box-shadows, 1) !important;
   }
@@ -36,5 +36,14 @@
   * {
     color: colors.$overall-document-fg;
     font-family: fonts.$font-stack-sans;
+  }
+
+  .ph-main {
+    margin: 0;
+    padding: 0;
+
+    > header {
+      margin-bottom: 1em;
+    }
   }
 }
