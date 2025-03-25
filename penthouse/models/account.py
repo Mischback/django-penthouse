@@ -12,6 +12,7 @@ user of the Django project can have multiple accounts.
 from django import forms
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 # app imports
@@ -86,6 +87,10 @@ class Account(models.Model):
 
     def __str__(self):  # noqa: D105
         return "{} ({})".format(self.name, self.owner)
+
+    def get_absolute_url(self):
+        """Return the URL to access single instances of this class."""
+        return reverse("penthouse:account-overview", args=[self.id])
 
 
 class AccountCreationForm(forms.ModelForm):

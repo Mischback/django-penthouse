@@ -12,6 +12,7 @@ from django.views import generic
 
 # app imports
 from penthouse.models.account import Account, AccountCreationForm
+from penthouse.views.mixins import RestrictToUserMixin
 
 
 class AccountCreateView(LoginRequiredMixin, generic.CreateView):
@@ -43,7 +44,9 @@ class AccountCreateView(LoginRequiredMixin, generic.CreateView):
             return render(self.request, "penthouse/error.html")
 
 
-class AccountOverview(LoginRequiredMixin, generic.detail.DetailView):
+class AccountOverview(
+    LoginRequiredMixin, RestrictToUserMixin, generic.detail.DetailView
+):
     """CBV to display a single instance of :class:`~penthouse.models.account.Account`.
 
     FIXME: The current implementation is just a stub. This view should fetch
