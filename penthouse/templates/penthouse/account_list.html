@@ -1,0 +1,25 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block document_title %}Account List{% endblock document_title %}
+
+{% block penthouse_main %}
+<main class="ph-main">
+  <header>
+    <h2>Account List</h2>
+  </header>
+
+  {% for account in object_list %}
+  <section id="account-list-{{ account.id }}" class="collapsible-container account-list-item">
+    <header class="collapsible-header">
+      <h3>{{ account.name }}</h3>
+      <a href="{% url "penthouse:account-overview" account.id %}">continue</a>
+    </header>
+    <section class="collapsible-content">
+      <p>Provide some information to make accounts distinguishable.</p>
+      <p>The buttons to update/delete accounts should be here, too.</p>
+      <p>It might be a good idea to do a 2 column layout with <em>collapsible-content</em>.</p>
+    </section>
+  </section>
+  {% endfor %}
+</main>
+{% endblock penthouse_main %}

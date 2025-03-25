@@ -61,3 +61,17 @@ class AccountOverview(
     context_object_name = "account"
 
     template_name = "penthouse/account_overview.html"
+
+
+class AccountListView(LoginRequiredMixin, RestrictToUserMixin, generic.list.ListView):
+    """CBV to display a list of all instances of :class:`~penthouse.models.account.Account`.
+
+    The list will be filtered by the current user.
+
+    FIXME: This should display *some* information about the accounts, which will
+    be fetched from oder components.
+    """
+
+    model = Account
+
+    template_name = "penthouse/account_list.html"
