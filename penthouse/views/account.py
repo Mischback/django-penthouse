@@ -7,7 +7,7 @@
 # Django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import IntegrityError
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views import generic
 
 # app imports
@@ -75,3 +75,26 @@ class AccountListView(LoginRequiredMixin, RestrictToUserMixin, generic.list.List
     model = Account
 
     template_name = "penthouse/account_list.html"
+
+    def render_to_response(self, context):
+        """Check if there is actual *need* to display a list of accounts.
+
+        If there is only one account, it will redirect to the corresponding
+        :class:`~penthouse.views.account.AccountOverview`. If there is actually
+        no :class:`~penthouse.models.account.Account`, it will redirect to the
+        :class:`~penthouse.views.account.AccountCreateView`.
+
+        There is an obvious *issue* with this approach: The view will actually
+        execute a database query to determine the number of accounts. If there
+        is only one account, the database will be hit again while processing the
+        :class:`~penthouse.views.account.AccountOverview`. Meh.
+        """
+        qs = context["object_list"]
+        cnt = qs.count()
+
+        if cnt > 1:
+            return super().render_to_response(context)
+        elif cnt < 1:
+            return redirect("penthouse:account-create")
+        else:
+            return redirect("penthouse:account-overview", qs.first().id)
