@@ -7,8 +7,12 @@
   <header>
     <h2>{{ account.name }} - Overview</h2>
   </header>
+  <section>
+    <a href="{% url "penthouse:account-update" account.id %}">update</a>
+    <a href="{% url "penthouse:account-delete" account.id %}">delete</a>
+  </section>
 
-  <section id="account-overview-1" class="collapsible-container">
+  <section id="account-overview-{{ account.id }}-1" class="collapsible-container">
     <header class="collapsible-header">
       <h3>Overview</h3>
     </header>
