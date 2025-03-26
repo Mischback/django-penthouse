@@ -93,8 +93,12 @@ class Account(models.Model):
         return reverse("penthouse:account-overview", args=[self.id])
 
 
-class AccountCreationForm(forms.ModelForm):
-    """Used to validate input while creating :class:`~penthouse.models.account.Account` instances."""
+class AccountForm(forms.ModelForm):
+    """Validate input while creating/updating :class:`~penthouse.models.account.Account` instances.
+
+    This form works (as of now) for both operations. It might be advisable to
+    divide it into two dedicated implementations later.
+    """
 
     class Meta:  # noqa: D106
         model = Account

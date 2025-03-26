@@ -18,6 +18,9 @@
       <p>Provide some information to make accounts distinguishable.</p>
       <p>The buttons to update/delete accounts should be here, too.</p>
       <p>It might be a good idea to do a 2 column layout with <em>collapsible-content</em>.</p>
+      <p>
+      <a href="{% url "penthouse:account-update" account.id %}">update</a>
+      </p>
     </section>
   </section>
   {% endfor %}

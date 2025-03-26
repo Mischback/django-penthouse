@@ -11,7 +11,7 @@ from django.shortcuts import redirect, render
 from django.views import generic
 
 # app imports
-from penthouse.models.account import Account, AccountCreationForm
+from penthouse.models.account import Account, AccountForm
 from penthouse.views.mixins import RestrictToUserMixin
 
 
@@ -25,7 +25,7 @@ class AccountCreateView(LoginRequiredMixin, generic.CreateView):
 
     model = Account
 
-    form_class = AccountCreationForm
+    form_class = AccountForm
 
     template_name = "penthouse/account_create.html"
 
@@ -98,3 +98,15 @@ class AccountListView(LoginRequiredMixin, RestrictToUserMixin, generic.list.List
             return redirect("penthouse:account-create")
         else:
             return redirect("penthouse:account-overview", qs.first().id)
+
+
+class AccountUpdateView(LoginRequiredMixin, RestrictToUserMixin, generic.UpdateView):
+    """CBV to update instances of :class:`~penthouse.models.account.Account`."""
+
+    model = Account
+
+    form_class = AccountForm
+
+    pk_url_kwarg = "account_id"
+
+    template_name = "penthouse/account_update.html"
