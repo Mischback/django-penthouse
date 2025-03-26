@@ -43,7 +43,7 @@
     select,
     textarea {
       margin: 0.25em 0.25em 0.5em;
-      padding: 0.25em 0.5em;
+      padding: 0.5em 0.5em 0.25em;
       border: 0 solid colors.$shadow-color-base;
       border-radius: 0.25rem;
       background-color: colors.$form-input-bg;
@@ -82,6 +82,19 @@
       &:hover {
         background-color: colors.$form-button-cancel-hover-bg;
         color: colors.$form-button-cancel-hover-fg !important;
+      }
+    }
+    /* stylelint-enable selector-no-qualifying-type */
+
+    /* stylelint-disable selector-no-qualifying-type */
+    &.danger {
+      background-color: colors.$form-error-color-bg;
+      color: colors.$form-error-color-fg !important;
+
+      &:hover {
+        // FIXME: These colors need adjustment!
+        background-color: colors.$form-error-color-fg;
+        color: colors.$form-error-color-bg !important;
       }
     }
     /* stylelint-enable selector-no-qualifying-type */
