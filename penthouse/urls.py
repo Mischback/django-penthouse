@@ -10,6 +10,7 @@ from django.urls import path
 # app imports
 from penthouse.views.account import (
     AccountCreateView,
+    AccountDeleteView,
     AccountListView,
     AccountOverview,
     AccountUpdateView,
@@ -25,7 +26,11 @@ urlpatterns = [
         AccountUpdateView.as_view(),
         name="account-update",
     ),
-    # path("account/<int:account_id>/delete/", name="account-delete"),
+    path(
+        "account/<int:account_id>/delete/",
+        AccountDeleteView.as_view(),
+        name="account-delete",
+    ),
     path("account/list/", AccountListView.as_view(), name="account-list"),
     path("<int:account_id>/", AccountOverview.as_view(), name="account-overview"),
 ]

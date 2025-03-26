@@ -8,6 +8,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import IntegrityError
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.views import generic
 
 # app imports
@@ -44,15 +45,8 @@ class AccountCreateView(LoginRequiredMixin, generic.CreateView):
             return render(self.request, "penthouse/error.html")
 
 
-class AccountOverview(
-    LoginRequiredMixin, RestrictToUserMixin, generic.detail.DetailView
-):
-    """CBV to display a single instance of :class:`~penthouse.models.account.Account`.
-
-    FIXME: The current implementation is just a stub. This view should fetch
-    information from other components of the app and provide them in an
-    "executive dashboard"-like manner.
-    """
+class AccountDeleteView(LoginRequiredMixin, RestrictToUserMixin, generic.DeleteView):
+    """CBV to delete instances of :class:`~penthouse.models.account.Account`."""
 
     model = Account
 
@@ -60,7 +54,9 @@ class AccountOverview(
 
     context_object_name = "account"
 
-    template_name = "penthouse/account_overview.html"
+    template_name = "penthouse/account_delete.html"
+
+    success_url = reverse_lazy("penthouse:account-list")
 
 
 class AccountListView(LoginRequiredMixin, RestrictToUserMixin, generic.list.ListView):
@@ -98,6 +94,25 @@ class AccountListView(LoginRequiredMixin, RestrictToUserMixin, generic.list.List
             return redirect("penthouse:account-create")
         else:
             return redirect("penthouse:account-overview", qs.first().id)
+
+
+class AccountOverview(
+    LoginRequiredMixin, RestrictToUserMixin, generic.detail.DetailView
+):
+    """CBV to display a single instance of :class:`~penthouse.models.account.Account`.
+
+    FIXME: The current implementation is just a stub. This view should fetch
+    information from other components of the app and provide them in an
+    "executive dashboard"-like manner.
+    """
+
+    model = Account
+
+    pk_url_kwarg = "account_id"
+
+    context_object_name = "account"
+
+    template_name = "penthouse/account_overview.html"
 
 
 class AccountUpdateView(LoginRequiredMixin, RestrictToUserMixin, generic.UpdateView):
