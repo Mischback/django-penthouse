@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "../abstracts/colors";
+@use "../abstracts/lists";
 @use "../abstracts/fonts";
 @use "../abstracts/shadows";
 
@@ -20,9 +21,35 @@
   background-color: colors.$overall-document-bg;
 
   #ph-nav {
+    position: sticky;
+    top: 0;
     grid-area: navigation;
+    padding: 1em;
     background-color: colors.$overall-nav-bg;
     box-shadow: map.get(shadows.$box-shadows, 1) !important;
+
+    ul {
+      @include lists.horizontal-list;
+
+      a,
+      a:link,
+      a:visited {
+        display: inline-block;
+        padding: 0.5em 1em 0.25em;
+        border-radius: 0.25rem;
+        background-color: colors.$nav-button-bg;
+        box-shadow: map.get(shadows.$box-shadows, 1) !important;
+        color: colors.$nav-button-fg;
+        font-weight: bold;
+        text-decoration: none;
+
+        /* stylelint-disable max-nesting-depth */
+        &:hover {
+          background-color: colors.$nav-button-hover-bg;
+        }
+        /* stylelint-enable max-nesting-depth */
+      }
+    }
   }
 
   #ph-content {

@@ -14,6 +14,9 @@
 {% block html_body %}
 <div id="ph-app-root">
   <nav id="ph-nav">
+    <ul>
+      <li><a href="{% url "penthouse:account-list" %}">Home</a></li>
+    </ul>
   </nav>
   <div id="ph-content">
 {% block penthouse_main %}
