@@ -1,0 +1,39 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block document_title %}Progression Overview{% endblock document_title %}
+
+{% block penthouse_main %}
+<main class="ph-main">
+  <header>
+    <h2>{{ active_account.name }} - Progression Overview</h2>
+  </header>
+</main>
+
+<section class="collapsible-container">
+  <header class="collapsible-header">
+    <h3>Samples</h3>
+  </header>
+  <section class="collapsible-content">
+    <table summary="All samples for the meta progression of this account">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>LTC</th>
+          <th>LTS</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sample in object_list %}
+        <tr>
+          <td>{{ sample.date|date:"Y-m-d" }}</td>
+          <td>{{ sample.ltc }}</td>
+          <td>{{ sample.lts }}</td>
+          <td>{{ sample.notes }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</section>
+{% endblock penthouse_main %}

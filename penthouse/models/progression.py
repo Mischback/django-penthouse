@@ -26,6 +26,30 @@ class SampleException(PenthouseModelException):
     """Base class for all exceptions related to :class:`~penthouse.models.progression.Sample`."""
 
 
+class SampleManager(models.Manager):
+    """Custom manager for :class:`~penthouse.models.progression.Sample` model."""
+
+    def filter_by_user(self, user=None):
+        """Filter objects by their owner.
+
+        This method is intended to be used in combination with the ``request.user``
+        of the actual HTTP request. It's a first layer of user verification/
+        permission checking.
+        """
+        if user is None:
+            raise SampleException("No user specified!")
+
+        return self.get_queryset().filter(account__owner=user)
+
+    def get_queryset(self):
+        """Add ``Account`` to the query.
+
+        Throughout the app, the :class:`~penthouse.models.account.Account`
+        object is required to be available when working with ``Sample`` objects.
+        """
+        return super().get_queryset().select_related("account")
+
+
 class Sample(models.Model):
     """A ``Sample`` is a single data point to track the meta progression."""
 
@@ -48,6 +72,14 @@ class Sample(models.Model):
     )
 
     notes = models.TextField(help_text=_("Additional notes"), verbose_name=_("Notes"))
+
+    objects = SampleManager()
+    """Apply a custom manager.
+
+    This should not interfere with Django's default inner mechanics, the custom
+    manager does not replace any default functions, it just provides additional
+    methods.
+    """
 
     class Meta:  # noqa: D106
         app_label = "penthouse"

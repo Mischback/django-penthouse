@@ -65,7 +65,7 @@ class AccountListView(LoginRequiredMixin, RestrictToUserMixin, generic.list.List
     The list will be filtered by the current user.
 
     FIXME: This should display *some* information about the accounts, which will
-    be fetched from oder components.
+    be fetched from other components.
     """
 
     model = Account
