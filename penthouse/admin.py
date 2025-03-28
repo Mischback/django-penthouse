@@ -9,8 +9,14 @@ from django.contrib import admin
 
 # app imports
 from penthouse.models.account import Account
+from penthouse.models.progression import Sample
 
 
 @admin.register(Account)
 class AccountAdmin(admin.ModelAdmin):  # noqa: D101
+    pass
+
+
+@admin.register(Sample)
+class SampleAdmin(admin.ModelAdmin):  # noqa: D101
     pass

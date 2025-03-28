@@ -82,7 +82,7 @@ class Account(models.Model):
     class Meta:  # noqa: D106
         app_label = "penthouse"
         verbose_name = _("Account")
-        verbose_name_plural = _("Account")
+        verbose_name_plural = _("Accounts")
         unique_together = ("owner", "name")
 
     def __str__(self):  # noqa: D105
