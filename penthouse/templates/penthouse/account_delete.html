@@ -9,7 +9,7 @@
   </header>
 
   <p>You're about to delete the account <strong>{{ account.name }}</strong> and all associated data.</p>
-  <p>This will remove <i>423 runs</i>, <i>29 meta progression data points</i>, ...</p>
+  <p>This will remove <i>423 runs</i>, <i>{{ progression_samples }} progression sample{{ progression_samples|pluralize }}</i>, ...</p>
   <p>Are you really sure you want to delete this account?</p>
 
   <section class="ph-form-container">

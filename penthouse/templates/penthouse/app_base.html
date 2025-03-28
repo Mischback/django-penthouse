@@ -16,6 +16,9 @@
   <nav id="ph-nav">
     <ul>
       <li><a href="{% url "penthouse:account-list" %}">Home</a></li>
+      {% if active_account %}
+      <li><a href="{% url "penthouse:progression-overview" active_account.id %}">Progression</a></li>
+      {% endif %}
     </ul>
   </nav>
   <div id="ph-content">
