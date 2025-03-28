@@ -6,9 +6,342 @@
  */
 /* stylelint-disable */
 /* stylelint-enable */
+/* These different shades of grey are based on Material's guidelines for dark
+ * colorschemes (https://m2.material.io/design/color/dark-theme.html). These
+ * are mostly for reference, as the design will use slightly tinted colors.
+ */
+/* These are the shades of grey, slightly tinted with a shade of blue.
+ *
+ * ChatGPT can provide adjustments of Chroma and Hue within one request, so
+ * this is quickly done.
+ */
+/* And another collection, tinted with a more vibrant blue. */
+/* Different shades of green, to indicate *good values*. */
+/* These are light grey tones, with tints matching the background colors. */
+/* Lime base color, may be used as foreground color.
+ *
+ * See https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+ * for additional shades.
+ */
+/* Semantic colors
+ *
+ * These are the actual colors, associated with semantic meanings in the
+ * context of the layout.
+ *
+ * These are the colors, that should be used in other source files.
+ */
+/* Provide styles for the general HTML document.
+ *
+ * Those are not app-specific, but provide the general minimal setup of the
+ * containing HTML document.
+ *
+ * If the app is deployed in a bigger Django project and should be integrated
+ * into a coherent layout, these styles should most likely be replaced - or at
+ * least critically reviewed.
+ */
 * {
   margin: 0;
   padding: 0;
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22../../../auxiliary/style/style.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAIA;AAAA;AAAA;AAAA;AAAA;AAAA;AAOA;AAGA;AAGA;EACE;EACA%22,%22file%22:%22style.css%22,%22sourcesContent%22:%5B%22//%20SPDX-FileCopyrightText:%202025%20Mischback%5Cn//%20SPDX-License-Identifier:%20MIT%5Cn//%20SPDX-FileType:%20SOURCE%5Cn%5Cn/*%20Main%20stylesheet%20of%20django-penthouse's%20default%20styling.%5Cn%20*%5Cn%20*%20The%20stylesheet%20is%20generated%20from%20SCSS%20sources.%20The%20SCSS%20source%20code%20is%5Cn%20*%20organized%20according%20to%20Matthew%20Elson's%20Simple%20SCSS%20playbook%5Cn%20*%20(https://matthewelsom.com/blog/simple-scss-playbook.html).%5Cn%20%2A/%5Cn%5Cn/*%20stylelint-disable%20%2A/%5Cn@charset%20%5C%22utf-8%5C%22;%5Cn@use%20%5C%22sass:meta%5C%22;%5Cn/*%20stylelint-enable%20%2A/%5Cn%5Cn//%20FIXME:%20Just%20for%20initial%20testing%5Cn*%20%7B%5Cn%20%20margin:%200;%5Cn%20%20padding:%200;%5Cn%7D%5Cn%22%5D%7D */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: oklch(18.22% 0.02 245deg);
+}
+
+/* These different shades of grey are based on Material's guidelines for dark
+ * colorschemes (https://m2.material.io/design/color/dark-theme.html). These
+ * are mostly for reference, as the design will use slightly tinted colors.
+ */
+/* These are the shades of grey, slightly tinted with a shade of blue.
+ *
+ * ChatGPT can provide adjustments of Chroma and Hue within one request, so
+ * this is quickly done.
+ */
+/* And another collection, tinted with a more vibrant blue. */
+/* Different shades of green, to indicate *good values*. */
+/* These are light grey tones, with tints matching the background colors. */
+/* Lime base color, may be used as foreground color.
+ *
+ * See https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+ * for additional shades.
+ */
+/* Semantic colors
+ *
+ * These are the actual colors, associated with semantic meanings in the
+ * context of the layout.
+ *
+ * These are the colors, that should be used in other source files.
+ */
+/* The actual font stacks */
+/* stylelint-disable */
+/* prettier-ignore */
+/* stylelint-enable */
+/* Provide the general visual structure for the app-specific templates. */
+#ph-app-root {
+  display: grid;
+  grid-template: ". navigation ." ". content ."/1fr min(1280px, 100%) 1fr;
+  margin: 0;
+  padding: 0;
+  background-color: oklch(18.22% 0.02 245deg);
+}
+
+#ph-app-root #ph-nav {
+  position: sticky;
+  top: 0;
+  grid-area: navigation;
+  padding: 1em;
+  background-color: oklch(25.2% 0.02 245deg);
+  box-shadow: 0 1px 1px 0 black, 0 1px 3px 0 black, 0 2px 1px -1px black !important;
+}
+
+#ph-app-root #ph-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#ph-app-root #ph-nav ul li {
+  display: inline-block;
+  margin-right: 2em;
+  margin-left: -2px;
+}
+
+#ph-app-root #ph-nav ul a,
+#ph-app-root #ph-nav ul a:link,
+#ph-app-root #ph-nav ul a:visited {
+  display: inline-block;
+  padding: 0.5em 1em 0.25em;
+  border-radius: 0.25rem;
+  background-color: oklch(34.07% 0.04 245deg);
+  box-shadow: 0 1px 1px 0 black, 0 1px 3px 0 black, 0 2px 1px -1px black !important;
+  color: rgb(169, 180, 69);
+  font-weight: bold;
+  text-decoration: none;
+  /* stylelint-disable max-nesting-depth */
+  /* stylelint-enable max-nesting-depth */
+}
+
+#ph-app-root #ph-nav ul a:hover,
+#ph-app-root #ph-nav ul a:link:hover,
+#ph-app-root #ph-nav ul a:visited:hover {
+  background-color: oklch(29.31% 0.08 135deg);
+}
+
+#ph-app-root #ph-content {
+  grid-area: content;
+  margin: 0;
+  padding: 1em 2em;
+  background-color: oklch(23.5% 0.02 245deg);
+  box-shadow: 0 1px 1px 0 black, 0 1px 3px 0 black, 0 2px 1px -1px black !important;
+}
+
+#ph-app-root * {
+  color: oklch(79.21% 0.02 245deg);
+  font-family: inter, roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", arial, sans-serif;
+}
+
+#ph-app-root .ph-main {
+  margin: 0;
+  padding: 0;
+}
+
+#ph-app-root .ph-main > header {
+  margin-bottom: 1em;
+}
+
+/* These different shades of grey are based on Material's guidelines for dark
+ * colorschemes (https://m2.material.io/design/color/dark-theme.html). These
+ * are mostly for reference, as the design will use slightly tinted colors.
+ */
+/* These are the shades of grey, slightly tinted with a shade of blue.
+ *
+ * ChatGPT can provide adjustments of Chroma and Hue within one request, so
+ * this is quickly done.
+ */
+/* And another collection, tinted with a more vibrant blue. */
+/* Different shades of green, to indicate *good values*. */
+/* These are light grey tones, with tints matching the background colors. */
+/* Lime base color, may be used as foreground color.
+ *
+ * See https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+ * for additional shades.
+ */
+/* Semantic colors
+ *
+ * These are the actual colors, associated with semantic meanings in the
+ * context of the layout.
+ *
+ * These are the colors, that should be used in other source files.
+ */
+/* stylelint-disable */
+/* prettier-ignore */
+/* stylelint-enable */
+.ph-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5em;
+  margin-bottom: 3em;
+}
+
+.ph-form {
+  display: inline-block;
+}
+
+.ph-form .non-field-errors,
+.ph-form .field-errors {
+  margin: 0.25em 0 0.5em;
+  padding: 0.5em 0.5em 0.25em;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 0.25rem;
+  background-color: rgb(255, 87, 34);
+  color: rgb(0, 0, 0) !important;
+}
+
+.ph-form .field-group {
+  margin: 0.5em 0 2em;
+}
+
+.ph-form .field-group label,
+.ph-form .field-group small,
+.ph-form .field-group .field-errors {
+  display: block;
+  margin-left: 0.25em;
+}
+
+.ph-form .field-group input,
+.ph-form .field-group select,
+.ph-form .field-group textarea {
+  margin: 0.25em 0.25em 0.5em;
+  padding: 0.5em 0.5em 0.25em;
+  border: 0 solid rgb(0, 0, 0);
+  border-radius: 0.25rem;
+  background-color: oklch(29.31% 0.04 245deg);
+  box-shadow: 0 2px 2px 0 black, 0 1px 5px 0 black, 0 3px 1px -2px black !important;
+  color: oklch(79.21% 0.02 245deg);
+  font-size: 1.2em;
+}
+
+.ph-form .field-group input:focus-within,
+.ph-form .field-group select:focus-within,
+.ph-form .field-group textarea:focus-within {
+  background-color: oklch(79.21% 0.08 135deg);
+  color: rgb(0, 0, 0) !important;
+}
+
+.ph-form button {
+  margin: 0.25em;
+  padding: 0.5em 0.5em 0.25em;
+  border: 0 solid rgb(0, 0, 0);
+  border-radius: 0.25rem;
+  font-size: 1.25em;
+  font-weight: bold;
+  box-shadow: 0 2px 2px 0 black, 0 1px 5px 0 black, 0 3px 1px -2px black !important;
+  /* stylelint-disable selector-no-qualifying-type */
+  /* stylelint-enable selector-no-qualifying-type */
+  /* stylelint-disable selector-no-qualifying-type */
+  /* stylelint-enable selector-no-qualifying-type */
+  /* stylelint-disable selector-no-qualifying-type */
+  /* stylelint-enable selector-no-qualifying-type */
+}
+
+.ph-form button.submit {
+  background-color: oklch(34.07% 0.08 135deg);
+  color: oklch(79.21% 0.08 135deg) !important;
+}
+
+.ph-form button.submit:hover {
+  background-color: oklch(75% 0.28 125deg);
+  color: oklch(26.03% 0.08 135deg) !important;
+}
+
+.ph-form button.cancel {
+  background-color: oklch(34.07% 0.04 245deg);
+}
+
+.ph-form button.cancel:hover {
+  background-color: rgb(255, 87, 34);
+  color: rgb(0, 0, 0) !important;
+}
+
+.ph-form button.danger {
+  background-color: rgb(255, 87, 34);
+  color: rgb(0, 0, 0) !important;
+}
+
+.ph-form button.danger:hover {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 87, 34) !important;
+}
+
+/* These different shades of grey are based on Material's guidelines for dark
+ * colorschemes (https://m2.material.io/design/color/dark-theme.html). These
+ * are mostly for reference, as the design will use slightly tinted colors.
+ */
+/* These are the shades of grey, slightly tinted with a shade of blue.
+ *
+ * ChatGPT can provide adjustments of Chroma and Hue within one request, so
+ * this is quickly done.
+ */
+/* And another collection, tinted with a more vibrant blue. */
+/* Different shades of green, to indicate *good values*. */
+/* These are light grey tones, with tints matching the background colors. */
+/* Lime base color, may be used as foreground color.
+ *
+ * See https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+ * for additional shades.
+ */
+/* Semantic colors
+ *
+ * These are the actual colors, associated with semantic meanings in the
+ * context of the layout.
+ *
+ * These are the colors, that should be used in other source files.
+ */
+/* stylelint-disable */
+/* prettier-ignore */
+/* stylelint-enable */
+/* Provide the base styles for collapsible containers.
+ *
+ * Those containers are meant to be placed on layer 2, so basically directly
+ * on the app's base canvas (#ph-content).
+ */
+.collapsible-container {
+  margin-bottom: 2em;
+  background-color: oklch(25.2% 0.02 245deg);
+  box-shadow: 0 2px 2px 0 black, 0 1px 5px 0 black, 0 3px 1px -2px black !important;
+}
+
+.collapsible-container > header,
+.collapsible-container > section {
+  padding: 0.5em 0.5em 1em;
+}
+
+.collapsible-container .collapsible-header {
+  margin: 0;
+  padding-bottom: 0.25em;
+  background-color: oklch(27.27% 0.02 245deg);
+  cursor: pointer;
+}
+
+.collapsible-container .collapsible-header h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.collapsible-container .collapsible-content {
+  border-top: 1px solid rgb(0, 0, 0);
+}
+
+.account-list-item > header h3 {
+  display: inline-block;
+}
+
+.account-list-item > header a {
+  display: inline-block;
+  margin-left: 3em;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22../../../auxiliary/style/style.scss%22,%22../../../auxiliary/style/abstracts/colors.scss%22,%22../../../auxiliary/style/base/general_layout.scss%22,%22../../../auxiliary/style/abstracts/fonts.scss%22,%22../../../auxiliary/style/abstracts/shadows.scss%22,%22../../../auxiliary/style/base/app_layout.scss%22,%22../../../auxiliary/style/abstracts/lists.scss%22,%22../../../auxiliary/style/components/form.scss%22,%22../../../auxiliary/style/abstracts/buttons.scss%22,%22../../../auxiliary/style/components/collapsible.scss%22,%22../../../auxiliary/style/layouts/account_list.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAIA;AAAA;AAAA;AAAA;AAAA;AAAA;AAOA;AAGA;ACNA;AAAA;AAAA;AAAA;AAeA;AAAA;AAAA;AAAA;AAAA;AAgBA;AAYA;AAYA;AAMA;AAAA;AAAA;AAAA;AAAA;AA0BA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;ACzFA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAUA;EACE;EACA;;;AAGF;EACE;EACA;EACA,kBDIqB;;;AApBvB;AAAA;AAAA;AAAA;AAeA;AAAA;AAAA;AAAA;AAAA;AAgBA;AAYA;AAYA;AAMA;AAAA;AAAA;AAAA;AAAA;AA0BA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AE3FA;ACQA;AACA;AAWA;ACdA;AAEA;EACE;EACA,eACE;EAGF;EACA;EACA,kBJQqB;;;AINrB;EACE;EACA;EACA;EACA;EACA,kBJGmB;EIFnB;;;AAEA;ECzBF;EACA;EACA;;;AAMA;EACE;EACA;EACA;;;ADiBE;AAAA;AAAA;EAGE;EACA;EACA;EACA,kBJUY;EITZ;EACA,OJoCQ;EInCR;EACA;AAEA;AAIA;;;AAHA;AAAA;AAAA;EACE,kBJUM;;;AIHd;EACE;EACA;EACA;EACA,kBJ7BmB;EI8BnB;;;AAGF;EACE,OJEiB;EIDjB,aF1Dc;;;AE6DhB;EACE;EACA;;;AAEA;EACE;;;AJhEN;AAAA;AAAA;AAAA;AAeA;AAAA;AAAA;AAAA;AAAA;AAgBA;AAYA;AAYA;AAMA;AAAA;AAAA;AAAA;AAAA;AA0BA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AGnFA;AACA;AAWA;AGfA;EACE;EACA;EACA;EACA;EACA;;;AAGF;EAEE;;;AAEA;AAAA;EAEE;EACA;EACA;EACA;EACA,kBN0Dc;EMzDd;;;AAGF;EACE;;;AAEA;AAAA;AAAA;EAGE;EACA;;;AAGF;AAAA;AAAA;EAGE;EACA;EACA;EACA;EACA,kBNHc;EMId;EACA,ONee;EMdf;;;AAEA;AAAA;AAAA;EACE,kBNaM;EMZN;;;AAKN;ECrDA;EACA;EACA;EACA;EACA;EACA;EDmDE;AAEA;AAUA;AAEA;AASA;AAEA;AAWA;;;AAjCA;EACE,kBNNU;EMOV;;;AAEA;EACE,kBNQO;EMPP;;;AAMJ;EACE,kBN9Bc;;;AMgCd;EACE,kBNGU;EMFV;;;AAMJ;EACE,kBNLY;EMMZ;;;AAEA;EAEE,kBNzFA;EM0FA;;;ANxFR;AAAA;AAAA;AAAA;AAeA;AAAA;AAAA;AAAA;AAAA;AAgBA;AAYA;AAYA;AAMA;AAAA;AAAA;AAAA;AAAA;AA0BA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AGnFA;AACA;AAWA;AKhBA;AAAA;AAAA;AAAA;AAAA;AAMA;EACE;EACA,kBRcqB;EQbrB;;;AAEA;AAAA;EAEE;;;AAGF;EACE;EACA;EACA,kBRKmB;EQJnB;;;AAEA;EACE;EACA;;;AAIJ;EACE;;;AC/BA;EACE;;;AAGF;EACE;EACA%22,%22file%22:%22style.css%22,%22sourcesContent%22:%5B%22//%20SPDX-FileCopyrightText:%202025%20Mischback%5Cn//%20SPDX-License-Identifier:%20MIT%5Cn//%20SPDX-FileType:%20SOURCE%5Cn%5Cn/*%20Main%20stylesheet%20of%20django-penthouse's%20default%20styling.%5Cn%20*%5Cn%20*%20The%20stylesheet%20is%20generated%20from%20SCSS%20sources.%20The%20SCSS%20source%20code%20is%5Cn%20*%20organized%20according%20to%20Matthew%20Elson's%20Simple%20SCSS%20playbook%5Cn%20*%20(https://matthewelsom.com/blog/simple-scss-playbook.html).%5Cn%20%2A/%5Cn%5Cn/*%20stylelint-disable%20%2A/%5Cn@charset%20%5C%22utf-8%5C%22;%5Cn@use%20%5C%22sass:meta%5C%22;%5Cn/*%20stylelint-enable%20%2A/%5Cn%5Cn@include%20meta.load-css(%5C%22base/general_layout%5C%22);%5Cn@include%20meta.load-css(%5C%22base/app_layout%5C%22);%5Cn@include%20meta.load-css(%5C%22components/form%5C%22);%5Cn@include%20meta.load-css(%5C%22components/collapsible%5C%22);%5Cn@include%20meta.load-css(%5C%22layouts/account_list%5C%22);%5Cn%22,%22//%20SPDX-FileCopyrightText:%202025%20Mischback%5Cn//%20SPDX-License-Identifier:%20MIT%5Cn//%20SPDX-FileType:%20SOURCE%5Cn%5Cn@use%20%5C%22sass:color%5C%22;%5Cn%5Cn$black:%20rgb(0%200%200);%5Cn%5Cn/*%20These%20different%20shades%20of%20grey%20are%20based%20on%20Material's%20guidelines%20for%20dark%5Cn%20*%20colorschemes%20(https://m2.material.io/design/color/dark-theme.html).%20These%5Cn%20*%20are%20mostly%20for%20reference,%20as%20the%20design%20will%20use%20slightly%20tinted%20colors.%5Cn%20%2A/%5Cn$dark-grey-00:%20oklch(18.22%25%200%200deg);%20//%20rgb(18%2018%2018)%5Cn$dark-grey-01:%20oklch(23.5%25%200%200deg);%20//%20rgb(30%2030%2030)%5Cn$dark-grey-02:%20oklch(25.2%25%200%200deg);%20//%20rgb(34%2034%2034)%5Cn$dark-grey-03:%20oklch(26.03%25%200%200deg);%20//%20rgb(36%2036%2036)%5Cn$dark-grey-04:%20oklch(27.27%25%200%200deg);%20//%20rgb(39%2039%2039)%5Cn$dark-grey-06:%20oklch(29.31%25%200%200deg);%20//%20rgb(44%2044%2044)%5Cn$dark-grey-08:%20oklch(30.12%25%200%200deg);%20//%20rgb(46%2046%2046)%5Cn$dark-grey-12:%20oklch(31.71%25%200%200deg);%20//%20rgb(50%2050%2050)%5Cn$dark-grey-16:%20oklch(32.9%25%200%200deg);%20//%20rgb(53%2053%2053)%5Cn$dark-grey-24:%20oklch(34.07%25%200%200deg);%20//%20rgb(56%2056%2056)%5Cn%5Cn/*%20These%20are%20the%20shades%20of%20grey,%20slightly%20tinted%20with%20a%20shade%20of%20blue.%5Cn%20*%5Cn%20*%20ChatGPT%20can%20provide%20adjustments%20of%20Chroma%20and%20Hue%20within%20one%20request,%20so%5Cn%20*%20this%20is%20quickly%20done.%5Cn%20%2A/%5Cn$dark-blueish-grey-00:%20oklch(18.22%25%200.02%20245deg);%20//%20rgb(18%2018%2027)%5Cn$dark-blueish-grey-01:%20oklch(23.5%25%200.02%20245deg);%20//%20rgb(30%2030%2043)%5Cn$dark-blueish-grey-02:%20oklch(25.2%25%200.02%20245deg);%20//%20rgb(34%2034%2051)%5Cn$dark-blueish-grey-03:%20oklch(26.03%25%200.02%20245deg);%20//%20rgb(36%2036%2058)%5Cn$dark-blueish-grey-04:%20oklch(27.27%25%200.02%20245deg);%20//%20rgb(39%2039%2066)%5Cn$dark-blueish-grey-06:%20oklch(29.31%25%200.02%20245deg);%20//%20rgb(44%2044%2079)%5Cn$dark-blueish-grey-08:%20oklch(30.12%25%200.02%20245deg);%20//%20rgb(46%2046%2086)%5Cn$dark-blueish-grey-12:%20oklch(31.71%25%200.02%20245deg);%20//%20rgb(50%2050%2097)%5Cn$dark-blueish-grey-16:%20oklch(32.9%25%200.02%20245deg);%20//%20rgb(53%2053%20103)%5Cn$dark-blueish-grey-24:%20oklch(34.07%25%200.02%20245deg);%20//%20rgb(56%2056%20113)%5Cn%5Cn/*%20And%20another%20collection,%20tinted%20with%20a%20more%20vibrant%20blue.%20%2A/%5Cn$dark-blue-grey-00:%20oklch(18.22%25%200.04%20245deg);%20//%20rgb(18%2018%2042)%5Cn$dark-blue-grey-01:%20oklch(23.5%25%200.04%20245deg);%20//%20rgb(30%2030%2060)%5Cn$dark-blue-grey-02:%20oklch(25.2%25%200.04%20245deg);%20//%20rgb(34%2034%2069)%5Cn$dark-blue-grey-03:%20oklch(26.03%25%200.04%20245deg);%20//%20rgb(36%2036%2076)%5Cn$dark-blue-grey-04:%20oklch(27.27%25%200.04%20245deg);%20//%20rgb(39%2039%2085)%5Cn$dark-blue-grey-06:%20oklch(29.31%25%200.04%20245deg);%20//%20rgb(44%2044%2099)%5Cn$dark-blue-grey-08:%20oklch(30.12%25%200.04%20245deg);%20//%20rgb(46%2046%20106)%5Cn$dark-blue-grey-12:%20oklch(31.71%25%200.04%20245deg);%20//%20rgb(50%2050%20117)%5Cn$dark-blue-grey-16:%20oklch(32.9%25%200.04%20245deg);%20//%20rgb(53%2053%20123)%5Cn$dark-blue-grey-24:%20oklch(34.07%25%200.04%20245deg);%20//%20rgb(56%2056%20133)%5Cn%5Cn/*%20Different%20shades%20of%20green,%20to%20indicate%20*good%20values*.%20%2A/%5Cn$dark-green-00:%20oklch(18.22%25%200.08%20135deg);%20//%20rgb(18%2052%2018)%5Cn$dark-green-01:%20oklch(23.5%25%200.08%20135deg);%20//%20rgb(30%2075%2030)%5Cn$dark-green-02:%20oklch(25.2%25%200.08%20135deg);%20//%20rgb(34%2091%2034)%5Cn$dark-green-03:%20oklch(26.03%25%200.08%20135deg);%20//%20rgb(36%2099%2036)%5Cn$dark-green-04:%20oklch(27.27%25%200.08%20135deg);%20//%20rgb(39%20111%2039)%5Cn$dark-green-06:%20oklch(29.31%25%200.08%20135deg);%20//%20rgb(44%20128%2044)%5Cn$dark-green-08:%20oklch(30.12%25%200.08%20135deg);%20//%20rgb(46%20139%2046)%5Cn$dark-green-12:%20oklch(31.71%25%200.08%20135deg);%20//%20rgb(50%20153%2050)%5Cn$dark-green-16:%20oklch(32.9%25%200.08%20135deg);%20//%20rgb(53%20161%2053)%5Cn$dark-green-24:%20oklch(34.07%25%200.08%20135deg);%20//%20rgb(56%20175%2056)%5Cn%5Cn/*%20These%20are%20light%20grey%20tones,%20with%20tints%20matching%20the%20background%20colors.%20%2A/%5Cn$light-grey:%20oklch(79.21%25%200%200deg);%20//%20rgb(187%20187%20187);%5Cn$light-blueish-grey:%20oklch(79.21%25%200.02%20245deg);%5Cn$light-blue-grey:%20oklch(79.21%25%200.04%20245deg);%5Cn$light-green:%20oklch(79.21%25%200.08%20135deg);%5Cn%5Cn/*%20Lime%20base%20color,%20may%20be%20used%20as%20foreground%20color.%5Cn%20*%5Cn%20*%20See%20https://m2.material.io/design/color/the-color-system.html%23tools-for-picking-colors%5Cn%20*%20for%20additional%20shades.%5Cn%20%2A/%5Cn$lime-200:%20rgb(230%20238%20156);%5Cn$lime-400:%20rgb(212%20225%2087);%5Cn$lime-a200:%20rgb(178%20255%2089);%5Cn$lime-400-dark:%20rgb(169%20180%2069);%5Cn$bright-red:%20oklch(70%25%200.28%2045deg);%5Cn$bright-green:%20oklch(75%25%200.28%20125deg);%5Cn$deep-orange-50:%20rgb(251%20233%20231);%5Cn$deep-orange-100:%20rgb(255%20204%20188);%5Cn$deep-orange-200:%20rgb(255%20171%20145);%5Cn$deep-orange-300:%20rgb(255%20138%20101);%5Cn$deep-orange-400:%20rgb(255%20112%2067);%5Cn$deep-orange-500:%20rgb(255%2087%2034);%5Cn$deep-orange-600:%20rgb(244%2081%2030);%5Cn$deep-orange-700:%20rgb(230%2074%2025);%5Cn$deep-orange-800:%20rgb(216%2067%2021);%5Cn$deep-orange-900:%20rgb(191%2054%2012);%5Cn$deep-orange-a100:%20rgb(255%20158%20128);%5Cn$deep-orange-a200:%20rgb(255%20110%2064);%5Cn$deep-orange-a400:%20rgb(255%2061%200);%5Cn$deep-orange-a700:%20rgb(221%2044%200);%5Cn%5Cn/*%20Semantic%20colors%5Cn%20*%5Cn%20*%20These%20are%20the%20actual%20colors,%20associated%20with%20semantic%20meanings%20in%20the%5Cn%20*%20context%20of%20the%20layout.%5Cn%20*%5Cn%20*%20These%20are%20the%20colors,%20that%20should%20be%20used%20in%20other%20source%20files.%5Cn%20%2A/%5Cn$shadow-color-base:%20$black;%5Cn$overall-document-bg:%20$dark-blueish-grey-00;%5Cn$overall-document-fg:%20$light-blueish-grey;%5Cn$overall-nav-bg:%20$dark-blueish-grey-02;%5Cn$overall-content-bg:%20$dark-blueish-grey-01;%5Cn$collapsible-container-bg:%20$dark-blueish-grey-02;%5Cn$collapsible-header-bg:%20$dark-blueish-grey-04;%5Cn$form-input-bg:%20$dark-blue-grey-06;%5Cn$form-input-active-bg:%20$light-green;%5Cn$form-input-active-fg:%20$black;%5Cn$form-error-color-bg:%20$deep-orange-500;%5Cn$form-error-color-fg:%20$black;%5Cn$form-button-submit-bg:%20$dark-green-24;%5Cn$form-button-submit-fg:%20$light-green;%5Cn$form-button-submit-hover-bg:%20$bright-green;%5Cn$form-button-submit-hover-fg:%20$dark-green-03;%5Cn$form-button-cancel-bg:%20$dark-blue-grey-24;%5Cn$form-button-cancel-hover-bg:%20$deep-orange-500;%5Cn$form-button-cancel-hover-fg:%20$black;%5Cn$nav-button-bg:%20$dark-blue-grey-24;%5Cn$nav-button-hover-bg:%20$dark-green-06;%5Cn$nav-button-fg:%20$lime-400-dark;%5Cn%22,%22//%20SPDX-FileCopyrightText:%202025%20Mischback%5Cn//%20SPDX-License-Identifier:%20MIT%5Cn//%20SPDX-FileType:%20SOURCE%5Cn%5Cn@use%20%5C%22../abstracts/colors%5C%22;%5Cn%5Cn/*%20Provide%20styles%20for%20the%20general%20HTML%20document.%5Cn%20*%5Cn%20*%20Those%20are%20not%20app-specific,%20but%20provide%20the%20general%20minimal%20setup%20of%20the%5Cn%20*%20containing%20HTML%20document.%5Cn%20*%5Cn%20*%20If%20the%20app%20is%20deployed%20in%20a%20bigger%20Django%20project%20and%20should%20be%20integrated%5Cn%20*%20into%20a%20coherent%20layout,%20these%20styles%20should%20most%20likely%20be%20replaced%20-%20or%20at%5Cn%20*%20least%20critically%20reviewed.%5Cn%20%2A/%5Cn%5Cn*%20%7B%5Cn%20%20margin:%200;%5Cn%20%20padding:%200;%5Cn%7D%5Cn%5Cnbody%20%7B%5Cn%20%20margin:%200;%5Cn%20%20padding:%200;%5Cn%20%20background-color:%20colors.$overall-document-bg;%5Cn%7D%5Cn%22,%22//%20SPDX-FileCopyrightText:%202025%20Mischback%5Cn//%20SPDX-License-Identifier:%20MIT%5Cn//%20SPDX-FileType:%20SOURCE%5Cn%5Cn/*%20The%20actual%20font%20stacks%20%2A/%5Cn//%20prettier-ignore%5Cn$font-stack-sans:%20inter,%20roboto,%20%5C%22Helvetica%20Neue%5C%22,%20%5C%22Arial%20Nova%5C%22,%20%5C%22Nimbus%20Sans%5C%22,%20arial,%5Cn%20%20sans-serif;%5Cn%22,%22//%20SPDX-FileCopyrightText:%202025%20Mischback%5Cn//%20SPDX-License-Identifier:%20MIT%5Cn//%20SPDX-FileType:%20SOURCE%5Cn%5Cn@use%20%5C%22sass:color%5C%22;%5Cn@use%20%5C%22sass:string%5C%22;%5Cn@use%20%5C%22../abstracts/colors%5C%22;%5Cn%5Cn$shadow-color-1:%20color.adjust(colors.$shadow-color-base,%20$alpha:%200.14)%20!default;%5Cn$shadow-color-2:%20color.adjust(colors.$shadow-color-base,%20$alpha:%200.12)%20!default;%5Cn$shadow-color-3:%20color.adjust(colors.$shadow-color-base,%20$alpha:%200.2)%20!default;%5Cn%5Cn/*%20stylelint-disable%20%2A/%5Cn/*%20prettier-ignore%20%2A/%5Cn$box-shadows:%20(%5Cn%20%2024:%20string.unquote(%5C%220%2024px%2038px%203px%20%23%7B$shadow-color-1%7D,%200%209px%2046px%208px%20%23%7B$shadow-color-2%7D,%200%2011px%2015px%20-7px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%2016:%20string.unquote(%5C%220%2016px%2024px%202px%20%23%7B$shadow-color-1%7D,%200%206px%2030px%205px%20%23%7B$shadow-color-2%7D,%200%208px%2010px%20-5px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%2012:%20string.unquote(%5C%220%2012px%2017px%202px%20%23%7B$shadow-color-1%7D,%200%205px%2022px%204px%20%23%7B$shadow-color-2%7D,%200%207px%208px%20-4px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%208:%20string.unquote(%5C%220%208px%2010px%201px%20%23%7B$shadow-color-1%7D,%200%203px%2014px%202px%20%23%7B$shadow-color-2%7D,%200%205px%205px%20-3px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%206:%20string.unquote(%5C%220%206px%2010px%200%20%23%7B$shadow-color-1%7D,%200%201px%2018px%200%20%23%7B$shadow-color-2%7D,%200%203px%205px%20-1px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%204:%20string.unquote(%5C%220%204px%205px%200%20%23%7B$shadow-color-1%7D,%200%201px%2010px%200%20%23%7B$shadow-color-2%7D,%200%202px%204px%20-1px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%202:%20string.unquote(%5C%220%202px%202px%200%20%23%7B$shadow-color-1%7D,%200%201px%205px%200%20%23%7B$shadow-color-2%7D,%200%203px%201px%20-2px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn%20%201:%20string.unquote(%5C%220%201px%201px%200%20%23%7B$shadow-color-1%7D,%200%201px%203px%200%20%23%7B$shadow-color-2%7D,%200%202px%201px%20-1px%20%23%7B$shadow-color-3%7D%5C%22),%5Cn)%20!default;%5Cn/*%20stylelint-enable%20%2A/%5Cn%22,%22//%20SPDX-FileCopyrightText:%202025%20Mischback%5Cn//%20SPDX-License-Identifier:%20MIT%5Cn//%20SPDX-FileType:%20SOURCE%5Cn%5Cn@use%20%5C%22sass:map%5C%22;%5Cn@use%20%5C%22../abstracts/colors%5C%22;%5Cn@use%20%5C%22../abstracts/lists%5C%22;%5Cn@use%20%5C%22../abstracts/fonts%5C%22;%5Cn@use%20%5C%22../abstracts/shadows%5C%22;%5Cn%5Cn/*%20Provide%20the%20general%20visual%20structure%20for%20the%20app-specific%20templates.%20%2A/%5Cn%5Cn%23ph-app-root%20%7B%5Cn%20%20display:%20grid;%5Cn%20%20grid-template:%5Cn%20%20%20%20%5C%22.%20navigation%20.%5C%22%5Cn%20%20%20%20%5C%22.%20content%20.%5C%22%5Cn%20%20%20%20/%201fr%20calc(min(1280px,%20100%25))%201fr;%5Cn%20%20margin:%200;%5Cn%20%20padding:%200;%5Cn%20%20background-color:%20colors.$overall-document-bg;%5Cn%5Cn%20%20%23ph-nav%20%7B%5Cn%20%20%20%20position:%20sticky;%5Cn%20%20%20%20top:%200;%5Cn%20%20%20%20grid-area:%20navigation;%5Cn%20%20%20%20padding:%201em;%5Cn%20%20%20%20background-color:%20colors.$overall-nav-bg;%5Cn%20%20%20%20box-shadow:%20map.get(shadows.$box-shadows,%201)%20!important;%5Cn%5Cn%20%20%20%20ul%20%7B%5Cn%20%20%20%20%20%20@include%20lists.horizontal-list;%5Cn%5Cn%20%20%20%20%20%20a,%5Cn%20%20%20%20%20%20a:link,%5Cn%20%20%20%20%20%20a:visited%20%7B%5Cn%20%20%20%20%20%20%20%20display:%20inline-block;%5Cn%20%20%20%20%20%20%20%20padding:%200.5em%201em%200.25em;%5Cn%20%20%20%20%20%20%20%20border-radius:%200.25rem;%5Cn%20%20%20%20%20%20%20%20background-color:%20colors.$nav-button-bg;%5Cn%20%20%20%20%20%20%20%20box-shadow:%20map.get(shadows.$box-shadows,%201)%20!important;%5Cn%20%20%20%20%20%20%20%20color:%20colors.$nav-button-fg;%5Cn%20%20%20%20%20%20%20%20font-weight:%20bold;%5Cn%20%20%20%20%20%20%20%20text-decoration:%20none;%5Cn%5Cn%20%20%20%20%20%20%20%20/*%20stylelint-disable%20max-nesting-depth%20%2A/%5Cn%20%20%20%20%20%20%20%20&:hover%20%7B%5Cn%20%20%20%20%20%20%20%20%20%20background-color:%20colors.$nav-button-hover-bg;%5Cn%20%20%20%20%20%20%20%20%7D%5Cn%20%20%20%20%20%20%20%20/*%20stylelint-enable%20max-nesting-depth%20%2A/%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%7D%5Cn%20%20%7D%5Cn%5Cn%20%20%23ph-content%20%7B%5Cn%20%20%20%20grid-area:%20content;%5Cn%20%20%20%20margin:%200;%5Cn%20%20%20%20padding:%201em%202em;%5Cn%20%20%20%20background-color:%20colors.$overall-content-bg;%5Cn%20%20%20%20box-shadow:%20map.get(shadows.$box-shadows,%201)%20!important;%5Cn%20%20%7D%5Cn%5Cn%20%20*%20%7B%5Cn%20%20%20%20color:%20colors.$overall-document-fg;%5Cn%20%20%20%20font-family:%20fonts.$font-stack-sans;%5Cn%20%20%7D%5Cn%5Cn%20%20.ph-main%20%7B%5Cn%20%20%20%20margin:%200;%5Cn%20%20%20%20padding:%200;%5Cn%5Cn%20%20%20%20%3E%20header%20%7B%5Cn%20%20%20%20%20%20margin-bottom:%201em;%5Cn%20%20%20%20%7D%5Cn%20%20%7D%5Cn%7D%5Cn%22,%22//%20SPDX-FileCopyrightText:%202025%20Mischback%5Cn//%20SPDX-License-Identifier:%20MIT%5Cn//%20SPDX-FileType:%20SOURCE%5Cn%5Cn@mixin%20reset-list%20%7B%5Cn%20%20margin:%200;%5Cn%20%20padding:%200;%5Cn%20%20list-style:%20none;%5Cn%7D%5Cn%5Cn@mixin%20horizontal-list%20%7B%5Cn%20%20@include%20reset-list;%5Cn%5Cn%20%20li%20%7B%5Cn%20%20%20%20display:%20inline-block;%5Cn%20%20%20%20margin-right:%202em;%5Cn%20%20%20%20margin-left:%20-2px;%5Cn%20%20%7D%5Cn%7D%5Cn%22,%22//%20SPDX-FileCopyrightText:%202025%20Mischback%5Cn//%20SPDX-License-Identifier:%20MIT%5Cn//%20SPDX-FileType:%20SOURCE%5Cn%5Cn@use%20%5C%22sass:map%5C%22;%5Cn@use%20%5C%22../abstracts/buttons%5C%22;%5Cn@use%20%5C%22../abstracts/colors%5C%22;%5Cn@use%20%5C%22../abstracts/shadows%5C%22;%5Cn%5Cn.ph-form-container%20%7B%5Cn%20%20display:%20flex;%5Cn%20%20align-items:%20center;%5Cn%20%20justify-content:%20center;%5Cn%20%20margin-top:%205em;%5Cn%20%20margin-bottom:%203em;%5Cn%7D%5Cn%5Cn.ph-form%20%7B%5Cn%20%20//%20width:%20calc(min(640px,%2050%25));%5Cn%20%20display:%20inline-block;%5Cn%5Cn%20%20.non-field-errors,%5Cn%20%20.field-errors%20%7B%5Cn%20%20%20%20margin:%200.25em%200%200.5em;%5Cn%20%20%20%20padding:%200.5em%200.5em%200.25em;%5Cn%20%20%20%20border:%201px%20solid%20colors.$form-error-color-fg;%5Cn%20%20%20%20border-radius:%200.25rem;%5Cn%20%20%20%20background-color:%20colors.$form-error-color-bg;%5Cn%20%20%20%20color:%20colors.$form-error-color-fg%20!important;%5Cn%20%20%7D%5Cn%5Cn%20%20.field-group%20%7B%5Cn%20%20%20%20margin:%200.5em%200%202em;%5Cn%5Cn%20%20%20%20label,%5Cn%20%20%20%20small,%5Cn%20%20%20%20.field-errors%20%7B%5Cn%20%20%20%20%20%20display:%20block;%5Cn%20%20%20%20%20%20margin-left:%200.25em;%5Cn%20%20%20%20%7D%5Cn%5Cn%20%20%20%20input,%5Cn%20%20%20%20select,%5Cn%20%20%20%20textarea%20%7B%5Cn%20%20%20%20%20%20margin:%200.25em%200.25em%200.5em;%5Cn%20%20%20%20%20%20padding:%200.5em%200.5em%200.25em;%5Cn%20%20%20%20%20%20border:%200%20solid%20colors.$shadow-color-base;%5Cn%20%20%20%20%20%20border-radius:%200.25rem;%5Cn%20%20%20%20%20%20background-color:%20colors.$form-input-bg;%5Cn%20%20%20%20%20%20box-shadow:%20map.get(shadows.$box-shadows,%202)%20!important;%5Cn%20%20%20%20%20%20color:%20colors.$overall-document-fg;%5Cn%20%20%20%20%20%20font-size:%201.2em;%5Cn%5Cn%20%20%20%20%20%20&:focus-within%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20colors.$form-input-active-bg;%5Cn%20%20%20%20%20%20%20%20color:%20colors.$form-input-active-fg%20!important;%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%7D%5Cn%20%20%7D%5Cn%5Cn%20%20button%20%7B%5Cn%20%20%20%20@include%20buttons.basic-button;%5Cn%5Cn%20%20%20%20box-shadow:%20map.get(shadows.$box-shadows,%202)%20!important;%5Cn%5Cn%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20&.submit%20%7B%5Cn%20%20%20%20%20%20background-color:%20colors.$form-button-submit-bg;%5Cn%20%20%20%20%20%20color:%20colors.$form-button-submit-fg%20!important;%5Cn%5Cn%20%20%20%20%20%20&:hover%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20colors.$form-button-submit-hover-bg;%5Cn%20%20%20%20%20%20%20%20color:%20colors.$form-button-submit-hover-fg%20!important;%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%7D%5Cn%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%5Cn%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20&.cancel%20%7B%5Cn%20%20%20%20%20%20background-color:%20colors.$form-button-cancel-bg;%5Cn%5Cn%20%20%20%20%20%20&:hover%20%7B%5Cn%20%20%20%20%20%20%20%20background-color:%20colors.$form-button-cancel-hover-bg;%5Cn%20%20%20%20%20%20%20%20color:%20colors.$form-button-cancel-hover-fg%20!important;%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%7D%5Cn%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%5Cn%20%20%20%20/*%20stylelint-disable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%20%20&.danger%20%7B%5Cn%20%20%20%20%20%20background-color:%20colors.$form-error-color-bg;%5Cn%20%20%20%20%20%20color:%20colors.$form-error-color-fg%20!important;%5Cn%5Cn%20%20%20%20%20%20&:hover%20%7B%5Cn%20%20%20%20%20%20%20%20//%20FIXME:%20These%20colors%20need%20adjustment!%5Cn%20%20%20%20%20%20%20%20background-color:%20colors.$form-error-color-fg;%5Cn%20%20%20%20%20%20%20%20color:%20colors.$form-error-color-bg%20!important;%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%7D%5Cn%20%20%20%20/*%20stylelint-enable%20selector-no-qualifying-type%20%2A/%5Cn%20%20%7D%5Cn%7D%5Cn%22,%22//%20SPDX-FileCopyrightText:%202025%20Mischback%5Cn//%20SPDX-License-Identifier:%20MIT%5Cn//%20SPDX-FileType:%20SOURCE%5Cn%5Cn@use%20%5C%22../abstracts/colors%5C%22;%5Cn%5Cn@mixin%20basic-button%20%7B%5Cn%20%20margin:%200.25em;%5Cn%20%20padding:%200.5em%200.5em%200.25em;%5Cn%20%20border:%200%20solid%20colors.$shadow-color-base;%5Cn%20%20border-radius:%200.25rem;%5Cn%20%20font-size:%201.25em;%5Cn%20%20font-weight:%20bold;%5Cn%7D%5Cn%22,%22//%20SPDX-FileCopyrightText:%202025%20Mischback%5Cn//%20SPDX-License-Identifier:%20MIT%5Cn//%20SPDX-FileType:%20SOURCE%5Cn%5Cn@use%20%5C%22sass:map%5C%22;%5Cn@use%20%5C%22../abstracts/colors%5C%22;%5Cn@use%20%5C%22../abstracts/shadows%5C%22;%5Cn%5Cn/*%20Provide%20the%20base%20styles%20for%20collapsible%20containers.%5Cn%20*%5Cn%20*%20Those%20containers%20are%20meant%20to%20be%20placed%20on%20layer%202,%20so%20basically%20directly%5Cn%20*%20on%20the%20app's%20base%20canvas%20(%23ph-content).%5Cn%20%2A/%5Cn%5Cn.collapsible-container%20%7B%5Cn%20%20margin-bottom:%202em;%5Cn%20%20background-color:%20colors.$collapsible-container-bg;%5Cn%20%20box-shadow:%20map.get(shadows.$box-shadows,%202)%20!important;%5Cn%5Cn%20%20%3E%20header,%5Cn%20%20%3E%20section%20%7B%5Cn%20%20%20%20padding:%200.5em%200.5em%201em;%5Cn%20%20%7D%5Cn%5Cn%20%20.collapsible-header%20%7B%5Cn%20%20%20%20margin:%200;%5Cn%20%20%20%20padding-bottom:%200.25em;%5Cn%20%20%20%20background-color:%20colors.$collapsible-header-bg;%5Cn%20%20%20%20cursor:%20pointer;%5Cn%5Cn%20%20%20%20h3%20%7B%5Cn%20%20%20%20%20%20margin:%200;%5Cn%20%20%20%20%20%20padding:%200;%5Cn%20%20%20%20%7D%5Cn%20%20%7D%5Cn%5Cn%20%20.collapsible-content%20%7B%5Cn%20%20%20%20border-top:%201px%20solid%20colors.$shadow-color-base;%5Cn%20%20%7D%5Cn%7D%5Cn%22,%22//%20SPDX-FileCopyrightText:%202025%20Mischback%5Cn//%20SPDX-License-Identifier:%20MIT%5Cn//%20SPDX-FileType:%20SOURCE%5Cn%5Cn.account-list-item%20%7B%5Cn%20%20%3E%20header%20%7B%5Cn%20%20%20%20h3%20%7B%5Cn%20%20%20%20%20%20display:%20inline-block;%5Cn%20%20%20%20%7D%5Cn%5Cn%20%20%20%20a%20%7B%5Cn%20%20%20%20%20%20display:%20inline-block;%5Cn%20%20%20%20%20%20margin-left:%203em;%5Cn%20%20%20%20%7D%5Cn%20%20%7D%5Cn%7D%5Cn%22%5D%7D */

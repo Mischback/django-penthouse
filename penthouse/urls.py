@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Mischback
+# SPDX-FileCopyrightText: 2025 Mischback
 # SPDX-License-Identifier: MIT
 # SPDX-FileType: SOURCE
 
@@ -7,7 +7,30 @@
 # Django imports
 from django.urls import path
 
+# app imports
+from penthouse.views.account import (
+    AccountCreateView,
+    AccountDeleteView,
+    AccountListView,
+    AccountOverview,
+    AccountUpdateView,
+)
+
 app_name = "penthouse"
 
 urlpatterns = [
+    # Account-related views
+    path("account/add/", AccountCreateView.as_view(), name="account-create"),
+    path(
+        "account/<int:account_id>/update/",
+        AccountUpdateView.as_view(),
+        name="account-update",
+    ),
+    path(
+        "account/<int:account_id>/delete/",
+        AccountDeleteView.as_view(),
+        name="account-delete",
+    ),
+    path("account/list/", AccountListView.as_view(), name="account-list"),
+    path("<int:account_id>/", AccountOverview.as_view(), name="account-overview"),
 ]

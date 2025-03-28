@@ -9,6 +9,7 @@ version = 1
 path = [
   "auxiliary/penthouse_icons_DRAFT.svg",
   "penthouse/templates/penthouse/**/*.html",
+  "tests/util/templates/**/*.html"
 ]
 SPDX-FileCopyrightText = "2025 Mischback"
 SPDX-License-Identifier = "MIT"
@@ -23,6 +24,8 @@ SPDX-FileType = "SOURCE"
 # some initial data.
 [[annotations]]
 path = [
+  "penthouse/migrations/0001_initial.py",
+  "penthouse/migrations/0002_alter_account_unique_together.py",
 ]
 SPDX-FileCopyrightText = "NONE"
 SPDX-License-Identifier = "CC0-1.0"
@@ -53,8 +56,8 @@ path = [
   "package.json",
   "package-lock.json",
   "requirements/*.txt",
-  # "penthouse/static/penthouse/penthouse.js",
-  # "penthouse/static/penthouse/style.css"
+  "penthouse/static/penthouse/penthouse.js",
+  "penthouse/static/penthouse/style.css"
 ]
 SPDX-FileCopyrightText = "NONE"
 SPDX-License-Identifier = "CC0-1.0"

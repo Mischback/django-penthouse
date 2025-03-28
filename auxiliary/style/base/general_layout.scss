@@ -1,0 +1,26 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
+@use "../abstracts/colors";
+
+/* Provide styles for the general HTML document.
+ *
+ * Those are not app-specific, but provide the general minimal setup of the
+ * containing HTML document.
+ *
+ * If the app is deployed in a bigger Django project and should be integrated
+ * into a coherent layout, these styles should most likely be replaced - or at
+ * least critically reviewed.
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: colors.$overall-document-bg;
+}

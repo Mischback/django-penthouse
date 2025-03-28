@@ -14,8 +14,8 @@
 @use "sass:meta";
 /* stylelint-enable */
 
-// FIXME: Just for initial testing
-* {
-  margin: 0;
-  padding: 0;
-}
+@include meta.load-css("base/general_layout");
+@include meta.load-css("base/app_layout");
+@include meta.load-css("components/form");
+@include meta.load-css("components/collapsible");
+@include meta.load-css("layouts/account_list");

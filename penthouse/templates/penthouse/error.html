@@ -1,0 +1,16 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block document_title %}Error{% endblock document_title %}
+
+{% block penthouse_main %}
+<main class="ph-main">
+  <header>
+    <h2>Something went wrong!</h2>
+  </header>
+
+  <section>
+    <p>There was a problem while processing your request.</p>
+    <p>Sorry, there is no automatic recovery available. You may use this <a href="#">link to the homepage</a> to start from scratch.</p>
+  </section>
+</main>
+{% endblock penthouse_main %}

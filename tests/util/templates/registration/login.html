@@ -1,0 +1,22 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block document_title %}Login{% endblock document_title %}
+
+{% block penthouse_main %}
+<main class="ph-main">
+  <header>
+    <h2>Login</h2>
+  </header>
+
+  <section>
+    <form method="post" novalidate class="ph-form">
+      {% csrf_token %}
+
+      {% include "penthouse/includes/form.html" %}
+
+      <button type="submit" class="submit">Login</button>
+      <button type="reset" class="cancel">Cancel</button>
+    </form>
+  </section>
+</main>
+{% endblock penthouse_main %}

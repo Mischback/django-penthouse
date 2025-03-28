@@ -1,0 +1,14 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
+@use "../abstracts/colors";
+
+@mixin basic-button {
+  margin: 0.25em;
+  padding: 0.5em 0.5em 0.25em;
+  border: 0 solid colors.$shadow-color-base;
+  border-radius: 0.25rem;
+  font-size: 1.25em;
+  font-weight: bold;
+}

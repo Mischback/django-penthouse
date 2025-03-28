@@ -1,0 +1,16 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
+.account-list-item {
+  > header {
+    h3 {
+      display: inline-block;
+    }
+
+    a {
+      display: inline-block;
+      margin-left: 3em;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block document_title %}Create Account{% endblock document_title %}
+
+{% block penthouse_main %}
+<main class="ph-main">
+  <header>
+    <h2>Create Account</h2>
+  </header>
+
+  <section id="account-create-1" class="collapsible-container">
+    <header class="collapsible-header">
+      <h3>Instructions</h3>
+    </header>
+    <section class="collapsible-content">
+      <p>Welcome to the account creation of Penthouse!</p>
+      <p>An <em>account</em> in the context of this application is a single ingame tower.</p>
+      <p>The application is meant to provide additional tools while building and defending your tower. Keep farming, keep progressing, keep defending and have fun!</p>
+    </section>
+  </section>
+
+  <section class="ph-form-container">
+    <form method="post" novalidate class="ph-form">
+      {% csrf_token %}
+
+      {% include "penthouse/includes/form.html" %}
+
+      <button type="submit" class="submit">add Account</button>
+      <button type="reset" class="cancel">Cancel</button>
+    </form>
+  </section>
+</main>
+{% endblock penthouse_main %}

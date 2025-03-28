@@ -1,0 +1,102 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
+@use "sass:map";
+@use "../abstracts/buttons";
+@use "../abstracts/colors";
+@use "../abstracts/shadows";
+
+.ph-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5em;
+  margin-bottom: 3em;
+}
+
+.ph-form {
+  // width: calc(min(640px, 50%));
+  display: inline-block;
+
+  .non-field-errors,
+  .field-errors {
+    margin: 0.25em 0 0.5em;
+    padding: 0.5em 0.5em 0.25em;
+    border: 1px solid colors.$form-error-color-fg;
+    border-radius: 0.25rem;
+    background-color: colors.$form-error-color-bg;
+    color: colors.$form-error-color-fg !important;
+  }
+
+  .field-group {
+    margin: 0.5em 0 2em;
+
+    label,
+    small,
+    .field-errors {
+      display: block;
+      margin-left: 0.25em;
+    }
+
+    input,
+    select,
+    textarea {
+      margin: 0.25em 0.25em 0.5em;
+      padding: 0.5em 0.5em 0.25em;
+      border: 0 solid colors.$shadow-color-base;
+      border-radius: 0.25rem;
+      background-color: colors.$form-input-bg;
+      box-shadow: map.get(shadows.$box-shadows, 2) !important;
+      color: colors.$overall-document-fg;
+      font-size: 1.2em;
+
+      &:focus-within {
+        background-color: colors.$form-input-active-bg;
+        color: colors.$form-input-active-fg !important;
+      }
+    }
+  }
+
+  button {
+    @include buttons.basic-button;
+
+    box-shadow: map.get(shadows.$box-shadows, 2) !important;
+
+    /* stylelint-disable selector-no-qualifying-type */
+    &.submit {
+      background-color: colors.$form-button-submit-bg;
+      color: colors.$form-button-submit-fg !important;
+
+      &:hover {
+        background-color: colors.$form-button-submit-hover-bg;
+        color: colors.$form-button-submit-hover-fg !important;
+      }
+    }
+    /* stylelint-enable selector-no-qualifying-type */
+
+    /* stylelint-disable selector-no-qualifying-type */
+    &.cancel {
+      background-color: colors.$form-button-cancel-bg;
+
+      &:hover {
+        background-color: colors.$form-button-cancel-hover-bg;
+        color: colors.$form-button-cancel-hover-fg !important;
+      }
+    }
+    /* stylelint-enable selector-no-qualifying-type */
+
+    /* stylelint-disable selector-no-qualifying-type */
+    &.danger {
+      background-color: colors.$form-error-color-bg;
+      color: colors.$form-error-color-fg !important;
+
+      &:hover {
+        // FIXME: These colors need adjustment!
+        background-color: colors.$form-error-color-fg;
+        color: colors.$form-error-color-bg !important;
+      }
+    }
+    /* stylelint-enable selector-no-qualifying-type */
+  }
+}

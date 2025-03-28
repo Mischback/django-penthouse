@@ -1,0 +1,22 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block document_title %}Update Account{% endblock document_title %}
+
+{% block penthouse_main %}
+<main class="ph-main">
+  <header>
+    <h2>Update Account</h2>
+  </header>
+
+  <section class="ph-form-container">
+    <form method="post" novalidate class="ph-form">
+      {% csrf_token %}
+
+      {% include "penthouse/includes/form.html" %}
+
+      <button type="submit" class="submit">Update</button>
+      <button type="reset" class="cancel">Cancel</button>
+    </form>
+  </section>
+</main>
+{% endblock penthouse_main %}
