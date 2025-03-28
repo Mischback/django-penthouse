@@ -15,7 +15,7 @@ from penthouse.views.account import (
     AccountOverview,
     AccountUpdateView,
 )
-from penthouse.views.progression import ProgressionOverview
+from penthouse.views.progression import ProgressionOverview, SampleCreateView
 
 app_name = "penthouse"
 
@@ -34,13 +34,18 @@ urlpatterns = [
     ),
     path("account/list/", AccountListView.as_view(), name="account-list"),
     path("<int:account_id>/", AccountOverview.as_view(), name="account-overview"),
+    #
     # Progression-related views
     path(
         "<int:account_id>/progression/",
         ProgressionOverview.as_view(),
         name="progression-overview",
     ),
-    # path("<int:account_id>/progression/sample/add/", name="progression-sample-add"),
+    path(
+        "<int:account_id>/progression/sample/add/",
+        SampleCreateView.as_view(),
+        name="progression-sample-create",
+    ),
     # path("progression/sample/<int:sample_id>/update/", name="progression-sample-update"),
     # path("progression/sample/<int:sample_id>/delete/", name="progression-sample-delete"),
 ]

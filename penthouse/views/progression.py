@@ -10,10 +10,14 @@ The *progression component* is used to track the meta progression of a single
 
 # Django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ValidationError
+from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
 # app imports
-from penthouse.models.progression import Sample
+from penthouse.models.account import Account
+from penthouse.models.progression import Sample, SampleForm
 from penthouse.views.mixins import RestrictToUserMixin
 
 
@@ -52,3 +56,53 @@ class ProgressionOverview(
         context["active_account"] = plain_obj_list[0].account
 
         return context
+
+
+class SampleCreateView(LoginRequiredMixin, generic.CreateView):
+    """CBV to create instances of :class:`~penthouse.models.progression.Sample`.
+
+    This CBV uses the :class:`~penthouse.models.progression.SampleForm` and
+    will inject the currently active :class:`~penthouse.models.account.Account`
+    instance during the form validation process.
+    """
+
+    model = Sample
+
+    form_class = SampleForm
+
+    template_name = "penthouse/progression_sample_create.html"
+
+    def form_valid(self, form):
+        """Inject the currently active :class:`~penthouse.models.account.Account`."""
+        try:
+            parent_account = Account.objects.filter_by_user(self.request.user).get(
+                id=self.kwargs["account_id"]
+            )
+        except Account.DoesNotExist:
+            raise ValidationError(
+                _("Could not find parent Account object"), code="invalid"
+            )
+
+        form.instance.account = parent_account
+
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        """Provide the currently active account in the rendering context."""
+        context = super().get_context_data(**kwargs)
+
+        context["active_account"] = Account.objects.filter_by_user(
+            self.request.user
+        ).get(id=self.kwargs["account_id"])
+
+        return context
+
+    def get_success_url(self):
+        """Dynamically determine the success url.
+
+        Usually the class attribute ``sucess_url`` is used to handle this. But
+        the required ``account_id`` has to be fetched  dynamically.
+        """
+        return reverse(
+            "penthouse:progression-overview", args=[self.kwargs["account_id"]]
+        )

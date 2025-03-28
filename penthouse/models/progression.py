@@ -14,6 +14,7 @@ spending habits (F2P vs. whaling).
 """
 
 # Django imports
+from django import forms
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -91,3 +92,15 @@ class Sample(models.Model):
         return "{}: {} LTC, {} LTS ({})".format(
             self.date, self.ltc, self.lts, self.account.name
         )
+
+
+class SampleForm(forms.ModelForm):
+    """Validate input while creating/updating :class:`~penthouse.models.progression.Sample` instances.
+
+    This form works for both operations. It might be advisable to divide it
+    into dedicated implementations later.
+    """
+
+    class Meta:  # noqa: D106
+        model = Sample
+        fields = ["date", "ltc", "lts", "notes"]

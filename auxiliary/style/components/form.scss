@@ -49,7 +49,6 @@
       background-color: colors.$form-input-bg;
       box-shadow: map.get(shadows.$box-shadows, 2) !important;
       color: colors.$overall-document-fg;
-      font-size: 1.2em;
 
       &:focus-within {
         background-color: colors.$form-input-active-bg;
