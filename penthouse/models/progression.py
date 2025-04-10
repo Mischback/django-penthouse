@@ -16,11 +16,13 @@ spending habits (F2P vs. whaling).
 # Django imports
 from django import forms
 from django.db import models
+from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
 # app imports
 from penthouse.exceptions import PenthouseModelException
 from penthouse.models.account import Account
+from penthouse.utility import convertNumberForDisplay
 
 
 class SampleException(PenthouseModelException):
@@ -64,9 +66,27 @@ class Sample(models.Model):
 
     date = models.DateField(help_text=_("Date of this sample"), verbose_name=_("Date"))
 
-    ltc = models.PositiveBigIntegerField(
-        help_text=_("Current Lifetime Coins (LTC)"), verbose_name=_("LTC")
+    ltc = models.DecimalField(
+        max_digits=36,
+        decimal_places=12,
+        help_text=_("Current Lifetime Coins (LTC)"),
+        verbose_name=_("LTC"),
     )
+    """Coin-related values are stored in *trillions* semantically.
+
+    Those values can get really big, especially for this lifetime coins (LTC).
+    The field in use is a ``DecimalField`` with 36 *overall digits*, of which
+    12 can be used as decimal places.
+
+    Notes
+    -----
+    :func:`~penthouse.utility.convertNumberForDisplay` can be used to provide
+    an actual human-readable presentation of the value. This is wrapped in this
+    class' ``ltc_display`` method.
+
+    :const:`~penthouse.utility.NUMBER_DEFAULT_MAGNITUDE` should be used to
+    control that throughout the app.
+    """
 
     lts = models.PositiveIntegerField(
         help_text=_("Current Lifetime Stones (LTS)"), verbose_name=_("LTS")
@@ -92,6 +112,11 @@ class Sample(models.Model):
         return "{}: {} LTC, {} LTS ({})".format(
             self.date, self.ltc, self.lts, self.account.name
         )
+
+    @cached_property
+    def ltc_display(self):
+        """Provide the LTC value in a human readable format."""
+        return "{}{}".format(*convertNumberForDisplay(self.ltc))
 
 
 class SampleForm(forms.ModelForm):

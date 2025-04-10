@@ -11,6 +11,7 @@ The *progression component* is used to track the meta progression of a single
 # Django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
+from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
@@ -53,7 +54,12 @@ class ProgressionOverview(
         # loop doesn't need an actual QuerySet.
         plain_obj_list = list(context["object_list"])
         context["object_list"] = plain_obj_list
-        context["active_account"] = plain_obj_list[0].account
+        try:
+            context["active_account"] = plain_obj_list[0].account
+        except IndexError:
+            context["active_account"] = get_object_or_404(
+                Account, pk=self.kwargs["account_id"]
+            )
 
         return context
 

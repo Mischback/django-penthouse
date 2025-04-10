@@ -28,6 +28,7 @@ path = [
   "penthouse/migrations/0002_sample.py",
   "penthouse/migrations/0003_alter_account_options.py",
   "penthouse/migrations/0004_alter_sample_options.py",
+  "penthouse/migrations/0005_alter_sample_ltc.py",
 ]
 SPDX-FileCopyrightText = "NONE"
 SPDX-License-Identifier = "CC0-1.0"
