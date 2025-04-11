@@ -21,6 +21,7 @@ from django.utils.translation import gettext_lazy as _
 
 # app imports
 from penthouse.exceptions import PenthouseModelException
+from penthouse.forms.fields import LargeNumberField
 from penthouse.models.account import Account
 from penthouse.utility import convertNumberForDisplay
 
@@ -125,6 +126,12 @@ class SampleForm(forms.ModelForm):
     This form works for both operations. It might be advisable to divide it
     into dedicated implementations later.
     """
+
+    # The ``LargeNumberField`` is custom for this app and based on Django's
+    # ``MultiValueField()``. It provides inputs for a numerical part and a
+    # string-based suffix. That string-based input *might* be empty, which
+    # will lead to a ValidationError without ``require_all_fields``.
+    ltc = LargeNumberField(require_all_fields=False)
 
     class Meta:  # noqa: D106
         model = Sample
