@@ -10,7 +10,6 @@ The *progression component* is used to track the meta progression of a single
 
 # Django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -62,7 +61,9 @@ class ProgressionOverview(LoginRequiredMixin, generic.list.ListView):
         return context
 
 
-class SampleCreateView(LoginRequiredMixin, generic.CreateView):
+class SampleCreateView(
+    LoginRequiredMixin, ProvideActiveAccountMixin, generic.CreateView
+):
     """CBV to create instances of :class:`~penthouse.models.progression.Sample`.
 
     This CBV uses the :class:`~penthouse.models.progression.SampleForm` and
@@ -78,28 +79,24 @@ class SampleCreateView(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         """Inject the currently active :class:`~penthouse.models.account.Account`."""
-        try:
-            parent_account = Account.objects.filter_by_user(self.request.user).get(
-                id=self.kwargs["account_id"]
-            )
-        except Account.DoesNotExist:
-            raise ValidationError(
-                _("Could not find parent Account object"), code="invalid"
-            )
-
-        form.instance.account = parent_account
+        form.instance.account = self.active_account
 
         return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
-        """Provide the currently active account in the rendering context."""
-        context = super().get_context_data(**kwargs)
+    def get_active_account(self):
+        """Fetch the currently active account.
 
-        context["active_account"] = Account.objects.filter_by_user(
-            self.request.user
-        ).get(id=self.kwargs["account_id"])
-
-        return context
+        This is the implementation required by
+        :class:`~penthouse.views.mixins.ProvideActiveAccountMixin`.
+        """
+        try:
+            acc = Account.objects.filter_by_user(self.request.user).get(
+                id=self.kwargs["account_id"]
+            )
+        except Account.DoesNotExist:
+            raise ValueError(_("Could not identify parent Account object"))
+        else:
+            return acc
 
     def get_success_url(self):
         """Dynamically determine the success url.
