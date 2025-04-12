@@ -19,12 +19,10 @@ from django.views import generic
 # app imports
 from penthouse.models.account import Account
 from penthouse.models.progression import Sample, SampleForm
-from penthouse.views.mixins import RestrictToUserMixin
+from penthouse.views.mixins import ProvideActiveAccountMixin
 
 
-class ProgressionOverview(
-    LoginRequiredMixin, RestrictToUserMixin, generic.list.ListView
-):
+class ProgressionOverview(LoginRequiredMixin, generic.list.ListView):
     """CBV to display the list of all :class:`~penthouse.models.progression.Sample` instances.
 
     The list will be filtered by the currently active *account*.
@@ -112,3 +110,51 @@ class SampleCreateView(LoginRequiredMixin, generic.CreateView):
         return reverse(
             "penthouse:progression-overview", args=[self.kwargs["account_id"]]
         )
+
+
+class SampleUpdateView(
+    LoginRequiredMixin, ProvideActiveAccountMixin, generic.UpdateView
+):
+    """CBV to update instances of :class:`~penthouse.models.progression.Sample`.
+
+    This CBV uses the :class:`~penthouse.models.progression.SampleForm` and
+    will inject the currently active :class:`~penthouse.models.account.Account`
+    instance during the form validation process.
+    """
+
+    model = Sample
+
+    form_class = SampleForm
+
+    template_name = "penthouse/progression_sample_update.html"
+
+    pk_url_kwarg = "sample_id"
+
+    def get_active_account(self):
+        """Fetch the currently active account.
+
+        This is the implementation required by
+        :class:`~penthouse.views.mixins.ProvideActiveAccountMixin`.
+        """
+        try:
+            acc = Account.objects.filter_by_user(self.request.user).get(
+                progression_samples=self.kwargs["sample_id"]
+            )
+        except Account.DoesNotExist:
+            raise ValueError(_("Could not identify parent Account object"))
+        else:
+            return acc
+
+    def form_valid(self, form):
+        """Inject the currently active :class:`~penthouse.models.account.Account`."""
+        form.instance.account = self.active_account
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        """Dynamically determine the success url.
+
+        Usually the class attribute ``sucess_url`` is used to handle this. But
+        the required ``account_id`` has to be fetched  dynamically.
+        """
+        return reverse("penthouse:progression-overview", args=[self.active_account.id])

@@ -22,6 +22,7 @@
           <th>LTC</th>
           <th>LTS</th>
           <th>Notes</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +32,9 @@
           <td>{{ sample.ltc_display }}</td>
           <td>{{ sample.lts }}</td>
           <td>{{ sample.notes }}</td>
+          <td>
+            <a href="{% url "penthouse:progression-sample-update" sample.id %}">update</a>
+          </td>
         </tr>
         {% endfor %}
       </tbody>

@@ -10,6 +10,43 @@ from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 
 
+class ProvideActiveAccountMixin:
+    """Provide the currently active account in the CBV and the rendering context.
+
+    The currently active account is used in several places throughout the
+    backend and frontend code. The actual implementation to get the account is
+    highly dependent on the actual view, which will have to implement
+    :meth:`~penthouse.views.mixins.ProvideActiveAccountMixin.get_active_account`
+    for the dedicated situation, depending on the available parameters.
+
+    The actual account is then available as ``self.active_account`` in the CBV
+    and in the rendering context as ``active_account``.
+    """
+
+    def dispatch(self, request, *args, **kwargs):
+        """Add the currently active account to the CBV instance."""
+        self.active_account = self.get_active_account()
+
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, *args, **kwargs):
+        """Add the currently active account to the rendering context."""
+        context = super().get_context_data(*args, **kwargs)
+
+        context["active_account"] = self.active_account
+
+        return context
+
+    def get_active_account(self):
+        """Retrieve the currently active account.
+
+        This method is not implemented add requires to be implemented in the
+        actual CBV, as it is dependent on the actual view how to get the
+        currently active account.
+        """
+        raise NotImplementedError("Needs implementation in actual CBV")
+
+
 class RestrictToUserMixin:
     """Limits the resulting queryset to objects, that belong to the current user.
 
