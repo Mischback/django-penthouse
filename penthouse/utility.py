@@ -59,4 +59,4 @@ def convert_large_number(num, suffix, target_magnitude=NUMBER_DEFAULT_MAGNITUDE)
             target_magnitude,
         )
 
-    return num, target_magnitude
+    return Decimal(num), target_magnitude
