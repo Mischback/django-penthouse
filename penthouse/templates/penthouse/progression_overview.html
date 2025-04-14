@@ -34,6 +34,7 @@
           <td>{{ sample.notes }}</td>
           <td>
             <a href="{% url "penthouse:progression-sample-update" sample.id %}">update</a>
+            <a href="{% url "penthouse:progression-sample-delete" sample.id %}">delete</a>
           </td>
         </tr>
         {% endfor %}

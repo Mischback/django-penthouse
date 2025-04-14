@@ -18,6 +18,7 @@ from penthouse.views.account import (
 from penthouse.views.progression import (
     ProgressionOverview,
     SampleCreateView,
+    SampleDeleteView,
     SampleUpdateView,
 )
 
@@ -55,5 +56,9 @@ urlpatterns = [
         SampleUpdateView.as_view(),
         name="progression-sample-update",
     ),
-    # path("progression/sample/<int:sample_id>/delete/", name="progression-sample-delete"),
+    path(
+        "progression/sample/<int:sample_id>/delete/",
+        SampleDeleteView.as_view(),
+        name="progression-sample-delete",
+    ),
 ]

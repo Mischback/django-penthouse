@@ -1,0 +1,21 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block document_title %}Delete Progression Sample{% endblock document_title %}
+
+{% block penthouse_main %}
+<main class="ph-main">
+  <header>
+    <h2>Delete Sample</h2>
+  </header>
+
+  <p>You're about to delete the progression sample <strong>{{ sample.date|date:"Y-m-d" }} - {{ sample.ltc_display }} LTC - {{ sample.lts }} LTS</strong>.</p>
+  <p>Are you really sure you want to delete this sample?</p>
+
+  <section class="ph-form-container">
+    <form method="post" novalidate class="ph-form">
+      {% csrf_token %}
+      <button type="submit" class="danger">Yes, I want to delete this sample!</button>
+    </form>
+  </section>
+</main>
+{% endblock penthouse_main %}
