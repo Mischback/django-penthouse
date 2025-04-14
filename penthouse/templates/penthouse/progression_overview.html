@@ -7,7 +7,6 @@
   <header>
     <h2>{{ active_account.name }} - Progression Overview</h2>
   </header>
-</main>
 
 <section class="collapsible-container">
   <header class="collapsible-header">
@@ -15,7 +14,7 @@
   </header>
   <section class="collapsible-content">
     <a href="{% url "penthouse:progression-sample-create" active_account.id %}">add Sample</a>
-    <table summary="All samples for the meta progression of this account">
+    <table summary="All samples for the meta progression of this account" class="data-list">
       <thead>
         <tr>
           <th>Date</th>
@@ -29,8 +28,8 @@
         {% for sample in object_list %}
         <tr>
           <td>{{ sample.date|date:"Y-m-d" }}</td>
-          <td>{{ sample.ltc_display }}</td>
-          <td>{{ sample.lts }}</td>
+          <td class="number-value">{{ sample.ltc_display }}</td>
+          <td class="number-value">{{ sample.lts }}</td>
           <td>{{ sample.notes }}</td>
           <td>
             <a href="{% url "penthouse:progression-sample-update" sample.id %}">update</a>
@@ -42,4 +41,5 @@
     </table>
   </section>
 </section>
+</main>
 {% endblock penthouse_main %}

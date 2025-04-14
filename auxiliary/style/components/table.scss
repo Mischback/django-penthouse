@@ -1,0 +1,43 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
+@use "../abstracts/colors";
+
+table {
+  border-collapse: collapse;
+}
+
+.data-list {
+  font-size: 0.8em;
+
+  td,
+  th {
+    border: 1px solid colors.$table-cell-border-color;
+  }
+
+  td {
+    padding: 0.5em 0.5em 0.2em;
+  }
+
+  th {
+    padding: 1.2em 1em 0.8em;
+  }
+
+  tr:nth-child(odd) td,
+  th {
+    background-color: colors.$table-cell-odd-bg;
+  }
+
+  tr:nth-child(even) td {
+    background-color: colors.$table-cell-even-bg;
+  }
+
+  .raw-value {
+    display: none;
+  }
+
+  .number-value {
+    text-align: right;
+  }
+}
