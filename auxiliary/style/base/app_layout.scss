@@ -19,6 +19,8 @@
   margin: 0;
   padding: 0;
   background-color: colors.$overall-document-bg;
+  color: colors.$overall-document-fg;
+  font-family: fonts.$font-stack-sans;
 
   #ph-nav {
     position: sticky;
@@ -58,11 +60,6 @@
     padding: 1em 2em;
     background-color: colors.$overall-content-bg;
     box-shadow: map.get(shadows.$box-shadows, 1) !important;
-  }
-
-  * {
-    color: colors.$overall-document-fg;
-    font-family: fonts.$font-stack-sans;
   }
 
   .ph-main {

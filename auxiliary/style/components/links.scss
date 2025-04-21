@@ -1,0 +1,25 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
+@use "../abstracts/colors";
+
+a {
+  transition:
+    color 150ms,
+    text-decoration-color 150ms,
+    text-underline-offset 300ms;
+  color: colors.$link-primary-fg;
+  text-decoration: underline currentcolor solid 0.1em;
+  text-underline-offset: 0.15em;
+
+  &:visited {
+    color: colors.$link-primary-fg;
+  }
+
+  &:hover {
+    color: colors.$link-hover-fg;
+    text-decoration-color: colors.$link-hover-fg;
+    text-underline-offset: 0.35em;
+  }
+}
