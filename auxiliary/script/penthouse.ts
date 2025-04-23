@@ -9,7 +9,32 @@ import { initializeCollapsible } from "./utility/collapsible";
 document.addEventListener("DOMContentLoaded", () => {
   console.debug("performing the progressive enhancement");
 
+  // account-create
+  if (document.getElementById("ph-account-create")) {
+    applyProgressiveEnhancement(
+      ".collapsible-container",
+      initializeCollapsible,
+    );
+  }
+
+  // account-list
+  if (document.getElementById("ph-account-list")) {
+    applyProgressiveEnhancement(
+      ".collapsible-container",
+      initializeCollapsible,
+    );
+  }
+
+  // progression-overview
   if (document.getElementById("ph-progression-overview")) {
+    applyProgressiveEnhancement(
+      ".collapsible-container",
+      initializeCollapsible,
+    );
+  }
+
+  // progression-sample-create
+  if (document.getElementById("ph-progression-sample-create")) {
     applyProgressiveEnhancement(
       ".collapsible-container",
       initializeCollapsible,
