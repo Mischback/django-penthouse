@@ -37,4 +37,8 @@
   .collapsible-content {
     border-top: 1px solid colors.$shadow-color-base;
   }
+
+  &.collapsed .collapsible-content {
+    display: none;
+  }
 }
