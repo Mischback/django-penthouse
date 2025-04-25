@@ -3,7 +3,10 @@
 // SPDX-FileType: SOURCE
 
 import { applyProgressiveEnhancement } from "./utility";
-import { initializeCollapsible } from "./utility/collapsible";
+import {
+  createCollapsibleContainer,
+  initializeCollapsible,
+} from "./utility/collapsible";
 import uPlot from "uplot";
 
 /* Add a global event listener to apply the app-specific scripts. */
@@ -28,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // progression-overview
   if (document.getElementById("ph-progression-overview")) {
-    // EXPERIMENTAL uPlot
+    // BEGIN EXPERIMENTAL uPlot
     /* eslint-disable @typescript-eslint/no-unsafe-call */
     /* eslint-disable @typescript-eslint/no-unsafe-member-access */
     /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -78,6 +81,13 @@ document.addEventListener("DOMContentLoaded", () => {
     /* eslint-enable @typescript-eslint/no-unsafe-call */
     /* eslint-enable @typescript-eslint/no-unsafe-member-access */
     /* eslint-enable @typescript-eslint/no-unused-vars */
+
+    createCollapsibleContainer(
+      "foobar",
+      "FooBar",
+      document.getElementById("progression-overview-samples"),
+    );
+    // END EXPERIMENTAL uPlot
 
     // collapsible containers
     applyProgressiveEnhancement(

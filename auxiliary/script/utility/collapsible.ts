@@ -73,3 +73,41 @@ function toggleCollapsible(container: CollapsibleContainer, id: string): void {
     localStorage.setItem(collapsibleStorageKey(id), CSTATE_COLLAPSED);
   }
 }
+
+/**
+ * Create a new collapsible container from template.
+ *
+ * The template can be found in ``penthouse/templates/penthouse/app_base.html``.
+ */
+export function createCollapsibleContainer(
+  newID: string,
+  newCaption: string,
+  insertBeforeElem: HTMLElement | null,
+): HTMLElement | null {
+  if (insertBeforeElem === null || insertBeforeElem.parentElement === null) {
+    console.error("Could not find element to insert before!");
+    return null;
+  }
+
+  const template: HTMLTemplateElement | null = document.querySelector(
+    "#tpl-collapsible-container",
+  );
+  if (template === null) {
+    console.error("Could not find template!");
+    return null;
+  }
+
+  const docFragment = document.importNode(template.content, true);
+
+  const newCollapsible: HTMLElement = docFragment.querySelector("section")!;
+  newCollapsible.id = newID;
+
+  const caption: HTMLElement = newCollapsible.querySelector(
+    ".collapsible-header h3",
+  )!;
+  caption.innerHTML = newCaption;
+
+  insertBeforeElem.parentElement.insertBefore(newCollapsible, insertBeforeElem);
+
+  return newCollapsible;
+}
