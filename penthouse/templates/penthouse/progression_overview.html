@@ -28,8 +28,11 @@
         {% for sample in object_list %}
         <tr>
           <td>{{ sample.date|date:"Y-m-d" }}</td>
+          <td class="ph-progression-date raw-value">{{ sample.date|date:"U" }}</td>
           <td class="number-value">{{ sample.ltc_display }}</td>
+          <td class="ph-progression-ltc raw-value">{{ sample.ltc }}</td>
           <td class="number-value">{{ sample.lts }}</td>
+          <td class="ph-progression-lts raw-value">{{ sample.lts }}</td>
           <td>{{ sample.notes }}</td>
           <td>
             <a href="{% url "penthouse:progression-sample-update" sample.id %}">update</a>

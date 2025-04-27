@@ -4,6 +4,9 @@
 
 import uPlot from "uplot";
 import { createCollapsibleContainer } from "../utility/collapsible";
+import { parseNumberOrNull } from "../utility";
+
+type uPlotData = number | null;
 
 export function createProgressionChart(): void {
   const sampleContainer = document.querySelector(
@@ -72,4 +75,46 @@ export function createProgressionChart(): void {
   /* eslint-enable @typescript-eslint/no-unsafe-member-access */
   /* eslint-enable @typescript-eslint/no-unused-vars */
   // END EXPERIMENTAL uPlot
+
+  // ``querySelectorAll()`` will return the elements in the order of the DOM,
+  // so this should be pretty easy.
+  //
+  // This relies on the default ordering of the table, when it is initially
+  // rendered, adjust the Django codebase accordingly if required.
+  //
+  // All other JS/TS shenanigans *must be applied later*.
+  const date_cells = sampleContainer.querySelectorAll(
+    ".data-list .ph-progression-date",
+  );
+  const ltc_cells = sampleContainer.querySelectorAll(
+    ".data-list .ph-progression-ltc",
+  );
+  const lts_cells = sampleContainer.querySelectorAll(
+    ".data-list .ph-progression-lts",
+  );
+  if (
+    date_cells.length != ltc_cells.length ||
+    date_cells.length != lts_cells.length
+  ) {
+    console.error("Error while fetching sample data! Lengths do not match!");
+    return;
+  }
+
+  const date_list: uPlotData[] = [];
+  const ltc_list: uPlotData[] = [];
+  const lts_list: uPlotData[] = [];
+
+  date_cells.forEach((cell, index) => {
+    date_list.push(parseNumberOrNull(cell.innerHTML));
+    ltc_list.push(parseNumberOrNull(ltc_cells[index]!.innerHTML));
+    lts_list.push(parseNumberOrNull(lts_cells[index]!.innerHTML));
+  });
+
+  console.log(date_cells);
+  console.log(ltc_cells);
+  console.log(lts_cells);
+
+  console.log(date_list);
+  console.log(ltc_list);
+  console.log(lts_list);
 }
