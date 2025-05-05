@@ -4,8 +4,9 @@
 
 import uPlot from "uplot";
 import { createCollapsibleContainer } from "../utility/collapsible";
-import { parseNumberOrNull } from "../utility";
+import { parseNumber, parseNumberOrNull } from "../utility";
 
+type uPlotDate = number;
 type uPlotData = number | null;
 
 export function createProgressionChart(): void {
@@ -26,55 +27,6 @@ export function createProgressionChart(): void {
     console.error("Could not create chart container!");
     return;
   }
-
-  // BEGIN EXPERIMENTAL uPlot
-  /* eslint-disable @typescript-eslint/no-unsafe-call */
-  /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  const opts = {
-    id: "chart1",
-    class: "ph-chart",
-    width:
-      document.querySelector("#progression-overview-chart .collapsible-content")
-        .offsetWidth - 50,
-    height: 300,
-    series: [
-      {},
-      {
-        // initial toggled state (optional)
-        show: true,
-
-        spanGaps: false,
-
-        // in-legend display
-        label: "RAM",
-        value: (self, rawValue) =>
-          rawValue == null ? "" : "$" + rawValue.toFixed(2),
-
-        // series style
-        stroke: "red",
-        width: 1,
-        fill: "rgba(255, 0, 0, 0.3)",
-        dash: [10, 5],
-      },
-    ],
-  };
-
-  const data = [
-    [1546300800, 1546387200], // x-values (timestamps)
-    [35, 71], // y-values (series 1)
-    [90, 15], // y-values (series 2)
-  ];
-
-  const uplot = new uPlot(
-    opts,
-    data,
-    chartContainer.querySelector(".collapsible-content"),
-  );
-  /* eslint-enable @typescript-eslint/no-unsafe-call */
-  /* eslint-enable @typescript-eslint/no-unsafe-member-access */
-  /* eslint-enable @typescript-eslint/no-unused-vars */
-  // END EXPERIMENTAL uPlot
 
   // ``querySelectorAll()`` will return the elements in the order of the DOM,
   // so this should be pretty easy.
@@ -100,21 +52,79 @@ export function createProgressionChart(): void {
     return;
   }
 
-  const date_list: uPlotData[] = [];
+  const date_list: uPlotDate[] = [];
   const ltc_list: uPlotData[] = [];
   const lts_list: uPlotData[] = [];
 
   date_cells.forEach((cell, index) => {
-    date_list.push(parseNumberOrNull(cell.innerHTML));
+    // This is really defensive programming.
+    //
+    // The uPlotDate[] may only contain numbers, while the uPlotData[] *may*
+    // use ``null`` values as padding.
+    const this_date = parseNumber(cell.innerHTML);
+    if (this_date === undefined) {
+      date_list.push(0);
+    } else {
+      date_list.push(this_date);
+    }
     ltc_list.push(parseNumberOrNull(ltc_cells[index]!.innerHTML));
     lts_list.push(parseNumberOrNull(lts_cells[index]!.innerHTML));
   });
 
-  console.log(date_cells);
-  console.log(ltc_cells);
-  console.log(lts_cells);
+  const progressionChart = new uPlot(
+    {
+      // id: "progressionChart",
+      class: "ph-chart",
+      width:
+        (
+          document.querySelector(
+            "#progression-overview-chart .collapsible-content",
+          ) as HTMLElement
+        ).offsetWidth - 50,
+      height: 300,
+      series: [
+        {},
+        {
+          label: "LTC",
+          stroke: "red",
+          scale: "coins",
+        },
+        {
+          label: "LTS",
+          stroke: "blue",
+          scale: "stones",
+        },
+      ],
+      axes: [
+        {},
+        {
+          scale: "coins",
+        },
+        {
+          scale: "stones",
+          side: 1,
+        },
+      ],
+      scales: {
+        coins: {
+          distr: 3,
+        },
+        stones: {
+          distr: 3,
+        },
+      },
+    },
+    [
+      date_list, // x-values (timestamps)
+      ltc_list, // y-values
+      lts_list, // y-values
+    ],
+    chartContainer.querySelector(".collapsible-content") as HTMLElement,
+  );
 
-  console.log(date_list);
-  console.log(ltc_list);
-  console.log(lts_list);
+  // cover the ESLint error
+  //
+  // TODO: It might be desirable to return the actual chart for future
+  //       modifications, like adjusting the data.
+  console.debug(progressionChart);
 }
