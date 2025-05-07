@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: MIT
 // SPDX-FileType: SOURCE
 
+@use "../abstracts/colors";
+
 // BEGIN OF DEFAULT STYLES https://github.com/leeoniya/uPlot/blob/master/src/uPlot.css
 /* stylelint-disable */
 .uplot,
@@ -165,6 +167,11 @@
 
 /* stylelint-enable */
 // END OF DEFAULT STYLES
+
+.ph-chart-container {
+  --grid-color: #{colors.$chart-grid-color};
+  --axe-caption-color: #{colors.$overall-document-fg};
+}
 
 .ph-chart {
   font-size: 1em;

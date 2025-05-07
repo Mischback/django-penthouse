@@ -18,6 +18,13 @@ export function createProgressionChart(): void {
     return;
   }
 
+  // Providing initial values for colors
+  let settingsGridColor = "#000";
+  let settingsAxeCaptionColor = "#000";
+  let settingsDataset01Color = "#c00";
+  let settingsDataset02Color = "#0c0";
+
+  // Create the actual collapsible container for the chart
   const chartContainer = createCollapsibleContainer(
     "progression-overview-chart",
     "Chart",
@@ -26,6 +33,23 @@ export function createProgressionChart(): void {
   if (chartContainer === null) {
     console.error("Could not create chart container!");
     return;
+  } else {
+    // add another class to this container
+    chartContainer.classList.add("ph-chart-container");
+
+    // get color values
+    settingsGridColor = getComputedStyle(chartContainer)
+      .getPropertyValue("--grid-color")
+      .trim();
+    settingsAxeCaptionColor = getComputedStyle(chartContainer)
+      .getPropertyValue("--axe-caption-color")
+      .trim();
+    settingsDataset01Color = getComputedStyle(chartContainer)
+      .getPropertyValue("--dataset01-main")
+      .trim();
+    settingsDataset02Color = getComputedStyle(chartContainer)
+      .getPropertyValue("--dataset02-main")
+      .trim();
   }
 
   // ``querySelectorAll()`` will return the elements in the order of the DOM,
@@ -86,22 +110,40 @@ export function createProgressionChart(): void {
         {},
         {
           label: "LTC",
-          stroke: "red",
+          stroke: settingsDataset01Color, // --dataset01-main
           scale: "coins",
+          width: 2,
+          points: {
+            stroke: settingsDataset01Color,
+            fill: settingsGridColor,
+          },
         },
         {
           label: "LTS",
-          stroke: "blue",
+          stroke: settingsDataset02Color, // --dataset02-main
           scale: "stones",
+          width: 2,
+          points: {
+            stroke: settingsDataset02Color,
+            fill: settingsGridColor,
+          },
         },
       ],
       axes: [
-        {},
+        {
+          stroke: settingsAxeCaptionColor, // --axe-caption-color
+        },
         {
           scale: "coins",
+          stroke: settingsAxeCaptionColor, // --axe-caption-color
+          grid: {
+            width: 1,
+            stroke: settingsGridColor, // --grid-color
+          },
         },
         {
           scale: "stones",
+          stroke: settingsAxeCaptionColor, // --axe-caption-color
           side: 1,
         },
       ],
@@ -111,6 +153,15 @@ export function createProgressionChart(): void {
         },
         stones: {
           distr: 3,
+        },
+      },
+      cursor: {
+        points: {
+          // use the points stroke color on hover
+          fill: (u, sidx) => {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+            return u?.series[sidx]?.stroke?.();
+          },
         },
       },
     },
