@@ -26,6 +26,10 @@ def convertNumberForDisplay(num, suffix=NUMBER_DEFAULT_MAGNITUDE, precision=2):
     abstracted representation. This function takes a number and converts it
     into the expected display notation (1-3 integral digits, 0-2 fractional
     digits with a suffix).
+
+    Note
+    ----
+    There is a JS/TS implementation in ``auxiliary/script/utility/index.ts``.
     """
     if num <= 0:
         return 0, NUMBER_MAGNITUDES[0]

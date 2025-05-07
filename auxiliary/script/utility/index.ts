@@ -11,6 +11,67 @@
 export type setupFunc = (element: HTMLElement) => void;
 
 /**
+ * Provide the in-game magnitudes as flat list.
+ *
+ * Required by ``convertNumberForDisplay()``.
+ */
+const TOWER_NUMBER_MAGNITUDES = [
+  "",
+  "k",
+  "M",
+  "B",
+  "T",
+  "q",
+  "Q",
+  "s",
+  "S",
+  "O",
+  "N",
+];
+
+/**
+ * Provide the default magnitude of numbers.
+ *
+ * Required by ``convertNumberForDisplay()``.
+ */
+const TOWER_DEFAULT_MAGNITUDE = "T";
+
+/**
+ * Convert the internal representation of a number into the expected notation.
+ *
+ * This is the JS/TS implementation of ``convertNumberForDisplay()`` in
+ * ``penthouse/utility.py``.
+ */
+export function convertNumberForDisplay(
+  num: number,
+  suffix: string = TOWER_DEFAULT_MAGNITUDE,
+  precision: number = 2,
+): string {
+  if (num <= 0) {
+    return "0";
+  }
+
+  const currentMag = TOWER_NUMBER_MAGNITUDES.indexOf(suffix);
+
+  if (num < 1) {
+    return convertNumberForDisplay(
+      num * 1000,
+      TOWER_NUMBER_MAGNITUDES[currentMag - 1],
+    );
+  }
+
+  if (num >= 1000) {
+    return convertNumberForDisplay(
+      num / 1000,
+      TOWER_NUMBER_MAGNITUDES[currentMag + 1],
+    );
+  }
+
+  const precisionMod = Math.pow(10, precision);
+  return `${Math.round((num + Number.EPSILON) * precisionMod) / precisionMod}${suffix}`;
+}
+
+/**
  * Apply a setup function to HTML elements.
  *
  * The elements are identified by a *query* and the ``setupFunc`` is called on

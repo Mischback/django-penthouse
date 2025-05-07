@@ -4,7 +4,11 @@
 
 import uPlot from "uplot";
 import { createCollapsibleContainer } from "../utility/collapsible";
-import { parseNumber, parseNumberOrNull } from "../utility";
+import {
+  convertNumberForDisplay,
+  parseNumber,
+  parseNumberOrNull,
+} from "../utility";
 
 type uPlotDate = number;
 type uPlotData = number | null;
@@ -117,6 +121,9 @@ export function createProgressionChart(): void {
             stroke: settingsDataset01Color,
             fill: settingsGridColor,
           },
+          value: (_, raw) => {
+            return convertNumberForDisplay(raw);
+          },
         },
         {
           label: "LTS",
@@ -144,6 +151,9 @@ export function createProgressionChart(): void {
         {
           scale: "stones",
           stroke: settingsAxeCaptionColor, // --axe-caption-color
+          grid: {
+            show: false,
+          },
           side: 1,
         },
       ],
