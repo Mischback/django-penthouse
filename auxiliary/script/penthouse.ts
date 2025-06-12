@@ -4,7 +4,10 @@
 
 import { applyProgressiveEnhancement } from "./utility";
 import { initializeCollapsible } from "./utility/collapsible";
-import { createProgressionChart } from "./penthouse/progression";
+import {
+  addRelativeChange,
+  createProgressionChart,
+} from "./penthouse/progression";
 
 /* Add a global event listener to apply the app-specific scripts. */
 document.addEventListener("DOMContentLoaded", () => {
@@ -28,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // progression-overview
   if (document.getElementById("ph-progression-overview")) {
+    addRelativeChange();
+
     // create the chart
     //
     // This has to be done before handling the collapsible containers, as this

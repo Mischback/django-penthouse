@@ -126,3 +126,13 @@ export function parseNumberOrNull(
 
   return parsed;
 }
+
+export function parseNumberOrZero(value: string | null | undefined): number {
+  const parsed = parseNumber(value);
+
+  if (parsed === undefined) {
+    return 0;
+  }
+
+  return parsed;
+}

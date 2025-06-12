@@ -8,10 +8,93 @@ import {
   convertNumberForDisplay,
   parseNumber,
   parseNumberOrNull,
+  parseNumberOrZero,
 } from "../utility";
 
 type uPlotDate = number;
 type uPlotData = number | null;
+
+const LTC_CHANGE_HEADER_OFFSET = 2;
+const LTC_CHANGE_DATA_OFFSET = 3;
+
+export function addRelativeChange(): void {
+  const sampleContainer = document.querySelector(
+    "#progression-overview-samples",
+  );
+  if (sampleContainer === null) {
+    console.error("Could not find sample container!");
+    return;
+  }
+
+  const dataRows = sampleContainer.querySelectorAll(".data-list tr");
+
+  let lastDateTimestamp = 0;
+  let lastLTC = 0;
+  let thisDateTimestamp = 0;
+  let thisDateDiffDays = 0;
+  let thisLTC = 0;
+  let thisLTCDiffTotal = 0;
+  // let thisLTCDiffPerDay = 0;
+  let thisLTCDiffRelativeChange = 0;
+  let thisLTCDiffRelativeChangePerDay = 0;
+  let tmpCell;
+  dataRows.forEach((row, index) => {
+    if (index === 0) {
+      console.debug("Assuming this is the header row!");
+      tmpCell = (row as HTMLTableRowElement).insertCell(
+        LTC_CHANGE_HEADER_OFFSET,
+      );
+      tmpCell.textContent = "LTC change per day";
+    }
+
+    if (index > 0) {
+      thisDateTimestamp = parseNumberOrZero(
+        row.querySelector(".ph-progression-date")?.textContent,
+      );
+      // The input from the backend is just a default UNIX timestamp, specified
+      // in seconds, not in microseconds, which is the default in JS.
+      thisDateDiffDays = Math.ceil(
+        (thisDateTimestamp - lastDateTimestamp) / (24 * 60 * 60),
+      );
+
+      thisLTC = parseNumberOrZero(
+        row.querySelector(".ph-progression-ltc")?.textContent,
+      );
+      thisLTCDiffTotal = thisLTC - lastLTC;
+
+      // FIXME: Currently not displayed and not in use!
+      // if (thisDateDiffDays === 0) {
+      //   thisLTCDiffPerDay = 0;
+      // } else {
+      //   thisLTCDiffPerDay = thisLTCDiffTotal / thisDateDiffDays;
+      // }
+
+      if (lastLTC === 0) {
+        thisLTCDiffRelativeChange = 100;
+      } else {
+        thisLTCDiffRelativeChange = (thisLTCDiffTotal / lastLTC) * 100;
+      }
+
+      if (thisDateDiffDays === 0) {
+        thisLTCDiffRelativeChangePerDay = 0;
+      } else {
+        thisLTCDiffRelativeChangePerDay =
+          thisLTCDiffRelativeChange / thisDateDiffDays;
+      }
+
+      // Actually provide additional fields
+      tmpCell = (row as HTMLTableRowElement).insertCell(LTC_CHANGE_DATA_OFFSET);
+      tmpCell.textContent = (
+        Math.round((thisLTCDiffRelativeChangePerDay + Number.EPSILON) * 100) /
+        100
+      ).toString();
+
+      // save the current values for the next iteration
+      lastDateTimestamp = thisDateTimestamp;
+      lastLTC = thisLTC;
+    }
+  });
+}
 
 export function createProgressionChart(): void {
   const sampleContainer = document.querySelector(
