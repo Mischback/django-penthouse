@@ -110,6 +110,7 @@ export function createProgressionChart(): void {
   let settingsGridColor = "#000";
   let settingsAxeCaptionColor = "#000";
   let settingsDataset01Color = "#c00";
+  let settingsDataset01Secondary = "#600";
   let settingsDataset02Color = "#0c0";
 
   // Create the actual collapsible container for the chart
@@ -134,6 +135,9 @@ export function createProgressionChart(): void {
       .trim();
     settingsDataset01Color = getComputedStyle(chartContainer)
       .getPropertyValue("--dataset01-main")
+      .trim();
+    settingsDataset01Secondary = getComputedStyle(chartContainer)
+      .getPropertyValue("--dataset01-secondary")
       .trim();
     settingsDataset02Color = getComputedStyle(chartContainer)
       .getPropertyValue("--dataset02-main")
@@ -229,11 +233,11 @@ export function createProgressionChart(): void {
         },
         {
           label: "LTC change",
-          stroke: settingsDataset01Color, // --dataset01-main FIXME
+          stroke: settingsDataset01Secondary, // --dataset01-secondary
           scale: "coins_change",
           width: 2,
           points: {
-            stroke: settingsDataset01Color,
+            stroke: settingsDataset01Secondary,
             fill: settingsGridColor,
           },
         },
