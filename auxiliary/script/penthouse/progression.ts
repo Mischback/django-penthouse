@@ -84,6 +84,7 @@ export function addRelativeChange(): void {
 
       // Actually provide additional fields
       tmpCell = (row as HTMLTableRowElement).insertCell(LTC_CHANGE_DATA_OFFSET);
+      tmpCell.classList.add("ph-progression-ltc-change", "number-value");
       tmpCell.textContent = (
         Math.round((thisLTCDiffRelativeChangePerDay + Number.EPSILON) * 100) /
         100
@@ -152,12 +153,16 @@ export function createProgressionChart(): void {
   const ltc_cells = sampleContainer.querySelectorAll(
     ".data-list .ph-progression-ltc",
   );
+  const ltc_change_cells = sampleContainer.querySelectorAll(
+    ".data-list .ph-progression-ltc-change",
+  );
   const lts_cells = sampleContainer.querySelectorAll(
     ".data-list .ph-progression-lts",
   );
   if (
     date_cells.length != ltc_cells.length ||
-    date_cells.length != lts_cells.length
+    date_cells.length != lts_cells.length ||
+    date_cells.length != ltc_change_cells.length
   ) {
     console.error("Error while fetching sample data! Lengths do not match!");
     return;
@@ -165,6 +170,7 @@ export function createProgressionChart(): void {
 
   const date_list: uPlotDate[] = [];
   const ltc_list: uPlotData[] = [];
+  const ltc_change_list: uPlotData[] = [];
   const lts_list: uPlotData[] = [];
 
   date_cells.forEach((cell, index) => {
@@ -172,14 +178,17 @@ export function createProgressionChart(): void {
     //
     // The uPlotDate[] may only contain numbers, while the uPlotData[] *may*
     // use ``null`` values as padding.
-    const this_date = parseNumber(cell.innerHTML);
+    const this_date = parseNumber(cell.textContent);
     if (this_date === undefined) {
       date_list.push(0);
     } else {
       date_list.push(this_date);
     }
-    ltc_list.push(parseNumberOrNull(ltc_cells[index]!.innerHTML));
-    lts_list.push(parseNumberOrNull(lts_cells[index]!.innerHTML));
+    ltc_list.push(parseNumberOrNull(ltc_cells[index]!.textContent));
+    ltc_change_list.push(
+      parseNumberOrZero(ltc_change_cells[index]!.textContent),
+    );
+    lts_list.push(parseNumberOrNull(lts_cells[index]!.textContent));
   });
 
   const progressionChart = new uPlot(
@@ -218,6 +227,16 @@ export function createProgressionChart(): void {
             fill: settingsGridColor,
           },
         },
+        {
+          label: "LTC change",
+          stroke: settingsDataset01Color, // --dataset01-main FIXME
+          scale: "coins_change",
+          width: 2,
+          points: {
+            stroke: settingsDataset01Color,
+            fill: settingsGridColor,
+          },
+        },
       ],
       axes: [
         {
@@ -230,14 +249,24 @@ export function createProgressionChart(): void {
             width: 1,
             stroke: settingsGridColor, // --grid-color
           },
+          side: 1,
         },
         {
+          show: false,
           scale: "stones",
           stroke: settingsAxeCaptionColor, // --axe-caption-color
           grid: {
             show: false,
           },
           side: 1,
+        },
+        {
+          scale: "coins_change",
+          stroke: settingsAxeCaptionColor, // --axe-caption-color
+          grid: {
+            show: false,
+          },
+          side: 3,
         },
       ],
       scales: {
@@ -246,6 +275,9 @@ export function createProgressionChart(): void {
         },
         stones: {
           distr: 3,
+        },
+        coins_change: {
+          distr: 1,
         },
       },
       cursor: {
@@ -262,6 +294,7 @@ export function createProgressionChart(): void {
       date_list, // x-values (timestamps)
       ltc_list, // y-values
       lts_list, // y-values
+      ltc_change_list, // y-values
     ],
     chartContainer.querySelector(".collapsible-content") as HTMLElement,
   );
