@@ -6,7 +6,6 @@ import uPlot from "uplot";
 import { createCollapsibleContainer } from "../utility/collapsible";
 import {
   convertNumberForDisplay,
-  parseNumber,
   parseNumberOrNull,
   parseNumberOrZero,
 } from "../utility";
@@ -16,6 +15,61 @@ type uPlotData = number | null;
 
 const LTC_CHANGE_HEADER_OFFSET = 2;
 const LTC_CHANGE_DATA_OFFSET = 3;
+
+function replaceOutliersByNull(data: uPlotData[]): uPlotData[] {
+  const dataSum = data.reduce((acc, cur) => {
+    if (cur === null) {
+      return acc;
+    } else {
+      //@ts-expect-error TS18047
+      return acc + cur;
+    }
+  }, 0);
+
+  // @ts-expect-error TS18047 This will never be ``null``
+  const dataMean = dataSum / data.length;
+
+  const dataStdDev = Math.sqrt(
+    // @ts-expect-error TS2531 This object should not be ``null``
+    data
+      .map((x) => {
+        if (x === null) {
+          return x;
+        } else {
+          return Math.pow(x - dataMean, 2);
+        }
+      })
+      .reduce((acc, cur) => {
+        if (cur === null) {
+          return acc;
+        } else {
+          //@ts-expect-error TS18047
+          return acc + cur;
+        }
+      }, 0) /
+      (data.length - 1),
+  );
+
+  const upper = dataMean + dataStdDev;
+  const lower = dataMean - dataStdDev;
+
+  const result: uPlotData[] = [];
+  data.forEach((cur) => {
+    if (cur === null) {
+      result.push(null);
+    }
+
+    //@ts-expect-error TS18047
+    if (cur >= lower && cur <= upper) {
+      result.push(cur);
+    } else {
+      result.push(null);
+    }
+  });
+
+  console.log(result);
+  return result;
+}
 
 export function addRelativeChange(): void {
   const sampleContainer = document.querySelector(
@@ -182,18 +236,21 @@ export function createProgressionChart(): void {
     //
     // The uPlotDate[] may only contain numbers, while the uPlotData[] *may*
     // use ``null`` values as padding.
-    const this_date = parseNumber(cell.textContent);
-    if (this_date === undefined) {
-      date_list.push(0);
-    } else {
-      date_list.push(this_date);
-    }
+    /*const this_date = parseNumber(cell.textContent);*/
+    /*if (this_date === undefined) {*/
+    /*date_list.push(0);*/
+    /*} else {*/
+    /*date_list.push(this_date);*/
+    /*}*/
+    date_list.push(parseNumberOrZero(cell.textContent));
     ltc_list.push(parseNumberOrNull(ltc_cells[index]!.textContent));
     ltc_change_list.push(
       parseNumberOrZero(ltc_change_cells[index]!.textContent),
     );
     lts_list.push(parseNumberOrNull(lts_cells[index]!.textContent));
   });
+
+  const ltcChangeListNormalized = replaceOutliersByNull(ltc_change_list);
 
   const progressionChart = new uPlot(
     {
@@ -298,7 +355,7 @@ export function createProgressionChart(): void {
       date_list, // x-values (timestamps)
       ltc_list, // y-values
       lts_list, // y-values
-      ltc_change_list, // y-values
+      ltcChangeListNormalized, // y-values
     ],
     chartContainer.querySelector(".collapsible-content") as HTMLElement,
   );
