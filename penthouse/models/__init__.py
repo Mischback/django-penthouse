@@ -6,3 +6,4 @@
 
 # app imports
 from penthouse.models.account import Account  # noqa: F401
+from penthouse.models.progression import Sample  # noqa: F401

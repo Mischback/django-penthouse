@@ -13,7 +13,23 @@ from django.views import generic
 
 # app imports
 from penthouse.models.account import Account, AccountForm
+from penthouse.models.progression import Sample
 from penthouse.views.mixins import RestrictToUserMixin
+
+
+class InjectActiveAccountMixin:
+    """Injects the currently active account into the rendering context.
+
+    This mixin is specific to views in this module and can not be re-used in
+    other modules!
+    """
+
+    def get_context_data(self, **kwargs):  # noqa: D102
+        context = super().get_context_data(**kwargs)
+
+        context["active_account"] = context["account"]
+
+        return context
 
 
 class AccountCreateView(LoginRequiredMixin, generic.CreateView):
@@ -45,7 +61,12 @@ class AccountCreateView(LoginRequiredMixin, generic.CreateView):
             return render(self.request, "penthouse/error.html")
 
 
-class AccountDeleteView(LoginRequiredMixin, RestrictToUserMixin, generic.DeleteView):
+class AccountDeleteView(
+    LoginRequiredMixin,
+    InjectActiveAccountMixin,
+    RestrictToUserMixin,
+    generic.DeleteView,
+):
     """CBV to delete instances of :class:`~penthouse.models.account.Account`."""
 
     model = Account
@@ -58,6 +79,17 @@ class AccountDeleteView(LoginRequiredMixin, RestrictToUserMixin, generic.DeleteV
 
     success_url = reverse_lazy("penthouse:account-list")
 
+    def get_context_data(self, **kwargs):
+        """Add additional information about the to be deleted data."""
+        context = super().get_context_data(**kwargs)
+
+        progression_samples = Sample.objects.filter(
+            account=context["active_account"]
+        ).count()
+        context["progression_samples"] = progression_samples
+
+        return context
+
 
 class AccountListView(LoginRequiredMixin, RestrictToUserMixin, generic.list.ListView):
     """CBV to display a list of all instances of :class:`~penthouse.models.account.Account`.
@@ -65,7 +97,7 @@ class AccountListView(LoginRequiredMixin, RestrictToUserMixin, generic.list.List
     The list will be filtered by the current user.
 
     FIXME: This should display *some* information about the accounts, which will
-    be fetched from oder components.
+    be fetched from other components.
     """
 
     model = Account
@@ -97,7 +129,10 @@ class AccountListView(LoginRequiredMixin, RestrictToUserMixin, generic.list.List
 
 
 class AccountOverview(
-    LoginRequiredMixin, RestrictToUserMixin, generic.detail.DetailView
+    LoginRequiredMixin,
+    InjectActiveAccountMixin,
+    RestrictToUserMixin,
+    generic.detail.DetailView,
 ):
     """CBV to display a single instance of :class:`~penthouse.models.account.Account`.
 
@@ -115,7 +150,12 @@ class AccountOverview(
     template_name = "penthouse/account_overview.html"
 
 
-class AccountUpdateView(LoginRequiredMixin, RestrictToUserMixin, generic.UpdateView):
+class AccountUpdateView(
+    LoginRequiredMixin,
+    InjectActiveAccountMixin,
+    RestrictToUserMixin,
+    generic.UpdateView,
+):
     """CBV to update instances of :class:`~penthouse.models.account.Account`."""
 
     model = Account

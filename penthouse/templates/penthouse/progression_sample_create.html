@@ -1,0 +1,32 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block document_title %}Create Sample{% endblock document_title %}
+
+{% block penthouse_main %}
+<main class="ph-main" id="ph-progression-sample-create">
+  <header>
+    <h2>Create Sample</h2>
+  </header>
+
+  <section id="progression-sample-create-instructions" class="collapsible-container">
+    <header class="collapsible-header">
+      <h3>Instructions</h3>
+    </header>
+    <section class="collapsible-content">
+      <p>This will create a single <em>sample</em> for tracking your account's meta progression.</p>
+      <p>A sample is a single datapoint. You can choose freely, when you create those. You can do it regularly, e.g. at the end of an event or on specific conditions, like major unlocks of UWs.</p>
+    </section>
+  </section>
+
+  <section class="ph-form-container">
+    <form method="post" novalidate class="ph-form">
+      {% csrf_token %}
+
+      {% include "penthouse/includes/form.html" %}
+
+      <button type="submit" class="submit">add Sample</button>
+      <button type="reset" class="cancel">Cancel</button>
+    </form>
+  </section>
+</main>
+{% endblock penthouse_main %}

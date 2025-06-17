@@ -1,0 +1,25 @@
+// SPDX-FileCopyrightText: 2025 Mischback
+// SPDX-License-Identifier: MIT
+// SPDX-FileType: SOURCE
+
+@use "../abstracts/colors";
+
+#ph-progression-overview {
+  #progression-overview-chart {
+    --dataset01-main: #{colors.$chart-dataset01-main};
+    --dataset01-secondary: #{colors.$chart-dataset01-secondary};
+    --dataset02-main: #{colors.$chart-dataset02-main};
+  }
+
+  .data-list {
+    /* This selector is *dynamically* added by JS/TS!
+     *
+     * While optimizing the stylesheet make sure to not purge this!
+     */
+    .ph-progression-ltc-change {
+      &::after {
+        content: "%";
+      }
+    }
+  }
+}

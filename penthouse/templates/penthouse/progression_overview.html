@@ -1,0 +1,48 @@
+{% extends "penthouse/app_base.html" %}
+
+{% block document_title %}Progression Overview{% endblock document_title %}
+
+{% block penthouse_main %}
+<main class="ph-main" id="ph-progression-overview">
+  <header>
+    <h2>{{ active_account.name }} - Progression Overview</h2>
+  </header>
+
+<section class="collapsible-container" id="progression-overview-samples">
+  <header class="collapsible-header">
+    <h3>Samples</h3>
+  </header>
+  <section class="collapsible-content">
+    <a href="{% url "penthouse:progression-sample-create" active_account.id %}">add Sample</a>
+    <table summary="All samples for the meta progression of this account" class="data-list">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>LTC</th>
+          <th>LTS</th>
+          <th>Notes</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sample in object_list %}
+        <tr>
+          <td>{{ sample.date|date:"Y-m-d" }}</td>
+          <td class="ph-progression-date raw-value">{{ sample.date|date:"U" }}</td>
+          <td class="number-value">{{ sample.ltc_display }}</td>
+          <td class="ph-progression-ltc raw-value">{{ sample.ltc }}</td>
+          <td class="number-value">{{ sample.lts }}</td>
+          <td class="ph-progression-lts raw-value">{{ sample.lts }}</td>
+          <td>{{ sample.notes }}</td>
+          <td>
+            <a href="{% url "penthouse:progression-sample-update" sample.id %}">update</a>
+            <a href="{% url "penthouse:progression-sample-delete" sample.id %}">delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</section>
+</main>
+{% endblock penthouse_main %}
