@@ -10,4 +10,16 @@
     --dataset01-secondary: #{colors.$chart-dataset01-secondary};
     --dataset02-main: #{colors.$chart-dataset02-main};
   }
+
+  .data-list {
+    /* This selector is *dynamically* added by JS/TS!
+     *
+     * While optimizing the stylesheet make sure to not purge this!
+     */
+    .ph-progression-ltc-change {
+      &::after {
+        content: "%";
+      }
+    }
+  }
 }

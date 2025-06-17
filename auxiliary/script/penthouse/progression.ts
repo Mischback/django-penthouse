@@ -275,7 +275,11 @@ export function createProgressionChart(): void {
             fill: settingsGridColor,
           },
           value: (_, raw) => {
-            return convertNumberForDisplay(raw);
+            if (raw === null) {
+              return "--";
+            } else {
+              return convertNumberForDisplay(raw);
+            }
           },
         },
         {
@@ -296,6 +300,13 @@ export function createProgressionChart(): void {
           points: {
             stroke: settingsDataset01Secondary,
             fill: settingsGridColor,
+          },
+          value: (_, raw) => {
+            if (raw === null) {
+              return "--";
+            } else {
+              return `${raw}%`;
+            }
           },
         },
       ],
