@@ -205,49 +205,47 @@ export function createProgressionChart(): void {
   // rendered, adjust the Django codebase accordingly if required.
   //
   // All other JS/TS shenanigans *must be applied later*.
-  const date_cells = sampleContainer.querySelectorAll(
+  const dateCells = sampleContainer.querySelectorAll(
     ".data-list .ph-progression-date",
   );
-  const ltc_cells = sampleContainer.querySelectorAll(
+  const ltcCells = sampleContainer.querySelectorAll(
     ".data-list .ph-progression-ltc",
   );
-  const ltc_change_cells = sampleContainer.querySelectorAll(
+  const ltcChangeCells = sampleContainer.querySelectorAll(
     ".data-list .ph-progression-ltc-change",
   );
-  const lts_cells = sampleContainer.querySelectorAll(
+  const ltsCells = sampleContainer.querySelectorAll(
     ".data-list .ph-progression-lts",
   );
   if (
-    date_cells.length != ltc_cells.length ||
-    date_cells.length != lts_cells.length ||
-    date_cells.length != ltc_change_cells.length
+    dateCells.length != ltcCells.length ||
+    dateCells.length != ltsCells.length ||
+    dateCells.length != ltcChangeCells.length
   ) {
     console.error("Error while fetching sample data! Lengths do not match!");
     return;
   }
 
-  const date_list: uPlotDate[] = [];
-  const ltc_list: uPlotData[] = [];
+  const dateList: uPlotDate[] = [];
+  const ltcList: uPlotData[] = [];
   const ltc_change_list: uPlotData[] = [];
-  const lts_list: uPlotData[] = [];
+  const ltsList: uPlotData[] = [];
 
-  date_cells.forEach((cell, index) => {
+  dateCells.forEach((cell, index) => {
     // This is really defensive programming.
     //
     // The uPlotDate[] may only contain numbers, while the uPlotData[] *may*
     // use ``null`` values as padding.
-    /*const this_date = parseNumber(cell.textContent);*/
-    /*if (this_date === undefined) {*/
-    /*date_list.push(0);*/
+    /*const thisDate = parseNumber(cell.textContent);*/
+    /*if (thisDate === undefined) {*/
+    /*dateList.push(0);*/
     /*} else {*/
-    /*date_list.push(this_date);*/
+    /*dateList.push(thisDate);*/
     /*}*/
-    date_list.push(parseNumberOrZero(cell.textContent));
-    ltc_list.push(parseNumberOrNull(ltc_cells[index]!.textContent));
-    ltc_change_list.push(
-      parseNumberOrZero(ltc_change_cells[index]!.textContent),
-    );
-    lts_list.push(parseNumberOrNull(lts_cells[index]!.textContent));
+    dateList.push(parseNumberOrZero(cell.textContent));
+    ltcList.push(parseNumberOrNull(ltcCells[index]!.textContent));
+    ltc_change_list.push(parseNumberOrZero(ltcChangeCells[index]!.textContent));
+    ltsList.push(parseNumberOrNull(ltsCells[index]!.textContent));
   });
 
   const ltcChangeListNormalized = replaceOutliersByNull(ltc_change_list);
@@ -363,9 +361,9 @@ export function createProgressionChart(): void {
       },
     },
     [
-      date_list, // x-values (timestamps)
-      ltc_list, // y-values
-      lts_list, // y-values
+      dateList, // x-values (timestamps)
+      ltcList, // y-values
+      ltsList, // y-values
       ltcChangeListNormalized, // y-values
     ],
     chartContainer.querySelector(".collapsible-content") as HTMLElement,
